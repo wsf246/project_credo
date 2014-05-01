@@ -162,3 +162,21 @@ input {
     margin: 0 0 18px 0;
   }
 }
+
+/* carousel */
+
+div.c-wrapper{
+    width: 80%; 
+    margin: auto;
+}
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img{
+width: 100%; /* use this, or not */
+margin: auto;
+}
+.carousel-indicators {
+top: 80%;
+right: 50%; 
+margin: auto;
+}
