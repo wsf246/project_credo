@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502162414) do
+ActiveRecord::Schema.define(version: 20140503210202) do
 
   create_table "debates", force: true do |t|
     t.string   "title"
@@ -23,5 +23,24 @@ ActiveRecord::Schema.define(version: 20140502162414) do
   end
 
   add_index "debates", ["created_at"], name: "index_debates_on_created_at"
+
+  create_table "researches", force: true do |t|
+    t.string   "type"
+    t.string   "methods"
+    t.string   "authors"
+    t.text     "title"
+    t.string   "journal"
+    t.date     "date_of_publication"
+    t.text     "drouputs"
+    t.boolean  "retraction"
+    t.boolean  "peer_review"
+    t.boolean  "reproduced"
+    t.string   "version"
+    t.text     "funding"
+    t.float    "funding_bias"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
