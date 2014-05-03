@@ -1,0 +1,10 @@
+<% provide(:title, 'All debates') %>
+<h1>Debates</h1>
+
+<%= will_paginate %>
+
+<ul class="debates">
+  <%= render @debates %>
+</ul>
+
+<%= will_paginate %>
