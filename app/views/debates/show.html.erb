@@ -1,21 +1,19 @@
 <% provide(:title, @debate.title) %>
-<h1>
-<%= @debate.title %>
-</h1>
-	<div class='debate'>
-		<b>Description:</b>
-			<%= @debate.description %>
-	</div>
-	<div class='debate'>	
-		<b>Notes:</b>	
-			<%= @debate.notes.split('|').to_a.each do |n|
-					puts n
-				end %>
-	</div>
-	<div class='debate'>
-		<b>Verdict:</b>	
-			<%= @debate.verdict %>
-	</div>
+<h1><%= @debate.title %></h1>
+  <div class ='debate-wrapper'>	
+	<h1>Description:</h1>
+		<p><%= @debate.description %></p>
+	<h1>Notes:</h1>
+
+		  <ul>	
+			   <% @debate.notes.split('|').each do |note| %>
+					<li><%=note%></li>
+				<% end %>
+		  </ul>	
+
+	<h1>Verdict:</h1>	
+		<p><%= @debate.verdict %></p>
+  </div>	
 	
 
 	

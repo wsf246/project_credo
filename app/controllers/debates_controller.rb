@@ -22,9 +22,11 @@ class DebatesController < ApplicationController
   end
 
   def edit
+    @debate= Debate.find(params[:id])
   end
 
   def update
+    @debate= Debate.find(params[:id])
     if @debate.update_attributes(debate_params)
       flash[:success] = "Debate updated"
       redirect_to @debate
