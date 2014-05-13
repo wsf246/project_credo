@@ -1,0 +1,106 @@
+<% provide(:title, @research.title) %>
+  <h2>Research Details </h2>
+  <h3><%= link_to "Edit", edit_research_path %></h3>
+  	<div class ='research-wrapper'>	
+      <p><%= @research.authors %></p>      
+        <a href=<%= @research.link %>><%= @research.title %>
+      	    <%if @research.version.present? %> 
+      	      v. <%= @research.version %>
+      	    <%end%>
+        </a>
+		<div class="row">
+	 		<section>	     
+			  <h1>Details</h1>
+ 
+			  	<p>Study Type: <%= @research.study_type %></p>
+			  	<p>Joural: <%= @research.journal %></p>	
+			  	<p>Date of Publication: <%= @research.date_of_publication.to_formatted_s(:long)%></p>	
+			    <p>Findings:
+				    <% if @research.findings.present? %>				    	
+				        <ol class="research-details">
+					      <%= render @findings %>
+					    </ol> 					      
+					<%else%>
+					      Unknown
+					<%end%>
+				</p> 
+			</section>
+
+			<section>  
+			  <h1>Quotes:</h1>
+			    <ol class="research-details">
+			        <% if @research.quotes.present? %>		
+				      <%= render @quotes %>
+				    <%else%>
+				      None
+				    <%end%>
+				</ol>    			  	
+			</section>  	
+
+			<section>	
+	  	      <h1>Trustworthiness</h1>  		  	
+		  	    <div class="span5">
+			  	  <h2>Best Practices: </h2>
+				  	<p> Single Blinding:  	 	
+				  	  <% if @research.single_blinded %> Yes <%else%> No <% end %>
+				  	</p>
+				  	<p> Double Blinding: 	  	 	
+				  	  <% if @research.double_blinded %> Yes <%else%> No <% end %>
+				  	</p>
+				  	<p> Randomization: 	  	 	
+				  	  <% if @research.randomized %> Yes <%else%> No <% end %>
+				  	</p>	
+				  	<p> Control against placebo: 
+				  	  <% if @research.controlled_against_placebo %> Yes <%else%> No <% end %>
+				  	</p>	
+				  	<p> Control against best alternative: 
+				  	  <% if @research.controlled_against_best_alt %> Yes <%else%> No <% end %>	
+				  	</p>
+			  	</div> 	 
+
+		        <div class="span3">
+			  	  <h2>Verification: </h2>	  	  		  	 		  	 	
+				  	<p> Retracted:  	 	
+				  	  <% if @research.retracted %> Yes <%else%> No <% end %>
+				  	</p>
+				  	<p> Peer Reviewed: 	  	 	
+				  	  <% if @research.peer_reviewed %> Yes <%else%> No <% end %>
+				  	</p>
+				  	<p> Replicated: 	  	 	
+				  	  <% if @research.replicated %> Yes <%else%> No <% end %>
+				  	</p>	
+		  	    </div>	
+		  	</section>   	  	 	
+
+				
+			<section>	
+			  <h1> Potential Sources of Bias </h1>
+			   
+			    <p>Sample Definitions:
+			        <% if @research.sample_defs.present? %>
+			    		<ol class="research-details">			        		
+				          <%= render @sample_defs %>
+						</ol>  				          
+				    <%else%>
+				      Unknown
+				    <%end%>
+				</p>
+
+			  	<p> Sample Dropouts:  	 	
+			  	  <% if @research.dropouts.present? %>
+			  	  	   <p><%= @research.dropouts %></p>
+			  	  	 <%else%> 
+			  	  	   Unknown
+			  	  <%end%>
+			  	</p>
+
+			  	<p> Funding: 	  	 	
+			  	  <% if @research.funding.present? %>
+			  	  	   <p><%= @research.funding %></p> 
+			  	  	 <%else%> 
+			  	  	   Unknown
+			  	  <% end %>
+			  	</p>
+			</section>	  
+  	 	</div>						
+	</div>	

@@ -49,10 +49,28 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 2em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   text-align: center;
+  font-weight: normal;
+  color: $grayLight;
+}
+
+h3 {
+  font-size: 1.5em;
+  letter-spacing: -1px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: normal;
+  color: $grayLight;
+}
+
+h4 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 5px;
+  text-align: left;
   font-weight: normal;
   color: $grayLight;
 }
@@ -107,15 +125,7 @@ footer {
   }
 }
 
-/* miscellaneous */
 
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
-}
 /* sidebar */
 
 aside {
@@ -142,18 +152,7 @@ aside {
 }
 
 
-/* forms */
-
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
-input {
-  height: auto !important;
-}
+/* errors */
 
 #error_explanation {
   color: #f00;
@@ -162,6 +161,12 @@ input {
     margin: 0 0 18px 0;
   }
 }
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
 
 /* carousel */
 
@@ -181,20 +186,8 @@ right: 50%;
 margin: auto;
 }
 
-#error_explanation {
-  color: #f00;
-  ul {
-    list-style: none;
-    margin: 0 0 18px 0;
-  }
-}
 
-.field_with_errors {
-  @extend .control-group;
-  @extend .error;
-}
-
-/* miscellaneous/debug */
+/* debug */
 
 .debug_dump {
   clear: both;
@@ -203,3 +196,171 @@ margin: auto;
   margin-top: 45px;
   @include box_sizing;
 }
+
+
+/* Debates show */
+
+div.debate-wrapper{
+  width: 95%; 
+  margin: auto;
+
+  h1 {
+    font-size: 1.4em;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-left: 3em;
+    font-weight: bold;
+    color: $gray;
+  }
+
+  p {
+    font-size: 1.4em;
+    letter-spacing: -0.5px;
+    line-height: 100%;
+    text-align: left;
+    padding-left: 3em;    
+    padding-right: 20em;
+    font-weight: normal;
+    color: $gray;
+  }
+
+  ul {
+    font-size: 1.4em;
+    letter-spacing: -0.5px;
+    text-align: left;
+    padding-left: 3em;    
+    padding-right: 20em;
+    font-weight: normal;
+    color: $gray;
+  }  
+}
+/* Research show */
+
+.research-details {
+  list-style: initial;
+  margin: 10px 0 0 0;
+
+  li {
+    margin: 3px 0 0 50px;
+
+  }
+}
+.content {
+  display: block;
+}
+
+div.research-wrapper{
+  width: 95%; 
+  margin: auto;
+
+  a {
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-left: 2em;
+    font-weight: bold;
+    color: $gray;
+  }
+
+  h2 {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-left: 3em;
+    font-weight: bold;
+    color: $gray;
+  }  
+
+  p {
+    font-size: 1.2em;
+    letter-spacing: -0.5px;
+    line-height: 100%;
+    text-align: left;
+    padding-left: 3.5em;    
+    font-weight: normal;
+    color: $gray;
+  }
+
+  ul {
+    font-size: 1.4em;
+    letter-spacing: -0.5px;
+    text-align: left;
+    padding-left: 3em;    
+    padding-right: 25em;
+    font-weight: normal;
+    color: $gray;
+  }  
+
+  ol {
+    font-size: 1.2em;
+    letter-spacing: -0.5px;
+    text-align: left;
+    padding-left: 3em;    
+    padding-right: 20em;
+    font-weight: normal;
+    color: $gray;
+    p {
+      font-size: 1em;
+      letter-spacing: -0.5px;
+      line-height: 100%;
+      text-align: left;
+      padding-left: 0em;    
+      font-weight: normal;
+      color: $gray;
+    }  
+  } 
+
+  section {
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:first-child {
+      border: 5;
+      padding-top: 0;
+    }  
+  }  
+}
+
+/* Debates index */
+
+.debates {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    font-size: 1.4em;    
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
+/* form */
+
+input[type="text"], textarea, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 200%;
+  height: 8em;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+
+
+
+

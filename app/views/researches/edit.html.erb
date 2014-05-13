@@ -1,0 +1,108 @@
+<% provide(:title, 'Edit' && @research.title) %>
+<h1>Edit Research</h1>
+
+<div class="row">
+  <div class="span4 offset1">
+    <%= nested_form_for(@research) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+        <h4>Basic Information</h4>
+            
+        <%= f.label :Title %>
+        <%= f.text_area :title, placeholder: "Research title..." %>
+
+        <%= f.label :Link %>
+        <%= f.text_field :link, placeholder: "http://..." %>
+
+        <%= f.label :Version %>
+        <%= f.text_field :version, placeholder: "Version of research..."%>
+
+        <%= f.label :Authors %> 
+        <%= f.text_field :authors, placeholder: "Separate authors with '|'..." %>
+
+        <%= f.label :Date_of_publication, "Date of Publication" %>
+        <%= f.date_field :date_of_publication, placeholder: "Date of publication..." %>
+
+        <%= f.label :Journal %>
+        <%= f.text_field :journal, placeholder: "Name of Journal..." %>
+
+        <h4>Findings</h4>
+
+        <%= f.fields_for :findings do |builder| %>
+            <%= render 'finding_fields', :f => builder %>
+        <%end%>  
+
+        <p><%= f.link_to_add "Add a finding", :findings %></p>            
+
+        <h4>Quotes</h4>
+
+        <%= f.fields_for :quotes do |builder| %>
+            <%= render 'quote_fields', :f => builder %>
+        <%end%>   
+
+        <p><%= f.link_to_add "Add a quote", :quotes %></p>
+  </div>
+</div> 
+
+<div class="row">
+  <div class="span4 offset1">       
+
+        <h4>Methodologies</h4>
+
+        <%= f.label :Study_type, "Research Classification"  %>
+        <%= f.select(:study_type, options_for_select([['Cross-sectional'], ['Case-control'],['Cohort Study'], ['Randomized Control Trial'], ['Case Study'], ['Unknown']],'Unknown')) %>  
+
+        <%= f.label(:single_blinded, "Single Blinded?") %>  
+        <%= f.check_box(:single_blinded) %>
+
+        <%= f.label(:Double_blinded, "Double_blinded?") %>  
+        <%= f.check_box(:double_blinded) %>    
+  
+        <%= f.label(:randomized, "Randomized?") %>  
+        <%= f.check_box(:randomized) %>
+
+        <%= f.label(:controlled_against_placebo, "Conrolled against placebo?") %>  
+        <%= f.check_box(:controlled_against_placebo) %>        
+  
+        <%= f.label(:controlled_against_best_alt, "Controlled against best alternative?") %>  
+        <%= f.check_box(:controlled_against_best_alt) %>   
+  </div>
+
+  <div class="span4">                
+     
+        <h4>Verification</h4>
+
+        <%= f.label(:retracted, "Retracted?") %>  
+        <%= f.check_box(:retracted) %>
+
+        <%= f.label(:peer_reviewed, "Peer Reviewed?") %>  
+        <%= f.check_box(:peer_reviewed) %>        
+  
+        <%= f.label(:Replicated, "Replicated?") %>  
+        <%= f.check_box(:replicated) %>
+
+  </div>
+</div>
+
+<p>
+
+<div class="row">
+  <div class="span4 offset1">
+
+        <h4>Sample and Biases</h4>
+
+        <%= f.fields_for :sample_defs do |builder| %>
+            <%= render 'sample_def_fields', :f => builder %>
+        <%end%>  
+
+        <p><%= f.link_to_add "Add a sample definition", :sample_defs %></p>                
+
+        <%= f.label :dropouts, "Sample Dropouts" %>
+        <%= f.text_area :dropouts, placeholder: "Were there any dropouts from the sample population..." %>        
+        <%= f.label :funding, "Funding Sources" %>
+        <%= f.text_area :funding, placeholder: "Who funded this research..." %>
+
+        <%= f.submit "Log info", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

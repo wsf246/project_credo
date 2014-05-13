@@ -1,0 +1,11 @@
+<% provide(:title, 'All research') %>
+<h2>Documented Research</h2>
+<h3><%= link_to "Document a new piece of research", new_research_path %></h3>
+
+<%= will_paginate %>
+
+<ul class="debates">
+  <%= render @researches %>
+</ul>
+
+<%= will_paginate %>

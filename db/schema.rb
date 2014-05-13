@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503210202) do
+ActiveRecord::Schema.define(version: 20140508185010) do
 
   create_table "debates", force: true do |t|
     t.string   "title"
@@ -24,23 +24,54 @@ ActiveRecord::Schema.define(version: 20140503210202) do
 
   add_index "debates", ["created_at"], name: "index_debates_on_created_at"
 
+  create_table "findings", force: true do |t|
+    t.text     "finding"
+    t.integer  "research_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "findings", ["created_at"], name: "index_findings_on_created_at"
+
+  create_table "quotes", force: true do |t|
+    t.text     "quote"
+    t.integer  "research_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "quotes", ["created_at"], name: "index_quotes_on_created_at"
+
   create_table "researches", force: true do |t|
-    t.string   "type"
-    t.string   "methods"
+    t.string   "study_type"
     t.string   "authors"
     t.text     "title"
     t.string   "journal"
     t.date     "date_of_publication"
-    t.text     "drouputs"
-    t.boolean  "retraction"
-    t.boolean  "peer_review"
-    t.boolean  "reproduced"
+    t.text     "dropouts"
+    t.boolean  "retracted"
+    t.boolean  "peer_reviewed"
+    t.boolean  "replicated"
     t.string   "version"
     t.text     "funding"
     t.float    "funding_bias"
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "single_blinded"
+    t.boolean  "double_blinded"
+    t.boolean  "randomized"
+    t.boolean  "controlled_against_placebo"
+    t.boolean  "controlled_against_best_alt"
   end
+
+  create_table "sample_defs", force: true do |t|
+    t.text     "sample_def"
+    t.integer  "research_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sample_defs", ["created_at"], name: "index_sample_defs_on_created_at"
 
 end

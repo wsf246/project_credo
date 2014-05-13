@@ -1,19 +1,18 @@
 <% provide(:title, @debate.title) %>
 <h1><%= @debate.title %></h1>
+<h2><%= link_to "Edit debate", edit_debate_path %></h2>
   <div class ='debate-wrapper'>	
 	<h1>Description:</h1>
 		<p><%= @debate.description %></p>
 	<h1>Notes:</h1>
-
 		  <ul>	
-			   <% @debate.notes.split('|').each do |note| %>
-					<li><%=note%></li>
-				<% end %>
+			  <% @debate.notes.split('|').each do |note| %>
+				<li><%=note%></li>
+			  <% end %>
 		  </ul>	
 
 	<h1>Verdict:</h1>	
 		<p><%= @debate.verdict %></p>
-  </div>	
-	
+  </div>
 
 	
