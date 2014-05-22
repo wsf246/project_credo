@@ -1,4 +1,16 @@
 GIT
+  remote: git://github.com/activerecord-hackery/ransack.git
+  revision: 6fa74a079ae33e520c9d69a6e6dfc45cc055b323
+  branch: rails-4
+  specs:
+    ransack (1.2.3)
+      actionpack (>= 4.0)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
+      i18n
+      polyamorous (~> 1.0.0)
+
+GIT
   remote: git://github.com/bmabey/database_cleaner.git
   revision: 35bd646903fc56af185a9fa9e360c568bb56756e
   specs:
@@ -89,14 +101,16 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    mini_portile (0.5.3)
+    mini_portile (0.6.0)
     minitest (4.7.5)
     multi_json (1.10.0)
     multi_test (0.1.1)
     nested_form (0.3.2)
-    nokogiri (1.6.2)
-      mini_portile (~> 0.5.2)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     pg (0.15.1)
+    polyamorous (1.0.0)
+      activerecord (>= 3.0)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -119,7 +133,7 @@ GEM
       activesupport (= 4.0.4)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.3.1)
+    rake (10.3.2)
     rdoc (3.12.2)
       json (~> 1.4)
     rspec-core (2.13.1)
@@ -193,6 +207,7 @@ DEPENDENCIES
   pg (= 0.15.1)
   rails (= 4.0.4)
   rails_12factor (= 0.0.2)
+  ransack!
   rspec-rails (= 2.13.1)
   sass-rails (= 4.0.1)
   sdoc (= 0.3.20)

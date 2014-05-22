@@ -1,3 +1,15 @@
 <li>
-  <span class="content"><%= simple_format(finding.finding) %></span>
+	<span class="content">
+		<% if finding.quote.present? %>
+	 	  <b>Quote:</b> <%= simple_format(finding.quote) %>
+	 	<%end%>
+
+		<% if finding.sample_def.present? %>	 		
+	 	  <b>Sample Definition:</b> <%= simple_format(finding.sample_def) %>
+	 	<%end%>
+	 	  
+		<% if finding.finding.present? %>	 		  
+	 	  <b>Finding:</b> <%= simple_format(finding.finding) %>
+	 	<%end%>  
+	</span>	
 </li>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508185010) do
+ActiveRecord::Schema.define(version: 20140514202412) do
 
   create_table "debates", force: true do |t|
     t.string   "title"
@@ -29,18 +29,20 @@ ActiveRecord::Schema.define(version: 20140508185010) do
     t.integer  "research_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "sample_def"
+    t.text     "quote"
   end
 
   add_index "findings", ["created_at"], name: "index_findings_on_created_at"
 
-  create_table "quotes", force: true do |t|
-    t.text     "quote"
-    t.integer  "research_id"
+  create_table "points", force: true do |t|
+    t.text     "point"
+    t.boolean  "for_against"
+    t.integer  "debate_id"
+    t.integer  "finding_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "quotes", ["created_at"], name: "index_quotes_on_created_at"
 
   create_table "researches", force: true do |t|
     t.string   "study_type"
@@ -64,14 +66,5 @@ ActiveRecord::Schema.define(version: 20140508185010) do
     t.boolean  "controlled_against_placebo"
     t.boolean  "controlled_against_best_alt"
   end
-
-  create_table "sample_defs", force: true do |t|
-    t.text     "sample_def"
-    t.integer  "research_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "sample_defs", ["created_at"], name: "index_sample_defs_on_created_at"
 
 end

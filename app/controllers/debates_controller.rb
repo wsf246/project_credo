@@ -6,6 +6,8 @@ class DebatesController < ApplicationController
   
   def show
     @debate = Debate.find(params[:id])
+    @for_points = @debate.points.where(for_against: true)
+    @against_points = @debate.points.where(for_against: false)    
   end
 
   def new

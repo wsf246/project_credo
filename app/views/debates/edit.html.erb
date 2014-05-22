@@ -5,18 +5,7 @@
   <div class="span6 offset3">
     <%= form_for(@debate) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      	<%= f.label :Title %>
-     		<%= f.text_field :title, placeholder: "Compose affirmative (ex: Cold water is bad for digestion)..." %>
-
-      	<%= f.label :Description %> 
-		    <%= f.text_area :description, placeholder: "Compose a description..." %>
-
-      	<%= f.label :Notes %>
-		    <%= f.text_area :notes, placeholder: "Additional notes (separate bullet points with '|')..." %>
-
-      	<%= f.label :Verdict %>
-		    <%= f.text_area :verdict, placeholder: "Compose a verdict..." %>
-
+      <%= render 'debate_form', :f => f  %>
 		    <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

@@ -3,8 +3,31 @@ ProjectCredo::Application.routes.draw do
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
-  resources :debates
-  resources :researches
+  resources :debates do
+    collection do
+      match 'search' => 'debates#search', :via => [:get, :post], :as => :search
+    end
+
+    resources :points, shallow: true do
+      collection do
+        match 'search' => 'points#search', via: [:get, :post], as: :search
+      end
+    end  
+  end  
+
+  resources :researches do
+    collection do
+      match 'search' => 'researches#search', :via => [:get, :post], :as => :search
+    end
+  end  
+
+
+  resources :findings do
+    collection do
+      match 'search' => 'findings#search', via: [:get, :post], as: :search
+    end
+  end         
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

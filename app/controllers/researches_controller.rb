@@ -1,19 +1,23 @@
 class ResearchesController < ApplicationController
 
   def index
-    @researches = Research.paginate(page: params[:page])
+    @q = Research.ransack(params[:q]) 
+    @researches = @q.result(distinct: true).includes(:findings).paginate(page: params[:page])    
   end
+
+  def search
+    index
+    render :index
+  end  
   
   def show
     @research = Research.find(params[:id])
-    @quotes = @research.quotes
-    @sample_defs = @research.sample_defs
     @findings = @research.findings
   end
 
   def new
     @research = Research.new
-    @research.quotes.build   
+    @research.findings.build   
   end
 
   def create
@@ -55,9 +59,7 @@ class ResearchesController < ApplicationController
                                    :replicated, :version, :funding, :link,
                                    :single_blinded, :double_blinded,:randomized,
                                    :controlled_against_placebo,:controlled_against_best_alt,
-                                   quotes_attributes: [:id, :research_id, :quote, :_destroy],
-                                   findings_attributes: [:id, :research_id, :finding, :_destroy],
-                                   sample_defs_attributes: [:id, :research_id, :sample_def, :_destroy])
+                                   findings_attributes: [:id, :research_id, :finding, :quote, :sample_def, :_destroy])
     end
 end
 

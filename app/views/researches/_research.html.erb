@@ -1,3 +1,25 @@
-<li>
-  <%= link_to research.title, research %>
-</li>
+<div class ='researches'>
+  <ul class = 'research'>	
+	<li class ='research'>
+	  <%= link_to research.title, research %>
+	  <ul class ='finding'>
+	  	  <b class ='finding'>Findings:</b>
+	  	    <%if research.findings.present? %>
+		      <% research.findings.each do |finding| %>
+			       <li class ='finding'>
+	  	              <%if finding.quote.present? %>			       	  
+			       	     <i> "<%= finding.quote %>" </i>    	
+			       	     <br><%= finding.finding %></br>
+			       	  <%else%>
+			       	     <%= finding.finding %>   
+			       	  <%end%>
+			       	    
+			       </li>
+		      <%end%>
+		    <%else%>
+	  	      <b class ='finding'>None logged</b>
+	  	    <%end%>  		      
+	  </ul>
+	</li>
+  </ul>	
+</div>

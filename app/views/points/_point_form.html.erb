@@ -1,0 +1,9 @@
+		    <%= f.label :For_against, "For or against the debate?"  %>
+		    <%= f.select(:for_against, options_for_select([['For', true ], ['Against',false]], @for_against)) %>  
+
+		    <%= f.label :Point %>  
+		    <%= f.text_area :point, placeholder: "How does this research relate to the debate..." %>
+		    
+		    <%= f.submit "Submit", class: "btn btn-large btn-primary" %>  
+
+      

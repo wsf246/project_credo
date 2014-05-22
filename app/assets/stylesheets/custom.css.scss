@@ -235,17 +235,19 @@ div.debate-wrapper{
     color: $gray;
   }  
 }
+
 /* Research show */
 
 .research-details {
-  list-style: initial;
+  list-style: none;
   margin: 10px 0 0 0;
 
   li {
+    border-top: 1px solid $grayLighter;  
     margin: 3px 0 0 50px;
-
   }
 }
+
 .content {
   display: block;
 }
@@ -332,7 +334,7 @@ div.research-wrapper{
 
 /* Debates index */
 
-.debates {
+div.debates {
   list-style: none;
   margin: 0;
   li {
@@ -344,6 +346,50 @@ div.research-wrapper{
       border-bottom: 1px solid $grayLighter;
     }
   }
+}
+
+/* Researches index */
+
+div.researches {
+  list-style: none;
+  margin: 0;
+
+  ul.research {
+    list-style: none;  
+    overflow: auto;
+    font-size: 1.4em;    
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }  
+    
+  li.research {
+    margin: 3px 0 0 50px;
+  }
+
+  ul.finding {
+    list-style: none;
+    overflow: auto;
+    font-size: 1em;    
+    padding: 10px 0;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }  
+    
+  li.finding {
+    font-size: .7em; 
+    border-top: 1px solid $grayLighter;    
+    margin: 3px 0 0 0px;
+  }   
+
+  b.finding {
+    font-size: .7em; 
+    margin: 0;
+  }      
+
 }
 
 /* form */
@@ -361,6 +407,21 @@ input {
 }
 
 
+/* Search */
+
+.search {
+  input[type="text"], textarea, .uneditable-input {
+    border: 1px solid #bbb;
+    width: 200%;
+    height: 8em;
+    margin-bottom: 15px;
+    @include box_sizing;
+  }
+
+  input {
+    height: auto !important;
+  }
+} 
 
 
 
