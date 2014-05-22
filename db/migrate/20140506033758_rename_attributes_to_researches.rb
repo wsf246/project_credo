@@ -10,7 +10,6 @@ class RenameAttributesToResearches < ActiveRecord::Migration
       t.boolean :randomized
       t.boolean :controlled_against_placebo
       t.boolean :controlled_against_best_alt
-      t.remove :methodsS
     end  
   end
 end
