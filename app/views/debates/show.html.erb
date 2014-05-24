@@ -23,7 +23,7 @@
 		    	<% @for_points.each do |f| %>		    	
 		    	  <li> <%=f.point%></li>
 		    	  <%= link_to "Edit", edit_point_path(f) %> |
-		    	  <%= link_to "Add findings", findings_path %>		    	  
+		    	  <%= link_to "Add findings", findings_path(:point => f) %>		    	  
 		    	<%end%>
 		    </ol>
 		</div>
@@ -35,7 +35,7 @@
 		    	<% @against_points.each do |a| %>
 		    	  <li> <%=a.point%></li>
 		    	  <%= link_to "Edit", edit_point_path(a) %>|
-		    	  <%= link_to "Add findings", findings_path %>
+		    	  <%= link_to "Add findings", findings_path(:point => a) %>
 		    	<%end%>
 		    </ol>	
 		</div>

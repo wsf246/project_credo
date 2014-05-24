@@ -1,0 +1,7 @@
+<%= form_for(point.associations.find_by(finding_id: finding.id, point_id: point.id),
+             html: { method: :delete },
+             remote: true) do |f| %>
+  <div><%= f.hidden_field :finding_id %></div> 
+  <div><%= f.hidden_field :point_id %></div>               
+  <%= f.submit "Unassociate", class: "btn btn-large" %>
+<% end %>

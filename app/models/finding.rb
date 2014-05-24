@@ -1,5 +1,6 @@
 class Finding < ActiveRecord::Base
   belongs_to :research	
-  belongs_to :point	  	
+  has_many :associations, :dependent => :destroy
+  has_many :points, :through => :associations	  	
   validates :research_id, presence: true		
 end

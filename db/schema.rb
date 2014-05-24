@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514202412) do
+ActiveRecord::Schema.define(version: 20140523035806) do
+
+  create_table "associations", force: true do |t|
+    t.integer  "point_id"
+    t.integer  "finding_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "debates", force: true do |t|
     t.string   "title"

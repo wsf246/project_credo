@@ -26,7 +26,9 @@ ProjectCredo::Application.routes.draw do
     collection do
       match 'search' => 'findings#search', via: [:get, :post], as: :search
     end
-  end         
+  end   
+
+  resources :associations, only: [:create, :destroy]      
 
 
   # The priority is based upon order of creation: first created -> highest priority.

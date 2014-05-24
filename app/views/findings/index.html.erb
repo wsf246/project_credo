@@ -1,6 +1,7 @@
 <% provide(:title, 'All research') %>
 <h2>Documented Research</h2>
 <h3><%= link_to "Document a new piece of research", new_research_path %></h3>
+<h3><%= link_to "Back to debate", debate_path(@point.debate.id) %></h3>
 
 <div class="row">
   <div class="span4 offset1">
@@ -19,7 +20,7 @@
 <%= will_paginate %>
 
 <ul class="debates">
-  <%= render @findings %>
+  <%= render 'findings' %>
 </ul>
 
 <%= will_paginate %>
