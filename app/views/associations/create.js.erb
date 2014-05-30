@@ -1,2 +1,1 @@
-$("#associations_form_<%= finding.id %>").html("<%= escape_javascript(render 'findings/unassociate', point: point,
-																				 finding: finding) %>")
+$("#associations_form_<%= @finding.id %>").html("<%= escape_javascript(render 'findings/unassociate', finding: @finding) %>")

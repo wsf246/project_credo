@@ -1,7 +1,7 @@
 <div id="associations_form_<%= finding.id %>">
 <% if @point.associated?(finding) %>
-    <%= render 'unassociate', :finding => finding, :point => point %>
+    <%= render 'unassociate', :finding => finding %>
 <% else %>
-    <%= render 'associate', :finding => finding, :point => point %>
+    <%= render 'associate', :finding => finding %>
 <% end %>
 </div>

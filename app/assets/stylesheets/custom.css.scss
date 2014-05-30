@@ -94,10 +94,16 @@ p {
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
+    color: black;
     text-decoration: none;
   }
 }
+
+#dropdownMenu1 {
+  color: $gray;
+}
+
+
 
 /* footer */
 
@@ -285,10 +291,8 @@ div.research-wrapper{
 
   p {
     font-size: 1.2em;
-    letter-spacing: -0.5px;
     line-height: 100%;
-    text-align: left;
-    padding-left: 3.5em;    
+    text-align: left;  
     font-weight: normal;
     color: $gray;
   }
@@ -332,6 +336,52 @@ div.research-wrapper{
   }  
 }
 
+/* Points show on debate */
+
+div.point-wrapper{
+  width: 100%; 
+  margin: auto;
+
+  h1 {
+    font-size: 30px;
+    margin: 0 0 0 0;
+  }
+
+  .point {
+    font-size: 20px;
+    text-align: left;
+    font-weight: normal;
+    color: $gray;
+    list-style: none;
+    margin: 0 0 10px 0;
+  } 
+
+  .research {
+    font-size: 17px;
+    text-align: left;
+    font-weight: normal;
+    color: $gray;
+    list-style: none;
+    border-left: 1px solid $grayLighter;
+    padding: 0 0 0 10px;
+    margin: 10px 0 0 10px;    
+  } 
+
+  .pix15 {
+    font-size: 12px;
+  }
+
+  .finding {
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
+    line-height: 110%;
+        border-left: 1px solid $grayLighter;
+    padding: 0 0 0 10px;
+    margin: 10px 0 0 10px;
+  }   
+}
+
 /* Debates index */
 
 div.debates {
@@ -354,7 +404,7 @@ div.researches {
   list-style: none;
   margin: 0;
 
-  ul.research {
+  ul {
     list-style: none;  
     overflow: auto;
     font-size: 1.4em;    
@@ -365,31 +415,32 @@ div.researches {
     }
   }  
     
-  li.research {
+  li {
     margin: 3px 0 0 50px;
   }
 
   ul.finding {
     list-style: none;
+    border-top: none;
+    border-bottom: none;          
     overflow: auto;
     font-size: 1em;    
     padding: 10px 0;
-    &:last-child {
-      border-bottom: 1px solid $grayLighter;
-    }
   }  
     
   li.finding {
     font-size: .7em; 
     border-top: 1px solid $grayLighter;    
     margin: 3px 0 0 0px;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
   }   
 
   b.finding {
     font-size: .7em; 
     margin: 0;
   }      
-
 }
 
 /* form */

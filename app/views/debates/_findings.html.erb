@@ -1,0 +1,11 @@
+<li class ='research'>
+  <%= link_to(research_path(finding.research_id)) do%>
+    <%=finding.research.title %>
+    <br />
+    <div class ='pix15'> Authors: <%=finding.research.authors %> </div>
+  <%end%>  
+  <p class = 'finding'>
+    <%= finding.finding %>
+  </p>
+
+</li>

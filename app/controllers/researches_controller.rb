@@ -37,6 +37,8 @@ class ResearchesController < ApplicationController
   def update
     @research= Research.find(params[:id])
     if @research.update_attributes(research_params)
+      @research.score = 5
+
       flash[:success] = "Research attributes updated"
       redirect_to @research
     else
@@ -57,7 +59,7 @@ class ResearchesController < ApplicationController
                                    :title, :journal, :date_of_publication,
                                    :dropouts, :retracted, :peer_reviewed,
                                    :replicated, :version, :funding, :link,
-                                   :single_blinded, :double_blinded,:randomized,
+                                   :single_blinded, :double_blinded,:randomized, :score,
                                    :controlled_against_placebo,:controlled_against_best_alt,
                                    findings_attributes: [:id, :research_id, :finding, :quote, :sample_def, :_destroy])
     end

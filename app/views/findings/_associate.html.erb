@@ -1,4 +1,4 @@
-<%= form_for(point.associations.build(finding_id: finding.id, point_id: point.id),
+<%= form_for(@point.associations.build(finding_id: finding.id, point_id: @point.id),
              remote: true) do |f| %>
   <div><%= f.hidden_field :finding_id %></div>
   <div><%= f.hidden_field :point_id %></div>  

@@ -5,40 +5,42 @@
 	  <h1>Description:</h1>
 		<p><%= @debate.description %></p>
 	  <h1>Notes:</h1>
-		  <ul>	
-			  <% @debate.notes.split('|').each do |note| %>
-				<li><%=note%></li>
-			  <% end %>
-		  </ul>	
+
+	  <ul>	
+		  <% @debate.notes.split('|').each do |note| %>
+			<li><%=note%></li>
+		  <% end %>
+	  </ul>	
 
 	  <h1>Verdict:</h1>	
 		<p><%= @debate.verdict %></p>
-   </div>
+  </div>
+  <div class ='point-wrapper'>	
 
-   <div class="row">
-		<div class="span7 offset1">
-		  <h1>For:</h1>  
-		  <%= link_to "Add a new point for", new_debate_point_path(@debate, :point_type => 'For') %>		  	
-		    <ol>
+	  <div class="row">
+			<div class="span7 offset1">
+			  <h1>For</h1> 
+			  <div class='center'> 
+			  	<%= link_to "Add a new point for", new_debate_point_path(@debate, :point_type => 'For') %>	
+			  </div>	  	
+		    <ul class= 'point'>
 		    	<% @for_points.each do |f| %>		    	
-		    	  <li> <%=f.point%></li>
-		    	  <%= link_to "Edit", edit_point_path(f) %> |
-		    	  <%= link_to "Add findings", findings_path(:point => f) %>		    	  
+  	 				<%= render 'points', point: f %>
 		    	<%end%>
-		    </ol>
-		</div>
+		    </ul>
+			</div>
 
-		<div class="span7 offset1">
-		  <h1>Against:</h1> 
-		  <%= link_to "Add a new point against", new_debate_point_path(@debate, :point_type => 'Against') %>		  
+			<div class="span7 offset1">
+			  <h1>Against</h1> 
+			  <div class= 'center'> 
+			  	<%= link_to "Add a new point against", new_debate_point_path(@debate, :point_type => 'Against') %>
+			  </div>			  
 		    <ol> 	
 		    	<% @against_points.each do |a| %>
-		    	  <li> <%=a.point%></li>
-		    	  <%= link_to "Edit", edit_point_path(a) %>|
-		    	  <%= link_to "Add findings", findings_path(:point => a) %>
+		    	  <%= render 'points', point: a %>
 		    	<%end%>
 		    </ol>	
-		</div>
-   </div>  	
-
+			</div>
+	  </div>  	
+	</div>  
 	

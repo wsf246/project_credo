@@ -6,7 +6,7 @@ class AssociationsController < ApplicationController
     @point.associate!(@finding)
     respond_to do |format|
       format.html { redirect_to @findings }
-      format.js {render "create", locals: {point: @point, finding: @finding}}
+      format.js 
     end
   end
 
@@ -16,7 +16,7 @@ class AssociationsController < ApplicationController
     @point.unassociate!(@finding)
     respond_to do |format|
       format.html { redirect_to @findings }
-      format.js {render "destroy", locals: {point: @point, finding: @finding}}
-    end
+      format.js
+    end 
   end
 end

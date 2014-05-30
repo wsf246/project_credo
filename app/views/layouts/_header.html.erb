@@ -1,13 +1,47 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-default">
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "project credo", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Help", root_path(:anchor => "help") %></li>
-          <li><%= link_to "All Debates", debates_path %></li>
-          <li><%= link_to "All Research", researches_path %></li>          
+          <li><%= link_to "About", root_path(:anchor => "about") %></li>
+          <li><%= link_to "Contact", root_path(:anchor => "contact") %></li>
+
+          <li>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                Debates
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" >
+                  <%= link_to "All debates", debates_path %>
+                </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" >
+                  <%= link_to "Create debate", new_debate_path %>
+                </a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <div class="dropdown">
+              <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                Research
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" >
+                  <%= link_to "All research", researches_path %>
+                </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" >
+                  <%= link_to "Create research", new_research_path %>
+                </a></li>
+              </ul>
+            </div>
+          </li>
+           
         </ul>
       </nav>
     </div>

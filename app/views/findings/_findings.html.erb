@@ -1,6 +1,6 @@
 <div class ='researches'>
-  <ul class = 'research'>
-	<% @findings.each do |research| %>  	
+  <ul>
+	<% @researches.each do |research| %>  	
 	<li class ='research'>
 	  <%= link_to research.title, research_path(research) %>
 	  <ul class ='finding'>
@@ -14,7 +14,7 @@
 					<%else%>
 						<%= finding.finding %>	
 					<%end%>
-					<%= render 'associations_form', :finding => finding, :point => @point %>	
+					<%= render 'associations_form', :finding => finding %>	
 			       </li>
 		      <%end%>
 		    <%else%>

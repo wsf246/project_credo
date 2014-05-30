@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523035806) do
+ActiveRecord::Schema.define(version: 20140528090950) do
 
   create_table "associations", force: true do |t|
     t.integer  "point_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20140523035806) do
     t.boolean  "randomized"
     t.boolean  "controlled_against_placebo"
     t.boolean  "controlled_against_best_alt"
+    t.float    "score"
   end
 
 end
