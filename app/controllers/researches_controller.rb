@@ -31,11 +31,11 @@ class ResearchesController < ApplicationController
   end
 
   def edit
-    @research= Research.find(params[:id])
+    @research = Research.find(params[:id])
   end
 
   def update
-    @research= Research.find(params[:id])
+    @research = Research.find(params[:id])
     if @research.update_attributes(research_params)
       @research.score = 5
 
@@ -55,13 +55,21 @@ class ResearchesController < ApplicationController
    private
 
     def research_params
-      params.require(:research).permit(:study_type, :authors,
-                                   :title, :journal, :date_of_publication,
-                                   :dropouts, :retracted, :peer_reviewed,
-                                   :replicated, :version, :funding, :link,
-                                   :single_blinded, :double_blinded,:randomized, :score,
-                                   :controlled_against_placebo,:controlled_against_best_alt,
-                                   findings_attributes: [:id, :research_id, :finding, :quote, :sample_def, :_destroy])
+      params.require(:research).permit(researches_attributes: researches_attributes,
+                                   findings_attributes: findings_attributes)
+    end
+
+    def researches_attributes
+      %i{
+        study_type authors title journal date_of_publication dropouts retracted
+        peer_reviewed replicated version funding link single_blinded 
+        double_blinded randomized score controlled_against_placebo 
+        controlled_against_best_alt
+      }
+    end
+
+    def findings_attributes
+      [:id, :research_id, :finding, :quote, :sample_def, :_destroy]
     end
 end
 
