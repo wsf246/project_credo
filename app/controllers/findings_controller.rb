@@ -4,7 +4,7 @@ class FindingsController < ApplicationController
    @point = Point.find(params[:point])
    @query = Finding.ransack(params[:query]) 
    @findings = @query.result(distinct: true).includes(:research).paginate(page: params[:page])     
-   @researches = Research.find(@findings.map {|a| a.research_id}.uniq)
+   @researches = Research.find(@findings.map(&:research_id).uniq)
   end
 
   def search
