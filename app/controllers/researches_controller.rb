@@ -1,8 +1,8 @@
 class ResearchesController < ApplicationController
 
   def index
-    @q = Research.ransack(params[:q]) 
-    @researches = @q.result(distinct: true).includes(:findings).paginate(page: params[:page])    
+    @query = Research.ransack(params[:query]) 
+    @researches = @query.result(distinct: true).includes(:findings).paginate(page: params[:page])    
   end
 
   def search

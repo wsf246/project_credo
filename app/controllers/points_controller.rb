@@ -1,8 +1,8 @@
 class PointsController < ApplicationController
 
   def index
-    @q = Point.search(params[:q]) 
-    @findings = @q.result 
+    @query = Point.search(params[:query]) 
+    @findings = @query.result 
   end
 
   def new
