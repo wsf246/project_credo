@@ -47,32 +47,32 @@
 		  	    <div class="span5">
 			  	  <h2>Best Practices: </h2>
 				  	<p> Single Blinding:  	 	
-				  	  <% if @research.single_blinded %> Yes <%else%> No <% end %>
+				  	  <%= yes_or_no @research.single_blinded %>
 				  	</p>
 				  	<p> Double Blinding: 	  	 	
-				  	  <% if @research.double_blinded %> Yes <%else%> No <% end %>
+				  	  <%= yes_or_no @research.double_blinded %>
 				  	</p>
 				  	<p> Randomization: 	  	 	
-				  	  <% if @research.randomized %> Yes <%else%> No <% end %>
+				  	  <%= yes_or_no @research.randomized %>
 				  	</p>	
 				  	<p> Control against placebo: 
-				  	  <% if @research.controlled_against_placebo %> Yes <%else%> No <% end %>
+				  	  <%= yes_or_no @research.controlled_against_placebo %>
 				  	</p>	
 				  	<p> Control against best alternative: 
-				  	  <% if @research.controlled_against_best_alt %> Yes <%else%> No <% end %>	
+				  	  <%= yes_or_no @research.controlled_against_best_alt %>
 				  	</p>
 			  	</div> 	 
 
 		        <div class="span3">
 			  	  <h2>Verification: </h2>	  	  		  	 		  	 	
 				  	<p> Retracted:  	 	
-				  	  <% if @research.retracted %> Yes <%else%> No <% end %>
+				  	  <%= yes_or_no @research.retracted %>
 				  	</p>
 				  	<p> Peer Reviewed: 	  	 	
-				  	  <% if @research.peer_reviewed %> Yes <%else%> No <% end %>
+				  	  <%= yes_or_no @research.peer_reviewed %>
 				  	</p>
 				  	<p> Replicated: 	  	 	
-				  	  <% if @research.replicated %> Yes <%else%> No <% end %>
+				  	  <%= yes_or_no @research.replicated %>
 				  	</p>	
 		  	    </div>	
 		  	</section>   	  	 	
