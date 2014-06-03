@@ -2,7 +2,7 @@
   <%=point.point%>
   <p class = 'pix15'>
     <%= link_to "Edit", edit_point_path(point) %> |
-    <%= link_to "Add findings", findings_path(:point => point) %> 
+    <%= link_to "Add findings", findings_path(point: point) %> 
   </p>              
   <ul class= 'research'>
     <% point.findings.each do |finding| %>

@@ -5,7 +5,7 @@
   <div class="span6 offset3">
     <%= form_for(@debate) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <%= render 'debate_form', :f => f  %>
+      <%= render 'debate_form', f: f  %>
 		  <%= f.submit "Create debate", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
