@@ -55,7 +55,7 @@ class ResearchesController < ApplicationController
    private
 
     def research_params
-      params.require(:research).permit(researches_attributes: researches_attributes,
+      params.require(:research).permit(researches_attributes,
                                    findings_attributes: findings_attributes)
     end
 
