@@ -21,7 +21,7 @@
 			<div class="span7 offset1">
 			  <h1>For</h1> 
 			  <div class='center'> 
-			  	<%= link_to "Add a new point for", new_debate_point_path(@debate, :point_type => 'For') %>	
+			  	<%= link_to "Add a new point for", new_debate_point_path(@debate, point_type: 'For') %>	
 			  </div>	  	
 		    <ul class= 'point'>
 		    	<% @for_points.each do |f| %>		    	
@@ -33,7 +33,7 @@
 			<div class="span7 offset1">
 			  <h1>Against</h1> 
 			  <div class= 'center'> 
-			  	<%= link_to "Add a new point against", new_debate_point_path(@debate, :point_type => 'Against') %>
+			  	<%= link_to "Add a new point against", new_debate_point_path(@debate, point_type: 'Against') %>
 			  </div>			  
 		    <ol> 	
 		    	<% @against_points.each do |a| %>

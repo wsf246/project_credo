@@ -1,11 +1,11 @@
 ProjectCredo::Application.routes.draw do
-  root  'static_pages#home'
-  match '/help',    to: 'static_pages#help',    via: 'get'
-  match '/about',   to: 'static_pages#about',   via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
+  root 'static_pages#home'
+  get '/help' => 'static_pages#help'
+  get '/about' => 'static_pages#about'
+  get '/contact' => 'static_pages#contact'
   resources :debates do
     collection do
-      match 'search' => 'debates#search', :via => [:get, :post], :as => :search
+      match 'search' => 'debates#search', via: [:get, :post], as: :search
     end
 
     resources :points, shallow: true do
@@ -17,7 +17,7 @@ ProjectCredo::Application.routes.draw do
 
   resources :researches do
     collection do
-      match 'search' => 'researches#search', :via => [:get, :post], :as => :search
+      match 'search' => 'researches#search', via: [:get, :post], as: :search
     end
   end  
 

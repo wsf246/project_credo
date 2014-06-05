@@ -5,7 +5,7 @@
 <div class="row">
   <div class="span4 offset1">
 	<div class="search">
-		<%= search_form_for @q, url: search_researches_path,
+		<%= search_form_for @query, url: search_researches_path,
 								html: { method: :post} do |f| %>
 		  <%= f.label :title_or_findings_finding_or_findings_quote_cont, "Research title or findings contains" %>
 		  <%= f.text_field :title_or_findings_finding_or_findings_quote_cont %>

@@ -1,20 +1,19 @@
 class PointsController < ApplicationController
 
   def index
-    @q = Point.search(params[:q]) 
-    @findings = @q.result 
+    @query = Point.search(params[:query]) 
+    @findings = @query.result 
   end
 
   def new
     case params[:point_type]
-    when 'For'
-      @for_against = true
-    when 'Against'
-      @for_against = false
-    end    
+    when 'For' then @for_against = true
+    when 'Against' then @for_against = false
+    end
+
     @debate = Debate.find(params[:debate_id])
-    @point = @debate.points.build
-    @path = [@debate,@point]     
+    point = @debate.points.build
+    @path = [@debate,point]     
   end
 
   def search
@@ -33,7 +32,7 @@ class PointsController < ApplicationController
 
   def edit
     @point = Point.find(params[:id])
-    @path = @point
+    @path = Point.find(params[:id])
     @debate = @point.debate
   end
 
@@ -52,16 +51,24 @@ class PointsController < ApplicationController
    private
 
     def research_params
-      params.require(:research).permit(researches_attributes: [:study_type, :authors,
-                                   :title, :journal, :date_of_publication,
-                                   :dropouts, :retracted, :peer_reviewed,
-                                   :replicated, :version, :funding, :link,
-                                   :single_blinded, :double_blinded,:randomized,
-                                   :controlled_against_placebo,:controlled_against_best_alt, :_destroy],
-                                   findings_attributes: [:id, :research_id, :finding, :quote, :sample_def, :_destroy])
+      params.require(:research).permit(researches_attributes: researches_attributes,
+                                      findings_attributes: findings_attributes)
     end  
 
     def point_params
       params.require(:point).permit(:point, :for_against, findings_attributes: [:id])
-    end  
+    end
+
+    def researches_attributes
+      %i{
+        study_type authors title journal date_of_publication dropouts 
+        retracted peer_reviewed replicated version funding link 
+        single_blinded double_blinded randomized controlled_against_placebo 
+        controlled_against_best_alt _destroy
+      }
+    end
+
+    def findings_attributes
+      %i{id research_id finding quote sample_def _destroy}      
+    end
 end

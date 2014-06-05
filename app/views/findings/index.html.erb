@@ -5,15 +5,15 @@
 
 <div class="row">
   <div class="span4 offset1">
-	<div class="search">
-		<%= search_form_for @q, url: search_findings_path(point: @point),
-								html: { method: :post} do |f| %>
-		  <%= f.label :finding_or_quote_or_sample_def_or_research_title_cont, "Research title or findings contains" %>
-		  <%= f.text_field :finding_or_quote_or_sample_def_or_research_title_cont %>
- 		  
-  		  <%= f.submit "Search" %>  
-		<%end%>
-	</div>
+		<div class="search">
+			<%= search_form_for @query, url: search_findings_path(point: @point),
+									html: { method: :post} do |f| %>
+			  <%= f.label :finding_or_quote_or_sample_def_or_research_title_cont, "Research title or findings contains" %>
+			  <%= f.text_field :finding_or_quote_or_sample_def_or_research_title_cont %>
+	 		  
+	  		  <%= f.submit "Search" %>  
+			<%end%>
+		</div>
   </div>
 </div>  				
 
