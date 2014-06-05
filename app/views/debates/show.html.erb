@@ -18,8 +18,8 @@
   <div class ='point-wrapper'>	
 
 	  <div class="row">
-			<div class="span7 offset1">
-			  <h1>For</h1> 
+			<div class="span9 offset1">
+			  <h1 class= 'green'>For</h1> 
 			  <div class='center'> 
 			  	<%= link_to "Add a new point for", new_debate_point_path(@debate, point_type: 'For') %>	
 			  </div>	  	
@@ -30,16 +30,16 @@
 		    </ul>
 			</div>
 
-			<div class="span7 offset1">
-			  <h1>Against</h1> 
+			<div class="span9 offset1">
+			  <h1 class ='red'>Against</h1> 
 			  <div class= 'center'> 
 			  	<%= link_to "Add a new point against", new_debate_point_path(@debate, point_type: 'Against') %>
 			  </div>			  
-		    <ol> 	
+		    <ul> 	
 		    	<% @against_points.each do |a| %>
 		    	  <%= render 'points', point: a %>
 		    	<%end%>
-		    </ol>	
+		    </ul>	
 			</div>
 	  </div>  	
 	</div>  

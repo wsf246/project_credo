@@ -35,6 +35,14 @@ textarea {
   }
 }
 
+.green {
+  color: #197519;
+}
+
+.red {
+  color: #8D1919;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -83,26 +91,10 @@ p {
 
 /* header */
 
-#projectlogo {
+.logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: green;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  line-height: 1;
-  &:hover {
-    text-decoration: none;
-  }
-}
-
-#credologo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: red;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -240,7 +232,7 @@ div.debate-wrapper{
     line-height: 100%;
     text-align: left;
     padding-left: 3em;    
-    padding-right: 20em;
+    padding-right: 10em;
     font-weight: normal;
     color: $gray;
   }
@@ -250,7 +242,7 @@ div.debate-wrapper{
     letter-spacing: -0.5px;
     text-align: left;
     padding-left: 3em;    
-    padding-right: 20em;
+    padding-right: 10em;
     font-weight: normal;
     color: $gray;
   }  
@@ -277,9 +269,8 @@ div.research-wrapper{
   margin: auto;
 
   a {
-    font-size: 3em;
-    letter-spacing: -2px;
-    margin-bottom: 30px;
+    font-size: 32px;
+    line-height: 110%;
     text-align: center;
   }
 
@@ -364,9 +355,9 @@ div.point-wrapper{
   .point {
     font-size: 20px;
     text-align: left;
-    font-weight: normal;
     color: $gray;
-    list-style: none;
+    font-weight: normal;
+    list-style: chevron-right;
     margin: 0 0 10px 0;
   } 
 
@@ -401,14 +392,25 @@ div.point-wrapper{
 div.debates {
   list-style: none;
   margin: 0;
-  li {
+
+  ul {
+    list-style: none;  
     overflow: auto;
     font-size: 1.4em;    
-    padding: 10px 0;
+    padding: 5px 0;
     border-top: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;
     }
+  }  
+    
+  li {
+    margin: 3px 0 0 50px;
+    padding: 10px;
+    border-top: 1px solid $grayLighter;
+    &:first-child {
+      border-top: none;
+    }    
   }
 }
 

@@ -1,12 +1,14 @@
-<li class= 'point'> 
-  <%=point.point%>
+<li class= 'point'>
+  <%=point.point%> 
   <p class = 'pix15'>
     <%= link_to "Edit", edit_point_path(point) %> |
     <%= link_to "Add findings", findings_path(point: point) %> 
   </p>              
   <ul class= 'research'>
     <% point.findings.each do |finding| %>
-    <%= render 'findings', finding: finding %>
+      <%= render 'findings', finding: finding %>
     <%end%> 
   </ul> 
-</li> 
+</li>   
+
+
