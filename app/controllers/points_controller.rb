@@ -34,6 +34,7 @@ class PointsController < ApplicationController
     @point = Point.find(params[:id])
     @path = Point.find(params[:id])
     @debate = @point.debate
+    @for_against = @point.for_against
   end
 
   def update

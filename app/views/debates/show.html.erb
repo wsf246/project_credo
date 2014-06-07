@@ -1,46 +1,46 @@
 <% provide(:title, @debate.title) %>
-  <h1><%= @debate.title %></h1>
-  <h2><%= link_to "Edit debate", edit_debate_path %></h2>
-  <div class ='debate-wrapper'>	
-	  <h1>Description:</h1>
-		<p><%= @debate.description %></p>
-	  <h1>Notes:</h1>
+<h1><%= @debate.title %></h1>
+<h2><%= link_to "Edit debate", edit_debate_path %></h2>
+<div class ='debate-wrapper'>	
+  <h1>Description:</h1>
+	<p><%= @debate.description %></p>
+  <h1>Notes:</h1>
 
-	  <ul>	
-		  <% @debate.notes.split('|').each do |note| %>
+  <ul>	
+	  <% @debate.notes.split('|').each do |note| %>
 			<li><%=note%></li>
-		  <% end %>
-	  </ul>	
+	  <% end %>
+  </ul>	
 
-	  <h1>Verdict:</h1>	
-		<p><%= @debate.verdict %></p>
-  </div>
-  <div class ='point-wrapper'>	
+  <h1>Verdict:</h1>	
+	<p><%= @debate.verdict %></p>
+</div>
 
-	  <div class="row">
-			<div class="span9 offset1">
-			  <h1 class= 'green'>For</h1> 
-			  <div class='center'> 
-			  	<%= link_to "Add a new point for", new_debate_point_path(@debate, point_type: 'For') %>	
-			  </div>	  	
-		    <ul class= 'point'>
-		    	<% @for_points.each do |f| %>		    	
-  	 				<%= render 'points', point: f %>
-		    	<%end%>
-		    </ul>
-			</div>
+<div class ='point-wrapper'>	
 
-			<div class="span9 offset1">
-			  <h1 class ='red'>Against</h1> 
-			  <div class= 'center'> 
-			  	<%= link_to "Add a new point against", new_debate_point_path(@debate, point_type: 'Against') %>
-			  </div>			  
-		    <ul> 	
-		    	<% @against_points.each do |a| %>
-		    	  <%= render 'points', point: a %>
-		    	<%end%>
-		    </ul>	
-			</div>
-	  </div>  	
-	</div>  
-	
+  <div class="row-fluid">
+		<div class="span5 offset1">
+		  <h1 class= 'green'>For</h1> 
+		  <div class='center'> 
+		  	<%= link_to "Add a new point for", new_debate_point_path(@debate, point_type: 'For') %>	
+		  </div>	  	
+	    <ul class= 'point'>
+	    	<% @for_points.each do |f| %>		    	
+	 				<%= render 'points', point: f %>
+	    	<%end%>
+	    </ul>
+		</div>
+
+		<div class="span5">
+		  <h1 class ='red'>Against</h1> 
+		  <div class= 'center'> 
+		  	<%= link_to "Add a new point against", new_debate_point_path(@debate, point_type: 'Against') %>
+		  </div>			  
+	    <ul> 	
+	    	<% @against_points.each do |a| %>
+	    	  <%= render 'points', point: a %>
+	    	<%end%>
+	    </ul>	
+		</div>
+  </div>  	
+</div>  

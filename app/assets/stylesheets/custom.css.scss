@@ -102,14 +102,13 @@ p {
   line-height: 1;
   &:hover {
     text-decoration: none;
+    color: none;
   }
 }
 
 #dropdownMenu1 {
   color: $gray;
 }
-
-
 
 /* footer */
 
@@ -118,15 +117,18 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
+
   a {
     color: $gray;
     &:hover {
       color: $grayDarker;
     }
   }
+
   small {
     float: left;
   }
+
   ul {
     float: right;
     list-style: none;
@@ -148,11 +150,13 @@ aside {
       border: 0;
       padding-top: 0;
     }
+
     span {
       display: block;
       margin-bottom: 3px;
       line-height: 1;
     }
+
     h1 {
       font-size: 1.4em;
       text-align: left;
@@ -343,9 +347,9 @@ div.research-wrapper{
 
 /* Points show on debate */
 
-div.point-wrapper{
-  width: 100%; 
-  margin: auto;
+.point-wrapper {
+  width: auto;
+  margin: auto; 
 
   h1 {
     font-size: 30px;
