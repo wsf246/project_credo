@@ -1,14 +1,12 @@
 class PointsController < ApplicationController
 
   def index
-    @query = Point.search(params[:query]) 
-    @findings = @query.result 
   end
 
   def new
     case params[:point_type]
-    when 'For' then @for_against = true
-    when 'Against' then @for_against = false
+      when 'For' then @for_against = true
+      when 'Against' then @for_against = false
     end
 
     @debate = Debate.find(params[:debate_id])
