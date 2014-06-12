@@ -24,6 +24,7 @@ class ResearchesController < ApplicationController
     @research = Research.new(research_params)
 
     if @research.save	
+      @research.score_it
       redirect_to @research
     else
       render 'new'
@@ -37,8 +38,7 @@ class ResearchesController < ApplicationController
   def update
     @research = Research.find(params[:id])
     if @research.update_attributes(research_params)
-      @research.score = 5
-
+      @research.score_it
       flash[:success] = "Research attributes updated"
       redirect_to @research
     else

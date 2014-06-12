@@ -33,6 +33,10 @@ textarea {
   h1 {
     margin-bottom: 10px;
   }
+}  
+
+.align-top {
+  length: -10em;
 }
 
 .green {
@@ -371,7 +375,7 @@ div.research-wrapper{
     font-weight: normal;
     color: $gray;
     list-style: none;
-    border-left: 1px solid $grayLighter;
+
     padding: 0 0 0 10px;
     margin: 10px 0 0 10px;    
   } 
@@ -429,7 +433,6 @@ div.researches {
     overflow: auto;
     font-size: 1.4em;    
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;
     }
@@ -452,15 +455,29 @@ div.researches {
     font-size: .7em; 
     border-top: 1px solid $grayLighter;    
     margin: 3px 0 0 0px;
-    &:last-child {
-      border-bottom: 1px solid $grayLighter;
+
+    &:first-of-type {
+      border-top: none;
     }
   }   
 
   b.finding {
     font-size: .7em; 
     margin: 0;
-  }      
+  }
+
+  .pix10 {
+    font-size: 10px;
+    position: relative;
+    top: -6px;
+  }  
+
+  .score {
+    font-size: 20px;
+    position: relative;
+    top: -6px;
+  } 
+
 }
 
 /* form */
@@ -483,7 +500,7 @@ input {
 .search {
   input[type="text"], textarea, .uneditable-input {
     border: 1px solid #bbb;
-    width: 200%;
+    width: 100%;
     height: 8em;
     margin-bottom: 15px;
     @include box_sizing;

@@ -7,16 +7,15 @@ class Research < ActiveRecord::Base
   validates :title, presence: true	
   validates :link, presence: true	
 
-  def cool
-    print
-    10+
-    1* if self.peer_reviewed then 1 else 0 end 
-    + 1* if self.replicated then 1 else 0 end 
-    + 1* if self.retracted then 1 else 0 end
-    + 1* if self.single_blinded then 1 else 0 end 
-    + 1* if self.double_blinded then 1 else 0 end  
-    + 1* if self.randomized then 1 else 0 end 
-    + 1* if self.controlled_against_placebo then 1 else 0 end 
-    + 1* if self.controlled_against_best_alt then 1 else 0 end                
+  def score_it
+    score = (self.retracted ? 0 : 1) * (
+    10 * (self.peer_reviewed ? 1 : 0) +
+    10 * (self.replicated ? 1 : 0) + 
+    1 * (self.single_blinded ? 1 : 0) + 
+    1 * (self.double_blinded ? 1 : 0) + 
+    1 * (self.randomized ? 1 : 0) +
+    1 * (self.controlled_against_placebo ? 1 : 0) + 
+    1 * (self.controlled_against_best_alt ? 1 : 0))
+    self.update(score: score)
   end  
 end

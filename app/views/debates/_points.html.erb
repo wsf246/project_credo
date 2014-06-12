@@ -5,7 +5,8 @@
     <%= link_to "Add findings", findings_path(point: point) %> 
   </p>              
   <ul class= 'research'>
-    <% point.findings.each do |finding| %>
+    <% findings = point.findings.sort! {|a,b| b.research.score <=> a.research.score}%>
+    <% findings.each do |finding| %>
       <%= render 'findings', finding: finding %>
     <%end%> 
   </ul> 
