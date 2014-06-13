@@ -1,16 +1,14 @@
 <li class ='research'>
   <div class='row'>
     <div class='span1 center'> 
-      <div class='pix15'>
-        Cred
-      </div>
-      (<%=finding.research.score%>)  
+      <div class='pix12'> Cred </div>
+      <div class='pix14'> (<%=finding.research.score%>) </div>  
     </div>
     <div class='span11'> 
       <%= link_to(research_path(finding.research_id)) do%>
         <%=finding.research.title %>
         <br />
-        <div class ='pix15'> Authors: <%=finding.research.authors %> </div>
+        <div class ='pix12'> Authors: <%=finding.research.authors %> </div>
       <%end%>  
       <p class = 'finding'>
         <%= finding.finding %>

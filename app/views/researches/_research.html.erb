@@ -1,34 +1,33 @@
-<div class ='researches'>
-  <ul>	
-		<li>
-			<div class='row-fluid'>
+<ul>	
+	<li>
+		<div class='row-fluid'>
 
-				<div class='span1 center'>
-					<div class='pix10'> Score	</div>
-					<div class='score'>	(<%=research.score%>)</div>			
-				</div>
-			
-				<div class='span11'>
-			  	<%= link_to research.title, research %>	
-				  <ul class ='finding'>
-				  	<b class ='finding'>Findings:</b>
-				  	<%if research.findings.present? %>
-					    <% research.findings.each do |finding| %>
-						    <li class ='finding'>
-					  	    <%if finding.quote.present? %>			       	  
-							      <i> "<%= finding.quote %>" </i>    	
-							      <br><%= finding.finding %></br>
-							    <%else%>
-							      <%= finding.finding %>   
-							    <%end%>		       	    
-						    </li>
-					    <%end%>
-					  <%else%>
-				  	  <b class ='finding'>None logged</b>
-				  	<%end%>  		      
-				  </ul>
-				</div>  
+			<div class='span1 center'>
+				<div class='pix10'> Cred	</div>
+				<div class='score'>	(<%=research.score%>)</div>			
+			</div>
+		
+			<div class='span11'>
+		  	<%= link_to research.title, research %>	
+			  <ul class ='finding'>
+			  	<b class ='finding'>Findings:</b>
+			  	<%if research.findings.present? %>
+				    <% research.findings.each do |finding| %>
+					    <li class ='finding'>
+				  	    <%if finding.quote.present? %>			       	  
+						      <i> "<%= finding.quote %>" </i>    	
+						      <br><%= finding.finding %></br>
+						    <%else%>
+						      <%= finding.finding %>   
+						    <%end%>		       	    
+					    </li>
+				    <%end%>
+				  <%else%>
+			  	  <b class ='finding'>None logged</b>
+			  	<%end%>  		      
+			  </ul>
 			</div>  
-		</li>
-  </ul>	
-</div>
+		</div>  
+	</li>
+</ul>	
+

@@ -1,4 +1,6 @@
 class Research < ActiveRecord::Base
+  default_scope order('score DESC')
+
   has_many :findings, dependent: :destroy		
 
   accepts_nested_attributes_for :findings, 

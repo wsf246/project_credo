@@ -1,15 +1,23 @@
 <li class= 'point'>
-  <%=point.point%> 
-  <p class = 'pix15'>
-    <%= link_to "Edit", edit_point_path(point) %> |
-    <%= link_to "Add findings", findings_path(point: point) %> 
-  </p>              
-  <ul class= 'research'>
-    <% findings = point.findings.sort! {|a,b| b.research.score <=> a.research.score}%>
-    <% findings.each do |finding| %>
-      <%= render 'findings', finding: finding %>
-    <%end%> 
-  </ul> 
+  <div class='row'>
+    <div class='span2 center'>
+      <div class='pix12'>Research</div>
+      <%=point.findings.count('research_id', distinct:true)%>
+    </div>
+    <div class='span10'>  
+      <%=point.point%>   
+      <p class = 'pix12'>
+        <%= link_to "Edit", edit_point_path(point) %> |
+        <%= link_to "Add findings", findings_path(point: point) %> 
+      </p>             
+      <ul class= 'research'>
+        <% findings = point.findings.sort! {|a,b| b.research.score <=> a.research.score}%>
+        <% findings.each do |finding| %>
+          <%= render 'findings', finding: finding %>
+        <%end%> 
+      </ul>
+    </div>  
+  </div>    
 </li>   
 
 

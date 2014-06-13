@@ -221,38 +221,38 @@ margin: auto;
 /* Debates show */
 
 div.debate-wrapper{
-  width: 95%; 
+  width: 85%; 
   margin: auto;
 
   h1 {
-    font-size: 1.4em;
-    letter-spacing: -1px;
+    font-size: 30px;
     margin-bottom: 5px;
     text-align: left;
-    padding-left: 3em;
+    font-weight: none;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: black;
     font-weight: bold;
-    color: $gray;
   }
 
   p {
-    font-size: 1.4em;
+    font-size: 20px;
     letter-spacing: -0.5px;
     line-height: 100%;
-    text-align: left;
-    padding-left: 3em;    
-    padding-right: 10em;
+    text-align: left;  
     font-weight: normal;
-    color: $gray;
+    color: black;
   }
 
   ul {
-    font-size: 1.4em;
+    font-size: 20px;
     letter-spacing: -0.5px;
-    text-align: left;
-    padding-left: 3em;    
-    padding-right: 10em;
+    text-align: left;   
     font-weight: normal;
-    color: $gray;
   }  
 }
 
@@ -352,7 +352,7 @@ div.research-wrapper{
 /* Points show on debate */
 
 .point-wrapper {
-  width: auto;
+  width: 85%;
   margin: auto; 
 
   h1 {
@@ -363,25 +363,28 @@ div.research-wrapper{
   .point {
     font-size: 20px;
     text-align: left;
-    color: $gray;
+    color: black;
     font-weight: normal;
-    list-style: chevron-right;
+    list-style: none;
     margin: 0 0 10px 0;
   } 
 
   .research {
-    font-size: 17px;
+    font-size: 14px;
     text-align: left;
     font-weight: normal;
     color: $gray;
     list-style: none;
-
     padding: 0 0 0 10px;
-    margin: 10px 0 0 10px;    
+    margin: 10px 0 0 0px;    
   } 
 
-  .pix15 {
+  .pix12 {
     font-size: 12px;
+  }
+
+  .pix14 {
+    font-size: 14px;
   }
 
   .finding {
@@ -433,6 +436,7 @@ div.researches {
     overflow: auto;
     font-size: 1.4em;    
     padding: 10px 0;
+    border-top: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;
     }
