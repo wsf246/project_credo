@@ -1,5 +1,8 @@
 class ResearchesController < ApplicationController
 
+  before_action :authenticate_user!, 
+                only: [:edit, :update, :destroy, :new, :create]  
+
   def index
     @query = Research.ransack(params[:q]) 
     @researches = @query.result(distinct: true).includes(:findings).paginate(page: params[:page]).order('score DESC')    

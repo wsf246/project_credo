@@ -77,4 +77,7 @@ ProjectCredo::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Set up the default url options for the Devise mailer
+  config.action_mailer.default_url_options = { :host => 'project-credo.heroku.com' }
 end

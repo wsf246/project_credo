@@ -1,5 +1,8 @@
 class AssociationsController < ApplicationController
 
+  before_action :authenticate_user!, 
+                only: [:destroy, :create]  
+
   def create
     @finding = Finding.find(params[:association][:finding_id])
     @point = Point.find(params[:association][:point_id])

@@ -1,5 +1,8 @@
 class FindingsController < ApplicationController
 
+  before_action :authenticate_user!, 
+                only: [:index]  
+
   def index
    @point = Point.find(params[:point])
    @query = Finding.ransack(params[:q]) 

@@ -1,22 +1,18 @@
-<% provide(:title, @research.title) %>
-<h2>Research Details </h2>
-
-<h3>
-	<%= link_to "Edit", edit_research_path %> | 
-	<%= link_to "All research", researches_path %>
-</h3>
-
 <div class ='research-wrapper'>	
+	<div class="row">
+	<% provide(:title, @research.title) %>
   <p><%= @research.authors %></p>      
   <a href=<%= @research.link %>><%= @research.title %>
     <%if @research.version.present? %> 
       v. <%= @research.version %>
     <%end%>
   </a>
-
-	<div class="row">
+	<h2>
+		<%= link_to "Edit", edit_research_path %> | 
+		<%= link_to "All research", researches_path %>
+	</h2>
  		<section>	     
-		  <h1>Details</h1>
+		  <h2>Details</h2>
 
 	  	<p>Study Type: <%= @research.study_type %></p>
 
@@ -34,7 +30,7 @@
 		</section>
 
 		<section>  
-		  <h1>Findings (studies can have multiple findings)</h1>
+		  <h2>Findings (studies can have multiple findings)</h2>
 		    <ol class="research-details">
 		        <% if @research.findings.first.present? %>		
 			      <%= render @findings %>
@@ -45,7 +41,7 @@
 		</section>  	
 
 		<section>	
-      <h1>Trustworthiness</h1>  		  	
+      <h2>Trustworthiness</h2>  		  	
 	    <div class="span5">
 	  	  <h2>Best Practices: </h2>
 
@@ -89,7 +85,7 @@
 
 			
 		<section>	
-		  <h1> Potential Sources of Bias </h1>
+		  <h2> Potential Sources of Bias </h2>
 		   
 	  	<p> Complete Sample Definition and Dropouts:  	 	
 	  	  <% if @research.dropouts.present? %>

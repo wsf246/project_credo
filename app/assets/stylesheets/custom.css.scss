@@ -187,11 +187,16 @@ aside {
   @extend .error;
 }
 
+div.home-wrapper{
+  width: 60%; 
+  margin: auto;
+}  
+
 
 /* carousel */
 
 div.c-wrapper{
-    width: 80%; 
+    width: auto; 
     margin: auto;
 }
 
@@ -221,7 +226,7 @@ margin: auto;
 /* Debates show */
 
 div.debate-wrapper{
-  width: 85%; 
+  width: 60%; 
   margin: auto;
 
   h1 {
@@ -253,6 +258,7 @@ div.debate-wrapper{
     letter-spacing: -0.5px;
     text-align: left;   
     font-weight: normal;
+    color: black;
   }  
 }
 
@@ -273,37 +279,32 @@ div.debate-wrapper{
 }
 
 div.research-wrapper{
-  width: 95%; 
+  width: 60%; 
   margin: auto;
 
   a {
-    font-size: 32px;
-    line-height: 110%;
-    text-align: center;
+    font-size: 20px;
   }
 
   h1 {
-    font-size: 1.5em;
-    letter-spacing: -1px;
+    font-size: 30px;
     margin-bottom: 5px;
     text-align: left;
-    padding-left: 2em;
     font-weight: bold;
-    color: $gray;
+    color: black;
   }
 
   h2 {
-    font-size: 1.2em;
+    font-size: 20px;
     letter-spacing: -1px;
     margin-bottom: 5px;
     text-align: left;
-    padding-left: 3em;
     font-weight: bold;
-    color: $gray;
+    color: black;
   }  
 
   p {
-    font-size: 1.2em;
+    font-size: 16px;
     line-height: 100%;
     text-align: left;  
     font-weight: normal;
@@ -311,21 +312,16 @@ div.research-wrapper{
   }
 
   ul {
-    font-size: 1.4em;
-    letter-spacing: -0.5px;
+    font-size: 16px;
     text-align: left;
-    padding-left: 3em;    
-    padding-right: 25em;
     font-weight: normal;
     color: $gray;
   }  
 
   ol {
-    font-size: 1.2em;
-    letter-spacing: -0.5px;
+    font-size: 16px;
     text-align: left;
-    padding-left: 3em;    
-    padding-right: 20em;
+    width: 80%; 
     font-weight: normal;
     color: $gray;
     p {
@@ -352,7 +348,7 @@ div.research-wrapper{
 /* Points show on debate */
 
 .point-wrapper {
-  width: 85%;
+  width: 80%;
   margin: auto; 
 
   h1 {
@@ -428,6 +424,7 @@ div.debates {
 /* Researches index */
 
 div.researches {
+
   list-style: none;
   margin: 0;
 
