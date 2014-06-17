@@ -39,35 +39,45 @@
 
         <%= f.label :Study_type, "Research Classification"  %>
         <%= f.select(:study_type, options_for_select([['Cross-sectional'], ['Case-control'],['Cohort Study'], ['Randomized Control Trial'], ['Case Study'], ['Unknown']],'Unknown')) %>  
+        <br>
+            <%= f.check_box(:single_blinded) %>
+            <%= f.label(:single_blinded, "Single Blinded?", :class => "checkbox inline") %>  
+        </br>    
 
-        <%= f.label(:single_blinded, "Single Blinded?") %>  
-        <%= f.check_box(:single_blinded) %>
-
-        <%= f.label(:Double_blinded, "Double_blinded?") %>  
-        <%= f.check_box(:double_blinded) %>    
-  
-        <%= f.label(:randomized, "Randomized?") %>  
-        <%= f.check_box(:randomized) %>
-
-        <%= f.label(:controlled_against_placebo, "Conrolled against placebo?") %>  
-        <%= f.check_box(:controlled_against_placebo) %>        
-  
-        <%= f.label(:controlled_against_best_alt, "Controlled against best alternative?") %>  
-        <%= f.check_box(:controlled_against_best_alt) %>   
+        <br>
+            <%= f.check_box(:double_blinded) %>   
+            <%= f.label(:Double_blinded, "Double_blinded?", :class => "checkbox inline") %> 
+        </br>      
+        <br>
+            <%= f.check_box(:randomized) %>  
+            <%= f.label(:randomized, "Randomized?", :class => "checkbox inline") %> 
+        </br>      
+        <br>
+            <%= f.check_box(:controlled_against_placebo) %>
+            <%= f.label(:controlled_against_placebo, "Conrolled against placebo?", :class => "checkbox inline") %>  
+        </br>     
+        <br>
+            <%= f.check_box(:controlled_against_best_alt) %>
+            <%= f.label(:controlled_against_best_alt, "Controlled against best alternative?", :class => "checkbox inline") %>    
+        </br>              
   </div>
 
   <div class="span4">                
      
         <h4>Verification</h4>
 
-        <%= f.label(:retracted, "Retracted?") %>  
-        <%= f.check_box(:retracted) %>
-
-        <%= f.label(:peer_reviewed, "Peer Reviewed?") %>  
-        <%= f.check_box(:peer_reviewed) %>        
-  
-        <%= f.label(:Replicated, "Replicated?") %>  
-        <%= f.check_box(:replicated) %>
+        <br>
+            <%= f.check_box(:retracted) %>
+            <%= f.label(:retracted, "Retracted?", :class => "checkbox inline") %> 
+        </br>     
+        <br>
+            <%= f.check_box(:peer_reviewed) %>     
+            <%= f.label(:peer_reviewed, "Peer Reviewed?", :class => "checkbox inline") %>  
+        </br> 
+        <br>   
+            <%= f.check_box(:replicated) %>      
+            <%= f.label(:Replicated, "Replicated?", :class => "checkbox inline") %>  
+        </br> 
 
   </div>
 </div>
