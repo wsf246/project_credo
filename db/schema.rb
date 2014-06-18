@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617055703) do
+ActiveRecord::Schema.define(version: 20140618161429) do
 
   create_table "associations", force: true do |t|
     t.integer  "point_id"
@@ -27,8 +27,10 @@ ActiveRecord::Schema.define(version: 20140617055703) do
     t.text     "verdict"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cached_votes_total", default: 0
   end
 
+  add_index "debates", ["cached_votes_total"], name: "index_debates_on_cached_votes_total"
   add_index "debates", ["created_at"], name: "index_debates_on_created_at"
 
   create_table "findings", force: true do |t|

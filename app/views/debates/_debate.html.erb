@@ -1,17 +1,22 @@
-<div class='row'>
-  <div class='span1 pix12 center'>
-    Important
-  </div>
-  <div class='span1 pix12 center'>
-    Progress:
-    <%if debate.points.size > 0 %>Researched<%end%>
-
-
-
-  </div>
-  <div class='span10'>  
-    <li>
+<li>
+  <div class='row'>
+    <div class='span2 center'>
+      <%= render 'important_debate', debate: debate %>
+    </div>
+    <div class='span10'>  
       <%= link_to debate.title, debate %>
-    </li>
+      <div class='pix14'>  
+        <%if debate.points.joins(:associations).present? %> 
+          <%=pluralize(debate.points.joins(:associations).size,'Finding')%>
+          <%if debate.verdict.present? %>
+            <br /><%=pluralize(1,'Verdict')%>
+          <%else%> 
+            <br />No verdict 
+          <%end%>
+        <%else%>
+          Not yet researched  
+        <%end%>  
+      </div>  
+    </div>
   </div>
-</div>
+</li>

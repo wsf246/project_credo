@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='span2 center'>
       <div>
-        <%= render 'important', point: point%>
+        <%= render 'important_point', point: point%>
       </div>       
       <div class='pix12'>Research</div>
       <%=point.findings.count('research_id', distinct:true)%>

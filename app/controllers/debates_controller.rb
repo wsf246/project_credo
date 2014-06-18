@@ -3,7 +3,7 @@ class DebatesController < ApplicationController
                 only: [:edit, :update, :destroy, :new, :create, :important]
   
   def index
-    @debates = Debate.paginate(page: params[:page])
+    @debates = Debate.order(:cached_votes_total).paginate(page: params[:page])
   end
   
   def show

@@ -8,6 +8,10 @@ ProjectCredo::Application.routes.draw do
     collection do
       match 'search' => 'debates#search', via: [:get, :post], as: :search
     end
+    member do
+      put "important", to: "debates#important"
+      put "unimportant", to: "debates#unimportant"
+    end    
 
     resources :points, shallow: true do
       collection do
