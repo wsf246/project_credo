@@ -1,7 +1,7 @@
 <div id="associations_form_<%= finding.id %>">
-<% if @point.associated?(finding) %>
-    <%= render 'unassociate', finding: finding %>
-<% else %>
-    <%= render 'associate', finding: finding %>
-<% end %>
+  <% if @point.associated?(finding) %>
+      <%= render 'unassociate', finding: finding %>
+  <% else %>
+      <%= render 'associate', finding: finding %>
+  <% end %>
 </div>

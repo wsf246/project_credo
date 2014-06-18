@@ -5,6 +5,7 @@ class Point < ActiveRecord::Base
 	validates :debate_id, presence: true
 	validates_inclusion_of :for_against, in: [true,false]
 	validates :point, presence: true, uniqueness: true
+  acts_as_votable
 
   def associated?(finding)
     associations.find_by(finding_id: finding.id)

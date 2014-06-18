@@ -1,6 +1,6 @@
 class DebatesController < ApplicationController
   before_action :authenticate_user!, 
-                only: [:edit, :update, :destroy, :new, :create]
+                only: [:edit, :update, :destroy, :new, :create, :important]
   
   def index
     @debates = Debate.paginate(page: params[:page])
@@ -8,8 +8,8 @@ class DebatesController < ApplicationController
   
   def show
     @debate = Debate.find(params[:id])
-    @for_points = @debate.points.where(for_against: true)
-    @against_points = @debate.points.where(for_against: false)    
+    @for_points = @debate.points.where(for_against: true).joins(:associations).joins(:findings).select('points.*, count(DISTINCT research_id) as "research_count"').group(:point).order(' research_count desc').sort! {|a,b| b.votes_for.size <=> a.votes_for.size}+@debate.points.where(for_against: true).joins("LEFT JOIN associations ON points.id = point_id").where("point_id is null")    
+    @against_points = @debate.points.where(for_against: false).joins(:associations).joins(:findings).select('points.*, count(DISTINCT research_id) as "research_count"').group(:point).order(' research_count desc').sort! {|a,b| b.votes_for.size <=> a.votes_for.size} +@debate.points.where(for_against: false).joins("LEFT JOIN associations ON points.id = point_id").where("point_id is null")    
   end
 
   def new
@@ -44,6 +44,18 @@ class DebatesController < ApplicationController
     flash[:success] = "Debate deleted."
     redirect_to debates_url
   end
+
+  def important
+    @debate = Debate.find(params[:id])
+    @debate.upvote_from current_user
+    redirect_to :back
+  end
+
+  def unimportant
+    @debate = Debate.find(params[:id])
+    @debate.unvote_by current_user
+    redirect_to :back
+  end     
 
    private
 

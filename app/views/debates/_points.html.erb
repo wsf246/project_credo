@@ -1,9 +1,12 @@
 <li class= 'point'>
   <div class='row'>
     <div class='span2 center'>
+      <div>
+        <%= render 'important', point: point%>
+      </div>       
       <div class='pix12'>Research</div>
       <%=point.findings.count('research_id', distinct:true)%>
-    </div>
+    </div>   
     <div class='span10'>  
       <%=point.point%>   
       <p class = 'pix12'>

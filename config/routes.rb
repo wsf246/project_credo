@@ -13,6 +13,10 @@ ProjectCredo::Application.routes.draw do
       collection do
         match 'search' => 'points#search', via: [:get, :post], as: :search
       end
+      member do
+        put "important", to: "points#important"
+        put "unimportant", to: "points#unimportant"
+      end
     end  
   end  
 

@@ -1,14 +1,14 @@
 <div class="debate-wrapper">
-<% provide(:title, 'All debates') %>
-<h3>Debates</h3>
-<h3><%= link_to "Create a new debate", new_debate_path %></h3>
+  <% provide(:title, 'All debates') %>
+  <h3>Debates</h3>
+  <h3><%= link_to "Create a new debate", new_debate_path %></h3>
 
-<%= will_paginate %>
-<div class= 'debates'>
-  <ul>
-    <%= render @debates %>
-  </ul>
-</div>  
+  <%= will_paginate %>
+  <div class= 'debates'>
+    <ul>
+      <%= render @debates %>
+    </ul>
+  </div>  
 
-<%= will_paginate %>
+  <%= will_paginate %>
 </div>

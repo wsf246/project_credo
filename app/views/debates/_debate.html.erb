@@ -1,3 +1,17 @@
-<li>
-  <%= link_to debate.title, debate %>
-</li>
+<div class='row'>
+  <div class='span1 pix12 center'>
+    Important
+  </div>
+  <div class='span1 pix12 center'>
+    Progress:
+    <%if debate.points.size > 0 %>Researched<%end%>
+
+
+
+  </div>
+  <div class='span10'>  
+    <li>
+      <%= link_to debate.title, debate %>
+    </li>
+  </div>
+</div>

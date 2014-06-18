@@ -38,7 +38,7 @@ when 'development'
         date_of_publication: rand_time,
         authors: "#{lorem(0.5)}|#{lorem(0.5)}|#{lorem(0.5)}",
         link: "http://www.google.com",
-        retracted: bin_rand,
+        retracted: [0,0,0,0,0,0,0,0,0,1].sample,
         peer_reviewed: bin_rand,
         replicated: bin_rand,
         single_blinded: bin_rand, 
@@ -79,4 +79,9 @@ when 'development'
         Association.create(point_id: Point.where("id > 10").sample.id,
             finding_id: Finding.where("id > 10").sample.id)
     end
+    
+    #score it
+    Research.all.each do |research| 
+        research.score_it
+    end        
 end    

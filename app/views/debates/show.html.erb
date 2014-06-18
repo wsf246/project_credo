@@ -22,12 +22,12 @@
 		<div class="span6">
       <div class='row-fluid'>
         <div class="span10 offset2">
-		  <h1 class= 'green'>For</h1> 
-		  <div class='center'> 
-		  	<%= link_to "Add a new point for", new_debate_point_path(@debate, point_type: 'For') %>	
-		  </div>
-      </div>
-      </div>	  	
+    		  <h1 class= 'green'>For</h1> 
+    		  <div class='center'> 
+    		  	<%= link_to "Add a new point for", new_debate_point_path(@debate, point_type: 'For') %>
+    		  </div>
+        </div>
+      </div>   	  	
 	    <ul class= 'point'>
 	    	<% @for_points.each do |f| %>		    	
 	 				<%= render 'points', point: f %>
@@ -38,13 +38,12 @@
 		<div class="span6">
       <div class='row-fluid'>
         <div class="span10 offset2">      
-		  <h1 class ='red'>Against</h1> 
-		  <div class= 'center'> 
-		  	<%= link_to "Add a new point against", new_debate_point_path(@debate, point_type: 'Against') %>
-		  </div>			  
-    </div>
-    </div>
-
+    		  <h1 class ='red'>Against</h1> 
+    		  <div class= 'center'> 
+    		  	<%= link_to "Add a new point against", new_debate_point_path(@debate, point_type: 'Against') %>
+    		  </div>			  
+         </div>
+      </div>
 	    <ul> 	
 	    	<% @against_points.each do |a| %>
 	    	  <%= render 'points', point: a %>
