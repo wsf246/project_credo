@@ -1,0 +1,17 @@
+<div class='pix12'>
+  <% if user_signed_in? %>
+    <% if current_user.voted_for? verdict %>
+      <%= link_to(unbump_verdict_path(verdict), method: :put) do%>   
+        Unbump(<%=verdict.votes_for.size%>)
+      <%end%>  
+    <%else%>
+      <%= link_to(bump_verdict_path(verdict), method: :put) do%>   
+        Bump(<%=verdict.votes_for.size%>)
+      <%end%>  
+    <%end%> 
+  <%else%>
+    <%= link_to(bump_verdict_path(verdict), method: :put) do%>   
+      Bump(<%=verdict.votes_for.size%>)
+    <%end%>
+  <%end%>     
+</div>  

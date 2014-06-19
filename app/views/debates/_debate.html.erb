@@ -8,7 +8,7 @@
       <div class='pix14'>  
         <%if debate.points.joins(:associations).present? %> 
           <%=pluralize(debate.points.joins(:associations).size,'Finding')%>
-          <%if debate.verdict.present? %>
+          <%if debate.verdicts.present? %>
             <br /><%=pluralize(1,'Verdict')%>
           <%else%> 
             <br />No verdict 

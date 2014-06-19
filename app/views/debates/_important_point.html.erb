@@ -1,12 +1,12 @@
 <div class='pix12'>
   <% if user_signed_in? %>
     <% if current_user.voted_for? point %>
-      <%= link_to "Unimportant", unimportant_point_path(point), method: :put %> 
+      <%= link_to "Unbump", unimportant_point_path(point), method: :put %> 
     <%else%>
-      <%= link_to "Important", important_point_path(point), method: :put %>   
+      <%= link_to "Bump", important_point_path(point), method: :put %>   
     <%end%> 
   <%else%>
-    <%= link_to "Important", important_point_path(point), method: :put %> 
+    <%= link_to "Bump", important_point_path(point), method: :put %> 
   <%end%>         
 </div>
 <%=point.votes_for.size%>

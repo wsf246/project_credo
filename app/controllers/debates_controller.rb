@@ -8,8 +8,9 @@ class DebatesController < ApplicationController
   
   def show
     @debate = Debate.find(params[:id])
-    @for_points = @debate.points.where(for_against: true).joins(:associations).joins(:findings).select('points.*, count(DISTINCT research_id) as "research_count"').group("points.id").order(' research_count desc').sort! {|a,b| b.votes_for.size <=> a.votes_for.size}+@debate.points.where(for_against: true).joins("LEFT JOIN associations ON points.id = point_id").where("point_id is null")    
-    @against_points = @debate.points.where(for_against: false).joins(:associations).joins(:findings).select('points.*, count(DISTINCT research_id) as "research_count"').group("points.id").order(' research_count desc').sort! {|a,b| b.votes_for.size <=> a.votes_for.size} +@debate.points.where(for_against: false).joins("LEFT JOIN associations ON points.id = point_id").where("point_id is null")    
+    @verdicts = @debate.verdicts
+    @for_points = @debate.points.where(for_against: true).joins("LEFT JOIN associations ON points.id = associations.point_id").joins("LEFT JOIN findings ON associations.finding_id = findings.id").select('points.*, count(DISTINCT research_id) as "research_count"').group("points.id").order('cached_votes_total desc, research_count desc')    
+    @against_points = @debate.points.where(for_against: false).joins("LEFT JOIN associations ON points.id = associations.point_id").joins("LEFT JOIN findings ON associations.finding_id = findings.id").select('points.*, count(DISTINCT research_id) as "research_count"').group("points.id").order('cached_votes_total desc, research_count desc')    
   end
 
   def new
@@ -61,6 +62,6 @@ class DebatesController < ApplicationController
 
     def debate_params
       params.require(:debate).permit(:title, :description, :notes,
-                                   :verdict)
+                                   verdicts_attributes: [:id, :debate_id, :verdict, :_destroy])
     end
 end

@@ -13,6 +13,12 @@ ProjectCredo::Application.routes.draw do
       put "unimportant", to: "debates#unimportant"
     end    
 
+    resources :verdicts, shallow: true do
+      member do
+        put "bump", to: "verdicts#bump"
+        put "unbump", to: "verdicts#unbump"
+      end      
+    end
     resources :points, shallow: true do
       collection do
         match 'search' => 'points#search', via: [:get, :post], as: :search

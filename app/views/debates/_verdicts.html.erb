@@ -1,0 +1,8 @@
+<ul class ='verdict'>
+  <% @verdicts.each do |verdict| %>
+    <li>
+      <%= verdict.verdict %>
+      <%= render 'bump_verdict', verdict: verdict %>
+    </li>  
+  <%end%>
+</ul>

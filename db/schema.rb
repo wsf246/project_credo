@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618161429) do
+ActiveRecord::Schema.define(version: 20140619122248) do
 
   create_table "associations", force: true do |t|
     t.integer  "point_id"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20140618161429) do
     t.string   "title"
     t.text     "description"
     t.text     "notes"
-    t.text     "verdict"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cached_votes_total", default: 0
@@ -51,7 +50,10 @@ ActiveRecord::Schema.define(version: 20140618161429) do
     t.integer  "finding_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cached_votes_total", default: 0
   end
+
+  add_index "points", ["cached_votes_total"], name: "index_points_on_cached_votes_total"
 
   create_table "researches", force: true do |t|
     t.string   "study_type"
@@ -94,6 +96,16 @@ ActiveRecord::Schema.define(version: 20140618161429) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "verdicts", force: true do |t|
+    t.text     "verdict"
+    t.integer  "debate_id"
+    t.integer  "cached_votes_total", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "verdicts", ["cached_votes_total"], name: "index_verdicts_on_cached_votes_total"
 
   create_table "votes", force: true do |t|
     t.integer  "votable_id"

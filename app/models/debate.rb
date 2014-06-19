@@ -1,6 +1,10 @@
 class Debate < ActiveRecord::Base
   has_many :points, dependent: :destroy
-  default_scope -> { order('cached_votes_total DESC') }
+  has_many :verdicts, dependent: :destroy
+  default_scope order('cached_votes_total DESC') 
   validates :title, presence: true	
   acts_as_votable  
+  accepts_nested_attributes_for :verdicts, 
+  reject_if:  lambda { |a| a[:verdict].blank?},
+    allow_destroy:  true      
 end
