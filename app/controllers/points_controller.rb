@@ -13,8 +13,8 @@ class PointsController < ApplicationController
     end
 
     @debate = Debate.find(params[:debate_id])
-    point = @debate.points.build
-    @path = [@debate,point]     
+    @point = @debate.points.build
+
   end
 
   def search
@@ -45,14 +45,12 @@ class PointsController < ApplicationController
 
   def edit
     @point = Point.find(params[:id])
-    @path = Point.find(params[:id])
     @debate = @point.debate
     @for_against = @point.for_against
   end
 
   def update
     @point= Point.find(params[:id]) 
-    @path = @point 
     @debate = @point.debate
     if @point.update_attributes(point_params)
       flash[:success] = "Point updated"
