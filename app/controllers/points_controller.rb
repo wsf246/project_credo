@@ -13,8 +13,9 @@ class PointsController < ApplicationController
     end
 
     @debate = Debate.find(params[:debate_id])
-    point = @debate.points.build
-    @path = [@debate,point]     
+    @point = @debate.points.build
+    @path = [@debate,@point]
+
   end
 
   def search
@@ -36,6 +37,13 @@ class PointsController < ApplicationController
   def create
     @debate = Debate.find(params[:debate_id])    
     @point = @debate.points.build(point_params)
+    case params[:point_type]
+      when 'For' then @for_against = true
+      when 'Against' then @for_against = false
+    end
+
+    @path = [@debate,@point]
+
     if @point.save	
       redirect_to @debate
     else

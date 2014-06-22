@@ -18,7 +18,7 @@ class Research < ActiveRecord::Base
     8 * (self.study_type == 'Cohort Study' ? 1 : 0) +    
     13 * (self.study_type == 'Randomized Control Trial' ? 1 : 0) +
 
-    2 * (self.funding ? 1 : 0) +
+    2 * (self.funding.present? ? 1 : 0) +
 
     10 * (self.peer_reviewed ? 1 : 0) +
     10 * (self.replicated ? 1 : 0) + 
