@@ -14,7 +14,6 @@ class PointsController < ApplicationController
 
     @debate = Debate.find(params[:debate_id])
     @point = @debate.points.build
-    @path = [@debate,@point]
 
   end
 
@@ -37,13 +36,6 @@ class PointsController < ApplicationController
   def create
     @debate = Debate.find(params[:debate_id])    
     @point = @debate.points.build(point_params)
-    case params[:point_type]
-      when 'For' then @for_against = true
-      when 'Against' then @for_against = false
-    end
-
-    @path = [@debate,@point]
-
     if @point.save	
       redirect_to @debate
     else
@@ -53,14 +45,12 @@ class PointsController < ApplicationController
 
   def edit
     @point = Point.find(params[:id])
-    @path = Point.find(params[:id])
     @debate = @point.debate
     @for_against = @point.for_against
   end
 
   def update
     @point= Point.find(params[:id]) 
-    @path = @point 
     @debate = @point.debate
     if @point.update_attributes(point_params)
       flash[:success] = "Point updated"
