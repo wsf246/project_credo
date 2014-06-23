@@ -61,7 +61,7 @@ class DebatesController < ApplicationController
    private
 
     def debate_params
-      params.require(:debate).permit(:title, :description, :notes,
-                                   verdicts_attributes: [:id, :debate_id, :verdict, :_destroy])
+      params.require(:debate).permit(:title, :description, :notes, :user_create_id,
+                                   verdicts_attributes: [:id, :debate_id, :verdict, :user_create_id, :_destroy])
     end
 end

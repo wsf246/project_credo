@@ -20,7 +20,8 @@ class ResearchesController < ApplicationController
 
   def new
     @research = Research.new
-    @research.findings.build   
+    @research.findings.build
+    @study_type = 'Unknown'   
   end
 
   def create
@@ -28,6 +29,7 @@ class ResearchesController < ApplicationController
 
     if @research.save	
       @research.score_it
+      @research.user_create_id = current_user
       redirect_to @research
     else
       render 'new'
@@ -36,6 +38,7 @@ class ResearchesController < ApplicationController
 
   def edit
     @research = Research.find(params[:id])
+    @study_type = @research.study_type     
   end
 
   def update
@@ -67,7 +70,7 @@ class ResearchesController < ApplicationController
         study_type authors title journal date_of_publication dropouts retracted
         peer_reviewed replicated version funding link single_blinded 
         double_blinded randomized score controlled_against_placebo 
-        controlled_against_best_alt
+        controlled_against_best_alt user_create_id
       }
     end
 

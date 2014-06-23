@@ -1,6 +1,6 @@
 <% provide(:title, 'New Point') %>
 <h1><%=@debate.title%></h1>
-<div class="row">
+<div class="row-fluid">
   <div class="span4 offset1">
 		<%= form_for([@debate, @point]) do |f| %>
 			<%= render 'point_form', f: f %>

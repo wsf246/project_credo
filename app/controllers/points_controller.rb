@@ -36,7 +36,8 @@ class PointsController < ApplicationController
   def create
     @debate = Debate.find(params[:debate_id])    
     @point = @debate.points.build(point_params)
-    if @point.save	
+    if @point.save
+      @point.user_create_id = current_user	
       redirect_to @debate
     else
       render 'new'
@@ -68,7 +69,7 @@ class PointsController < ApplicationController
     end  
 
     def point_params
-      params.require(:point).permit(:point, :for_against, findings_attributes: [:id])
+      params.require(:point).permit(:point, :for_against, :user_create_id, findings_attributes: [:id])
     end
 
     def researches_attributes

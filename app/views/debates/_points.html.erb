@@ -8,7 +8,10 @@
       <%=point.findings.count('research_id', distinct:true)%>
     </div>   
     <div class='span10'>  
-      <%=point.point%>   
+      <%=point.point%>
+      <div class = 'pix12'>
+      Created by:<%=point.user.username%>
+      </div>   
       <p class = 'pix12'>
         <%= link_to "Edit", edit_point_path(point) %> |
         <%= link_to "Add findings", findings_path(point: point) %> 

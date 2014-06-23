@@ -1,7 +1,7 @@
 <% provide(:title, 'New Debate') %>
 <h1>New Debate</h1>
 
-<div class="row">
+<div class="row-fluid">
   <div class="span6 offset3">
     <%= nested_form_for(@debate) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>

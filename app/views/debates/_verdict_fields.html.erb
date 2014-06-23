@@ -1,5 +1,6 @@
 <p class = "nested_fields">
   <%= f.link_to_remove "Remove verdict"%>  
-  <%= f.hidden_field :debate_id, value: debate_id %>  
+  <%= f.hidden_field :debate_id, value: debate_id %> 
+  <%= f.hidden_field :user_create_id, value: current_user.id %> 
   <%= f.text_area :verdict, placeholder: "Add verdict" %>
 </p>

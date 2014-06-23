@@ -1,8 +1,9 @@
-<div class="row">
+<div class="row-fluid">
   <div class="span4 offset1">
     <%= nested_form_for(@research) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
         <h4>Basic Information</h4>
+        <%= f.hidden_field :user_create_id, value: current_user.id %> 
             
         <%= f.label :Title %>
         <%= f.text_area :title, placeholder: "Research title..." %>
@@ -32,13 +33,13 @@
   </div>
 </div> 
 
-<div class="row">
+<div class="row-fluid">
   <div class="span4 offset1">       
 
         <h4>Methodologies</h4>
 
         <%= f.label :Study_type, "Research Classification"  %>
-        <%= f.select(:study_type, options_for_select([['Cross-sectional'], ['Case-control'],['Cohort Study'], ['Randomized Control Trial'], ['Case Study'], ['Unknown']],'Unknown')) %>  
+        <%= f.select(:study_type, options_for_select([['Cross-sectional'], ['Case-control'],['Cohort Study'], ['Randomized Control Trial'], ['Case Study'], ['Unknown']], @study_type)) %>  
         <br>
             <%= f.check_box(:single_blinded) %>
             <%= f.label(:single_blinded, "Single Blinded?", :class => "checkbox inline") %>  
@@ -84,7 +85,7 @@
 
 <p>
 
-<div class="row">
+<div class="row-fluid">
   <div class="span4 offset1">       
 
         <%= f.label :dropouts, "Full Sample Definition and Dropouts" %>

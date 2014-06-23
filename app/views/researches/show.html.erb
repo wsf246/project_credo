@@ -7,6 +7,9 @@
       v. <%= @research.version %>
     <%end%>
   </a>
+	<div class='pix12'>
+		Logged by: <%=@research.user.username%>
+	</div>	  
 	<h2>
 		<%= link_to "Edit", edit_research_path %> | 
 		<%= link_to "All research", researches_path %>

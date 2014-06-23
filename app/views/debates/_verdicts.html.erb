@@ -2,6 +2,9 @@
   <% @verdicts.each do |verdict| %>
     <li>
       <%= verdict.verdict %>
+      <div class='pix12'>
+        Created by: <%=verdict.user.username%>
+      </div>        
       <%= render 'bump_verdict', verdict: verdict %>
     </li>  
   <%end%>

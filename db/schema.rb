@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619122248) do
+ActiveRecord::Schema.define(version: 20140622083527) do
 
   create_table "associations", force: true do |t|
     t.integer  "point_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140619122248) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cached_votes_total", default: 0
+    t.integer  "user_create_id"
   end
 
   add_index "debates", ["cached_votes_total"], name: "index_debates_on_cached_votes_total"
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140619122248) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cached_votes_total", default: 0
+    t.integer  "user_create_id"
   end
 
   add_index "points", ["cached_votes_total"], name: "index_points_on_cached_votes_total"
@@ -77,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140619122248) do
     t.boolean  "controlled_against_placebo"
     t.boolean  "controlled_against_best_alt"
     t.float    "score"
+    t.integer  "user_create_id"
   end
 
   create_table "users", force: true do |t|
@@ -92,6 +95,7 @@ ActiveRecord::Schema.define(version: 20140619122248) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -103,6 +107,7 @@ ActiveRecord::Schema.define(version: 20140619122248) do
     t.integer  "cached_votes_total", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_create_id"
   end
 
   add_index "verdicts", ["cached_votes_total"], name: "index_verdicts_on_cached_votes_total"

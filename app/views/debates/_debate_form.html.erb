@@ -7,6 +7,7 @@
 <%= f.label :Notes %>
 <%= f.text_area :notes, placeholder: "Additional notes (separate bullet points with '|')..." %>
 
+<%= f.hidden_field :user_create_id, value: current_user.id %> 
 <%= f.fields_for :verdicts do |builder| %>
     <%= render 'verdict_fields', f: builder, debate_id: @debate.id %>
 <%end%>  

@@ -1,7 +1,8 @@
 class Research < ActiveRecord::Base
   default_scope order('score DESC')
 
-  has_many :findings, dependent: :destroy		
+  has_many :findings, dependent: :destroy
+  belongs_to :user, foreign_key: "user_create_id"   		
 
   accepts_nested_attributes_for :findings, 
   reject_if:	lambda { |a| a[:finding].blank?},
