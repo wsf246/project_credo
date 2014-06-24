@@ -9,7 +9,7 @@
         <%if debate.points.joins(:associations).present? %> 
           <%=pluralize(debate.points.joins(:associations).size,'Finding')%>
           <%if debate.verdicts.present? %>
-            <br /><%=pluralize(1,'Verdict')%>
+            <br /><%=pluralize(debate.verdicts.size,'Verdict')%>
           <%else%> 
             <br />No verdict 
           <%end%>

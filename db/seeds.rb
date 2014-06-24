@@ -27,6 +27,18 @@ when 'development'
         Lorem.split.sample((rand(9)+1)*length).join(' ')
     end 
 
+    #random email
+    def email
+        Lorem.split.sample + "@" + Lorem.split.sample + ".com"
+    end    
+
+    #users seed
+    User.where("id > 5").delete_all
+    30.times do |user|
+        User.create(username: Lorem.split.sample,
+          email: email)
+    end
+
     #researches seed
     Research.where("id > 10").delete_all
     50.times do |i|
@@ -45,7 +57,8 @@ when 'development'
         double_blinded: bin_rand, 
         randomized: bin_rand,
         controlled_against_placebo: bin_rand, 
-        controlled_against_best_alt: bin_rand)
+        controlled_against_best_alt: bin_rand,
+        user_create_id: User.all.sample.id)
     end
 
     #findings seed
@@ -63,15 +76,24 @@ when 'development'
         Debate.create(title: lorem(5),
             notes: "#{lorem(5)}|#{lorem(5)}|#{lorem(5)}",
             description: lorem(8),
-            verdict: lorem(8))
+            user_create_id: User.all.sample.id)
     end
+
+    #verdicts seed
+    Verdict.where("id > 5").delete_all
+    15.times do |verdict|
+        Verdict.create(verdict: lorem(8),
+            debate_id: Debate.where("id > 5").sample.id,
+            user_create_id: User.all.sample.id)
+    end    
 
     #points seed
     Point.where("id > 10").delete_all
     50.times do |point|
         Point.create(for_against: bin_rand,
             point: lorem(5),
-            debate_id: Debate.where("id > 5").sample.id)
+            debate_id: Debate.where("id > 5").sample.id,
+            user_create_id: User.all.sample.id)
     end   
 
     #associations seed
