@@ -1,5 +1,7 @@
+<div class='row-fluid'>
+    <div class= "span6">
 <div class="row-fluid">
-  <div class="span4 offset1">
+  <div class="span8 offset1">
     <%= nested_form_for(@research) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
         <h4>Basic Information</h4>
@@ -26,7 +28,7 @@
         <h4>Findings</h4>
 
         <%= f.fields_for :findings do |builder| %>
-            <%= render 'shared/finding_fields', f: builder, research_id: @research.id %>
+            <%= render 'finding_fields', f: builder, research_id: @research.id %>
         <%end%>  
 
         <p><%= f.link_to_add "Add a finding", :findings %></p>            
@@ -34,36 +36,36 @@
 </div> 
 
 <div class="row-fluid">
-  <div class="span4 offset1">       
+  <div class="span5 offset1">       
 
-        <h4>Methodologies</h4>
+    <h4>Methodologies</h4>
 
-        <%= f.label :Study_type, "Research Classification"  %>
-        <%= f.select(:study_type, options_for_select([['Cross-sectional'], ['Case-control'],['Cohort Study'], ['Randomized Control Trial'], ['Case Study'], ['Unknown']], @study_type)) %>  
-        <br>
-            <%= f.check_box(:single_blinded) %>
-            <%= f.label(:single_blinded, "Single Blinded?", :class => "checkbox inline") %>  
-        </br>    
+    <%= f.label :Study_type, "Research Classification"  %>
+    <%= f.select(:study_type, options_for_select([['Cross-sectional'], ['Case-control'],['Cohort Study'], ['Randomized Control Trial'], ['Case Study'], ['Unknown']], @study_type)) %>  
+    <br>
+        <%= f.check_box(:single_blinded) %>
+        <%= f.label(:single_blinded, "Single Blinded?", :class => "checkbox inline") %>  
+    </br>    
 
-        <br>
-            <%= f.check_box(:double_blinded) %>   
-            <%= f.label(:Double_blinded, "Double_blinded?", :class => "checkbox inline") %> 
-        </br>      
-        <br>
-            <%= f.check_box(:randomized) %>  
-            <%= f.label(:randomized, "Randomized?", :class => "checkbox inline") %> 
-        </br>      
-        <br>
-            <%= f.check_box(:controlled_against_placebo) %>
-            <%= f.label(:controlled_against_placebo, "Conrolled against placebo?", :class => "checkbox inline") %>  
-        </br>     
-        <br>
-            <%= f.check_box(:controlled_against_best_alt) %>
-            <%= f.label(:controlled_against_best_alt, "Controlled against best alternative?", :class => "checkbox inline") %>    
-        </br>              
+    <br>
+        <%= f.check_box(:double_blinded) %>   
+        <%= f.label(:Double_blinded, "Double_blinded?", :class => "checkbox inline") %> 
+    </br>      
+    <br>
+        <%= f.check_box(:randomized) %>  
+        <%= f.label(:randomized, "Randomized?", :class => "checkbox inline") %> 
+    </br>      
+    <br>
+        <%= f.check_box(:controlled_against_placebo) %>
+        <%= f.label(:controlled_against_placebo, "Conrolled against placebo?", :class => "checkbox inline") %>  
+    </br>     
+    <br>
+        <%= f.check_box(:controlled_against_best_alt) %>
+        <%= f.label(:controlled_against_best_alt, "Controlled against best alternative?", :class => "checkbox inline") %>    
+    </br>              
   </div>
 
-  <div class="span4">                
+  <div class="span6">                
      
         <h4>Verification</h4>
 
@@ -86,7 +88,7 @@
 <p>
 
 <div class="row-fluid">
-  <div class="span4 offset1">       
+  <div class="span8 offset1">       
 
         <%= f.label :dropouts, "Full Sample Definition and Dropouts" %>
         <%= f.text_area :dropouts, placeholder: "Were there any dropouts from the sample population..." %>        
@@ -96,4 +98,9 @@
         <%= f.submit "Log info", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
+</div>
+</div> 
+  <div class="span5">  
+    <%= render 'pubmed' %>
+  </div>  
 </div>

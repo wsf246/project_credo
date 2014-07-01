@@ -18,7 +18,37 @@ class ResearchesController < ApplicationController
     @findings = @research.findings
   end
 
+  def pubmed_search
+    new
+    if params[:search_terms].present?
+      require 'nokogiri'
+      require 'open-uri'
+      @search_terms = params[:search_terms].split.join("+")
+      uid_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term="+@search_terms    
+      uid_doc = Nokogiri::HTML(open(uid_url)) 
+      @uid = uid_doc.xpath("//id").map {|uid| uid.text}.join(",")
+      detail_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id="+@uid
+      @detail_doc = Nokogiri::HTML(open(detail_url))
+      blah = @detail_doc.xpath("//docsum").map do |nodeset|
+        [Hash["id", nodeset.xpath("id").text], nodeset.xpath("item[@name='AuthorList']|item[@name='Title']|item[@name='FullJournalName']").map do |node| 
+          Hash[node.attributes["name"].value.downcase, node.text]
+      end]
+      end
+      @details = Hash[blah]
+
+      @authors = "hello world"
+      #.xpath("//docsum").map do |node|
+        #node.xpath("Author").text
+      #end
+
+      render :new
+    else    
+      render :new
+    end
+  end
+
   def new
+    @uid = "Search results"
     @research = Research.new
     @research.findings.build
     @study_type = 'Unknown'   
