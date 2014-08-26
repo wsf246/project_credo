@@ -1,7 +1,7 @@
 <div class='row-fluid'>
-    <div class= "span6">
+    <div class= "span5">
 <div class="row-fluid">
-  <div class="span8 offset1">
+  <div class="span10 offset1">
     <%= nested_form_for(@research) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
         <h4>Basic Information</h4>
@@ -88,7 +88,7 @@
 <p>
 
 <div class="row-fluid">
-  <div class="span8 offset1">       
+  <div class="span10 offset1">       
 
         <%= f.label :dropouts, "Full Sample Definition and Dropouts" %>
         <%= f.text_area :dropouts, placeholder: "Were there any dropouts from the sample population..." %>        
@@ -100,7 +100,7 @@
   </div>
 </div>
 </div> 
-  <div class="span5">  
-    <%= render 'pubmed' %>
+  <div class="span6">  
+    <%= render 'pubmed_search' %>
   </div>  
 </div>

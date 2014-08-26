@@ -19,7 +19,6 @@ class ResearchesController < ApplicationController
   end
 
   def pubmed_search
-    new
     if params[:search_terms].present?
       require 'nokogiri'
       require 'open-uri'
@@ -29,23 +28,72 @@ class ResearchesController < ApplicationController
       @uid = uid_doc.xpath("//id").map {|uid| uid.text}.join(",")
       detail_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id="+@uid
       @detail_doc = Nokogiri::HTML(open(detail_url))
-      blah = @detail_doc.xpath("//docsum").map do |nodeset|
-        [Hash["id", nodeset.xpath("id").text], nodeset.xpath("item[@name='AuthorList']|item[@name='Title']|item[@name='FullJournalName']").map do |node| 
-          Hash[node.attributes["name"].value.downcase, node.text]
-      end]
+
+      articles = []
+
+      @detail_doc.xpath("//docsum").map do |article|
+        parsed_article = {}
+
+        article.children.map do |field|
+          
+          if field.name.downcase == 'id'
+            parsed_article['id'] = field.text
+          end
+
+          if field.attr('name') == 'PubDate'
+            parsed_article['pubdate'] = field.text
+          end
+
+          if field.attr('name') == 'Title'
+            parsed_article['title'] = field.text
+          end
+          
+          if field.attr('name') == 'PubTypeList'
+            parsed_article['type'] = field.element_children.text
+          end  
+
+          if field.attr('name') == 'AuthorList'
+            authors = field.element_children.map do |f|
+              f.text
+            end
+            parsed_article['authors'] = authors  
+          end
+
+
+          if field.attr('name') == 'FullJournalName'
+            parsed_article['journal'] = field.text
+          end                                         
+                    
+        end
+
+        articles << parsed_article
       end
-      @details = Hash[blah]
+      @details = articles
 
-      @authors = "hello world"
-      #.xpath("//docsum").map do |node|
-        #node.xpath("Author").text
-      #end
-
-      render :new
+      respond_to do |format|
+        format.html { redirect_to new }
+        format.js 
+      end
     else    
-      render :new
+      respond_to do |format|
+        format.html { redirect_to new }
+        format.js 
+      end
     end
   end
+
+  def view_result
+    require 'nokogiri'
+    require 'open-uri'
+    @pubmed_id = params[:id]
+    article_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id="+@pubmed_id+"&retmode=xml"    
+    @article = Nokogiri::HTML(open(article_url)) 
+
+    respond_to do |format|
+      format.html { redirect_to new }
+      format.js 
+    end
+  end  
 
   def new
     @uid = "Search results"

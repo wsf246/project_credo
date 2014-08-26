@@ -530,5 +530,35 @@ input {
   }
 } 
 
+/* Pubmed Search */
 
+div.pubmed-search {
+
+  list-style: none;
+  margin: 0;
+
+  ul {
+    list-style: none;   
+    list-style-position:inside; 
+    margin: 0px 0 0 0px;       
+    overflow: auto;    
+    padding: 0px 5px;
+    text-indent: 0;
+  }  
+    
+  li {
+    font-size: 14px;
+    list-style: none; 
+    list-style-position:inside; 
+    margin: 0px 0 0 0px;
+    padding: 0px 0 0 0;    
+    text-indent: 0;    
+    &:first-of-type {
+    border-top: 1px solid $grayLighter;   
+    }
+  }  
+  .pix12 {
+    font-size: 12px;
+  }
+}
 

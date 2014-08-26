@@ -33,10 +33,10 @@ ProjectCredo::Application.routes.draw do
   resources :researches do
     collection do
       match 'search' => 'researches#search', via: [:get, :post], as: :search
-      match 'pubmed_search' => 'researches#pubmed_search', via: [:get, :post], as: :pubmed_search      
+      match 'pubmed_search' => 'researches#pubmed_search', via: [:get, :post]    
+      match 'view_result' => 'researches#view_result', via: [:get, :post]        
     end   
   end  
-
 
   resources :findings do
     collection do

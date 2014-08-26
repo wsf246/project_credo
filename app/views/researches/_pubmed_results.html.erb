@@ -1,0 +1,30 @@
+<div id="pubmed_results">
+  <div class='row-fluid'>
+    <%if @details.nil?%>
+    <%elsif @details.empty?%>
+      <b>Search terms:</b>
+      <%=params[:search_terms]%>
+      <br><b>Results:</b></br>  
+      No Results
+    <%else%>
+      <b>Search terms:</b>
+      <%=params[:search_terms]%>
+      <br><b>Results:</b></br>  
+      <%@details.each do |detail|%>
+        <ul>
+          <li><b><%=detail["title"]%></b></li>
+          <li class='pix12'>
+            <b>Authors:</b> <%=detail["authors"].join(", ")%>  
+          </li> 
+          <li class='pix12'> 
+            <b><%=detail["type"]%>:</b> <%=detail["journal"]%>; <%=detail["pubdate"]%>
+          </li>
+          <%= form_tag("/researches/view_result", remote: true) do%>
+            <%= hidden_field_tag 'id', detail['id'] %>
+            <%= submit_tag "View" %>
+          <%end%>           
+        </ul>  
+      <%end%>
+    <%end%>
+  </div>
+</div>
