@@ -5,6 +5,6 @@ namespace 'db:seed' do
     credo_user = User.create(username: Faker::Internet.user_name, email: email, password: 'password')
 
     puts "Credo User not saved:" unless credo_user.persisted?
-    puts "\"#{credo_user.username}\" with email \"#{credo_user.email}\""
+    puts "User created with username \"#{credo_user.username}\" and email \"#{credo_user.email}\""
   end
 end
