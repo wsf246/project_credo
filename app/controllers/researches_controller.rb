@@ -25,13 +25,13 @@ class ResearchesController < ApplicationController
       @search_terms = params[:search_terms].split.join("+")
       uid_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term="+@search_terms    
       uid_doc = Nokogiri::HTML(open(uid_url)) 
-      @uid = uid_doc.xpath("//id").map {|uid| uid.text}.join(",")
-      detail_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id="+@uid
-      @detail_doc = Nokogiri::HTML(open(detail_url))
+      uid = uid_doc.xpath("//id").map {|uid| uid.text}.join(",")
+      detail_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id="+uid
+      detail_doc = Nokogiri::HTML(open(detail_url))
 
-      articles = []
+      @articles = []
 
-      @detail_doc.xpath("//docsum").map do |article|
+      detail_doc.xpath("//docsum").map do |article|
         parsed_article = {}
 
         article.children.map do |field|
@@ -62,13 +62,11 @@ class ResearchesController < ApplicationController
 
           if field.attr('name') == 'FullJournalName'
             parsed_article['journal'] = field.text
-          end                                         
-                    
+          end                                                     
         end
 
-        articles << parsed_article
+        @articles << parsed_article
       end
-      @details = articles
 
       respond_to do |format|
         format.html { redirect_to new }
@@ -87,7 +85,14 @@ class ResearchesController < ApplicationController
     require 'open-uri'
     @pubmed_id = params[:id]
     article_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id="+@pubmed_id+"&retmode=xml"    
-    @article = Nokogiri::HTML(open(article_url)) 
+    article_doc = Nokogiri::HTML(open(article_url)) 
+    @article = {}
+
+    @article["title"] = article_doc.xpath("//articletitle").text
+    @article["journal"] = article_doc.xpath("//journal//title").text
+    @article["pubdate"] = article_doc.xpath("//articledate//month").text+"/"+article_doc.xpath("//articledate//day").text+"/"+article_doc.xpath("//articledate//year").text   
+    @article["abstract"] = article_doc.xpath("//abstracttext").text  
+
 
     respond_to do |format|
       format.html { redirect_to new }
