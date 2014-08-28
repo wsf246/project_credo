@@ -9,8 +9,17 @@ class DebatesController < ApplicationController
   def show
     @debate = Debate.find(params[:id])
     @verdicts = @debate.verdicts
-    @for_points = @debate.points.where(for_against: true).joins("LEFT JOIN associations ON points.id = associations.point_id").joins("LEFT JOIN findings ON associations.finding_id = findings.id").select('points.*, count(DISTINCT research_id) as "research_count"').group("points.id").order('cached_votes_total desc, research_count desc')    
-    @against_points = @debate.points.where(for_against: false).joins("LEFT JOIN associations ON points.id = associations.point_id").joins("LEFT JOIN findings ON associations.finding_id = findings.id").select('points.*, count(DISTINCT research_id) as "research_count"').group("points.id").order('cached_votes_total desc, research_count desc')    
+    @for_points = @debate.points.where(for_against: true)
+      .joins("LEFT JOIN associations ON points.id = associations.point_id")
+      .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
+      .select('points.*, count(DISTINCT research_id) as "research_count"')
+      .group("points.id").order('cached_votes_total desc, research_count desc')    
+      
+    @against_points = @debate.points.where(for_against: false)
+      .joins("LEFT JOIN associations ON points.id = associations.point_id")
+      .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
+      .select('points.*, count(DISTINCT research_id) as "research_count"')
+      .group("points.id").order('cached_votes_total desc, research_count desc')    
   end
 
   def new
