@@ -40,14 +40,14 @@
 	    </div>
       <div class="span4">       
         <% if @evidence.second.present?%>           
-          <% evidence = @evidence.first%>         
+          <% evidence = @evidence.second%>         
           <%= render 'points', point: evidence %>
         <%else%>
         <%end%> 
       </div>
       <div class="span4">       
         <% if @evidence.third.present?%>           
-          <% evidence = @evidence.first%>         
+          <% evidence = @evidence.third%>         
           <%= render 'points', point: evidence %>
         <%else%>
         <%end%> 
