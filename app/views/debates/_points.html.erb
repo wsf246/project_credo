@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='span2 center'>
       <div>
-        <%= render 'important_point', point: point%>
+        <%= render 'debates/important_point', point: point%>
       </div>       
       <div class='pix12'>Research</div>
       <%=point.findings.count('research_id', distinct:true)%>
@@ -19,7 +19,7 @@
       <ul class= 'research'>
         <% findings = point.findings.sort! {|a,b| b.research.score <=> a.research.score}%>
         <% findings.each do |finding| %>
-          <%= render 'findings', finding: finding %>
+          <%= render 'debates/findings', finding: finding %>
         <%end%> 
       </ul>
     </div>  

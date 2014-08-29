@@ -33,14 +33,14 @@ when 'development'
     end    
 
     #users seed
-    User.where("id > 5").delete_all
-    30.times do |user|
+    User.where("id > 1").delete_all
+    15.times do |user|
         User.create(username: Lorem.split.sample,
-          email: email)
+          email: email, password: "88888888", password_confirmation: "88888888")
     end
 
     #researches seed
-    Research.where("id > 10").delete_all
+    Research.delete_all
     50.times do |i|
       Research.create(title: "Research ##{i} #{lorem(5)}",
         study_type: ['Cross-sectional','Case-control','Cohort Study','Randomized Control Trial','Case Study','Unknown'].sample,
@@ -62,16 +62,16 @@ when 'development'
     end
 
     #findings seed
-    Finding.where("id > 10").delete_all
+    Finding.delete_all
     100.times do |finding|
         Finding.create(finding: lorem(5),
             quote: lorem(5),
             sample_def: lorem(5),
-            research_id: Research.where("id > 10").sample.id)
+            research_id: Research.all.sample.id)
     end    
 
     #debates seed
-    Debate.where("id > 5").delete_all
+    Debate.delete_all
     10.times do |debate|
         Debate.create(title: lorem(5),
             notes: "#{lorem(5)}|#{lorem(5)}|#{lorem(5)}",
@@ -80,26 +80,26 @@ when 'development'
     end
 
     #verdicts seed
-    Verdict.where("id > 5").delete_all
-    15.times do |verdict|
+    Verdict.delete_all
+    25.times do |verdict|
         Verdict.create(verdict: lorem(8),
-            debate_id: Debate.where("id > 5").sample.id,
+            debate_id: Debate.all.sample.id,
             user_create_id: User.all.sample.id)
     end    
 
     #points seed
-    Point.where("id > 10").delete_all
+    Point.delete_all
     50.times do |point|
         Point.create(for_against: bin_rand,
             point: lorem(5),
-            debate_id: Debate.where("id > 5").sample.id,
+            debate_id: Debate.all.sample.id,
             user_create_id: User.all.sample.id)
     end   
 
     #associations seed
     150.times do |associate|
-        Association.create(point_id: Point.where("id > 10").sample.id,
-            finding_id: Finding.where("id > 10").sample.id)
+        Association.create(point_id: Point.all.sample.id,
+            finding_id: Finding.all.sample.id)
     end
     
     #score it

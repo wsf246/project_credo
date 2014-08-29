@@ -4,13 +4,15 @@ class PointsController < ApplicationController
                 only: [:edit, :update, :destroy, :new, :create, :important]
 
   def index
+    @debate = Debate.find(params[:debate_id])
+    @evidence = @debate.points
+      .joins("LEFT JOIN associations ON points.id = associations.point_id")
+      .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
+      .select('points.*, count(DISTINCT research_id) as "research_count"')
+      .group("points.id").order('cached_votes_total desc, research_count desc')  
   end
 
   def new
-    case params[:point_type]
-      when 'For' then @for_against = true
-      when 'Against' then @for_against = false
-    end
 
     @debate = Debate.find(params[:debate_id])
     @point = @debate.points.build

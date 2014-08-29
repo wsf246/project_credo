@@ -234,18 +234,18 @@ margin: auto;
 /* Debates show */
 
 div.debate-wrapper{
-  width: 60%; 
+  width: 50%; 
   margin: auto;
 
   h1 {
-    font-size: 30px;
+    font-size: 24px;
     margin-bottom: 5px;
     text-align: left;
     font-weight: none;
   }
 
   h2 {
-    font-size: 20px;
+    font-size: 14px;
     margin-bottom: 5px;
     text-align: left;
     color: black;
@@ -365,12 +365,14 @@ div.research-wrapper{
   margin: auto; 
 
   h1 {
-    font-size: 30px;
+    font-size: 24px;
+    text-align: left; 
+    border-bottom: 1px solid $gray;       
     margin: 0 0 0 0;
   }
 
   .point {
-    font-size: 20px;
+    font-size: 14px;
     text-align: left;
     color: black;
     font-weight: normal;
@@ -379,7 +381,7 @@ div.research-wrapper{
   } 
 
   .research {
-    font-size: 14px;
+    font-size: 12px;
     text-align: left;
     font-weight: normal;
     color: $gray;
@@ -397,7 +399,7 @@ div.research-wrapper{
   }
 
   .finding {
-    font-size: 14px;
+    font-size: 12px;
     text-align: left;
     font-weight: normal;
     line-height: 110%;

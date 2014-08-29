@@ -1,12 +1,13 @@
-<div class="row">
-  <div class="span4 offset1">
-	<div class="search">
-		<%= search_form_for @query do |f| %>		
-			<%= f.label :point_cont, "Name Contains" %>
-			<%= f.text_field :point_cont %>
-
-			<%= f.submit "Search" %>  
-		<%end%>
-	</div>
-  </div>
-</div> 
+<div class ='point-wrapper'>	
+	<div class="row-fluid">
+		<div class= 'point'>		
+		  <div class="span6 offset2">
+		  	<b><%= link_to "Back to debate", debate_path(@debate) %></b>
+		    <% @evidence.each do |evidence|%>     	  	    	
+			 		<%= render 'debates/points', point: evidence %>
+			 	<%end%>
+			 	<b><%= link_to "Back to debate", debate_path(@debate) %></b>	
+		  </div>
+		</div>
+	</div> 
+</div>

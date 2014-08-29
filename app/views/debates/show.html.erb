@@ -22,43 +22,37 @@
   <%else%>  
   No verdicts, <%=link_to "why not add one?", edit_debate_path %>
   <%end%>
-	 
-
 </div>
 
 <div class ='point-wrapper'>	
-
+  <h1>Evidence</h1>
+  <%= link_to "View all evidence", debate_points_path(@debate) %> |
+  <%= link_to "Add evidence", new_debate_point_path(@debate) %>
   <div class="row-fluid">
-		<div class="span6">
-      <div class='row-fluid'>
-        <div class="span10 offset2">
-    		  <h1 class= 'green'>For</h1> 
-    		  <div class='center'> 
-    		  	<%= link_to "Add a new point for", new_debate_point_path(@debate, point_type: 'For') %>
-    		  </div>
-        </div>
-      </div>   	  	
-	    <ul class= 'point'>
-	    	<% @for_points.each do |f| %>		    	
-	 				<%= render 'points', point: f %>
-	    	<%end%>
-	    </ul>
+    <div class= 'point'>		
+      <div class="span4">
+        <% if @evidence.first.present?%>     	  	
+  	    	<% evidence = @evidence.first%>		    	
+  	 			<%= render 'points', point: evidence %>
+        <%else%>
+          No Evidence Yet
+        <%end%>  
+	    </div>
+      <div class="span4">       
+        <% if @evidence.second.present?%>           
+          <% evidence = @evidence.first%>         
+          <%= render 'points', point: evidence %>
+        <%else%>
+        <%end%> 
+      </div>
+      <div class="span4">       
+        <% if @evidence.third.present?%>           
+          <% evidence = @evidence.first%>         
+          <%= render 'points', point: evidence %>
+        <%else%>
+        <%end%> 
+      </div>            
 		</div>
 
-		<div class="span6">
-      <div class='row-fluid'>
-        <div class="span10 offset2">      
-    		  <h1 class ='red'>Against</h1> 
-    		  <div class= 'center'> 
-    		  	<%= link_to "Add a new point against", new_debate_point_path(@debate, point_type: 'Against') %>
-    		  </div>			  
-         </div>
-      </div>
-	    <ul> 	
-	    	<% @against_points.each do |a| %>
-	    	  <%= render 'points', point: a %>
-	    	<%end%>
-	    </ul>	
-		</div>
   </div>  	
 </div>  
