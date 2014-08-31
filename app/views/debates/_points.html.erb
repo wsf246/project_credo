@@ -1,27 +1,18 @@
 <li class= 'point'>
-  <div class='row'>
+  <div class='row-fluid'>
     <div class='span2 center'>
       <div>
         <%= render 'debates/important_point', point: point%>
       </div>       
-      <div class='pix12'>Research</div>
-      <%=point.findings.count('research_id', distinct:true)%>
     </div>   
     <div class='span10'>  
-      <%=point.point%>
+      <b><%=point.point%></b>
       <div class = 'pix12'>
       Created by: <%=point.user.username%>
-      </div>   
-      <p class = 'pix12'>
-        <%= link_to "Edit", edit_point_path(point) %> |
-        <%= link_to "Add findings", findings_path(point: point) %> 
-      </p>             
-      <ul class= 'research'>
-        <% findings = point.findings.sort! {|a,b| b.research.score <=> a.research.score}%>
-        <% findings.each do |finding| %>
-          <%= render 'debates/findings', finding: finding %>
-        <%end%> 
-      </ul>
+      </div> 
+      <div id="debate_research_<%= point.id %>">         
+        <%= render 'debates/top_3_findings', point: point %>
+      </div>        
     </div>  
   </div>    
 </li>   

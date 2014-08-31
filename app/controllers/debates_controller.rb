@@ -59,7 +59,25 @@ class DebatesController < ApplicationController
     @debate = Debate.find(params[:id])
     @debate.unvote_by current_user
     redirect_to :back
-  end     
+  end
+
+  def all_research
+    @point = Point.find(params[:point])
+
+    respond_to do |format|
+      format.html { redirect_to @debate }
+      format.js  
+    end   
+  end 
+
+  def less_research
+    @point = Point.find(params[:point])
+
+    respond_to do |format|
+      format.html { redirect_to @debate }
+      format.js  
+    end   
+  end               
 
    private
 

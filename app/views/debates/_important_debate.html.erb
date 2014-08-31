@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <% if current_user.voted_for? debate%>
-    <%= link_to "Unbump", unimportant_debate_path(debate), method: :put %> 
+    <%= link_to "Unupvote", unimportant_debate_path(debate), method: :put %> 
   <%else%>
-    <%= link_to "Bump", important_debate_path(debate), method: :put %>   
+    <%= link_to "Upvote", important_debate_path(debate), method: :put %>   
   <%end%> 
 <%else%>
-  <%= link_to "Bump", important_debate_path(debate), method: :put %> 
+  <%= link_to "Upvote", important_debate_path(debate), method: :put %> 
 <%end%> 
 <br /> 
 <%=debate.votes_for.size%>
