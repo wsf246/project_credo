@@ -18,6 +18,9 @@
 
   <h2>Verdict:</h2>	
   <% if @verdicts.present? %>
+    <div id="add_verdict">
+      <%= link_to "Add a verdict", add_verdict_debates_path(debate: @debate),remote: true %>
+    </div>
     <p><%= render 'verdicts' %></p>
   <%else%>  
   No verdicts, <%=link_to "why not add one?", edit_debate_path %>
