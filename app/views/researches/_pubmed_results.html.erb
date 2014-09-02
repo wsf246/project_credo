@@ -10,7 +10,7 @@
       <b>Search terms:</b>
       <%=params[:search_terms]%>
       <br><b>Results:</b></br>  
-      <%@articles.each do |detail|%>
+      <%@articles.first(10).each do |detail|%>
         <ul>
           <li><b><%=detail["title"]%></b></li>
           <li class='pix12'>
@@ -21,6 +21,8 @@
           </li>
           <%= form_tag("/researches/view_result", remote: true) do%>
             <%= hidden_field_tag 'id', detail['id'] %>
+            <%= hidden_field_tag 'pubdate', detail['pubdate'] %>
+            <%= hidden_field_tag 'authors', detail['authors'].join(", ") %>
             <%= hidden_field_tag 'search_terms', params[:search_terms] %>          
             <%= submit_tag "View" %>
           <%end%>           

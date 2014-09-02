@@ -89,8 +89,9 @@ class ResearchesController < ApplicationController
     @article = {}
 
     @article["title"] = article_doc.xpath("//articletitle").text
+    @article["authors"] = params[:authors]  
     @article["journal"] = article_doc.xpath("//journal//title").text
-    @article["pubdate"] = article_doc.xpath("//articledate//month").text+"/"+article_doc.xpath("//articledate//day").text+"/"+article_doc.xpath("//articledate//year").text   
+    @article["pubdate"] = params[:pubdate]  
     @article["abstract"] = article_doc.xpath("//abstracttext").text  
 
 

@@ -1,6 +1,6 @@
 class DebatesController < ApplicationController
   before_action :authenticate_user!, 
-                only: [:edit, :update, :destroy, :new, :create, :important]
+                only: [:edit, :update, :destroy, :new, :create, :important, :add_verdict]
   
   def index
     @debates = Debate.order(:cached_votes_total).paginate(page: params[:page])
@@ -80,12 +80,16 @@ class DebatesController < ApplicationController
   end               
 
   def add_verdict
-    @debate = Debate.find(params[:debate])
-    @verdict = @debate.verdicts.build
-    respond_to do |format|
-      format.html { redirect_to @debate }
-      format.js  
-    end   
+    if user_signed_in?
+      @debate = Debate.find(params[:debate])
+      @verdict = @debate.verdicts.build
+      respond_to do |format|
+        format.html { redirect_to @debate }
+        format.js  
+      end 
+    else 
+    redirect_to @debates
+    end  
   end  
 
    private

@@ -1,4 +1,5 @@
 <div class='row-fluid'>
+<div class='pubmed-search'>
   <b>Search terms:</b>
   <%=params[:search_terms]%>
 
@@ -7,8 +8,10 @@
      
     <%= submit_tag "Back" %>
   <%end%> 
-  <br><b><%= @article["title"] %></b></br> 
-  <br><%= @article["journal"]+", Published on:"%> <%= @article["pubdate"]%> </br>
+  <h1><%= @article["title"] %></h1>
+  <br><%="Authors: "+@article["authors"] %></br> 
+  <br><%= "Journal: "+@article["journal"]+", Published on:"%> <%= @article["pubdate"]%> </br>
   <br><b>Abstract:</b></br>
   <br><%=@article["abstract"]%></br>
+</div>
 </div>
