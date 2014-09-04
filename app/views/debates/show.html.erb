@@ -26,36 +26,5 @@
   No verdicts, <%=link_to "why not add one?", edit_debate_path %>
   <%end%>
 </div>
-
-<div class ='point-wrapper'>	
-  <h1>Evidence</h1>
-  <%= link_to "View all evidence", debate_points_path(@debate) %> |
-  <%= link_to "Add evidence", new_debate_point_path(@debate) %>
-  <div class="row-fluid">
-    <div class= 'point'>		
-      <div class="span4">
-        <% if @evidence.first.present?%>     	  	
-  	    	<% evidence = @evidence.first%>		    	
-  	 			<%= render 'points', point: evidence %>
-        <%else%>
-          No Evidence Yet
-        <%end%>  
-	    </div>
-      <div class="span4">       
-        <% if @evidence.second.present?%>           
-          <% evidence = @evidence.second%>         
-          <%= render 'points', point: evidence %>
-        <%else%>
-        <%end%> 
-      </div>
-      <div class="span4">       
-        <% if @evidence.third.present?%>           
-          <% evidence = @evidence.third%>         
-          <%= render 'points', point: evidence %>
-        <%else%>
-        <%end%> 
-      </div>            
-		</div>
-
-  </div>  	
-</div>  
+<%= render 'trends'%>  
+<%= render 'evidence'%>  
