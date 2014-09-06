@@ -184,6 +184,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.3)
     tilt (1.4.1)
+    titleize (1.3.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -230,6 +231,7 @@ DEPENDENCIES
   selenium-webdriver (= 2.35.1)
   sprockets (= 2.11.0)
   sqlite3 (= 1.3.8)
+  titleize
   turbolinks (= 1.1.1)
   uglifier (= 2.1.1)
   will_paginate (= 3.0.4)

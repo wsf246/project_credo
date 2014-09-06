@@ -61,7 +61,7 @@ class ResearchesController < ApplicationController
 
 
           if field.attr('name') == 'FullJournalName'
-            parsed_article['journal'] = field.text
+            parsed_article['journal'] = field.text.titleize
           end                                                     
         end
 
@@ -90,7 +90,7 @@ class ResearchesController < ApplicationController
 
     @article["title"] = article_doc.xpath("//articletitle").text
     @article["authors"] = params[:authors]  
-    @article["journal"] = article_doc.xpath("//journal//title").text
+    @article["journal"] = article_doc.xpath("//journal//title").text.titleize
     @article["pubdate"] = params[:pubdate]  
     @article["abstract"] = article_doc.xpath("//abstracttext").text  
 

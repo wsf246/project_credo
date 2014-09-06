@@ -14,6 +14,7 @@ gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4"
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'nokogiri', '~> 1.6.2'
+gem 'titleize'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
