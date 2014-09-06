@@ -215,20 +215,33 @@ div.help-wrapper{
 div.c-wrapper{
     width: auto; 
     margin: auto;
+
+  .carousel-inner > .item > img, 
+  .carousel-inner > .item > a > img{
+    width: 100%; /* use this, or not */
+    margin: auto;
+  }
+  .carousel-indicators {
+    top: 80%;
+    right: 50%; 
+    margin: auto;
+  }       
 }
 
-.carousel-inner > .item > img, 
-.carousel-inner > .item > a > img{
-width: 100%; /* use this, or not */
-margin: auto;
-}
-.carousel-indicators {
-top: 80%;
-right: 50%; 
-margin: auto;
-}
+div.c-evid-wrapper{
+  .carousel-indicators{
+    right: 50%;
+    } 
 
+  .carousel-indicators li{  
+    background-color: #d3d3d3;
+  }  
 
+  .carousel-indicators .active {
+    background-color: #404040;
+  } 
+ 
+  } 
 /* debug */
 
 .debug_dump {

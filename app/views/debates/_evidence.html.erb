@@ -1,31 +1,64 @@
 <div class ='point-wrapper'>  
   <h1>Evidence</h1>
-  <%= link_to "View all evidence", debate_points_path(@debate) %> |
-  <%= link_to "Add evidence", new_debate_point_path(@debate) %>
-  <div class="row-fluid">
-    <div class= 'point'>    
-      <div class="span4">
-        <% if @evidence.first.present?%>          
-          <% evidence = @evidence.first%>         
-          <%= render 'points', point: evidence %>
+  <%if @evidence.first.nil?%>
+    No evidence yet. <%= link_to "Add evidence", new_debate_point_path(@debate) %>
+  </div>
+  <%else%>
+    <%= link_to "View all evidence", debate_points_path(@debate) %> |
+    <%= link_to "Add evidence", new_debate_point_path(@debate) %>
+    <br></br>
+  </div>
+
+    <script>
+      $(document).ready(function(){
+         $('#evidence-carousel').carousel({interval: false});
+      });
+    </script> 
+    <!--  Carousel - consult the Twitter Bootstrap docs at
+          http://twitter.github.com/bootstrap/javascript.html#carousel -->
+    <div class="c-evid-wrapper">
+      <div id="evidence-carousel" class="carousel slide"><!-- class of slide for animation -->
+        <%if @evid_page_count == 0 %>
         <%else%>
-          No Evidence Yet
+          <ol class="carousel-indicators" style="top: -15px;">
+            <%(0..@evid_page_count).each do |page|%>
+              <%if page == 0%>
+                <li data-target="#evidence-carousel" data-slide-to="0" class="active"></li>
+              <%else%>
+                <li data-target="#evidence-carousel" data-slide-to="<%=page%>"></li>
+              <%end%>
+            <%end%>      
+          </ol>
         <%end%>  
-      </div>
-      <div class="span4">       
-        <% if @evidence.second.present?%>           
-          <% evidence = @evidence.second%>         
-          <%= render 'points', point: evidence %>
+        <div class="carousel-inner">
+          <%@evidence.each_slice(3).with_index do |page,index|%>
+          <%if index == 0%>
+            <div class="item active"><!-- class of active since it's the first item -->
+          <%else%>
+            <div class="item ">
+          <%end%>
+              <div class ='point-wrapper'>  
+                <div class="row-fluid">
+                  <div class= 'point'>              
+                    <%page.each do |evidence|%>    
+                      <div class="span4">    
+                        <%= render 'points', point: evidence %>
+                      </div>
+                    <%end%> 
+                  </div> 
+                </div>
+              </div>    
+            </div>
+          <%end%>
+        </div><!-- /.carousel-inner -->
+        <%if @evid_page_count == 0%>
         <%else%>
-        <%end%> 
-      </div>
-      <div class="span4">       
-        <% if @evidence.third.present?%>           
-          <% evidence = @evidence.third%>         
-          <%= render 'points', point: evidence %>
-        <%else%>
-        <%end%> 
-      </div>            
-    </div>
-  </div>    
-</div>
+          <a class="carousel-control left" href="#evidence-carousel" data-slide="prev" style="top:0%">&lsaquo;</a>
+          <a class="carousel-control right" href="#evidence-carousel" data-slide="next" style="top:0%">&rsaquo;</a>
+        <%end%>
+      </div><!-- /.carousel -->
+    </div><!-- /.c-wrapper -->
+  <%end%>
+</div>  
+
+
