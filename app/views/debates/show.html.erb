@@ -5,7 +5,7 @@
   <div class='pix12'>
     Created by: <%= @debate.user.username %>
   </div>   
-  <h2><%= link_to "Edit debate", edit_debate_path %></h2>
+  <h2><%= link_to "Edit question", edit_debate_path %></h2>
   <h2>Description:</h2>
 	<p><%= @debate.description %></p>
   <h2>Notes:</h2>
@@ -17,14 +17,14 @@
   </ul>	
 
   <h2>Verdict:</h2>	
-  <% if @verdicts.present? %>
-    <div id="add_verdict">
-      <%= link_to "Add a verdict", add_verdict_debates_path(debate: @debate),remote: true %>
-    </div>
-    <p><%= render 'verdicts' %></p>
-  <%else%>  
-  No verdicts, <%=link_to "why not add one?", edit_debate_path %>
-  <%end%>
+  <div id="add_verdict">
+    <% if @verdicts.present? %>
+       <%= link_to "Add a verdict", add_verdict_debates_path(debate: @debate),remote: true %>
+        <p><%= render 'verdicts' %></p>
+    <%else%>  
+      No verdicts, <%= link_to "why not add one?", add_verdict_debates_path(debate: @debate),remote: true %>
+    <%end%>
+  </div>
 </div>
 <%= render 'trends'%>  
 <%= render 'evidence'%>  
