@@ -1,0 +1,91 @@
+<div id="fill_in_form">    
+  <div class="row-fluid">
+    <div class="span10 offset1">
+      <%= nested_form_for(@research, url: researches_path, html: {method: "post"}) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <h4>Basic Information</h4>
+        <%= f.hidden_field :user_create_id, value: current_user.id %> 
+           
+        <%= f.label :Title %>
+        <%= f.text_area :title, value: params[:title] %>
+
+        <%= f.label :Link %>
+        <%= f.text_field :link, value: params[:link]%>
+
+        <%= f.label :Version %>
+        <%= f.text_field :version, placeholder: "Version of research..."%>
+
+        <%= f.label :Authors %> 
+        <%= f.text_field :authors, placeholder: "Authors..." %>
+
+        <%= f.label :Date_of_publication, "Date of Publication" %>
+        <%= f.date_field :date_of_publication, placeholder: "Date of publication..." %>
+
+        <%= f.label :Journal %>
+        <%= f.text_field :journal, placeholder: "Name of Journal..." %>
+        
+        <h4>Findings</h4>
+
+        <%= f.fields_for :findings do |builder| %>
+          <%= render 'finding_fields', f: builder, research_id: @research.id %>
+        <%end%>  
+        <p><%= f.link_to_add "Add a finding", :findings %></p>            
+    
+
+    <h4>Methodologies</h4>
+
+    <%= f.label :Study_type, "Research Classification"  %>
+    <%= f.select(:study_type, options_for_select([['Cross-sectional'], ['Case-control'],['Cohort Study'], ['Randomized Control Trial'], ['Case Study'], ['Unknown']], @study_type)) %>  
+    <br>
+      <%= f.check_box(:single_blinded) %>
+      <%= f.label(:single_blinded, "Single Blinded?", :class => "checkbox inline") %>  
+    </br>    
+
+    <br>
+      <%= f.check_box(:double_blinded) %>   
+      <%= f.label(:Double_blinded, "Double_blinded?", :class => "checkbox inline") %> 
+    </br>      
+    <br>
+      <%= f.check_box(:randomized) %>  
+      <%= f.label(:randomized, "Randomized?", :class => "checkbox inline") %> 
+    </br>      
+    <br>
+      <%= f.check_box(:controlled_against_placebo) %>
+      <%= f.label(:controlled_against_placebo, "Conrolled against placebo?", :class => "checkbox inline") %>  
+    </br>     
+    <br>
+      <%= f.check_box(:controlled_against_best_alt) %>
+      <%= f.label(:controlled_against_best_alt, "Controlled against best alternative?", :class => "checkbox inline") %>    
+    </br>                        
+     
+      <h4>Verification</h4>
+
+      <br>
+          <%= f.check_box(:retracted) %>
+          <%= f.label(:retracted, "Retracted?", :class => "checkbox inline") %> 
+      </br>     
+      <br>
+          <%= f.check_box(:peer_reviewed) %>     
+          <%= f.label(:peer_reviewed, "Peer Reviewed?", :class => "checkbox inline") %>  
+      </br> 
+      <br>   
+          <%= f.check_box(:replicated) %>      
+          <%= f.label(:Replicated, "Replicated?", :class => "checkbox inline") %>  
+      </br> 
+
+<p>
+     
+
+        <%= f.label :dropouts, "Attrition rates/Dropouts from the sample" %>
+        <%= f.text_area :dropouts, placeholder: "Were there any dropouts from the sample population..." %>        
+        <%= f.label :funding, "Funding Sources" %>
+        <%= f.text_area :funding, placeholder: "Who funded this research..." %>
+
+        <%= f.submit "Log info", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+</div>
+</div>
+</div>
+
+ 

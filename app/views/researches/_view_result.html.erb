@@ -1,17 +1,26 @@
 <div class='row-fluid'>
-<div class='pubmed-search'>
-  <b>Search terms:</b>
-  <%=params[:search_terms]%>
+  <div class='pubmed-search'>
+    <b>Search terms:</b>
+    <%=params[:search_terms]%>
 
-  <%= form_tag("/researches/pubmed_search", remote: true) do%>
-    <%= hidden_field_tag 'search_terms', params[:search_terms] %>   
-    <%= submit_tag "Back" %>
-  <%end%> 
-  <h1><%= @article["title"] %></h1>
-  <br><b>Authors: </b><%=@article["authors"] %></br> 
-  <br><b>Journal: </b><%=@article["journal"]%><b>, Published on: </b><%= @article["pubdate"]%> </br>
-  <br><b>Link: </b><%="http://www.ncbi.nlm.nih.gov/pubmed/"+@pubmed_id%></br>
-  <br><b>Abstract:</b></br>
-  <br><%=@article["abstract"]%></br>
-</div>
+    <%= form_tag("/researches/pubmed_search", remote: true) do%>
+      <%= hidden_field_tag 'search_terms', params[:search_terms] %>   
+      <%= submit_tag "Back" %>
+    <%end%> 
+    <h1><%= @article["title"] %></h1>
+    <br><b>Authors: </b><%=@article["authors"] %></br> 
+    <br><b>Journal: </b><%=@article["journal"]%><b>, Published on: </b><%= @article["pubdate"]%> </br>
+    <br><b>Link: </b><%="http://www.ncbi.nlm.nih.gov/pubmed/"+@pubmed_id%></br>
+    <br><b>Abstract:</b></br>
+    <br><%=@article["abstract"]%></br>
+
+    <%= form_tag("/researches/fill_in_form", remote: true) do%>
+      <%= hidden_field_tag 'title', @article["title"] %>
+      <%= hidden_field_tag 'authors', @article["authors"] %>
+      <%= hidden_field_tag 'journal', @article["journal"] %>
+      <%= hidden_field_tag 'pubdate', @article["pubdate"] %>
+      <%= hidden_field_tag 'link', "http://www.ncbi.nlm.nih.gov/pubmed/"+@pubmed_id %>    
+      <%= submit_tag "Fill in form" %> 
+    <%end%>   
+  </div>
 </div>

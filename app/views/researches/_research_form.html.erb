@@ -1,29 +1,33 @@
 <div class='row-fluid'>
     <div class= "span5">
+
+<div id="fill_in_form">    
 <div class="row-fluid">
   <div class="span10 offset1">
+
     <%= nested_form_for(@research) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
         <h4>Basic Information</h4>
         <%= f.hidden_field :user_create_id, value: current_user.id %> 
-            
-        <%= f.label :Title %>
-        <%= f.text_area :title, placeholder: "Research title..." %>
+           
+          <%= f.label :Title %>
+          <%= f.text_area :title, placeholder: "Research title..." %>
 
-        <%= f.label :Link %>
-        <%= f.text_field :link, placeholder: "http://..." %>
+          <%= f.label :Link %>
+          <%= f.text_field :link, placeholder: "http://..." %>
 
-        <%= f.label :Version %>
-        <%= f.text_field :version, placeholder: "Version of research..."%>
+          <%= f.label :Version %>
+          <%= f.text_field :version, placeholder: "Version of research..."%>
 
-        <%= f.label :Authors %> 
-        <%= f.text_field :authors, placeholder: "Separate authors with '|'..." %>
+          <%= f.label :Authors %> 
+          <%= f.text_field :authors, placeholder: "Authors..." %>
 
-        <%= f.label :Date_of_publication, "Date of Publication" %>
-        <%= f.date_field :date_of_publication, placeholder: "Date of publication..." %>
+          <%= f.label :Date_of_publication, "Date of Publication" %>
+          <%= f.date_field :date_of_publication, placeholder: "Date of publication..." %>
 
-        <%= f.label :Journal %>
-        <%= f.text_field :journal, placeholder: "Name of Journal..." %>
+          <%= f.label :Journal %>
+          <%= f.text_field :journal, placeholder: "Name of Journal..." %>
+        
 
         <h4>Findings</h4>
 
@@ -98,6 +102,7 @@
         <%= f.submit "Log info", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
+</div>
 </div>
 </div> 
   <div class="span6">  

@@ -101,8 +101,19 @@ class ResearchesController < ApplicationController
     end
   end  
 
+  def fill_in_form
+
+    @research = Research.new
+    @research.findings.build    
+    @study_type = 'Unknown' 
+  
+    respond_to do |format|
+      format.html { redirect_to new }
+      format.js 
+    end
+  end
+
   def new
-    @uid = "Search results"
     @research = Research.new
     @research.findings.build
     @study_type = 'Unknown'   

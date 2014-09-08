@@ -39,6 +39,7 @@ ProjectCredo::Application.routes.draw do
       match 'search' => 'researches#search', via: [:get, :post], as: :search
       match 'pubmed_search' => 'researches#pubmed_search', via: [:get, :post]    
       match 'view_result' => 'researches#view_result', via: [:get, :post]         
+      match 'fill_in_form' => 'researches#fill_in_form', via: [:get, :post]     
     end   
   end  
 
