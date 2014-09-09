@@ -15,6 +15,11 @@ class DebatesController < ApplicationController
       .select('points.*, count(DISTINCT research_id) as "research_count"')
       .group("points.id").order('cached_votes_total desc, research_count desc') 
     @evid_page_count = ((@evidence.all.count/3.0).ceil-1)
+    
+    respond_to do |format|
+      format.html
+      format.csv { render text: @evidence.to_csv }
+    end
   end
 
   def new

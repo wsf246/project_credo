@@ -5,7 +5,8 @@
   </div>
   <%else%>
     <%= link_to "View all evidence", debate_points_path(@debate) %> |
-    <%= link_to "Add evidence", new_debate_point_path(@debate) %>
+    <%= link_to "Add evidence", new_debate_point_path(@debate) %> | 
+    <%= link_to "Download CSV", debate_path(format: "csv") %>
     <br></br>
   </div>
 
