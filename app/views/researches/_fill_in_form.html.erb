@@ -16,13 +16,13 @@
         <%= f.text_field :version, placeholder: "Version of research..."%>
 
         <%= f.label :Authors %> 
-        <%= f.text_field :authors, placeholder: "Authors..." %>
+        <%= f.text_field :authors, value: params[:authors] %>
 
         <%= f.label :Date_of_publication, "Date of Publication" %>
-        <%= f.date_field :date_of_publication, placeholder: "Date of publication..." %>
+        <%= f.date_field :date_of_publication, value: params[:pubdate] %>
 
         <%= f.label :Journal %>
-        <%= f.text_field :journal, placeholder: "Name of Journal..." %>
+        <%= f.text_field :journal, value: params[:journal] %>
         
         <h4>Findings</h4>
 
