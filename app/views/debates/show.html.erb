@@ -19,12 +19,12 @@
   <h2>Verdict:</h2>	
   <div id="add_verdict">
     <% if @verdicts.present? %>
-       <%= link_to "Add a verdict", add_verdict_debates_path(debate: @debate),remote: true %>
-        <p><%= render 'verdicts' %></p>
+      <%= link_to "Add a verdict", add_verdict_debates_path(debate: @debate),remote: true %>
     <%else%>  
       No verdicts, <%= link_to "why not add one?", add_verdict_debates_path(debate: @debate),remote: true %>
     <%end%>
   </div>
+  <p><%= render 'verdicts' %></p>
 </div>
 <%= render 'trends'%>  
 <%= render 'evidence'%>  

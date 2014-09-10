@@ -23,7 +23,7 @@ class Point < ActiveRecord::Base
     CSV.generate do |csv|
       csv << ["Evidence Group","Created On", "Evidence Group Votes", 
       "Research Paper", "Finding", "Pub Date",
-      "Retracted", "Peer Reviewed", "Replicated", 
+      "Study Type", "Retracted", "Peer Reviewed", "Replicated", 
       "Funding", "Single Blinded", "Double Blinded",
       "Randomzied", "Control Placebo", "Control Alt",
       "Score"]
@@ -31,7 +31,7 @@ class Point < ActiveRecord::Base
         point.findings.all.each do |finding|
          csv << [point.point, point.created_at, point.cached_votes_total,
           finding.research.title, finding.finding, finding.research.date_of_publication,
-          finding.research.retracted, finding.research.peer_reviewed, finding.research.replicated,
+          finding.research.study_type,finding.research.retracted, finding.research.peer_reviewed, finding.research.replicated,
           finding.research.funding, finding.research.single_blinded, finding.research.double_blinded,
           finding.research.randomized, finding.research.controlled_against_placebo, finding.research.controlled_against_best_alt,
           finding.research.score]
