@@ -2,7 +2,9 @@
   <h1>Trends</h1>
   <% if @debate.id ==1 %>
     <%=image_tag("Charts1.png", alt: "Cold Water Trends")%>
-   <%else%>
+  <%elsif @debate.id ==3%>
+    <%=image_tag("Charts2.png", alt: "Running and Osteoarthritis Trends")%>
+  <%else%>
     Coming Soon
     <br></br>
   <%end%>
