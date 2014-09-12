@@ -1,15 +1,16 @@
-<h4>Search Pubmed</h4>
-
-<div class='pubmed-search'>
+<div id="pubmed_search">
   <div class='row-fluid'>  
-    <div class='span8'>  
+    <div class='span6'>  
       <%= form_tag("/researches/pubmed_search", :remote => true) do%>
-        <label for="search_terms">Enter search terms</label>
-        <%= text_field_tag "search_terms", nil, placeholder:"Search..." %> 
-        <%= submit_tag "Search" %>
+        <label for="search_terms"><b>Search Pubmed and our database</b></label>
+        <%= text_field_tag "search_terms", nil, placeholder:"Search..." %>
+        <%= hidden_field_tag 'point_id', :point_id %> 
+        <%= submit_tag "Search", class: "btn btn-small btn-primary" %>
+        <%if @articles.nil?%>
+        <%else%>
+          <b>Search terms: </b><%=params[:search_terms]%>
+        <%end%>
       <%end%>  
-    </div>
-  </div> 
-  <%= render 'pubmed_results' %> 
-</div>  
-
+    </div><!-- /.span -->
+  </div><!-- /.row -->
+</div><!-- /.pubmed_search id -->

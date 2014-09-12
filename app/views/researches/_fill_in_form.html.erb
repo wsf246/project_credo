@@ -1,91 +1,49 @@
-<div id="fill_in_form">    
-  <div class="row-fluid">
-    <div class="span10 offset1">
-      <%= nested_form_for(@research, url: researches_path, html: {method: "post"}) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <h4>Basic Information</h4>
-        <%= f.hidden_field :user_create_id, value: current_user.id %> 
-           
-        <%= f.label :Title %>
-        <%= f.text_area :title, value: params[:title] %>
+<%= form_tag("/researches/pubmed_search", remote: true) do%>
+  <%= hidden_field_tag 'search_terms', params[:search_terms] %>
+  <%= hidden_field_tag 'point_id', @point_id %> 
+  <%= submit_tag "Back to results" %>
+<%end%>
 
-        <%= f.label :Link %>
-        <%= f.text_field :link, value: params[:link]%>
+    <%= simple_form_for(@research, url: researches_path, html: {method: "post", class: "form-horizontal"}) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <legend>Basic Information</legend>
+      <%= f.hidden_field :user_create_id, value: current_user.id %> 
+      <%= f.input :title, input_html: { value: params[:title] }  %>
+      <%= f.input :link, input_html: { value: params[:link] } %>
+      <%= f.input :authors, input_html: { value: params[:authors] } %>
+      <%= f.input :date_of_publication, label: "Date of Publication", input_html: { value: params[:date_of_publication], novalidate: true } %>
+      <%= f.input :journal, input_html: { value: params[:journal] }%>
+      <%= f.input :funding, label: "Funding" %>
+      
+      <legend>Findings</legend>
 
-        <%= f.label :Version %>
-        <%= f.text_field :version, placeholder: "Version of research..."%>
+      <%= f.simple_fields_for :findings do |builder| %>
+        <%= render 'finding_fields', f: builder, research_id: @research.id %>
+      <%end%>     
 
-        <%= f.label :Authors %> 
-        <%= f.text_field :authors, value: params[:authors] %>
+    <legend>Methodologies</legend>
 
-        <%= f.label :Date_of_publication, "Date of Publication" %>
-        <%= f.date_field :date_of_publication, value: params[:pubdate] %>
-
-        <%= f.label :Journal %>
-        <%= f.text_field :journal, value: params[:journal] %>
-        
-        <h4>Findings</h4>
-
-        <%= f.fields_for :findings do |builder| %>
-          <%= render 'finding_fields', f: builder, research_id: @research.id %>
-        <%end%>  
-        <p><%= f.link_to_add "Add a finding", :findings %></p>            
-    
-
-    <h4>Methodologies</h4>
-
-    <%= f.label :Study_type, "Research Classification"  %>
-    <%= f.select(:study_type, options_for_select([['Cross-sectional'], ['Case-control'],['Cohort Study'], ['Randomized Control Trial'], ['Case Study'], ['Unknown']], @study_type)) %>  
-    <br>
-      <%= f.check_box(:single_blinded) %>
-      <%= f.label(:single_blinded, "Single Blinded?", :class => "checkbox inline") %>  
-    </br>    
-
-    <br>
-      <%= f.check_box(:double_blinded) %>   
-      <%= f.label(:Double_blinded, "Double_blinded?", :class => "checkbox inline") %> 
-    </br>      
-    <br>
-      <%= f.check_box(:randomized) %>  
-      <%= f.label(:randomized, "Randomized?", :class => "checkbox inline") %> 
-    </br>      
-    <br>
-      <%= f.check_box(:controlled_against_placebo) %>
-      <%= f.label(:controlled_against_placebo, "Controlled against placebo?", :class => "checkbox inline") %>  
-    </br>     
-    <br>
-      <%= f.check_box(:controlled_against_best_alt) %>
-      <%= f.label(:controlled_against_best_alt, "Controlled against best alternative?", :class => "checkbox inline") %>    
-    </br>                        
+  
+    <%= f.input :study_type, collection: ['Unknown','Cross-sectional','Case-control','Cohort Study', 'Randomized Control Trial', 'Case Study'], selected: @study_type %>
+      <%= f.input :single_blinded, label: "Single Blinded?" %> 
+      <%= f.input :double_blinded, label: "Double_blinded?" %> 
+      <%= f.input :randomized, label: "Randomized?" %> 
+      <%= f.input :controlled_against_placebo, label: "Controlled against placebo?" %> 
+      <%= f.input :controlled_against_best_alt, label: "Controlled against best alternative?" %>                    
      
-      <h4>Verification</h4>
+      <legend>Verification</legend>
 
-      <br>
-          <%= f.check_box(:retracted) %>
-          <%= f.label(:retracted, "Retracted?", :class => "checkbox inline") %> 
-      </br>     
-      <br>
-          <%= f.check_box(:peer_reviewed) %>     
-          <%= f.label(:peer_reviewed, "Peer Reviewed?", :class => "checkbox inline") %>  
-      </br> 
-      <br>   
-          <%= f.check_box(:replicated) %>      
-          <%= f.label(:Replicated, "Replicated?", :class => "checkbox inline") %>  
-      </br> 
+      <%= f.input :retracted, label: "Retracted?" %>
+      <%= f.input :peer_reviewed, label: "Peer Reviewed?" %> 
+      <%= f.input :replicated, label: "Replicated?" %>  
+      <%= hidden_field_tag 'finding_id', finding_id %> 
+      <%= hidden_field_tag 'point_id', @point_id %> 
 
-<p>
-     
+      <%= f.button :submit, "Log info", class: "btn btn-large btn-primary" %>
 
-        <%= f.label :dropouts, "Attrition rates/Dropouts from the sample" %>
-        <%= f.text_area :dropouts, placeholder: "Were there any dropouts from the sample population..." %>        
-        <%= f.label :funding, "Funding Sources" %>
-        <%= f.text_area :funding, placeholder: "Who funded this research..." %>
+    <% end %>  
+ 
 
-        <%= f.submit "Log info", class: "btn btn-large btn-primary" %>
-    <% end %>
 
-</div>
-</div>
-</div>
 
  

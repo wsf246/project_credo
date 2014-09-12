@@ -1,7 +1,7 @@
 <p class = 'pix12'>
   <%= link_to "View less research("+point.findings.count('research_id', distinct:true).to_s+")", less_research_debates_path(point: point), remote: true%> | 
   <%= link_to "Edit", edit_point_path(point) %> |
-  <%= link_to "Add findings", findings_path(point: point) %> 
+  <%= render 'debates/add_research_findings', point: point %> 
 </p>  
 <ul class= 'research'>	
 	<% findings = point.findings.sort! {|a,b| b.research.score <=> a.research.score}%>
