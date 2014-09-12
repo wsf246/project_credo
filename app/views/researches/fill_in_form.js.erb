@@ -1,1 +1,1 @@
-$("#research_findings_form").html("<%= escape_javascript(render('researches/fill_in_form')) %>")
+$("#research_findings_form_<%= @point_id %>").html("<%= escape_javascript(render('researches/fill_in_form')) %>")

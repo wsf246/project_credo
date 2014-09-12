@@ -1,2 +1,2 @@
-$("#pubmed_results").html("<%= escape_javascript(render('researches/pubmed_results')) %>")
-$("#pubmed_search").html("<%= escape_javascript(render('researches/pubmed_search')) %>")
+$("#pubmed_results_<%= @point_id %>").html("<%= escape_javascript(render('researches/pubmed_results')) %>")
+$("#pubmed_search_<%= @point_id %>").html("<%= escape_javascript(render('researches/pubmed_search')) %>")

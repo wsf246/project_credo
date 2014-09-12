@@ -106,7 +106,8 @@ class ResearchesController < ApplicationController
   def fill_in_form
 
     @research = Research.new
-    @research.findings.build    
+    @finding = @research.findings.build
+    @finding_id = @finding.id    
     @study_type = 'Unknown'
     @point_id = params[:point_id]
   

@@ -36,7 +36,7 @@
       <%= f.input :retracted, label: "Retracted?" %>
       <%= f.input :peer_reviewed, label: "Peer Reviewed?" %> 
       <%= f.input :replicated, label: "Replicated?" %>  
-      <%= hidden_field_tag 'finding_id', finding_id %> 
+      <%= hidden_field_tag 'finding_id', @finding_id %> 
       <%= hidden_field_tag 'point_id', @point_id %> 
 
       <%= f.button :submit, "Log info", class: "btn btn-large btn-primary" %>
