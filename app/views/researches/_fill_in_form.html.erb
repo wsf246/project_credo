@@ -4,7 +4,7 @@
   <%= submit_tag "Back to results" %>
 <%end%>
 
-    <%= simple_form_for(@research, url: researches_path, html: {method: "post", class: "form-horizontal"}) do |f| %>
+    <%= simple_form_for(@research, html: {method: "post", class: "form-horizontal"}) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <legend>Basic Information</legend>
       <%= f.hidden_field :user_create_id, value: current_user.id %> 
