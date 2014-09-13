@@ -126,10 +126,10 @@ class ResearchesController < ApplicationController
   def create
     @research = Research.new(research_params)
     @point = Point.find(params[:point_id]) 
-    @finding = @research.findings.build(params[:finding_id])
     if @research.save	
       @research.score_it
       @research.user_create_id = current_user
+      @finding = @research.findings.order("created_at").last
       @point.associate!(@finding)
       redirect_to debate_path(@point.debate)  
     else

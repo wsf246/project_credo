@@ -17,9 +17,9 @@
       
       <legend>Findings</legend>
 
-      <%= f.simple_fields_for :findings do |builder| %>
-        <%= render 'finding_fields', f: builder, research_id: @research.id %>
-      <%end%>     
+    <%= f.simple_fields_for :findings do |builder| %>
+      <%= render 'finding_fields', f: builder, research_id: @research.id %>
+    <%end%>     
 
     <legend>Methodologies</legend>
 
@@ -39,6 +39,7 @@
       <%= hidden_field_tag 'finding_id', @finding_id %> 
       <%= hidden_field_tag 'point_id', @point_id %> 
 
+      
       <%= f.button :submit, "Log info", class: "btn btn-large btn-primary" %>
 
     <% end %>  
