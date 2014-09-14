@@ -75,7 +75,7 @@ h2 {
   margin-bottom: 5px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
+  color: $gray-light;
 }
 
 h3 {
@@ -84,7 +84,7 @@ h3 {
   margin-bottom: 5px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
+  color: $gray-light;
 }
 
 h4 {
@@ -93,7 +93,7 @@ h4 {
   margin-bottom: 5px;
   text-align: left;
   font-weight: normal;
-  color: $grayLight;
+  color: $gray-light;
 }
 
 p {
@@ -129,12 +129,12 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
+  color: $gray-light;
 
   a {
     color: $gray;
     &:hover {
-      color: $grayDarker;
+      color: $gray-darker;
     }
   }
 
@@ -158,7 +158,7 @@ footer {
 aside {
   section {
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -307,7 +307,7 @@ div.debate-wrapper{
   margin: 10px 0 0 0;
 
   li {
-    border-top: 1px solid $grayLighter;  
+    border-top: 1px solid $gray-lighter;  
     margin: 3px 0 0 50px;
   }
 }
@@ -374,7 +374,7 @@ div.research-wrapper{
 
   section {
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:first-child {
       border: 5;
       padding-top: 0;
@@ -427,7 +427,7 @@ div.research-wrapper{
     text-align: left;
     font-weight: normal;
     line-height: 110%;
-        border-left: 1px solid $grayLighter;
+        border-left: 1px solid $gray-lighter;
     padding: 0 0 0 10px;
     margin: 10px 0 0 10px;
   }   
@@ -444,16 +444,16 @@ div.debates {
     overflow: auto;
     font-size: 20px;    
     padding: 5px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $gray-lighter;
     }
   }  
     
   li {
     margin: 3px 0 0 0px;
     padding: 10px;
-    border-top: 1px solid $grayLighter;    
+    border-top: 1px solid $gray-lighter;    
 
     &:first-of-type {
       border-top: none;
@@ -473,9 +473,9 @@ div.researches {
     overflow: auto;
     font-size: 1.4em;    
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $gray-lighter;
     }
   }  
     
@@ -494,7 +494,7 @@ div.researches {
     
   li.finding {
     font-size: .7em; 
-    border-top: 1px solid $grayLighter;    
+    border-top: 1px solid $gray-lighter;    
     margin: 3px 0 0 0px;
 
     &:first-of-type {
@@ -598,7 +598,7 @@ div.add-research_findings {
     padding: 0px 0 0 0;    
     text-indent: 0;    
     &:first-of-type {
-    border-top: 1px solid $grayLighter;   
+    border-top: 1px solid $gray-lighter;   
     }
   }  
 }
