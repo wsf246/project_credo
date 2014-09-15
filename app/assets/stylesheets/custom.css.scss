@@ -123,6 +123,7 @@ p {
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
+
   &:hover {
     text-decoration: none;
     color: none;
@@ -641,14 +642,12 @@ div.add-research_findings {
 /* Bootstrap Modal */
 
 .modal {
-
-  width: 900px; 
-  margin-top: -50px;
-  margin-left:  -450px !important; 
+  width: 60em; 
+  margin-top: -3em;
+  margin-left:  -30em !important;
 } 
 
-.modal-body {
-  width: 870px;
-}
+
+
 
 
