@@ -8,7 +8,7 @@
     <br><%=@article["abstract"]%></br>
     <div id="research_findings_form_<%= @point_id %>">
       <div class="row-fluid">
-        <div class='span1'> 
+        <div class='col-md-1'> 
           <%= form_tag("/researches/fill_in_form", remote: true) do%>
             <%= hidden_field_tag 'title', @article["title"] %>
             <%= hidden_field_tag 'authors', @article["authors"] %>
@@ -20,7 +20,7 @@
             <%= submit_tag "Use this", class: "btn btn-small btn-primary" %> 
           <%end%> 
         </div>
-        <div class='span1'> 
+        <div class='col-md-1'> 
           <%= form_tag("/researches/pubmed_search", remote: true) do%>
             <%= hidden_field_tag 'search_terms', params[:search_terms] %>
             <%= hidden_field_tag 'point_id', @point_id %> 

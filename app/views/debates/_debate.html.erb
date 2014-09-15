@@ -1,9 +1,9 @@
 <li>
   <div class='row-fluid'>
-    <div class='span2 center'>
+    <div class='col-md-2 center'>
       <%= render 'important_debate', debate: debate %>
     </div>
-    <div class='span10'>  
+    <div class='col-md-10'>  
       <%= link_to debate.title, debate %>
       <div class='pix14'>  
         <%if debate.points.joins(:associations).present? %> 

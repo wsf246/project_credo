@@ -1,6 +1,6 @@
 
   <div class='row-fluid'>  
-    <div class='span6'>  
+    <div class='col-md-6'>  
       <%= form_tag("/researches/pubmed_search", :remote => true) do%>
         <label for="search_terms"><b>Search Pubmed and our database</b></label>
         <%= text_field_tag "search_terms", nil, placeholder:"Search..." %>
