@@ -32,7 +32,8 @@ textarea {
 .center {
   text-align: center;
   h1 {
-    margin-bottom: 10px;
+    margin: 20px 40px;
+    font-weight: bold;
   }
 }  
 
@@ -55,6 +56,15 @@ textarea {
 .pix14 {
   font-size: 14px;
 }   
+
+.jumbotron {
+  margin-top: 1em;
+  border-radius: 6px;
+}
+
+.container {
+  width: 940px;
+}
 
 /* typography */
 
@@ -213,36 +223,50 @@ div.help-wrapper{
 
 /* carousel */
 
-div.c-wrapper{
-    width: auto; 
-    margin: auto;
+.carousel-indicators {
+  bottom: 65px;
 
-  .carousel-inner > .item > img, 
-  .carousel-inner > .item > a > img{
-    width: 100%; /* use this, or not */
-    margin: auto;
-  }
-  .carousel-indicators {
-    top: 80%;
-    right: 50%; 
-    margin: auto;
-  }       
-}
-
-div.c-evid-wrapper{
-  .carousel-indicators{
-    right: 50%;
-    } 
-
-  .carousel-indicators li{  
+  li {  
     background-color: #d3d3d3;
   }  
 
-  .carousel-indicators .active {
-    background-color: #404040;
+  .active {
+    background-color: #fff;
   } 
- 
-  } 
+} 
+
+
+.carousel-control {
+  position: absolute;
+  top: 40%;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 24px;
+  color: white;
+  text-align: center;
+  background: #222222;
+  border: 3px solid white;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  border-radius: 23px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+.carousel-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+  background: #333333;
+  background: rgba(0,0,0,0.75);
+}
+
 /* debug */
 
 .debug_dump {
