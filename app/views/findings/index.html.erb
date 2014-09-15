@@ -18,7 +18,7 @@
 	  </div>
 	</div>  				
 
-	<%= will_paginate %>
+	<%= will_paginate @findings, renderer: BootstrapPagination::Rails %>
 	<%= render 'findings' %>
-	<%= will_paginate %>
+	<%= will_paginate @findings, renderer: BootstrapPagination::Rails %>
 </div>

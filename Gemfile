@@ -7,8 +7,7 @@ gem 'bootstrap-sass', '~> 3.0'
 gem 'sprockets'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
-gem 'will_paginate', '3.0.4'
-gem 'bootstrap-will_paginate', '0.0.9'
+gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'nested_form'
 gem "polyamorous", github: "activerecord-hackery/polyamorous"
 gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
