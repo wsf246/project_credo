@@ -226,12 +226,13 @@ div.help-wrapper{
 .carousel-indicators {
   bottom: 65px;
 
-  li {  
-    background-color: #d3d3d3;
-  }  
+  li {
+    background-color: black;
+    box-shadow: 1px 1px 1px grey;
+  }
 
   .active {
-    background-color: #fff;
+    background-color: white;
   } 
 } 
 
