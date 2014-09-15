@@ -6,15 +6,22 @@ GIT
 
 GIT
   remote: git://github.com/activerecord-hackery/ransack.git
-  revision: d1fc95b3c21c8294e69c70e3995459d11dabfd67
-  branch: rails-4
+  revision: 742425ade4bb66db573dc13bf436a8f3c87b733b
+  branch: rails-4.1
   specs:
-    ransack (1.2.3)
+    ransack (1.2.4)
       actionpack (>= 4.0)
       activerecord (>= 4.0)
       activesupport (>= 4.0)
       i18n
       polyamorous (~> 1.1)
+
+GIT
+  remote: git://github.com/activerecord-hackery/polyamorous.git
+  revision: d41fc35b4fc396307e2ff2e9b10f3b574fc5fbe4
+  specs:
+    polyamorous (1.1.0)
+      activerecord (>= 3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -127,8 +134,6 @@ GEM
       mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
     pg (0.15.1)
-    polyamorous (1.1.0)
-      activerecord (>= 3.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -235,6 +240,7 @@ DEPENDENCIES
   nested_form
   nokogiri (~> 1.6.2)
   pg (= 0.15.1)
+  polyamorous!
   railroady
   rails (~> 4.1.0)
   rails_12factor (= 0.0.2)

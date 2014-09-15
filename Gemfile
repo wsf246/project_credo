@@ -10,7 +10,8 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'nested_form'
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4"
+gem "polyamorous", github: "activerecord-hackery/polyamorous"
+gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'nokogiri', '~> 1.6.2'
