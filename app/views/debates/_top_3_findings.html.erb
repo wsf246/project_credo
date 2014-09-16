@@ -8,7 +8,7 @@
   <%= render 'debates/modal_toggle', point: point %> 
 </p>  
 <ul class= 'research'>
-	<% findings = point.findings.sort! {|a,b| b.research.score <=> a.research.score}.first(3)%>
+	<% findings = point.findings.sort {|a,b| b.research.score <=> a.research.score}.first(3)%>
 	<% findings.each do |finding| %>
 		<%= render 'debates/findings', finding: finding %>
 	<%end%> 

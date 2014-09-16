@@ -3,13 +3,13 @@
   <h2>All Questions</h2>
   <h2><%= link_to "Add a question", new_debate_path %></h2>
 
-  <%= will_paginate %>
+  <%= will_paginate @debates, renderer: BootstrapPagination::Rails %>
   <div class= 'debates'>
     <ul>
       <%= render @debates %>
     </ul>
   </div>  
 
-  <%= will_paginate %>
+  <%= will_paginate @debates, renderer: BootstrapPagination::Rails %>
 </div>
 

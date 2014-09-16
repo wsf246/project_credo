@@ -19,15 +19,10 @@
           http://twitter.github.com/bootstrap/javascript.html#carousel -->
     <div class="c-evid-wrapper">
       <div id="evidence-carousel" class="carousel slide"><!-- class of slide for animation -->
-        <%if @evid_page_count == 0 %>
-        <%else%>
-          <ol class="carousel-indicators" style="top: -15px;">
+        <% unless @evid_page_count == 0 %>
+          <ol class="carousel-indicators">
             <%(0..@evid_page_count).each do |page|%>
-              <%if page == 0%>
-                <li data-target="#evidence-carousel" data-slide-to="0" class="active"></li>
-              <%else%>
-                <li data-target="#evidence-carousel" data-slide-to="<%=page%>"></li>
-              <%end%>
+              <li data-target="#evidence-carousel" data-slide-to="<%= page %>" class="<%= page == 0 ? 'active' : '' %>"></li>
             <%end%>      
           </ol>
         <%end%>  
@@ -42,7 +37,7 @@
                 <div class="row-fluid">
                   <div class= 'point'>              
                     <%page.each do |evidence|%>    
-                      <div class="span4">    
+                      <div class="col-md-4">    
                         <%= render 'points', point: evidence %>
                       </div>
                     <%end%> 

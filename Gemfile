@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.2'
 #ruby-gemset=railstutorial_rails_4_0
 
-gem 'rails', '4.0.4'
-gem 'bootstrap-sass', '2.3.2.0'
+gem 'rails', '~> 4.1.0'
+gem 'bootstrap-sass', '~> 3.0'
 gem 'sprockets'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
-gem 'will_paginate', '3.0.4'
-gem 'bootstrap-will_paginate', '0.0.9'
+gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'nested_form'
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4"
+gem "polyamorous", github: "activerecord-hackery/polyamorous"
+gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'nokogiri', '~> 1.6.2'
@@ -21,6 +21,8 @@ group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
   gem 'railroady'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   # The following optional lines are part of the advanced setup.
   # gem 'guard-rspec', '2.5.0'
   # gem 'spork-rails', '4.0.0'

@@ -1,10 +1,10 @@
-<div class = "research-wrapper">
+<div class="research-wrapper">
   <% provide(:title, 'All research') %>
   <h2>Documented Research</h2>
   <h2><%= link_to "Document a new piece of research", new_research_path %></h2>
 
-  <div class="row-fluid">
-    <div class="span4">
+  <div class="row">
+    <div class="col-md-4">
     	<div class="search">
     		<%= search_form_for @query, url: search_researches_path,
     								html: { method: :post} do |f| %>
@@ -15,12 +15,13 @@
     		<%end%>
     	</div>
     </div>
-  </div>  
+    <div class="col-md-8"></div>
 
 
-  <%= will_paginate %>
-  <div class ='researches'>
-    <%= render @researches %>
+    <div class='researches col-md-12'>
+      <%= will_paginate @researches, renderer: BootstrapPagination::Rails %>
+      <%= render @researches %>
+      <%= will_paginate @researches, renderer: BootstrapPagination::Rails %>
+    </div>  
   </div>  
-  <%= will_paginate %>
 </div>

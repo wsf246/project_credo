@@ -5,7 +5,7 @@
 	<h2><%= link_to "Back to debate", debate_path(@point.debate.id) %></h2>
 
 	<div class="row-fluid">
-	  <div class="span4">
+	  <div class="col-md-4">
 			<div class="search">
 				<%= search_form_for @query, url: search_findings_path(point: @point),
 										html: { method: :post} do |f| %>
@@ -18,7 +18,7 @@
 	  </div>
 	</div>  				
 
-	<%= will_paginate %>
+	<%= will_paginate @findings, renderer: BootstrapPagination::Rails %>
 	<%= render 'findings' %>
-	<%= will_paginate %>
+	<%= will_paginate @findings, renderer: BootstrapPagination::Rails %>
 </div>

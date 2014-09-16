@@ -1,7 +1,7 @@
 <div class ='point-wrapper'>	
 	<div class="row-fluid">
 		<div class= 'point'>		
-		  <div class="span6 offset2">
+		  <div class="col-md-6 col-md-offset-2">
 		  	<b><%= link_to "Back to question", debate_path(@debate) %></b>
 		    <% @evidence.each do |evidence|%>     	  	    	
 			 		<%= render 'debates/points', point: evidence %>

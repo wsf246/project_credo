@@ -2,7 +2,7 @@
 
 /* mixins, variables, etc. */
 
-$grayMediumLight: #eaeaea;
+$gray-medium-light: #eaeaea;
 
 
 @mixin box_sizing {
@@ -32,7 +32,8 @@ textarea {
 .center {
   text-align: center;
   h1 {
-    margin-bottom: 10px;
+    margin: 20px 40px;
+    font-weight: bold;
   }
 }  
 
@@ -56,6 +57,15 @@ textarea {
   font-size: 14px;
 }   
 
+.jumbotron {
+  margin-top: 1em;
+  border-radius: 6px;
+}
+
+.container {
+  width: 940px;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -75,7 +85,7 @@ h2 {
   margin-bottom: 5px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
+  color: $gray-light;
 }
 
 h3 {
@@ -84,7 +94,7 @@ h3 {
   margin-bottom: 5px;
   text-align: center;
   font-weight: normal;
-  color: $grayLight;
+  color: $gray-light;
 }
 
 h4 {
@@ -93,7 +103,7 @@ h4 {
   margin-bottom: 5px;
   text-align: left;
   font-weight: normal;
-  color: $grayLight;
+  color: $gray-light;
 }
 
 p {
@@ -129,13 +139,13 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
-  color: $grayLight;
+  border-top: 1px solid $gray-medium-light;
+  color: $gray-light;
 
   a {
     color: $gray;
     &:hover {
-      color: $grayDarker;
+      color: $gray-darker;
     }
   }
 
@@ -159,7 +169,7 @@ footer {
 aside {
   section {
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -214,36 +224,51 @@ div.help-wrapper{
 
 /* carousel */
 
-div.c-wrapper{
-    width: auto; 
-    margin: auto;
+.carousel-indicators {
+  bottom: 65px;
 
-  .carousel-inner > .item > img, 
-  .carousel-inner > .item > a > img{
-    width: 100%; /* use this, or not */
-    margin: auto;
+  li {
+    background-color: black;
+    box-shadow: 1px 1px 1px grey;
   }
-  .carousel-indicators {
-    top: 80%;
-    right: 50%; 
-    margin: auto;
-  }       
+
+  .active {
+    background-color: white;
+  } 
+} 
+
+
+.carousel-control {
+  position: absolute;
+  top: 40%;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 24px;
+  color: white;
+  text-align: center;
+  background: #222222;
+  border: 3px solid white;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  border-radius: 23px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 
-div.c-evid-wrapper{
-  .carousel-indicators{
-    right: 50%;
-    } 
+.carousel-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+  background: #333333;
+  background: rgba(0,0,0,0.75);
+}
 
-  .carousel-indicators li{  
-    background-color: #d3d3d3;
-  }  
-
-  .carousel-indicators .active {
-    background-color: #404040;
-  } 
- 
-  } 
 /* debug */
 
 .debug_dump {
@@ -308,7 +333,7 @@ div.debate-wrapper{
   margin: 10px 0 0 0;
 
   li {
-    border-top: 1px solid $grayLighter;  
+    border-top: 1px solid $gray-lighter;  
     margin: 3px 0 0 50px;
   }
 }
@@ -375,12 +400,22 @@ div.research-wrapper{
 
   section {
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:first-child {
       border: 5;
       padding-top: 0;
     }  
   }  
+}
+
+ul.pagination {
+  margin: 0 auto;
+  font-size: 14px !important;
+  border: none !important;
+
+  a {
+    font-size: 14px !important;
+  }
 }
 
 /* Points show on debate */
@@ -428,7 +463,7 @@ div.research-wrapper{
     text-align: left;
     font-weight: normal;
     line-height: 110%;
-        border-left: 1px solid $grayLighter;
+        border-left: 1px solid $gray-lighter;
     padding: 0 0 0 10px;
     margin: 10px 0 0 10px;
   }   
@@ -445,16 +480,16 @@ div.debates {
     overflow: auto;
     font-size: 20px;    
     padding: 5px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $gray-lighter;
     }
   }  
     
   li {
     margin: 3px 0 0 0px;
     padding: 10px;
-    border-top: 1px solid $grayLighter;    
+    border-top: 1px solid $gray-lighter;    
 
     &:first-of-type {
       border-top: none;
@@ -474,9 +509,9 @@ div.researches {
     overflow: auto;
     font-size: 1.4em;    
     padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    border-top: 1px solid $gray-lighter;
     &:last-child {
-      border-bottom: 1px solid $grayLighter;
+      border-bottom: 1px solid $gray-lighter;
     }
   }  
     
@@ -495,7 +530,7 @@ div.researches {
     
   li.finding {
     font-size: .7em; 
-    border-top: 1px solid $grayLighter;    
+    border-top: 1px solid $gray-lighter;    
     margin: 3px 0 0 0px;
 
     &:first-of-type {
@@ -599,7 +634,7 @@ div.add-research_findings {
     padding: 0px 0 0 0;    
     text-indent: 0;    
     &:first-of-type {
-    border-top: 1px solid $grayLighter;   
+    border-top: 1px solid $gray-lighter;   
     }
   }  
 }

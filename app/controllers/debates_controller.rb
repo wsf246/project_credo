@@ -14,7 +14,7 @@ class DebatesController < ApplicationController
       .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
       .select('points.*, count(DISTINCT research_id) as "research_count"')
       .group("points.id").order('cached_votes_total desc, research_count desc') 
-    @evid_page_count = ((@evidence.all.count/3.0).ceil-1)
+    @evid_page_count = ((@evidence.to_a.count/3.0).floor)
     
     respond_to do |format|
       format.html

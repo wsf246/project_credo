@@ -1,8 +1,8 @@
 <div class='home-wrapper'>	
-	<div class="center hero-unit">
+	<div class="center jumbotron">
 	  <h1>Welcome to Project Credo</h1>
 	  <%= link_to "Sign up now!", new_user_registration_path,
-	                              class: "btn btn-large btn-primary" %>
+	                              class: "btn btn-lg btn-primary" %>
 	</div>
 
 	<script>
@@ -13,38 +13,36 @@
 
 	<!--  Carousel - consult the Twitter Bootstrap docs at
 	      http://twitter.github.com/bootstrap/javascript.html#carousel -->
-	<div class="c-wrapper">
-		<div id="home-carousel" class="carousel slide"><!-- class of slide for animation -->
-			<ol class="carousel-indicators">
-				<li data-target="#home-carousel" data-slide-to="0" class="active"></li>
-				<li data-target="#home-carousel" data-slide-to="1"></li>
-				<li data-target="#home-carousel" data-slide-to="2"></li>	
-			</ol>	  
-		  <div class="carousel-inner">
-		    <div class="item active"><!-- class of active since it's the first item -->
-  				<%= link_to image_tag("icedwatercrop.jpg", alt: "", size: "1200x480"), debate_path(1)  %>
-		      <div class="carousel-caption">
-		        <p>Does drinking cold beverages during meals negatively affect digestion?</p>
-		      </div>
-		    </div>
-		    <div class="item">
-		  		<%= link_to image_tag("microbeads.jpg", alt: "", size: "1200x480"), debate_path(2) %>
-		      <div class="carousel-caption">
-		        <p>Microbead products are bad for the environment</p>
-		      </div>
-		    </div>
-		    <div class="item">
-		      <%= link_to image_tag("running.jpg", alt: "", size: "1200x480"), debate_path(3) %>
-		      <div class="carousel-caption">
-		        <p>Running long distances on a consistent basis significantly reduces the amount of cartilage in the knees</p>
-		      </div>
-		    </div>    
-		  </div><!-- /.carousel-inner -->
-		  <!--  Next and Previous controls below
-		        href values must reference the id for this carousel -->
-		    <a class="carousel-control left" href="#home-carousel" data-slide="prev">&lsaquo;</a>
-		    <a class="carousel-control right" href="#home-carousel" data-slide="next">&rsaquo;</a>
-		</div><!-- /.carousel -->
-	</div><!-- /.c-wrapper -->
+	<div id="home-carousel" class="carousel slide"><!-- class of slide for animation -->
+		<ol class="carousel-indicators">
+			<li data-target="#home-carousel" data-slide-to="0" class="active"></li>
+			<li data-target="#home-carousel" data-slide-to="1"></li>
+			<li data-target="#home-carousel" data-slide-to="2"></li>	
+		</ol>	  
+	  <div class="carousel-inner">
+	    <div class="item active"><!-- class of active since it's the first item -->
+				<%= link_to image_tag("icedwatercrop.jpg", alt: "", size: "1200x480"), debate_path(1)  %>
+	      <div class="carousel-caption">
+	        <p>Does drinking cold beverages during meals negatively affect digestion?</p>
+	      </div>
+	    </div>
+	    <div class="item">
+	  		<%= link_to image_tag("microbeads.jpg", alt: "", size: "1200x480"), debate_path(2) %>
+	      <div class="carousel-caption">
+	        <p>Microbead products are bad for the environment</p>
+	      </div>
+	    </div>
+	    <div class="item">
+	      <%= link_to image_tag("running.jpg", alt: "", size: "1200x480"), debate_path(3) %>
+	      <div class="carousel-caption">
+	        <p>Running long distances on a consistent basis significantly reduces the amount of cartilage in the knees</p>
+	      </div>
+	    </div>    
+	  </div><!-- /.carousel-inner -->
+	  <!--  Next and Previous controls below
+	        href values must reference the id for this carousel -->
+	    <a class="carousel-control left" href="#home-carousel" data-slide="prev">&lsaquo;</a>
+	    <a class="carousel-control right" href="#home-carousel" data-slide="next">&rsaquo;</a>
+	</div><!-- /.carousel -->
 </div>
 

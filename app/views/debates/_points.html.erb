@@ -1,11 +1,11 @@
 <li class= 'point'>
   <div class='row-fluid'>
-    <div class='span2 center'>
+    <div class='col-md-2 center'>
       <div>
         <%= render 'debates/important_point', point: point%>
       </div>       
     </div>   
-    <div class='span10'>  
+    <div class='col-md-10'>  
       <b><%=point.point%></b>
       <div class = 'pix12'>
       Created by: <%=point.user.username%>
