@@ -1,0 +1,16 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+div.home-wrapper{
+  width: 60%; 
+  margin: auto;
+}
+
+div.help-wrapper{
+  width: 30%; 
+  margin: auto;
+
+  ul{
+    margin-bottom: -15px;
+  }
+} 

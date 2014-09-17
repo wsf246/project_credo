@@ -13,7 +13,7 @@
 
 	<!--  Carousel - consult the Twitter Bootstrap docs at
 	      http://twitter.github.com/bootstrap/javascript.html#carousel -->
-	<div id="home-carousel" class="carousel slide"><!-- class of slide for animation -->
+	<div id="home-carousel" class="carousel slide" data-ride="carousel"><!-- class of slide for animation -->
 		<ol class="carousel-indicators">
 			<li data-target="#home-carousel" data-slide-to="0" class="active"></li>
 			<li data-target="#home-carousel" data-slide-to="1"></li>
@@ -23,26 +23,30 @@
 	    <div class="item active"><!-- class of active since it's the first item -->
 				<%= link_to image_tag("icedwatercrop.jpg", alt: "", size: "1200x480"), debate_path(1)  %>
 	      <div class="carousel-caption">
-	        <p>Does drinking cold beverages during meals negatively affect digestion?</p>
+	        <h3>Does drinking cold beverages during meals negatively affect digestion?</h3>
 	      </div>
 	    </div>
 	    <div class="item">
 	  		<%= link_to image_tag("microbeads.jpg", alt: "", size: "1200x480"), debate_path(2) %>
 	      <div class="carousel-caption">
-	        <p>Microbead products are bad for the environment</p>
+	        <h3>Are microbead products bad for the environment?</h3>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <%= link_to image_tag("running.jpg", alt: "", size: "1200x480"), debate_path(3) %>
 	      <div class="carousel-caption">
-	        <p>Running long distances on a consistent basis significantly reduces the amount of cartilage in the knees</p>
+	        <h3>Is running long distances bad for your joints?</h3>
 	      </div>
 	    </div>    
 	  </div><!-- /.carousel-inner -->
 	  <!--  Next and Previous controls below
 	        href values must reference the id for this carousel -->
-	    <a class="carousel-control left" href="#home-carousel" data-slide="prev">&lsaquo;</a>
-	    <a class="carousel-control right" href="#home-carousel" data-slide="next">&rsaquo;</a>
+	    <a class="carousel-control left" href="#home-carousel" role="button" data-slide="prev">
+	    	<span class="glyphicon glyphicon-chevron-left"></span>
+	    </a>
+	    <a class="carousel-control right" href="#home-carousel" role="button" data-slide="next">
+	    	<span class="glyphicon glyphicon-chevron-right"></span>
+	    </a>
 	</div><!-- /.carousel -->
 </div>
 

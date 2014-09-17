@@ -18,7 +18,7 @@
     <!--  Carousel - consult the Twitter Bootstrap docs at
           http://twitter.github.com/bootstrap/javascript.html#carousel -->
     <div class="c-evid-wrapper">
-      <div id="evidence-carousel" class="carousel slide"><!-- class of slide for animation -->
+      <div id="evidence-carousel" class="carousel slide" data-ride="carousel"><!-- class of slide for animation -->
         <% unless @evid_page_count == 0 %>
           <ol class="carousel-indicators">
             <%(0..@evid_page_count).each do |page|%>
@@ -49,8 +49,12 @@
         </div><!-- /.carousel-inner -->
         <%if @evid_page_count == 0%>
         <%else%>
-          <a class="carousel-control left" href="#evidence-carousel" data-slide="prev" style="top:0%">&lsaquo;</a>
-          <a class="carousel-control right" href="#evidence-carousel" data-slide="next" style="top:0%">&rsaquo;</a>
+          <a class="carousel-control left" href="#evidence-carousel" data-slide="prev" role="button">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="carousel-control right" href="#evidence-carousel" data-slide="next" role="button">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
         <%end%>
       </div><!-- /.carousel -->
     </div><!-- /.c-wrapper -->
