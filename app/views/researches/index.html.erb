@@ -1,27 +1,25 @@
-<div class="research-wrapper">
+<div class="researches">
   <% provide(:title, 'All research') %>
   <h2>Documented Research</h2>
-  <h2><%= link_to "Document a new piece of research", new_research_path %></h2>
 
-  <div class="row">
-    <div class="col-md-4">
+  <div class="row-fluid">
+    <div class="center">
     	<div class="search">
     		<%= search_form_for @query, url: search_researches_path,
     								html: { method: :post} do |f| %>
-    		  <%= f.label :title_or_findings_finding_or_findings_quote_cont, "Research title or findings contains" %>
+    		  <%= f.label :title_or_findings_finding_or_findings_quote_cont, "Search by research title or findings" %>
     		  <%= f.text_field :title_or_findings_finding_or_findings_quote_cont %>
      		  
       		<%= f.submit "Search" %>  
     		<%end%>
     	</div>
     </div>
-    <div class="col-md-8"></div>
-
-
-    <div class='researches col-md-12'>
-      <%= will_paginate @researches, renderer: BootstrapPagination::Rails %>
+  </div>
+<%= will_paginate @researches, renderer: BootstrapPagination::Rails %>
+  <div class="row-fluid">
+      
       <%= render @researches %>
-      <%= will_paginate @researches, renderer: BootstrapPagination::Rails %>
-    </div>  
+      
   </div>  
+  <%= will_paginate @researches, renderer: BootstrapPagination::Rails %>
 </div>

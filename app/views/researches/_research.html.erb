@@ -2,13 +2,14 @@
 	<li>
 		<div class='row-fluid'>
 
-			<div class='col-md-1 center'>
-				<div class='pix10'> Cred	</div>
+			<div class='col-md-2 center'>
+				<div class='pix10 center'> Cred Score	</div>
 				<div class='score'>	(<%=research.score%>)</div>			
 			</div>
 		
-			<div class='col-md-11'>
-		  	<%= link_to research.title, research %>	
+			<div class='col-md-10'>
+		  	<b class='research_title'><%= link_to research.title, research %></b>
+		  	<div class= "pix14"><%= research.authors %></div>	
 			  <ul class ='finding'>
 			  	<b class ='finding'>Findings:</b>
 			  	<%if research.findings.present? %>
