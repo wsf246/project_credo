@@ -16,6 +16,13 @@ class ResearchesController < ApplicationController
   def show
     @research = Research.find(params[:id])
     @findings = @research.findings
+    bias_controls = []
+    @research.single_blinded ? bias_controls << "Single Blinded" : ""
+    @research.double_blinded ? bias_controls << "Double Blinded" : ""
+    @research.randomized ? bias_controls <<"Randomized" : ""
+    @research.controlled_against_placebo ? bias_controls <<"Controlled Against Placebo" : ""
+    @research.controlled_against_best_alt ? bias_controls << "Controlled Against Best Alternative(s)" : ""
+    @bias_controls = bias_controls.join(", ")
   end
 
   def pubmed_search
