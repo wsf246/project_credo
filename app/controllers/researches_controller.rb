@@ -22,7 +22,7 @@ class ResearchesController < ApplicationController
     @research.randomized ? bias_controls <<"Randomized" : ""
     @research.controlled_against_placebo ? bias_controls <<"Controlled Against Placebo" : ""
     @research.controlled_against_best_alt ? bias_controls << "Controlled Against Best Alternative(s)" : ""
-    @bias_controls = bias_controls.join(", ")
+    @bias_controls = bias_controls.join(", ")    
   end
 
   def pubmed_search

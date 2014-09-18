@@ -25,7 +25,6 @@ div.debate-wrapper{
   h2 {
     font-size: 20px;
     margin: 10px 0 0 0;
-    letter-spacing: -1px;
     margin-bottom: 5px;
     text-align: left;
     font-weight: bold;
@@ -55,13 +54,6 @@ div.debate-wrapper{
  
 }
 
-/* Research show */
-
-
-.content {
-  display: block;
-}
-
 
 ul.pagination {
   margin: 0 auto;
@@ -84,11 +76,13 @@ ul.pagination {
   width: 80%;
   margin: auto; 
 
-  h1 {
-    font-size: 24px;
+  h2 {
+    font-size: 20px;
     text-align: left; 
     border-bottom: 1px solid $gray;       
     margin: 0 0 0 0;
+    font-weight: bold;
+    color: black;
   }
 
   .point {
@@ -128,36 +122,6 @@ ul.pagination {
     margin: 10px 0 0 10px;
   }   
 }
-
-/* Debates index */
-
-div.debates {
-  list-style: none;
-  margin: 0;
-
-  ul {
-    list-style: none;  
-    overflow: auto;
-    font-size: 20px;    
-    padding: 5px 0;
-    border-top: 1px solid $gray-lighter;
-    &:last-child {
-      border-bottom: 1px solid $gray-lighter;
-    }
-  }  
-    
-  li {
-    margin: 3px 0 0 0px;
-    padding: 10px;
-    border-top: 1px solid $gray-lighter;    
-
-    &:first-of-type {
-      border-top: none;
-    }     
-  }
-}
-
-
 
 .research_form_wrapper {
   width:40%;

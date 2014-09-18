@@ -1,11 +1,11 @@
 <% provide(:title, @debate.title) %>
   
 <div class ='debate-wrapper'> 
-  <h1><%= @debate.title %></h1>
+  <h2><%= @debate.title %></h2>
   <div class='pix12'>
     Created by: <%= @debate.user.username %>
   </div>   
-  <h2><%= link_to "Edit question", edit_debate_path %></h2>
+  <div class="pix14"><%= link_to "Edit question", edit_debate_path %></div>
   <h2>Description:</h2>
 	<p><%= @debate.description %></p>
   <h2>Notes:</h2>

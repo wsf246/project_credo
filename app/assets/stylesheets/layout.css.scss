@@ -32,7 +32,10 @@
 /* footer */
 
 footer {
+  width: 80%;
   margin-top: 45px;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 5px;
   border-top: 1px solid $gray-light;
   color: $gray-light;
@@ -84,60 +87,5 @@ aside {
       margin-top: 0px;
     }
   }
-}
-
-/* universal */
-
-html {
-  overflow-y: scroll;
-}
-
-body {
-  padding-top: 60px;
-}
-
-section {
-  overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin: 20px 40px;
-    font-weight: bold;
-  }
-}  
-
-.align-top {
-  length: -10em;
-}
-
-.green {
-  color: #197519;
-}
-
-.red {
-  color: #8D1919;
-}
-
-.pix12 {
-  font-size: 12px;
-} 
-
-.pix14 {
-  font-size: 14px;
-}   
-
-.jumbotron {
-  margin-top: 1em;
-  border-radius: 6px;
-}
-
-.container {
-  width: 940px;
 }
 
