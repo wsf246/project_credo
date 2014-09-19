@@ -1,20 +1,16 @@
+<%= form_tag("/researches/pubmed_search", :remote => true) do%>
+  <label for="search_terms"><b>Search Pubmed and our database</b></label>
+  <%= text_field_tag "search_terms", nil, placeholder:"Search..." %>
+  <%if @point_id.nil?%>
+    <%= hidden_field_tag 'point_id', point_id %>
+  <%else%> 
+    <%= hidden_field_tag 'point_id', @point_id %> 
+  <%end%>
+  <%= submit_tag "Search", class: "btn btn-small btn-primary" %>
 
-  <div class='row-fluid'>  
-    <div class='col-md-6'>  
-      <%= form_tag("/researches/pubmed_search", :remote => true) do%>
-        <label for="search_terms"><b>Search Pubmed and our database</b></label>
-        <%= text_field_tag "search_terms", nil, placeholder:"Search..." %>
-        <%if @point_id.nil?%>
-          <%= hidden_field_tag 'point_id', point_id %>
-        <%else%> 
-          <%= hidden_field_tag 'point_id', @point_id %> 
-        <%end%>
-        <%= submit_tag "Search", class: "btn btn-small btn-primary" %>
+  <%if @articles.nil?%>
+  <%else%>
+    <b>Search terms: </b><%=params[:search_terms]%>
+  <%end%>
+<%end%>  
 
-        <%if @articles.nil?%>
-        <%else%>
-          <b>Search terms: </b><%=params[:search_terms]%>
-        <%end%>
-      <%end%>  
-    </div><!-- /.span -->
-  </div><!-- /.row -->

@@ -140,7 +140,7 @@ class ResearchesController < ApplicationController
       @point.associate!(@finding)
       redirect_to debate_path(@point.debate)  
     else
-      render 'new'
+      render 'new', point_id: @point_id
     end    
   end
 

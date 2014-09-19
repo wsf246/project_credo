@@ -1,38 +1,41 @@
-<div class = "research_form_wrapper">
-<%= simple_form_for(@research, html: {class: "form-horizontal"}) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <legend>Basic Information</legend>
-  <%= f.hidden_field :user_create_id, value: current_user.id %> 
-  <%= f.input :title  %>
-  <%= f.input :link %>
-  <%= f.input :authors%>
-  <%= f.input :date_of_publication, label: "Date of Publication" %>
-  <%= f.input :journal%>
-  <%= f.input :funding, label: "Funding" %>
-  
-  <legend>Findings</legend>
-  <%= f.simple_fields_for :findings do |builder| %>
-    <%= render 'finding_fields', f: builder, research_id: @research.id %>
-  <%end%>     
+<div class = "research-form">
+  <%= simple_form_for(@research, html: {method: "post", class: "form-horizontal"}) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <legend>Basic Information</legend>
+    <%= f.hidden_field :user_create_id, value: current_user.id %> 
+    <%= f.input :title  %>
+    <%= f.input :link %>
+    <%= f.input :authors %>
+    <%= f.input :date_of_publication, label: "Date of Publication" %>
+    <%= f.input :journal%>
+    <%= f.input :funding, label: "Funding" %>
 
-  <legend>Methodologies</legend>
+    <legend>Verification</legend>
 
-  <%= f.input :study_type, collection: ['Unknown','Cross-sectional','Case-control','Cohort Study', 'Randomized Control Trial', 'Case Study'], selected: @study_type %>
-  <%= f.input :single_blinded, label: "Single Blinded?" %> 
-  <%= f.input :double_blinded, label: "Double_blinded?" %> 
-  <%= f.input :randomized, label: "Randomized?" %> 
-  <%= f.input :controlled_against_placebo, label: "Controlled against placebo?" %>
-  <%= f.input :controlled_against_best_alt, label: "Controlled against best alternative?" %>                    
- 
-  <legend>Verification</legend>
+    <%= f.input_field :retracted, inline_label: "Retracted?" %>
+    <%= f.input_field :peer_reviewed, inline_label: "Peer Reviewed?" %> 
+    <%= f.input_field :replicated, inline_label: "Replicated?" %> 
+    
 
-  <%= f.input :retracted, label: "Retracted?" %>
-  <%= f.input :peer_reviewed, label: "Peer Reviewed?" %> 
-  <%= f.input :replicated, label: "Replicated?" %>  
-  <%= hidden_field_tag 'finding_id', @finding_id %> 
-  <%= hidden_field_tag 'point_id', @point_id %> 
-  <%= f.button :submit, "Log info", class: "btn btn-lg btn-primary" %>
-<% end %> 
+    <legend>Bias Controls</legend>
+    <%= f.input :study_type, collection: ['Unknown','Cross Sectional','Case Control','Cohort Study', 'Randomized Control Trial', 'Case Study', 'Meta-Analysis', 'Review of Literature'], selected: @study_type %>
+    <%= f.input_field :single_blinded, :as => :boolean, inline_label: "Single Blinded?" %> 
+    <%= f.input_field :double_blinded, :as => :boolean, inline_label: "Double_blinded?" %> 
+    <%= f.input_field :randomized, inline_label: "Randomized?" %> 
+    <%= f.input_field :controlled_against_placebo, inline_label: "Controlled against placebo?" %> 
+    <%= f.input_field :controlled_against_best_alt, inline_label: "Controlled against best alternative?" %>       
+    
+    <legend>Findings</legend>
+
+    <%= f.simple_fields_for :findings do |builder| %>
+      <%= render 'finding_fields', f: builder, research_id: @research.id %>
+    <%end%>   
+
+    <%= hidden_field_tag 'point_id', params[:point_id] %> 
+
+    <%= f.button :submit, "Log info", class: "btn btn-lg btn-primary", style: "margin-top: 5px" %>
+  <% end %> 
+
 </div> 
 
 

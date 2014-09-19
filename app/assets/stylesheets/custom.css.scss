@@ -9,52 +9,6 @@
 }
 
 
-/* Debates show */
-
-div.debate-wrapper{
-  width: 50%; 
-  margin: auto;
-
-  h1 {
-    font-size: 24px;
-    margin-bottom: 5px;
-    text-align: left;
-    font-weight: none;
-  }
-
-  h2 {
-    font-size: 20px;
-    margin: 10px 0 0 0;
-    margin-bottom: 5px;
-    text-align: left;
-    font-weight: bold;
-    color: black;
-  }
-
-  p {
-    font-size: 14px;
-    line-height: 100%;
-    text-align: left;  
-    font-weight: normal;
-    color: black;
-  }
-
-  ul {
-    font-size: 14px;
-    text-align: left;   
-    font-weight: normal;
-    color: black;
-  }
-
-  .verdict {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
- 
-}
-
-
 ul.pagination {
   margin: 0 auto;
   font-size: 14px !important;
@@ -65,69 +19,6 @@ ul.pagination {
   }
 }
 
-/* Points show on debate */
-
-.trend-wrapper {
-  width: 80%;
-  margin: auto; 
-}
-
-.point-wrapper {
-  width: 80%;
-  margin: auto; 
-
-  h2 {
-    font-size: 20px;
-    text-align: left; 
-    border-bottom: 1px solid $gray;       
-    margin: 0 0 0 0;
-    font-weight: bold;
-    color: black;
-  }
-
-  .point {
-    font-size: 14px;
-    text-align: left;
-    color: black;
-    font-weight: normal;
-    list-style: none;
-    margin: 0 0 10px 0;
-  } 
-
-  .research {
-    font-size: 12px;
-    text-align: left;
-    font-weight: normal;
-    color: $gray;
-    list-style: none;
-    padding: 0 0 0 10px;
-    margin: 10px 0 0 0px;    
-  } 
-
-  .pix12 {
-    font-size: 12px;
-  }
-
-  .pix14 {
-    font-size: 14px;
-  }
-
-  .finding {
-    font-size: 12px;
-    text-align: left;
-    font-weight: normal;
-    line-height: 110%;
-        border-left: 1px solid $gray-lighter;
-    padding: 0 0 0 10px;
-    margin: 10px 0 0 10px;
-  }   
-}
-
-.research_form_wrapper {
-  width:40%;
-  margin-left: auto;
-  margin-right: auto;  
-}
 
 input[type="text"], textarea, .uneditable-input {
   border: 1px solid #bbb;
@@ -146,54 +37,8 @@ input {
 }
 
 
-/* Add Research Findings*/
 
-div.add-research_findings {
 
-  list-style: none;
-  margin: 0;
-
-  p{
-    font-size: 14px;
-    padding: 0px;
-    margin: 0px;
-  }
-
-  h1 {
-    font-size: 24px;
-    text-align: left;
-    margin-bottom: 3px;
-  }
-
-  ul {
-    list-style: none;   
-    list-style-position:inside; 
-    margin: 0px 0 0 0px;       
-    overflow: auto;    
-    padding: 0px 5px;
-    text-indent: 0;
-  }  
-    
-  li {
-    font-size: 14px;
-    list-style: none; 
-    list-style-position:inside; 
-    margin: 0px 0 0 0px;
-    padding: 0px 0 0 0;    
-    text-indent: 0;    
-    &:first-of-type {
-    border-top: 1px solid $gray-lighter;   
-    }
-  }  
-}
-
-/* Bootstrap Modal */
-
-.modal {
-  width: 60em; 
-  margin-top: -3em;
-  margin-left:  -30em !important;
-} 
 
 
 

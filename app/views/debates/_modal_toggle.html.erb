@@ -3,23 +3,12 @@
   Add findings
 </a>
 
-  <script>
-    $(document).ready(function () {
-      $('#add_research_finding_<%= point.id %>').on('show.bs.modal', function (e) {
-        $('#add_research_finding_<%= point.id %>').css("width","60em");
-        $('#add_research_finding_<%= point.id %>').css("font-size","14px");
-      })
-      $('#add_research_finding_<%= point.id %>').on('hidden.bs.modal', function (e) {
-        $('#add_research_finding_<%= point.id %>').css("width", "0px");
-        $('#add_research_finding_<%= point.id %>').css("font-size","0px");
-      })
-    });
-  </script>  
+
 
 <!-- Modal -->
-<div class="modal fade" id="add_research_finding_<%= point.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:0px; font-size: 0px;">
-  <div class="modal-dialog">
-    <div class='add-research_findings'>
+<div class="modal fade" id="add_research_finding_<%= point.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class='add-research-findings'>
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

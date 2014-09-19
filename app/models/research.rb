@@ -6,7 +6,7 @@ class Research < ActiveRecord::Base
 
   accepts_nested_attributes_for :findings, 
   reject_if:	lambda { |a| a[:finding].blank?},
-  	allow_destroy:  true  		  	  		    	
+  	allow_destroy: true		  	  		    	
   validates :title, presence: true	
   validates :link, presence: true	
 
@@ -14,8 +14,8 @@ class Research < ActiveRecord::Base
     score = (self.retracted ? 0 : 1) * (
     0 * (self.study_type == 'Unknown' ? 1 : 0) +
     2 * (self.study_type =='Case Study' ? 1 : 0) +          
-    3 * (self.study_type == 'Cross-sectional' ? 1 : 0) +
-    5 * (self.study_type == 'Case-control' ? 1 : 0) +
+    3 * (self.study_type == 'Cross Sectional' ? 1 : 0) +
+    5 * (self.study_type == 'Case Control' ? 1 : 0) +
     8 * (self.study_type == 'Cohort Study' ? 1 : 0) +    
     13 * (self.study_type == 'Randomized Control Trial' ? 1 : 0) +
 
@@ -30,5 +30,7 @@ class Research < ActiveRecord::Base
     1 * (self.controlled_against_placebo ? 1 : 0) + 
     1 * (self.controlled_against_best_alt ? 1 : 0))
     self.update(score: score)
-  end  
+  end 
+
 end
+

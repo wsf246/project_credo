@@ -1,12 +1,23 @@
-  <div class="modal-body">
-    <div class='row-fluid'>
-      <%if @articles.nil?%>
-      <%elsif @articles.empty?%>
-        <b>Results:</b> No Results 
-      <%else%>
-        <b>Results:</b>  
-        <%@articles.first(10).each do |detail|%>
-          <ul>
+<div class="modal-body">
+  <%if @articles.nil?%>
+  <%elsif @articles.empty?%>
+    <b>Results:</b> No Results 
+  <%else%>
+    <b>Results:</b>  
+    <%@articles.first(10).each do |detail|%>
+      <div class = "row-fluid">
+        <div class ="col-sm-1">
+          <%= form_tag("/researches/view_result", remote: true) do%>
+            <%= hidden_field_tag 'id', detail['id'] %>
+            <%= hidden_field_tag 'pubdate', detail['pubdate'] %>
+            <%= hidden_field_tag 'authors', detail['authors'].join(", ") %>
+            <%= hidden_field_tag 'search_terms', params[:search_terms] %>       
+            <%= hidden_field_tag 'point_id', @point_id %>           
+            <%= submit_tag "View", class: "btn btn-sm btn-primary", style: "margin-bottom: 5px"%>
+          <%end%>  
+        </div>
+        <ul>
+          <div class ="col-sm-11">
             <li><b><%=detail["title"]%></b></li>
             <li class='pix12'>
               <b>Authors:</b> <%=detail["authors"].join(", ")%>  
@@ -14,16 +25,9 @@
             <li class='pix12'> 
               <b><%=detail["type"]%>:</b> <%=detail["journal"]%>; <%=detail["pubdate"]%>
             </li>
-            <%= form_tag("/researches/view_result", remote: true) do%>
-              <%= hidden_field_tag 'id', detail['id'] %>
-              <%= hidden_field_tag 'pubdate', detail['pubdate'] %>
-              <%= hidden_field_tag 'authors', detail['authors'].join(", ") %>
-              <%= hidden_field_tag 'search_terms', params[:search_terms] %>       
-              <%= hidden_field_tag 'point_id', @point_id %>           
-              <%= submit_tag "View" %>
-            <%end%>           
-          </ul>  
-        <%end%>
-      <%end%>
-    </div>
-  </div>
+          </div>         
+        </ul> 
+      </div> 
+    <%end%>
+  <%end%>
+</div>

@@ -1,33 +1,29 @@
 <div class="modal-body">
-  <div class='row-fluid'>
-    <h1><%= @article["title"] %></h1>
-    <p><b>Authors: </b><%=@article["authors"] %></p>
-    <p><b>Journal: </b><%=@article["journal"]%><b>, Published on: </b><%= @article["pubdate"]%></p>
-    <p><b>Link: </b><%="http://www.ncbi.nlm.nih.gov/pubmed/"+@pubmed_id%></p>
-    <b>Abstract:</b>
-    <br><%=@article["abstract"]%></br>
-    <div id="research_findings_form_<%= @point_id %>">
-      <div class="row-fluid">
-        <div class='col-md-1'> 
-          <%= form_tag("/researches/fill_in_form", remote: true) do%>
-            <%= hidden_field_tag 'title', @article["title"] %>
-            <%= hidden_field_tag 'authors', @article["authors"] %>
-            <%= hidden_field_tag 'journal', @article["journal"] %>
-            <%= hidden_field_tag 'pubdate', @article["pubdate"] %>
-            <%= hidden_field_tag 'link', "http://www.ncbi.nlm.nih.gov/pubmed/"+@pubmed_id %>
-            <%= hidden_field_tag 'point_id', @point_id %>
-            <%= hidden_field_tag 'search_terms', params[:search_terms] %>     
-            <%= submit_tag "Use this", class: "btn btn-small btn-primary" %> 
-          <%end%> 
-        </div>
-        <div class='col-md-1'> 
-          <%= form_tag("/researches/pubmed_search", remote: true) do%>
-            <%= hidden_field_tag 'search_terms', params[:search_terms] %>
-            <%= hidden_field_tag 'point_id', @point_id %> 
-            <%= submit_tag "Back to results", class: "btn btn-small btn-default" %>
-          <%end%>
-        </div>
-      </div>
-    </div>    
+  <h2><%= @article["title"] %></h2>
+  <p><b>Authors: </b><%=@article["authors"] %></p>
+  <p><b>Journal: </b><%=@article["journal"]%><b>, Published on: </b><%= @article["pubdate"]%></p>
+  <p><b>Link: </b><%="http://www.ncbi.nlm.nih.gov/pubmed/"+@pubmed_id%></p>
+  <b>Abstract:</b>
+  <br><%=@article["abstract"]%></br>
+  <div id="research_findings_form_<%= @point_id %>" class="row">
+    <div class='col-sm-1'> 
+      <%= form_tag("/researches/fill_in_form", remote: true) do%>
+        <%= hidden_field_tag 'title', @article["title"] %>
+        <%= hidden_field_tag 'authors', @article["authors"] %>
+        <%= hidden_field_tag 'journal', @article["journal"] %>
+        <%= hidden_field_tag 'pubdate', @article["pubdate"] %>
+        <%= hidden_field_tag 'link', "http://www.ncbi.nlm.nih.gov/pubmed/"+@pubmed_id %>
+        <%= hidden_field_tag 'point_id', @point_id %>
+        <%= hidden_field_tag 'search_terms', params[:search_terms] %>     
+        <%= submit_tag "Use this", class: "btn btn-sm btn-primary" %> 
+      <%end%> 
+    </div>
+    <div class='col-sm-2'> 
+      <%= form_tag("/researches/pubmed_search", remote: true) do%>
+        <%= hidden_field_tag 'search_terms', params[:search_terms] %>
+        <%= hidden_field_tag 'point_id', @point_id %> 
+        <%= submit_tag "Back to results", class: "btn btn-sm btn-default" %>
+      <%end%>
+    </div>
   </div>
-</div>
+</div>    
