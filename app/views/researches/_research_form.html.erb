@@ -1,5 +1,5 @@
-<div class = "research-form">
-  <%= simple_form_for(@research, html: {method: "post", class: "form-horizontal"}) do |f| %>
+<div class = "research-form" style="width: 40%">
+  <%= simple_form_for(@research) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <legend>Basic Information</legend>
     <%= f.hidden_field :user_create_id, value: current_user.id %> 

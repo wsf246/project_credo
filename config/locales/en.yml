@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      "research/findings":
+        finding: "Finding"
+        sample_def: "Finding's sample defintion"
+        quote: "Finding's quote"

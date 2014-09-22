@@ -132,14 +132,15 @@ class ResearchesController < ApplicationController
 
   def create
     @research = Research.new(research_params)
-    @point = Point.find(params[:point_id]) 
+    @point = Point.find(params[:point_id])  
     if @research.save	
       @research.score_it
       @research.user_create_id = current_user
-      @finding = @research.findings.order("created_at").last
+      @finding = @research.findings.order("created_at").last 
       @point.associate!(@finding)
       redirect_to debate_path(@point.debate)  
     else
+      @study_type = @research.study_type  
       render 'new', point_id: @point_id
     end    
   end
@@ -151,10 +152,10 @@ class ResearchesController < ApplicationController
 
   def update
     @research = Research.find(params[:id])
-    if @research.update_attributes(research_params)
+    if @research.update_attributes(research_params) 
       @research.score_it
       flash[:success] = "Research attributes updated"
-      redirect_to @research
+      redirect_to research_path(@research)
     else
       render 'edit'
     end
