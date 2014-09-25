@@ -2,7 +2,7 @@
           <% @verdicts.each_with_index do |verdict, i| %>
             <%if i == @selected%>
               <%if i == 0%>
-                Top verdict
+                <div class = "gold">Top verdict</div>
               <%end%>
               <li class = "verdict">
                 <p class = "first-verdict"><b><%= verdict.short %></b></p>
@@ -19,7 +19,7 @@
             <%if i == @selected%>
             <%else%>
               <%if i == 0%>
-                Top verdict
+                <div class = "gold">Top verdict</div>
               <%end%> 
               <li class = "verdict">
                 <p><b><%= link_to verdict.short, select_verdict_debates_path(selected: i, debate: @debate), remote: true  %></b></p>
