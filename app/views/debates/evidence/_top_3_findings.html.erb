@@ -1,0 +1,10 @@
+ 
+<ul class= 'research'>
+	<% findings = point.findings.sort {|a,b| b.research.score <=> a.research.score}.first(3)%>
+	<% findings.each do |finding| %>
+		<%= render 'debates/evidence/findings', finding: finding %>
+	<%end%> 
+</ul>
+<% if point.findings.count >3 %>
+	<%= link_to "View all research("+point.findings.count('research_id', distinct:true).to_s+")", all_research_debates_path(point: point), remote: true%>
+<%end%>		

@@ -21,7 +21,7 @@ class VerdictsController < ApplicationController
       
       redirect_to @debate
     else
-      render 'debates/_verdict_form'
+      render 'debates/verdicts/_verdict_form'
     end    
   end     
 
@@ -32,6 +32,6 @@ class VerdictsController < ApplicationController
   private
 
     def verdict_params
-      params.require(:verdict).permit(:debate_id,:user_create_id,:verdict)
+      params.require(:verdict).permit(:debate_id,:user_create_id,:verdict,:short)
     end  
 end    

@@ -83,6 +83,7 @@ when 'development'
     Verdict.delete_all
     25.times do |verdict|
         Verdict.create(verdict: lorem(8),
+            short: lorem(2),
             debate_id: Debate.all.sample.id,
             user_create_id: User.all.sample.id)
     end    

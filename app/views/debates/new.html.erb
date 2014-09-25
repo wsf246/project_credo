@@ -1,12 +1,12 @@
 <% provide(:title, 'Add a question') %>
-<h1>Add a question</h1>
+<h2>Add a question</h2>
 
 <div class="row-fluid">
   <div class="col-md-6 col-md-offset-3">
     <%= nested_form_for(@debate) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <%= render 'debate_form', f: f  %>
-		  <%= f.submit "Create debate", class: "btn btn-lg btn-primary" %>
+      <%= render 'debates/form/debate_form', f: f  %>
+		  <%= f.submit "Add question", class: "btn btn-lg btn-primary" %>
     <% end %>
   </div>
 </div>

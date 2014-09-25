@@ -3,5 +3,10 @@ class Verdict < ActiveRecord::Base
   acts_as_votable 
   belongs_to :debate
   validates :verdict, presence: true
+  validates :short, presence: true
+  validates :short, length: { 
+      maximum: 140,
+      too_long: "%{count} characters is the maximum allowed" 
+    }
   belongs_to :user, foreign_key: "user_create_id" 
 end

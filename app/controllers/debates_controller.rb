@@ -15,6 +15,7 @@ class DebatesController < ApplicationController
       .select('points.*, count(DISTINCT research_id) as "research_count"')
       .group("points.id").order('cached_votes_total desc, research_count desc') 
     @evid_page_count = ((@evidence.to_a.count/3.0).floor)
+    @evid_count = (@evidence.to_a.count -1)
     
     respond_to do |format|
       format.html
@@ -86,16 +87,22 @@ class DebatesController < ApplicationController
   end               
 
   def add_verdict
-    if user_signed_in?
       @debate = Debate.find(params[:debate])
       @verdict = @debate.verdicts.build
       respond_to do |format|
         format.html { redirect_to @debate }
         format.js  
       end 
-    else 
-    redirect_to @debates
-    end  
+  end 
+
+  def select_verdict
+      @debate = Debate.find(params[:debate])
+      @verdicts = @debate.verdicts
+      @selected = params[:selected].to_i
+      respond_to do |format|
+        format.html { redirect_to @debate }
+        format.js  
+      end 
   end  
 
    private

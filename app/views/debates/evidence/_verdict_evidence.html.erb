@@ -1,0 +1,37 @@
+<div class = 'point-wrapper'>
+  <%if @evidence.first.nil?%>
+    No evidence yet. <%= link_to "Add evidence", new_debate_point_path(@debate) %>
+  <%else%>
+    <%= link_to "Add evidence", new_debate_point_path(@debate) %> | 
+    <%= link_to "Download CSV", debate_path(format: "csv") %>
+    <h1>Research Findings</h1>
+      <div class="panel-group" id="accordion">
+      <%@evidence.each_with_index do |point,index|%>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h5 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=index%>">
+                <div class = 'point'>
+                  <%=point.point%>
+                </div>
+              </a>
+            </h5>
+            <p class = 'pix12'>
+              Total research(<%=point.findings.count%>) | 
+              <%= render 'debates/evidence/important_point', point: point %> | 
+              <%= link_to "Edit", edit_point_path(point) %> |
+              <%= render 'debates/modal_toggle', point: point %> 
+            </p> 
+          </div> 
+          <div id="collapse_<%=index%>" class="panel-collapse collapse">
+            <div class="panel-body">        
+              <%= render 'debates/evidence/points', point: point %> 
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>  
+  <%end%>
+</div>
+
+

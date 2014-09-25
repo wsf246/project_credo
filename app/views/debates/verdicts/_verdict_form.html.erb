@@ -2,6 +2,7 @@
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.hidden_field :debate_id, value: @debate.id %> 
   <%= f.hidden_field :user_create_id, value: current_user.id %> 
+  <%= f.text_field :short, placeholder: "Something short" %>
   <%= f.text_area :verdict, placeholder: "Compose a verdict..." %>
   <%= f.submit "Add verdict", class: "btn btn-small btn-primary" %> <span><%=link_to "Cancel", debate_path(@debate) %></span>
 <%end%>

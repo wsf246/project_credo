@@ -9,7 +9,7 @@
 
 <%= f.hidden_field :user_create_id, value: current_user.id %> 
 <%= f.fields_for :verdicts do |builder| %>
-    <%= render 'verdict_fields', f: builder, debate_id: @debate.id %>
+    <%= render 'debates/form/verdict_fields', f: builder, debate_id: @debate.id %>
 <%end%>  
 
 <p><%= f.link_to_add "Add a verdict", :verdicts %></p>    

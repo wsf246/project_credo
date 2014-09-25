@@ -4,7 +4,7 @@
 		  <div class="col-md-6 col-md-offset-2">
 		  	<b><%= link_to "Back to question", debate_path(@debate) %></b>
 		    <% @evidence.each do |evidence|%>     	  	    	
-			 		<%= render 'debates/points', point: evidence %>
+			 		<%= render 'debates/evidence/points', point: evidence %>
 			 	<%end%>
 			 	<b><%= link_to "Back to question", debate_path(@debate) %></b>	
 		  </div>

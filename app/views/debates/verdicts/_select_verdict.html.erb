@@ -1,0 +1,34 @@
+        <ul class ='verdict'>
+          <% @verdicts.each_with_index do |verdict, i| %>
+            <%if i == @selected%>
+              <%if i == 0%>
+                Top verdict
+              <%end%>
+              <li class = "verdict">
+                <p class = "first-verdict"><b><%= verdict.short %></b></p>
+                <%= verdict.verdict %>
+                <div class='pix12'>
+                  Created by: <%=verdict.user.username%>
+                </div>        
+                <%= render 'bump_verdict', verdict: verdict %>
+              </li> 
+            <%end%>
+          <%end%>
+
+          <% @verdicts.each_with_index do |verdict, i| %>
+            <%if i == @selected%>
+            <%else%>
+              <%if i == 0%>
+                Top verdict
+              <%end%> 
+              <li class = "verdict">
+                <p><b><%= link_to verdict.short, select_verdict_debates_path(selected: i, debate: @debate), remote: true  %></b></p>
+                <div class='pix12'>
+                  Created by: <%=verdict.user.username%>
+                </div>        
+                <%= render 'bump_verdict', verdict: verdict %>
+              </li>
+            <%end%>  
+          <%end%>
+        </ul>
+      </div>

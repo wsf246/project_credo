@@ -1,0 +1,61 @@
+<div class ='point-wrapper'> 
+  <div class = 'center'> 
+    <%if @evidence.first.nil?%>
+      No evidence yet. <%= link_to "Add evidence", new_debate_point_path(@debate) %>
+    </div>
+    <%else%>
+      <%= link_to "View all evidence", debate_points_path(@debate) %> |
+      <%= link_to "Add evidence", new_debate_point_path(@debate) %> | 
+      <%= link_to "Download CSV", debate_path(format: "csv") %>
+      <br></br>
+    </div>
+  </div>
+
+    <script>
+      $(document).ready(function(){
+         $('#verdict-evidence-carousel').carousel({interval: false});
+      });
+    </script> 
+    <!--  Carousel - consult the Twitter Bootstrap docs at
+          http://twitter.github.com/bootstrap/javascript.html#carousel -->
+    <div class="c-evid-wrapper">
+      <div id="verdict-evidence-carousel" class="carousel" data-ride="carousel"><!-- class of slide for animation -->
+        <% unless @evid_count == 0 %>
+          <ol class="carousel-indicators">
+            <%(0..@evid_count).each do |page|%>
+              <li data-target="#verdict-evidence-carousel" data-slide-to="<%= page %>" class="<%= page == 0 ? 'active' : '' %>"></li>
+            <%end%>      
+          </ol>
+        <%end%>  
+        <div class="carousel-inner">
+          <%@evidence.each_with_index do |page,index|%>
+          <%if index == 0%>
+            <div class="item active"><!-- class of active since it's the first item -->
+          <%else%>
+            <div class="item ">
+          <%end%>
+              <div class ='point-wrapper'>  
+                <div class="row-fluid">
+                  <div class= 'point'>                
+                    <%= render 'points', point: page %> 
+                  </div> 
+                </div>
+              </div>    
+            </div>
+          <%end%>
+        </div><!-- /.carousel-inner -->
+        <%if @evid_page_count == 0%>
+        <%else%>
+          <a class="carousel-control left" href="#verdict-evidence-carousel" data-slide="prev" role="button">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="carousel-control right" href="#verdict-evidence-carousel" data-slide="next" role="button">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        <%end%>
+      </div><!-- /.carousel -->
+    </div><!-- /.c-wrapper -->
+  <%end%>
+</div>  
+
+

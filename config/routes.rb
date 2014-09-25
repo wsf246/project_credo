@@ -9,7 +9,8 @@ ProjectCredo::Application.routes.draw do
       match 'search' => 'debates#search', via: [:get, :post], as: :search
       match 'all_research' => 'debates#all_research', via: [:get, :post]  
       match 'less_research' => 'debates#less_research', via: [:get, :post]     
-      match 'add_verdict' => 'debates#add_verdict', via: [:get, :post]      
+      match 'add_verdict' => 'debates#add_verdict', via: [:get, :post]
+      match 'select_verdict' => 'debates#select_verdict', via: [:get, :post]                 
     end
     member do
       put "important", to: "debates#important"

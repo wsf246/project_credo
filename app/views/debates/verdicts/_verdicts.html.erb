@@ -1,0 +1,49 @@
+<div class ='verdict-wrapper'>
+
+  <div class = "row-fluid">
+    <div class = "col-md-4">
+      <div id="error_explanation"></div>  
+      <div id="add_verdict">
+        <% if @verdicts.present? %>
+          <%= link_to "Add a verdict", add_verdict_debates_path(debate: @debate),remote: true %>
+        <%else%>  
+          No verdicts, <%= link_to "why not add one?", add_verdict_debates_path(debate: @debate),remote: true %>
+        <%end%>
+      </div>
+      <div id = "select-verdict">
+        <ul class ='verdict'>
+          <% @verdicts.each_with_index do |verdict, i| %>
+            <%if i == 0%>
+              <li class = "verdict">
+                Top verdict
+                <p class = "first-verdict"><b><%= verdict.short %></b></p>
+                <%= verdict.verdict %>
+                <div class='pix12'>
+                  Created by: <%=verdict.user.username%>
+                </div>        
+                <%= render 'bump_verdict', verdict: verdict %>
+              </li> 
+            <%end%>
+          <%end%>
+
+          <% @verdicts.each_with_index do |verdict, i| %>
+            <%if i == 0%>
+            <%else%>
+              <li class = "verdict">
+                <p><b><%= link_to verdict.short, select_verdict_debates_path(selected: i, debate: @debate), remote: true  %></b></p>
+                <div class='pix12'>
+                  Created by: <%=verdict.user.username%>
+                </div>        
+                <%= render 'bump_verdict', verdict: verdict %>
+              </li>
+            <%end%>  
+          <%end%>
+        </ul>
+      </div>
+    </div>
+
+    <div class ="col-md-8">
+      <%= render 'debates/evidence/verdict_evidence'%>
+    </div>  
+  </div>
+</div>

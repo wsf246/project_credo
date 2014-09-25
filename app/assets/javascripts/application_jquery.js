@@ -9,11 +9,13 @@ function add_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
 }
 
-
-
 $(document).ajaxError(function (e, xhr, settings) {
         if (xhr.status == 401) {
            $('#error_explanation').html(xhr.responseText);
         }
+        else {
+           $('#modal_error_explanation').html("<h5>Please sign in or sign up to continue</h5>");
+        }
     });
 
+$("#pubmed_results_<%= @point_id %>").html("<%= escape_javascript(render 'researches/view_result') %>")
