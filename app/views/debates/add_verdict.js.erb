@@ -1,1 +1,1 @@
-  $("#add_verdict").html("<%= escape_javascript(render 'debates/verdicts/verdict_form') %>")
+$("#add_verdict").html("<%= escape_javascript(render 'debates/verdicts/verdict_form', verdict: [@debate, @verdict]) %>")

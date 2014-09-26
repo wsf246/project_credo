@@ -1,4 +1,4 @@
-<div class='pix12'>
+
   <% if user_signed_in? %>
     <% if current_user.voted_for? verdict %>
       <%= link_to(unbump_verdict_path(verdict), method: :put) do%>   
@@ -14,4 +14,3 @@
       Upvote(<%=verdict.votes_for.size%>)
     <%end%>
   <%end%>     
-</div>  

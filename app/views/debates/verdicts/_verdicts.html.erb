@@ -16,12 +16,17 @@
             <%if i == 0%>
               <li class = "verdict">
                 <div class = "gold">Top verdict</div>
-                <p class = "first-verdict"><b><%= verdict.short %></b></p>
-                <%= verdict.verdict %>
+                <div id = "edit_verdict">
+                  <p class = "first-verdict"><b><%= verdict.short %></b></p>
+                  <%= verdict.verdict %>
+                  <div class='pix12'>
+                    Created by: <%=verdict.user.username%>
+                  </div> 
+                </div>
                 <div class='pix12'>
-                  Created by: <%=verdict.user.username%>
-                </div>        
-                <%= render 'bump_verdict', verdict: verdict %>
+                  <%= link_to "Edit", edit_verdict_debates_path(debate: @debate, verdict: verdict),remote: true %> | 
+                  <%= render 'bump_verdict', verdict: verdict %>
+                </div>  
               </li> 
             <%end%>
           <%end%>

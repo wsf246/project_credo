@@ -105,6 +105,15 @@ class DebatesController < ApplicationController
       end 
   end  
 
+  def edit_verdict
+      @debate = Debate.find(params[:debate])
+      @verdict = Verdict.find(params[:verdict])
+      respond_to do |format|
+        format.html { redirect_to @debate }
+        format.js  
+      end 
+  end   
+
    private
 
     def debate_params

@@ -18,4 +18,3 @@ $(document).ajaxError(function (e, xhr, settings) {
         }
     });
 
-$("#pubmed_results_<%= @point_id %>").html("<%= escape_javascript(render 'researches/view_result') %>")
