@@ -1,0 +1,10 @@
+<% provide(:title, 'All questions') %>
+<div class= 'questions'>
+  <h2>All Questions</h2>
+  <div class="center"><%= link_to "Add a question", new_question_path %></div>
+
+  <%= will_paginate @questions, renderer: BootstrapPagination::Rails %>
+      <%= render @questions %>
+  <%= will_paginate @questions, renderer: BootstrapPagination::Rails %>
+</div>
+

@@ -15,13 +15,13 @@ class VerdictsController < ApplicationController
   end  
 
   def create
-    @debate = Debate.find(params[:debate_id])       
-    @verdict= @debate.verdicts.build(verdict_params)
+    @question = Question.find(params[:question_id])       
+    @verdict= @question.verdicts.build(verdict_params)
     if @verdict.save
       
-      redirect_to @debate
+      redirect_to @question
     else
-      render 'debates/verdicts/_verdict_form'
+      render 'questions/verdicts/_verdict_form'
     end    
   end     
 
@@ -32,6 +32,6 @@ class VerdictsController < ApplicationController
   private
 
     def verdict_params
-      params.require(:verdict).permit(:debate_id,:user_create_id,:verdict,:short)
+      params.require(:verdict).permit(:question_id,:user_create_id,:verdict,:short)
     end  
 end    

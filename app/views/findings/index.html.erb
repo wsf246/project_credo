@@ -2,7 +2,7 @@
 	<% provide(:title, 'All research') %>
 	<h2>Documented Research</h2>
 	<h2><%= link_to "Document a new piece of research", new_research_path(point: @point) %></h2>
-	<h2><%= link_to "Back to debate", debate_path(@point.debate.id) %></h2>
+	<h2><%= link_to "Back to question", question_path(@point.question.id) %></h2>
 
 	<div class="row-fluid">
 	  <div class="col-md-4">

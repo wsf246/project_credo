@@ -138,7 +138,7 @@ class ResearchesController < ApplicationController
       @research.user_create_id = current_user
       @finding = @research.findings.order("created_at").last 
       @point.associate!(@finding)
-      redirect_to debate_path(@point.debate)  
+      redirect_to question_path(@point.question)  
     else
       @study_type = @research.study_type  
       render 'new', point_id: @point_id
@@ -164,7 +164,7 @@ class ResearchesController < ApplicationController
   def destroy
     Research.find(params[:id]).destroy
     flash[:success] = "Research attributes deleted."
-    redirect_to debates_url
+    redirect_to questions_url
   end
 
    private

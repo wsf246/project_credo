@@ -1,0 +1,24 @@
+<ul>
+  <li>
+    <div class='row-fluid'>
+      <div class='col-md-2 center'>
+        <%= render 'important_question', question: question %>
+      </div>
+      <div class='col-md-10'>  
+        <%= link_to question.question, question %>
+        <div class='pix14'>  
+          <%if question.points.joins(:associations).present? %> 
+            <%=pluralize(question.points.joins(:associations).size,'Research finding')%>
+            <%if question.verdicts.present? %>
+              <br /><%=pluralize(question.verdicts.size,'Verdict')%>
+            <%else%> 
+              <br />No verdicts 
+            <%end%>
+          <%else%>
+            Not yet researched  
+          <%end%>  
+        </div>  
+      </div>
+    </div>
+  </li>
+</ul>

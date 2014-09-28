@@ -1,0 +1,46 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* Points show on question */
+
+.point-wrapper {
+
+  margin: auto; 
+
+  h1 {
+    font-size: 24px;
+    text-align: left; 
+    margin: 0 0 0 0;
+    font-weight: bold;
+    color: black;
+  }
+
+  .point {
+    font-size: 14px;
+    text-align: left;
+    color: black;
+    font-weight: normal;
+    list-style: none;
+    margin: 0 0 10px 0;
+  } 
+
+  .research {
+    font-size: 12px;
+    text-align: left;
+    font-weight: normal;
+    color: $gray;
+    list-style: none;
+    padding: 0 0 0 10px;
+    margin: 10px 0 0 0px;    
+  } 
+
+  .finding {
+    font-size: 12px;
+    text-align: left;
+    font-weight: normal;
+    line-height: 110%;
+        border-left: 1px solid $gray-lighter;
+    padding: 0 0 0 10px;
+    margin: 10px 0 0 10px;
+  }   
+}

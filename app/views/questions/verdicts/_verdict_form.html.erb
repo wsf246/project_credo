@@ -1,0 +1,8 @@
+<%= simple_form_for (verdict) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.hidden_field :question_id, value: @question.id %> 
+  <%= f.hidden_field :user_create_id, value: current_user.id %> 
+  <%= f.input :short, placeholder: "Something short" %>
+  <%= f.input :verdict, placeholder: "Compose a verdict..." %>
+  <%= f.submit "Add verdict", class: "btn btn-small btn-primary" %> <span><%=link_to "Cancel", question_path(@question) %></span>
+<%end%>

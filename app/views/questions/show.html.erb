@@ -1,0 +1,16 @@
+<% provide(:title, @question.question) %>
+  
+<div class ='question-wrapper'> 
+  <h2><%= @question.question %></h2>
+  <p><%= @question.description %></p>
+  <div class='pix12'>
+    Asked by: <%= @question.user.username %>
+  </div>   
+  <div class="pix14"><%= link_to "Edit question", edit_question_path %></div>
+</div>
+
+ <%= render 'questions/verdicts/verdicts' %>
+
+ 
+
+ 

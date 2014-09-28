@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   acts_as_voter   
 
   has_many :verdicts
-  has_many :debates
+  has_many :questions
   has_many :points
   has_many :researches     
 

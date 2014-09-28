@@ -1,8 +1,8 @@
 <% provide(:title, 'New Point') %>
-<div class= 'debate-wrapper'>
-	<h2><%=@debate.title%></h2>
+<div class= 'question-wrapper'>
+	<h2><%=@question.question%></h2>
 </div>
 
-<%= simple_form_for([@debate, @point]) do |f| %>
+<%= simple_form_for([@question, @point]) do |f| %>
 	<%= render 'point_form', f: f %>
 <%end%>

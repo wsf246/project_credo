@@ -1,0 +1,24 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#verdict-evidence-carousel {
+  .carousel-indicators {
+    top: -15px;
+    bottom: 100%;
+    background: none;
+  }
+
+  .carousel-indicators .active {
+    background-color: #444;
+  }
+
+  .carousel-indicators li {
+    background-color: #444;
+  }
+
+  .carousel-control {
+    bottom: 100%;
+    background-image: none;
+    color: #000000;
+  }
+}

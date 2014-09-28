@@ -1,0 +1,23 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+/* Questions index */
+
+div.questions {
+  width: 40%;
+  list-style: none;
+  margin: auto;
+
+  ul {
+    list-style: none;  
+    overflow: auto;
+    font-size: 14px;    
+    padding: 5px 0;
+    border-top: 1px solid $gray-lighter;
+    &:last-child {
+      border-bottom: 1px solid $gray-lighter;
+    }
+  }  
+    
+}

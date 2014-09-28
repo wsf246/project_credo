@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <% if current_user.voted_for? point %>
+    <%= link_to "Unupvote("+point.votes_for.size.to_s+")", unimportant_point_path(point), method: :put %> 
+  <%else%>
+    <%= link_to "Upvote("+point.votes_for.size.to_s+")", important_point_path(point), method: :put %>   
+  <%end%> 
+<%else%>
+  <%= link_to "Upvote("+point.votes_for.size.to_s+")", important_point_path(point), method: :put %> 
+<%end%>         
+

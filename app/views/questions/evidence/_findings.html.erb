@@ -1,0 +1,28 @@
+<li class ='research'>
+  <div class='row'>
+    <div class='col-md-2 center'> 
+      <div class='pix12'>
+        <b> Cred Score(<%=finding.research.score%>)</b>
+        <br>Type(<%=finding.research.study_type %>)</br>
+        <%= is_it? finding.research.peer_reviewed %> Peer Reviewed
+      </div>  
+    </div>
+    <div class='col-md-10'> 
+      <%= link_to(research_path(finding.research_id), target: "_blank") do%>
+        <%=finding.research.title %>
+        <br />
+        <div class ='pix12'> Authors: <%=finding.research.authors %> </div>
+        <div class ='pix12'>      
+          <% if finding.research.journal.present? %>
+            Published in: <%= finding.research.journal %>
+          <%else%>
+            Published in: Unknown
+          <%end%> 
+        </div>
+      <%end%>  
+      <p class = 'finding'>
+        "<%= finding.quote %>"
+      </p>
+    </div>
+  </div>    
+</li>

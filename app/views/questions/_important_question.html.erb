@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <% if current_user.voted_for? question%>
+    <%= link_to "Unupvote", unimportant_question_path(question), method: :put %> 
+  <%else%>
+    <%= link_to "Upvote", important_question_path(question), method: :put %>   
+  <%end%> 
+<%else%>
+  <%= link_to "Upvote", important_question_path(question), method: :put %> 
+<%end%> 
+<br /> 
+<%=question.votes_for.size%>

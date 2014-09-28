@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922220810) do
+ActiveRecord::Schema.define(version: 20140928031430) do
 
   create_table "associations", force: true do |t|
     t.integer  "point_id"
@@ -19,19 +19,6 @@ ActiveRecord::Schema.define(version: 20140922220810) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "debates", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "cached_votes_total", default: 0
-    t.integer  "user_create_id"
-  end
-
-  add_index "debates", ["cached_votes_total"], name: "index_debates_on_cached_votes_total"
-  add_index "debates", ["created_at"], name: "index_debates_on_created_at"
 
   create_table "findings", force: true do |t|
     t.text     "finding"
@@ -47,7 +34,7 @@ ActiveRecord::Schema.define(version: 20140922220810) do
   create_table "points", force: true do |t|
     t.text     "point"
     t.boolean  "for_against"
-    t.integer  "debate_id"
+    t.integer  "question_id"
     t.integer  "finding_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -56,6 +43,20 @@ ActiveRecord::Schema.define(version: 20140922220810) do
   end
 
   add_index "points", ["cached_votes_total"], name: "index_points_on_cached_votes_total"
+
+  create_table "questions", force: true do |t|
+    t.string   "question"
+    t.text     "description"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "cached_votes_total", default: 0
+    t.integer  "user_create_id"
+    t.text     "type"
+  end
+
+  add_index "questions", ["cached_votes_total"], name: "index_questions_on_cached_votes_total"
+  add_index "questions", ["created_at"], name: "index_questions_on_created_at"
 
   create_table "researches", force: true do |t|
     t.string   "study_type"
@@ -103,7 +104,7 @@ ActiveRecord::Schema.define(version: 20140922220810) do
 
   create_table "verdicts", force: true do |t|
     t.text     "verdict"
-    t.integer  "debate_id"
+    t.integer  "question_id"
     t.integer  "cached_votes_total", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"

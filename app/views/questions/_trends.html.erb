@@ -1,0 +1,10 @@
+<div class ='trend-wrapper'>  
+  <% if @question.id ==1 %>
+    <%=image_tag("Charts1.png", width: "100%", alt: "Cold Water Trends")%>
+  <%elsif @question.id ==3%>
+    <%=image_tag("Charts2.png", width: "100%", alt: "Running and Osteoarthritis Trends")%>
+  <%else%>
+    Coming Soon
+    <br></br>
+  <%end%>
+</div>

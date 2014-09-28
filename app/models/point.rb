@@ -1,9 +1,9 @@
 class Point < ActiveRecord::Base
 	has_many :associations, dependent: :destroy
     has_many :findings, through: :associations	
-	belongs_to :debate
+	belongs_to :question
   belongs_to :user, foreign_key: "user_create_id"   
-	validates :debate_id, presence: true
+	validates :question_id, presence: true
 	validates :point, presence: true, uniqueness: true
   acts_as_votable
 

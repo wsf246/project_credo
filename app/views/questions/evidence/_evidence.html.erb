@@ -1,0 +1,64 @@
+<div class ='point-wrapper'>  
+  <h2>Evidence</h2>
+  <%if @evidence.first.nil?%>
+    No evidence yet. <%= link_to "Add evidence", new_question_point_path(@question) %>
+  </div>
+  <%else%>
+    <%= link_to "View all evidence", question_points_path(@question) %> |
+    <%= link_to "Add evidence", new_question_point_path(@question) %> | 
+    <%= link_to "Download CSV", question_path(format: "csv") %>
+    <br></br>
+  </div>
+
+    <script>
+      $(document).ready(function(){
+         $('#evidence-carousel').carousel({interval: false});
+      });
+    </script> 
+    <!--  Carousel - consult the Twitter Bootstrap docs at
+          http://twitter.github.com/bootstrap/javascript.html#carousel -->
+    <div class="c-evid-wrapper">
+      <div id="evidence-carousel" class="carousel slide" data-ride="carousel"><!-- class of slide for animation -->
+        <% unless @evid_page_count == 0 %>
+          <ol class="carousel-indicators">
+            <%(0..@evid_page_count).each do |page|%>
+              <li data-target="#evidence-carousel" data-slide-to="<%= page %>" class="<%= page == 0 ? 'active' : '' %>"></li>
+            <%end%>      
+          </ol>
+        <%end%>  
+        <div class="carousel-inner">
+          <%@evidence.each_slice(3).with_index do |page,index|%>
+          <%if index == 0%>
+            <div class="item active"><!-- class of active since it's the first item -->
+          <%else%>
+            <div class="item ">
+          <%end%>
+              <div class ='point-wrapper'>  
+                <div class="row-fluid">
+                  <div class= 'point'>              
+                    <%page.each do |evidence|%>    
+                      <div class="col-md-4">    
+                        <%= render 'points', point: evidence %>
+                      </div>
+                    <%end%> 
+                  </div> 
+                </div>
+              </div>    
+            </div>
+          <%end%>
+        </div><!-- /.carousel-inner -->
+        <%if @evid_page_count == 0%>
+        <%else%>
+          <a class="carousel-control left" href="#evidence-carousel" data-slide="prev" role="button">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="carousel-control right" href="#evidence-carousel" data-slide="next" role="button">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        <%end%>
+      </div><!-- /.carousel -->
+    </div><!-- /.c-wrapper -->
+  <%end%>
+</div>  
+
+

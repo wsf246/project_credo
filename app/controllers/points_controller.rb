@@ -4,8 +4,8 @@ class PointsController < ApplicationController
                 only: [:edit, :update, :destroy, :new, :create, :important]
 
   def index
-    @debate = Debate.find(params[:debate_id])
-    @evidence = @debate.points
+    @question = Question.find(params[:question_id])
+    @evidence = @question.points
       .joins("LEFT JOIN associations ON points.id = associations.point_id")
       .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
       .select('points.*, count(DISTINCT research_id) as "research_count"')
@@ -14,8 +14,8 @@ class PointsController < ApplicationController
 
   def new
 
-    @debate = Debate.find(params[:debate_id])
-    @point = @debate.points.build
+    @question = Question.find(params[:question_id])
+    @point = @question.points.build
 
   end
 
@@ -36,11 +36,11 @@ class PointsController < ApplicationController
   end   
 
   def create
-    @debate = Debate.find(params[:debate_id])    
-    @point = @debate.points.build(point_params)
+    @question = Question.find(params[:question_id])    
+    @point = @question.points.build(point_params)
     if @point.save
       @point.user_create_id = current_user	
-      redirect_to @debate
+      redirect_to @question
     else
       render 'new'
     end    
@@ -48,16 +48,16 @@ class PointsController < ApplicationController
 
   def edit
     @point = Point.find(params[:id])
-    @debate = @point.debate
+    @question = @point.question
     @for_against = @point.for_against
   end
 
   def update
     @point= Point.find(params[:id]) 
-    @debate = @point.debate
+    @question = @point.question
     if @point.update_attributes(point_params)
       flash[:success] = "Point updated"
-      redirect_to @debate
+      redirect_to @question
     else
       render 'edit'
     end

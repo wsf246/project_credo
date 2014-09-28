@@ -4,18 +4,18 @@ ProjectCredo::Application.routes.draw do
   get '/help' => 'static_pages#help'
   get '/about' => 'static_pages#about'
   get '/contact' => 'static_pages#contact'
-  resources :debates do
+  resources :questions do
     collection do
-      match 'search' => 'debates#search', via: [:get, :post], as: :search
-      match 'all_research' => 'debates#all_research', via: [:get, :post]  
-      match 'less_research' => 'debates#less_research', via: [:get, :post]     
-      match 'add_verdict' => 'debates#add_verdict', via: [:get, :post]
-      match 'select_verdict' => 'debates#select_verdict', via: [:get, :post] 
-      match 'edit_verdict' => 'debates#edit_verdict', via: [:get, :post]                 
+      match 'search' => 'questions#search', via: [:get, :post], as: :search
+      match 'all_research' => 'questions#all_research', via: [:get, :post]  
+      match 'less_research' => 'questions#less_research', via: [:get, :post]     
+      match 'add_verdict' => 'questions#add_verdict', via: [:get, :post]
+      match 'select_verdict' => 'questions#select_verdict', via: [:get, :post] 
+      match 'edit_verdict' => 'questions#edit_verdict', via: [:get, :post]                 
     end
     member do
-      put "important", to: "debates#important"
-      put "unimportant", to: "debates#unimportant"
+      put "important", to: "questions#important"
+      put "unimportant", to: "questions#unimportant"
     end    
 
     resources :verdicts, shallow: true do

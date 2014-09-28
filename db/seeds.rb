@@ -70,10 +70,10 @@ when 'development'
             research_id: Research.all.sample.id)
     end    
 
-    #debates seed
-    Debate.delete_all
-    10.times do |debate|
-        Debate.create(title: lorem(5),
+    #questions seed
+    Question.delete_all
+    10.times do |question|
+        Question.create(title: lorem(5),
             notes: "#{lorem(5)}|#{lorem(5)}|#{lorem(5)}",
             description: lorem(8),
             user_create_id: User.all.sample.id)
@@ -84,7 +84,7 @@ when 'development'
     25.times do |verdict|
         Verdict.create(verdict: lorem(8),
             short: lorem(2),
-            debate_id: Debate.all.sample.id,
+            question_id: Question.all.sample.id,
             user_create_id: User.all.sample.id)
     end    
 
@@ -93,7 +93,7 @@ when 'development'
     50.times do |point|
         Point.create(for_against: bin_rand,
             point: lorem(5),
-            debate_id: Debate.all.sample.id,
+            question_id: Question.all.sample.id,
             user_create_id: User.all.sample.id)
     end   
 
