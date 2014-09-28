@@ -3,10 +3,6 @@
 
 <div class="row-fluid">
   <div class="col-md-6 col-md-offset-3">
-    <%= nested_form_for @question do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= render 'questions/form/question_form', f: f  %>
-		    <%= f.submit "Save changes", class: "btn btn-lg btn-primary" %>
-    <% end %>
+    <%= render 'questions/form/question_form' %>
   </div>
 </div>

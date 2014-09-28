@@ -25,6 +25,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @question_type = 'Yes/No'
   end
 
   def create
@@ -38,6 +39,7 @@ class QuestionsController < ApplicationController
 
   def edit
     @question= Question.find(params[:id])
+    @question_type = @question.question_type
   end
 
   def update
@@ -117,7 +119,7 @@ class QuestionsController < ApplicationController
    private
 
     def question_params
-      params.require(:question).permit(:question, :description, :notes, :user_create_id,
+      params.require(:question).permit(:question, :description, :notes, :question_type, :user_create_id,
                                    verdicts_attributes: [:id, :question_id, :verdict, :user_create_id, :_destroy])
     end
 end

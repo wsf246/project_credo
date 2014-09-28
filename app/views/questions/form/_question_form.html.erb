@@ -1,15 +1,14 @@
-<%= f.label :Question %>
-<%= f.text_field :question, placeholder: "Compose affirmative (ex: Cold water is bad for digestion)..." %>
+<%= simple_form_for @question do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-<%= f.label :Description %> 
-<%= f.text_area :description, placeholder: "Compose a description..." %>
+  <%= f.input :question, placeholder: "Compose affirmative (ex: Cold water is bad for digestion)..." %>
 
-<%= f.label :Notes %>
-<%= f.text_area :notes, placeholder: "Additional notes (separate bullet points with '|')..." %>
+  <%= f.input :question_type, collection: ['Yes/No','Multiple Answers'], selected: @question_type %>
 
-<%= f.hidden_field :user_create_id, value: current_user.id %> 
-<%= f.fields_for :verdicts do |builder| %>
-    <%= render 'questions/form/verdict_fields', f: builder, question_id: @question.id %>
-<%end%>  
+  <%= f.input :description, placeholder: "Compose a description..." %>
 
-<p><%= f.link_to_add "Add a verdict", :verdicts %></p>    
+  <%= f.hidden_field :user_create_id, value: current_user.id %> 
+
+  <%= f.button :submit, "Save changes", class: "btn btn-lg btn-primary" %>  
+<%end%>
+   
