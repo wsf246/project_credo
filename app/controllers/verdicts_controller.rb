@@ -17,8 +17,7 @@ class VerdictsController < ApplicationController
   def create
     @question = Question.find(params[:question_id])       
     @verdict= @question.verdicts.build(verdict_params)
-    if @verdict.save
-      
+    if @verdict.save      
       redirect_to @question
     else
       render 'questions/verdicts/_verdict_form'
@@ -28,6 +27,18 @@ class VerdictsController < ApplicationController
   def edit
     @verdict= Verdict.find(params[:id])
   end
+
+ def update
+    @verdict= Verdict.find(params[:id])  
+    @question = @verdict.question    
+    if @verdict.update_attributes(verdict_params)
+      flash[:success] = "Verdict updated"
+      redirect_to @question
+    else
+      render 'questions/verdicts/_verdict_form'
+    end    
+  end 
+
          
   private
 

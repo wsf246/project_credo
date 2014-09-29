@@ -11,13 +11,27 @@ class QuestionsController < ApplicationController
     @verdicts = @question.verdicts
     @evidence = @question.points
     @yes_evidence = @question.points.where(point_type: "Yes")
-    @no_evidence = @question.points.where(point_type: "No")
-    @unknown_evidence = @question.points.where(point_type: "Unknown")
       .joins("LEFT JOIN associations ON points.id = associations.point_id")
       .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
-      .select('points.*, count(DISTINCT research_id) as "research_count"')
-      .group("points.id").order('cached_votes_total desc, research_count desc') 
-    @evid_page_count = ((@evidence.to_a.count/3.0).floor)
+      .joins("LEFT JOIN researches ON findings.research_id = researches.id")
+      .select('points.*, count(DISTINCT research_id) as "research_count", 
+      max(researches.score) as "max_score"')
+      .group("points.id").order('cached_votes_total desc, research_count desc, max_score desc') 
+    @no_evidence = @question.points.where(point_type: "No")
+      .joins("LEFT JOIN associations ON points.id = associations.point_id")
+      .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
+      .joins("LEFT JOIN researches ON findings.research_id = researches.id")
+      .select('points.*, count(DISTINCT research_id) as "research_count", 
+      max(researches.score) as "max_score"')
+      .group("points.id").order('cached_votes_total desc, research_count desc, max_score desc') 
+   @unknown_evidence = @question.points.where(point_type: "Unknown")
+      .joins("LEFT JOIN associations ON points.id = associations.point_id")
+      .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
+      .joins("LEFT JOIN researches ON findings.research_id = researches.id")
+      .select('points.*, count(DISTINCT research_id) as "research_count", 
+      max(researches.score) as "max_score"')
+      .group("points.id").order('cached_votes_total desc, research_count desc, max_score desc') 
+@evid_page_count = ((@evidence.to_a.count/3.0).floor)
     @evid_count = (@evidence.to_a.count -1)
     
     respond_to do |format|
