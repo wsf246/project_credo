@@ -89,6 +89,14 @@ textarea {
   color: #998100;
 }
 
+.blue {
+  color: #428bca;
+}
+
+.pix10 {
+  font-size: 10px;
+} 
+
 .pix12 {
   font-size: 12px;
 } 
@@ -107,6 +115,11 @@ textarea {
 }
 
 .checkbox input[type="checkbox"] {
+  margin: 0 5px 0 0;
+  position: relative;
+}
+
+.radio input[type="radio"] {
   margin: 0 5px 0 0;
   position: relative;
 }

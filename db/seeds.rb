@@ -43,7 +43,7 @@ when 'development'
     Research.delete_all
     50.times do |i|
       Research.create(title: "Research ##{i} #{lorem(5)}",
-        study_type: ['Cross-sectional','Case-control','Cohort Study','Randomized Control Trial','Case Study','Unknown'].sample,
+        study_type: ['Cross Sectional','Case Control','Cohort Study','Review of Literature','Randomized Control Trial','Meta-Analysis','Case Study','Unknown'].sample,
         journal: lorem(1),
         dropouts: lorem(5),
         funding: lorem(5),
@@ -73,7 +73,8 @@ when 'development'
     #questions seed
     Question.delete_all
     10.times do |question|
-        Question.create(title: lorem(5),
+        Question.create(question: lorem(5),
+            question_type: "Yes/No",
             notes: "#{lorem(5)}|#{lorem(5)}|#{lorem(5)}",
             description: lorem(8),
             user_create_id: User.all.sample.id)
@@ -91,8 +92,8 @@ when 'development'
     #points seed
     Point.delete_all
     50.times do |point|
-        Point.create(for_against: bin_rand,
-            point: lorem(5),
+        Point.create(point: lorem(5),
+            point_type: ['Yes','Yes','Yes','No','No','No','Unknown'].sample,
             question_id: Question.all.sample.id,
             user_create_id: User.all.sample.id)
     end   

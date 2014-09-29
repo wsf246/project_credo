@@ -10,6 +10,9 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @verdicts = @question.verdicts
     @evidence = @question.points
+    @yes_evidence = @question.points.where(point_type: "Yes")
+    @no_evidence = @question.points.where(point_type: "No")
+    @unknown_evidence = @question.points.where(point_type: "Unknown")
       .joins("LEFT JOIN associations ON points.id = associations.point_id")
       .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
       .select('points.*, count(DISTINCT research_id) as "research_count"')

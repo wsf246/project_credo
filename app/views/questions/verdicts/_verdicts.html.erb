@@ -1,7 +1,7 @@
 <div class ='verdict-wrapper'>
 
   <div class = "row-fluid">
-    <div class = "col-md-4">
+    <div class = "col-md-3 col-md-offset-1">
       <div id="error_explanation"></div>  
       <div id="add_verdict">
         <% if @verdicts.present? %>
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class ="col-md-8">
+    <div class ="col-md-7">
       <%= render 'questions/evidence/verdict_evidence'%>
     </div>  
   </div>

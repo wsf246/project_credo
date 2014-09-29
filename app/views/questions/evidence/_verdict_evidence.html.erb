@@ -5,32 +5,89 @@
     <%= link_to "Add evidence", new_question_point_path(@question) %> | 
     <%= link_to "Download CSV", question_path(format: "csv") %>
     <h1>Research Findings</h1>
-      <div class="panel-group" id="accordion">
-      <%@evidence.each_with_index do |point,index|%>
-        <div class="panel panel-default">
+    
+    <div class="panel-group" id="yes_accordion">
+      <%@yes_evidence.each_with_index do |point,index|%>
+        <div class="panel panel-info">
           <div class="panel-heading">
             <h5 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=index%>">
+              <a data-toggle="collapse" data-parent="#yes_accordion" href="#yes_collapse_<%=index%>">
                 <div class = 'point'>
-                  <%=point.point%>
+                  <b class ="blue"><%=point.point_type%></b>, <%=point.point%>
                 </div>
               </a>
             </h5>
-            <p class = 'pix12'>
+            <div class = 'pix12'>
               Total research(<%=point.findings.count%>) | 
               <%= render 'questions/evidence/important_point', point: point %> | 
               <%= link_to "Edit", edit_point_path(point) %> |
               <%= render 'questions/modal_toggle', point: point %> 
-            </p> 
+            </div> 
           </div> 
-          <div id="collapse_<%=index%>" class="panel-collapse collapse">
+          <div id="yes_collapse_<%=index%>" class="panel-collapse collapse">
             <div class="panel-body">        
               <%= render 'questions/evidence/points', point: point %> 
             </div>
           </div>
         </div>
       <%end%>
-    </div>  
+    </div> 
+
+    <div class="panel-group" id="no_accordion">
+      <%@no_evidence.each_with_index do |point,index|%>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h5 class="panel-title">
+              <a data-toggle="collapse" data-parent="#no_accordion" href="#no_collapse_<%=index%>">
+                <div class = 'point'>
+                  <b><%=point.point_type%></b>, <%=point.point%>
+                </div>
+              </a>
+            </h5>
+            <div class = 'pix12'>
+              Total research(<%=point.findings.count%>) | 
+              <%= render 'questions/evidence/important_point', point: point %> | 
+              <%= link_to "Edit", edit_point_path(point) %> |
+              <%= render 'questions/modal_toggle', point: point %> 
+            </div> 
+          </div> 
+          <div id="no_collapse_<%=index%>" class="panel-collapse collapse">
+            <div class="panel-body">        
+              <%= render 'questions/evidence/points', point: point %> 
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div> 
+
+    <div class="panel-group" id="unknown_accordion">
+      <%@unknown_evidence.each_with_index do |point,index|%>
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h5 class="panel-title">
+              <a data-toggle="collapse" data-parent="#unknown_accordion" href="#unknown_collapse_<%=index%>">
+                <div class = 'point'>
+                  <b class='gold'><%=point.point_type%></b>, <%=point.point%>
+                </div>
+              </a>
+            </h5>
+            <div class = 'pix12'>
+              Total research(<%=point.findings.count%>) | 
+              <%= render 'questions/evidence/important_point', point: point %> | 
+              <%= link_to "Edit", edit_point_path(point) %> |
+              <%= render 'questions/modal_toggle', point: point %> 
+            </div> 
+          </div> 
+          <div id="unknown_collapse_<%=index%>" class="panel-collapse collapse">
+            <div class="panel-body">        
+              <%= render 'questions/evidence/points', point: point %> 
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>     
+
+
   <%end%>
 </div>
 

@@ -4,6 +4,7 @@ class Point < ActiveRecord::Base
 	belongs_to :question
   belongs_to :user, foreign_key: "user_create_id"   
 	validates :question_id, presence: true
+  validates :point_type, presence: true
 	validates :point, presence: true, uniqueness: true
   acts_as_votable
 

@@ -13,10 +13,9 @@ class PointsController < ApplicationController
   end
 
   def new
-
     @question = Question.find(params[:question_id])
     @point = @question.points.build
-
+    @point_type = 'Unknown'
   end
 
   def search
@@ -49,7 +48,7 @@ class PointsController < ApplicationController
   def edit
     @point = Point.find(params[:id])
     @question = @point.question
-    @for_against = @point.for_against
+    @point_type = @point.point_type
   end
 
   def update
@@ -71,7 +70,7 @@ class PointsController < ApplicationController
     end  
 
     def point_params
-      params.require(:point).permit(:point, :for_against, :user_create_id, findings_attributes: [:id])
+      params.require(:point).permit(:point, :point_type, :user_create_id, findings_attributes: [:id])
     end
 
     def researches_attributes

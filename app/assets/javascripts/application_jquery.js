@@ -18,3 +18,15 @@ $(document).ajaxError(function (e, xhr, settings) {
         }
     });
 
+
+$(document).ready(function() {
+if($('#question_question_type option:selected').text() ==  "Yes/No") 
+   $('#question_description').prop('disabled', true);
+
+$('#question_question_type option:selected').keyup(function(){
+      if($('#question_question_type option:selected').text() !=  "Yes/No") 
+           $('#question_description').prop('disabled', false);    
+  else
+     $('#question_description').prop('disabled', true);   
+});
+ });
