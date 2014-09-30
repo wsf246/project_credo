@@ -2,6 +2,9 @@
   
 <div class ='question-wrapper'> 
   <h2><%= @question.question %></h2>
+  <%if @question.question_type == "Multiple Answers"%>
+    <p><%= @question.answers%></p>
+  <%end%>  
   <p><%= @question.description %></p>
   <div class='pix12'>
     Asked by: <%= @question.user.username %>

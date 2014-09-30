@@ -47,6 +47,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+ 
     if @question.save	
       redirect_to @question
     else
@@ -136,7 +137,12 @@ class QuestionsController < ApplicationController
    private
 
     def question_params
-      params.require(:question).permit(:question, :description, :notes, :question_type, :user_create_id,
-                                   verdicts_attributes: [:id, :question_id, :verdict, :user_create_id, :_destroy])
+      params.require(:question).permit(:question, :answers, :description, :notes, :question_type, :user_create_id,
+                                   verdicts_attributes: verdicts_attributes)
     end
+
+    def verdicts_attributes
+      [:id, :question_id, :verdict, :user_create_id, :_destroy]
+    end 
+   
 end
