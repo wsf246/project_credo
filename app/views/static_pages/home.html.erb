@@ -43,7 +43,7 @@
 	  </div><!-- /.carousel -->
 	  <div class="search" style="margin: auto;">
 			<%= search_form_for @query, url: search_questions_path,
-									html: { method: :post, class: "form-inline"} do |f| %>
+									html: { method: :post} do |f| %>
 			  <%= f.text_field :question_cont, placeholder: "Search for a question" %>				  
 				<%= f.submit "Search" %>  
 			<%end%>

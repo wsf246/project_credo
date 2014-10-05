@@ -3,9 +3,10 @@ class QuestionsController < ApplicationController
                 only: [:edit, :update, :destroy, :new, :create, :important, :add_verdict]
   
   def index
-    @questions = Question.order(:cached_votes_total).paginate(page: params[:page])
+    @query = Question.ransack(params[:q]) 
+    @questions = @query.result(distinct: true).order(:cached_votes_total).paginate(page: params[:page])
   end
-  
+
   def search
     index
     render :index

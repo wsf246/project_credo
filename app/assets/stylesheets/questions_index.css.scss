@@ -9,6 +9,11 @@ div.questions {
   list-style: none;
   margin: auto;
 
+  .search {
+  width: 50%;
+  padding-bottom: 5px;
+  }
+
   ul {
     list-style: none;  
     overflow: auto;
