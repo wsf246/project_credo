@@ -1,52 +1,54 @@
 <div class='home-wrapper'>	
-	<div class="center jumbotron">
-	  <h1>Welcome to Project Credo</h1>
+  <div class="jumbotron center" style="background-color: #428bca">
+	  <h1>The source for all your questions</h1>
+
 	  <%= link_to "Sign up now!", new_user_registration_path,
-	                              class: "btn btn-lg btn-primary" %>
-	</div>
+	                              class: "btn btn-lg btn-default" %>
+                              
+		<script>
+	    $(document).ready(function(){
+	       $('#home-carousel').carousel({interval: 8000});
+	    });
+	  </script>  
 
-	<script>
-	  $(document).ready(function(){
-	     $('#home-carousel').carousel({interval: 8000});
-	  });
-	</script>  
-
-	<!--  Carousel - consult the Twitter Bootstrap docs at
-	      http://twitter.github.com/bootstrap/javascript.html#carousel -->
-	<div id="home-carousel" class="carousel slide" data-ride="carousel"><!-- class of slide for animation -->
-		<ol class="carousel-indicators">
-			<li data-target="#home-carousel" data-slide-to="0" class="active"></li>
-			<li data-target="#home-carousel" data-slide-to="1"></li>
-			<li data-target="#home-carousel" data-slide-to="2"></li>	
-		</ol>	  
-	  <div class="carousel-inner">
-	    <div class="item active"><!-- class of active since it's the first item -->
-				<%= link_to image_tag("icedwatercrop.jpg", alt: "", size: "1200x480"), question_path(1)  %>
-	      <div class="carousel-caption">
-	        <h3>Does drinking cold beverages during meals negatively affect digestion?</h3>
-	      </div>
-	    </div>
-	    <div class="item">
-	  		<%= link_to image_tag("microbeads.jpg", alt: "", size: "1200x480"), question_path(2) %>
-	      <div class="carousel-caption">
-	        <h3>Are microbead products bad for the environment?</h3>
-	      </div>
-	    </div>
-	    <div class="item">
-	      <%= link_to image_tag("running.jpg", alt: "", size: "1200x480"), question_path(3) %>
-	      <div class="carousel-caption">
-	        <h3>Is running long distances bad for your joints?</h3>
-	      </div>
-	    </div>    
-	  </div><!-- /.carousel-inner -->
-	  <!--  Next and Previous controls below
-	        href values must reference the id for this carousel -->
+		<div id="home-carousel" class="carousel slide" data-ride="carousel"><!-- class of slide for animation -->
+	    <ol class="carousel-indicators">
+	      <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
+	      <li data-target="#home-carousel" data-slide-to="1"></li>
+	      <li data-target="#home-carousel" data-slide-to="2"></li>  
+	      <li data-target="#home-carousel" data-slide-to="4"></li>
+	      <li data-target="#home-carousel" data-slide-to="5"></li> 
+	    </ol>   
+	    <div class="carousel-inner">
+	    	<%@questions.each_with_index do |question,index| %>
+	    		<%if index == 0%>
+			      <div class="item active"><!-- class of active since it's the first item -->
+			        <h3><%= link_to question.question, question_path(question.id) %></h3>
+			      </div>
+			    <%else%>
+			      <div class="item">
+			        <h3><%= link_to question.question, question_path(question.id) %></h3>
+			      </div>
+	      	<%end%>
+	      <%end%>  
+	    </div><!-- /.carousel-inner -->
+	    <!--  Next and Previous controls below
+	          href values must reference the id for this carousel -->
 	    <a class="carousel-control left" href="#home-carousel" role="button" data-slide="prev">
-	    	<span class="glyphicon glyphicon-chevron-left"></span>
+	      <span class="glyphicon glyphicon-chevron-left"></span>
 	    </a>
 	    <a class="carousel-control right" href="#home-carousel" role="button" data-slide="next">
-	    	<span class="glyphicon glyphicon-chevron-right"></span>
+	      <span class="glyphicon glyphicon-chevron-right"></span>
 	    </a>
-	</div><!-- /.carousel -->
+	  </div><!-- /.carousel -->
+	  <div class="search" style="margin: auto;">
+			<%= search_form_for @query, url: search_questions_path,
+									html: { method: :post, class: "form-inline"} do |f| %>
+			  <%= f.text_field :question_cont, placeholder: "Search for a question" %>				  
+				<%= f.submit "Search" %>  
+			<%end%>
+		</div>	
+
+	</div>
 </div>
 

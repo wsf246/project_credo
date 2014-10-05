@@ -9,7 +9,7 @@ class Point < ActiveRecord::Base
   acts_as_votable
 
   def associated?(finding)
-    associations.find_by(finding_id: finding.id)
+    associations.find_by(finding_id: finding.id)                                          
   end
 
   def associate!(finding)

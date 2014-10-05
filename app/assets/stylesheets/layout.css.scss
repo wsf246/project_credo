@@ -7,7 +7,15 @@
   box-sizing: borraider-box;
 }
 
+/* body */
+  body {
+    padding-top: 50px !important;
+  }
+
 /* header */
+  .navbar{
+    padding: 0;
+  }
 
 .logo {
   float: left;

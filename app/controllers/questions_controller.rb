@@ -6,6 +6,11 @@ class QuestionsController < ApplicationController
     @questions = Question.order(:cached_votes_total).paginate(page: params[:page])
   end
   
+  def search
+    index
+    render :index
+  end    
+  
   def show
     @question = Question.find(params[:id])
     @verdicts = @question.verdicts
