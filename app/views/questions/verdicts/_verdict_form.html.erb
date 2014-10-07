@@ -2,7 +2,11 @@
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.hidden_field :question_id, value: @question.id %> 
   <%= f.hidden_field :user_create_id, value: current_user.id %> 
-  <%= f.input :short, placeholder: "Something short" %>
-  <%= f.input :verdict, placeholder: "Compose a verdict..." %>
-  <%= f.submit "Add verdict", class: "btn btn-small btn-primary" %> <span><%=link_to "Cancel", question_path(@question) %></span>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= f.input :short, placeholder: "Something short" %></div>
+    <div class="panel-body">
+      <%= f.input :verdict, placeholder: "Compose a verdict..." %>
+    </div>
+    <%= f.submit "Add verdict", class: "btn btn-small btn-primary", style: "margin-bottom: 10px; margin-left: 10px" %> <span><%=link_to "Cancel", question_path(@question) %></span>
+  </div>
 <%end%>

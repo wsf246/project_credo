@@ -30,10 +30,11 @@ class VerdictsController < ApplicationController
 
  def update
     @verdict= Verdict.find(params[:id])  
-    @question = @verdict.question    
+    @question = @verdict.question 
+    active = params[:id]  
     if @verdict.update_attributes(verdict_params)
       flash[:success] = "Verdict updated"
-      redirect_to @question
+      redirect_to question_path(id: @question.id, active: active)
     else
       render 'questions/verdicts/_verdict_form'
     end    

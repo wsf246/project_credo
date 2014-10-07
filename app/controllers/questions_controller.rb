@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, 
-                only: [:edit, :update, :destroy, :new, :create, :important, :add_verdict]
+                only: [:edit, :update, :destroy, :new, :create, :important, :add_verdict, :edit_verdict]
   
   def index
     @query = Question.ransack(params[:q]) 
@@ -15,6 +15,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @verdicts = @question.verdicts
+    @active = if params[:active] == nil then @verdicts.first.id else params[:active].to_i end    
     @evidence = @question.points
     @yes_evidence = @question.points.where(point_type: "Yes")
       .joins("LEFT JOIN associations ON points.id = associations.point_id")
@@ -136,7 +137,7 @@ class QuestionsController < ApplicationController
       @verdict = Verdict.find(params[:verdict])
       respond_to do |format|
         format.html { redirect_to @question }
-        format.js  
+        format.js   
       end 
   end   
 

@@ -9,9 +9,10 @@ div.verdict-wrapper{
 
   h1 {
     font-size: 24px;
-    margin-bottom: 5px;
-    text-align: left;
-    font-weight: none;
+    text-align: left; 
+    margin: 0 0 0 0;
+    font-weight: bold;
+    color: black;
   }
 
   h2 {
@@ -40,14 +41,20 @@ div.verdict-wrapper{
   }
 
   .verdict {
-    list-style: none;
-    margin-bottom: 10px;
-    padding: 0;
-    border-bottom: 1px solid $gray; 
+    font-weight: bold;
+    color: black;
   }
 
-  .first-verdict {
+  .top-verdict {
     font-size: 24px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .upvote {
+  text-align: center;
+  margin: auto;
+  margin-top: -3px;
   }
  
 }
