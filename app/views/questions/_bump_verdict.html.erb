@@ -1,18 +1,18 @@
 <% if user_signed_in? %>
   <% if current_user.voted_for? verdict %>
-    <%= button_to(unbump_verdict_path(verdict), method: :put, class: "btn btn-default btn-xs") do%>
+    <%= button_to(unbump_verdict_path(verdict), method: :put, class: "btn btn-default btn-xs active") do%>
       <%=verdict.votes_for.size%>
-      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
     <%end%>    
   <%else%>
     <%= button_to(bump_verdict_path(verdict), method: :put, class: "btn btn-default btn-xs") do%> 
+      <%=verdict.votes_for.size%>
       <span class="glyphicon glyphicon-thumbs-up" ></span>  
-      <p class="upvote"><%=verdict.votes_for.size%></p>
     <%end%>  
   <%end%> 
 <%else%>
   <%= button_to(bump_verdict_path(verdict), method: :put, class: "btn btn-default btn-xs") do%> 
-    <span class="glyphicon glyphicon-thumbs-up" ></span>  
-    <%=verdict.votes_for.size%>
+      <%=verdict.votes_for.size%>
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
   <%end%>  
 <%end%>     

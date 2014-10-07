@@ -1,19 +1,19 @@
 <% if user_signed_in? %>
   <% if current_user.voted_for? point %>
-    <%= button_to(unimportant_point_path(point), method: :put, class: "btn btn-default btn-xs") do%> 
+    <%= button_to(unimportant_point_path(point), method: :put, class: "btn btn-default btn-xs active") do%> 
       <%=point.votes_for.size%>
-      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
     <%end%>
   <%else%>
     <%= button_to(important_point_path(point), method: :put, class: "btn btn-default btn-xs") do%> 
+      <%=point.votes_for.size%>
       <span class="glyphicon glyphicon-thumbs-up" ></span>  
-      <p class="upvote"><%=point.votes_for.size%></p>
     <%end%>
   <%end%>    
 <%else%>
     <%= button_to(important_point_path(point), method: :put, class: "btn btn-default btn-xs") do%> 
+      <%=point.votes_for.size%>
       <span class="glyphicon glyphicon-thumbs-up" ></span>  
-      <p class="upvote"><%=point.votes_for.size%></p>
     <%end%>
 <%end%>         
 
