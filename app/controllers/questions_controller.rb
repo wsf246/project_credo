@@ -15,7 +15,14 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @verdicts = @question.verdicts
-    @active = if params[:active] == nil then @verdicts.first.id else params[:active].to_i end    
+    @active = 
+      if @verdicts.present?
+        if params[:active] == nil 
+          @verdicts.first.id 
+        else 
+          params[:active].to_i 
+        end 
+      end   
     @evidence = @question.points
     @yes_evidence = @question.points.where(point_type: "Yes")
       .joins("LEFT JOIN associations ON points.id = associations.point_id")
