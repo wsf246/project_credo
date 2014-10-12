@@ -1,7 +1,7 @@
 class PointsController < ApplicationController
 
   before_action :authenticate_user!, 
-                only: [:edit, :update, :destroy, :new, :create, :important]
+                only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote]
 
   def index
     @question = Question.find(params[:question_id])
@@ -22,13 +22,19 @@ class PointsController < ApplicationController
 
   end 
 
-  def important
+  def upvote
     @point = Point.find(params[:id])
     @point.upvote_from current_user
     redirect_to :back
   end
 
-  def unimportant
+  def downvote
+    @point = Point.find(params[:id])
+    @point.downvote_from current_user
+    redirect_to :back
+  end
+
+  def unvote
     @point = Point.find(params[:id])
     @point.unvote_by current_user
     redirect_to :back

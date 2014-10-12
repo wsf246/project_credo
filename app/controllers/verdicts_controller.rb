@@ -2,13 +2,19 @@ class VerdictsController < ApplicationController
   before_action :authenticate_user!, 
                 only: [:edit, :update, :destroy, :new, :create, :important]
 
-  def bump
+  def upvote
     @verdict = Verdict.find(params[:id])
     @verdict.upvote_from current_user
     redirect_to :back
   end
 
-  def unbump
+  def downvote
+    @verdict = Verdict.find(params[:id])
+    @verdict.downvote_from current_user
+    redirect_to :back
+  end
+
+  def unvote
     @verdict = Verdict.find(params[:id])
     @verdict.unvote_by current_user
     redirect_to :back

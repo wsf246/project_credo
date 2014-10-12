@@ -13,14 +13,16 @@ ProjectCredo::Application.routes.draw do
       match 'edit_verdict' => 'questions#edit_verdict', via: [:get, :post]                 
     end
     member do
-      put "important", to: "questions#important"
-      put "unimportant", to: "questions#unimportant"
+      put "upvote", to: "questions#upvote"
+      put "downvote", to: "questions#downvote"
+      put "unvote", to: "questions#unvote"      
     end    
 
     resources :verdicts, shallow: true do
       member do
-        put "bump", to: "verdicts#bump"
-        put "unbump", to: "verdicts#unbump"
+        put "upvote", to: "verdicts#upvote"
+        put "downvote", to: "verdicts#downvote"
+        put "unvote", to: "verdicts#unvote"
       end      
     end
     
@@ -29,8 +31,9 @@ ProjectCredo::Application.routes.draw do
         match 'search' => 'points#search', via: [:get, :post], as: :search
       end
       member do
-        put "important", to: "points#important"
-        put "unimportant", to: "points#unimportant"
+        put "upvote", to: "points#upvote"
+        put "downvote", to: "points#downvote"
+        put "unvote", to: "points#unvote"
       end
     end  
   end  

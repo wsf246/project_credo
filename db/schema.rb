@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929235553) do
+ActiveRecord::Schema.define(version: 20141011184129) do
 
   create_table "associations", force: true do |t|
     t.integer  "point_id"
@@ -40,9 +40,13 @@ ActiveRecord::Schema.define(version: 20140929235553) do
     t.integer  "cached_votes_total", default: 0
     t.integer  "user_create_id"
     t.text     "point_type"
+    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_down",  default: 0
   end
 
+  add_index "points", ["cached_votes_down"], name: "index_points_on_cached_votes_down"
   add_index "points", ["cached_votes_total"], name: "index_points_on_cached_votes_total"
+  add_index "points", ["cached_votes_up"], name: "index_points_on_cached_votes_up"
 
   create_table "questions", force: true do |t|
     t.string   "question"
@@ -54,9 +58,13 @@ ActiveRecord::Schema.define(version: 20140929235553) do
     t.integer  "user_create_id"
     t.text     "question_type"
     t.text     "answers"
+    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_down",  default: 0
   end
 
+  add_index "questions", ["cached_votes_down"], name: "index_questions_on_cached_votes_down"
   add_index "questions", ["cached_votes_total"], name: "index_questions_on_cached_votes_total"
+  add_index "questions", ["cached_votes_up"], name: "index_questions_on_cached_votes_up"
   add_index "questions", ["created_at"], name: "index_questions_on_created_at"
 
   create_table "researches", force: true do |t|
@@ -111,9 +119,13 @@ ActiveRecord::Schema.define(version: 20140929235553) do
     t.datetime "updated_at"
     t.integer  "user_create_id"
     t.text     "short"
+    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_down",  default: 0
   end
 
+  add_index "verdicts", ["cached_votes_down"], name: "index_verdicts_on_cached_votes_down"
   add_index "verdicts", ["cached_votes_total"], name: "index_verdicts_on_cached_votes_total"
+  add_index "verdicts", ["cached_votes_up"], name: "index_verdicts_on_cached_votes_up"
 
   create_table "votes", force: true do |t|
     t.integer  "votable_id"

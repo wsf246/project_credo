@@ -143,4 +143,7 @@ input {
   height: auto !important;
 }
 
-
+.btn-gold {
+  //@include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  @include button-variant(black, gold, gold);
+}

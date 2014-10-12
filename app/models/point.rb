@@ -41,4 +41,7 @@ class Point < ActiveRecord::Base
     end
   end
 
+  def vote_score
+    (self.cached_votes_up-self.cached_votes_down)*self.cached_votes_total
+  end
 end

@@ -1,10 +1,10 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, 
-                only: [:edit, :update, :destroy, :new, :create, :important, :add_verdict, :edit_verdict]
+                only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote, :add_verdict, :edit_verdict]
   
   def index
     @query = Question.ransack(params[:q]) 
-    @questions = @query.result(distinct: true).order(:cached_votes_total).paginate(page: params[:page])
+    @questions = @query.result(distinct: true).paginate(page: params[:page])
   end
 
   def search
@@ -14,9 +14,9 @@ class QuestionsController < ApplicationController
   
   def show
     @question = Question.find(params[:id])
-    @verdicts = @question.verdicts
+    @verdicts = @question.verdicts.sort_by(&:vote_score).reverse
     @active = if params[:active] == nil then @verdicts.first.id else params[:active].to_i end    
-    @evidence = @question.points
+    @evidence = @question.points.sort_by(&:vote_score).reverse
     @yes_evidence = @question.points.where(point_type: "Yes")
       .joins("LEFT JOIN associations ON points.id = associations.point_id")
       .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
@@ -83,15 +83,21 @@ class QuestionsController < ApplicationController
     redirect_to questions_url
   end
 
-  def important
+  def upvote
     @question = Question.find(params[:id])
     @question.upvote_from current_user
     redirect_to :back
   end
 
-  def unimportant
+  def unvote
     @question = Question.find(params[:id])
     @question.unvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @question = Question.find(params[:id])
+    @question.downvote_from current_user
     redirect_to :back
   end
 

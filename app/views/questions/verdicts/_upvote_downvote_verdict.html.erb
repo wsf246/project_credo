@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+  <% if current_user.voted_up_on? verdict %>
+    <%= button_to(unvote_verdict_path(verdict), method: :put , class: "btn btn-gold btn-xs active", style: "margin-bottom:3px") do%> 
+      <%=verdict.cached_votes_up%>
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+    <%end%> 
+    <%= button_to(downvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs") do%> 
+      <%=verdict.cached_votes_down%>
+      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+    <%end%>   
+  <% elsif current_user.voted_down_on? verdict%>
+    <%= button_to(upvote_verdict_path(verdict), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
+      <%=verdict.cached_votes_up%>
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+    <%end%> 
+    <%= button_to(unvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs active") do%> 
+      <%=verdict.cached_votes_down%>
+      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+    <%end%>      
+  <%else%>
+    <%= button_to(upvote_verdict_path(verdict), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
+      <%=verdict.cached_votes_up%>
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+    <%end%> 
+    <%= button_to(downvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs") do%> 
+      <%=verdict.cached_votes_down%>
+      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+    <%end%>     
+  <%end%> 
+<%else%>
+    <%= button_to(upvote_verdict_path(verdict), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
+      <%=verdict.cached_votes_up%>
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+    <%end%> 
+    <%= button_to(downvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs") do%> 
+      <%=verdict.cached_votes_down%>
+      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+    <%end%>  
+<%end%> 

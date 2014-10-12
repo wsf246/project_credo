@@ -1,10 +1,10 @@
 <ul>
   <li>
     <div class='row-fluid'>
-      <div class='col-md-2 center'>
-        <%= render 'questions/important_question', question: question %>
+      <div class='col-md-1 center'>
+        <%= render 'questions/upvote_downvote_question', question: question %>
       </div>
-      <div class='col-md-10'>  
+      <div class='col-md-11'>  
         <%= link_to question.question, question %>
         <div class='pix14'>  
           <%if question.points.joins(:associations).present? %> 

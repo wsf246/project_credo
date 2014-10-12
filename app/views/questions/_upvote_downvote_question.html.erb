@@ -1,0 +1,40 @@
+<% if user_signed_in? %>
+  <% if current_user.voted_up_on? question%>
+    <%= button_to(unvote_question_path(question), method: :put , class: "btn btn-gold btn-xs active", style: "margin-bottom:3px") do%> 
+      <%=question.cached_votes_up%>
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+    <%end%> 
+    <%= button_to(downvote_question_path(question), method: :put , class: "btn btn-default btn-xs") do%> 
+      <%=question.cached_votes_down%>
+      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+    <%end%>
+  <% elsif current_user.voted_down_on? question%>
+    <%= button_to(upvote_question_path(question), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
+      <%=question.cached_votes_up%>
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+    <%end%> 
+    <%= button_to(unvote_question_path(question), method: :put , class: "btn btn-default btn-xs active") do%> 
+      <%=question.cached_votes_down%>
+      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+    <%end%>      
+  <%else%>
+      <%= button_to(upvote_question_path(question), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
+      <%=question.cached_votes_up%>
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+    <%end%> 
+    <%= button_to(downvote_question_path(question), method: :put , class: "btn btn-default btn-xs") do%> 
+      <%=question.cached_votes_down%>
+      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+    <%end%>     
+  <%end%> 
+<%else%>
+    <%= button_to(upvote_question_path(question), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
+      <%=question.cached_votes_up%>
+      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+    <%end%> 
+    <%= button_to(downvote_question_path(question), method: :put , class: "btn btn-default btn-xs") do%> 
+      <%=question.cached_votes_down%>
+      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+    <%end%>  
+<%end%> 
+
