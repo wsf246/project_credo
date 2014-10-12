@@ -1,9 +1,7 @@
 <div class='home-wrapper'>	
   <div class="jumbotron center" style="background-color: #428bca">
 	  <h1>The source for all your questions</h1>
-
-	  <%= link_to "Sign up now!", new_user_registration_path,
-	                              class: "btn btn-lg btn-default" %>
+  	<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-default" if not user_signed_in? %>
                               
 		<script>
 	    $(document).ready(function(){

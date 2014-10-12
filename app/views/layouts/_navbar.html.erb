@@ -34,7 +34,7 @@
           </li>
         <% else %>
           <li><%= link_to "Sign in", new_user_session_path %></li>
-          <li><%= button_to "Sign up", new_user_registration_path, class: "btn btn-primary navbar-btn" %></li>
+          <li><%= button_to "Sign up", new_user_registration_path, class: "btn btn-primary navbar-btn", method: :get %></li>
         <% end %>          
       </ul>
     </div>
