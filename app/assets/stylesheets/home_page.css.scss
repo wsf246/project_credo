@@ -24,7 +24,7 @@
     background-color: #428bca;
     margin: auto;
     width: 50%;
-    padding-bottom: 30px;
+    margin-bottom: 30px;
 
     h3{
       width: 80%;
@@ -49,7 +49,6 @@
       background: rgba(0,0,0,0.5);
       h3 {
       color: #FFFFFF;
-      z-index: 100;
       }
     }
 
@@ -64,7 +63,7 @@
     }
 
     .carousel-indicators {
-      top: 60%;   
+      top: 100%;   
       background: none;
     }
 
