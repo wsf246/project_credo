@@ -1,9 +1,9 @@
 <div class = 'evidence-wrapper'>
-  <h1>Research Findings</h1>
+  <h1>Arguments</h1>
   <%if @evidence.first.nil?%>
     No evidence yet. <%= link_to "Add evidence", new_question_point_path(@question) %>
   <%else%>
-    <%= link_to "Add evidence", new_question_point_path(@question) %> | 
+    <%= link_to "Add argument", new_question_point_path(@question) %> | 
     <%= link_to "Download CSV", question_path(format: "csv") %>    
   
     <div class="panel-group" id="yes_accordion">

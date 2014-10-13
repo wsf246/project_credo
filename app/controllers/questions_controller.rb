@@ -2,9 +2,11 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, 
                 only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote, :add_verdict, :edit_verdict]
   
+
+
   def index
     @query = Question.ransack(params[:q]) 
-    @questions = @query.result(distinct: true).paginate(page: params[:page])
+    @questions = @query.result.paginate(page: params[:page])
   end
 
   def search
