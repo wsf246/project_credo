@@ -1,9 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, 
                 only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote, :add_verdict, :edit_verdict]
-  
-
-
+ 
   def index
     @query = Question.ransack(params[:q]) 
     @questions = @query.result.paginate(page: params[:page])
@@ -17,7 +15,14 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @verdicts = @question.verdicts.sort_by(&:vote_score).reverse
-    @active = if params[:active] == nil then @verdicts.first.id else params[:active].to_i end    
+    @active = 
+      if @verdicts.present?
+        if params[:active] == nil 
+          @verdicts.first.id 
+        else 
+          params[:active].to_i 
+        end
+      end    
     @evidence = @question.points.joins("LEFT JOIN associations ON points.id = associations.point_id")
       .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
       .joins("LEFT JOIN researches ON findings.research_id = researches.id")
@@ -25,8 +30,6 @@ class QuestionsController < ApplicationController
       max(researches.score) as "max_score", 
       (cached_votes_up-cached_votes_down)*cached_votes_total as "vote_score"')
       .group("points.id").order('vote_score desc, research_count desc, max_score desc') 
-    
-
     @yes_evidence = @evidence.where(point_type: "Yes")
     @no_evidence = @evidence.where(point_type: "No")
     @unknown_evidence = @evidence.where(point_type: "Unknown")
