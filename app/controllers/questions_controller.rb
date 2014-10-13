@@ -14,44 +14,21 @@ class QuestionsController < ApplicationController
   
   def show
     @question = Question.find(params[:id])
-<<<<<<< HEAD
     @verdicts = @question.verdicts.sort_by(&:vote_score).reverse
     @active = if params[:active] == nil then @verdicts.first.id else params[:active].to_i end    
-    @evidence = @question.points.sort_by(&:vote_score).reverse
-=======
-    @verdicts = @question.verdicts
-    @active = 
-      if @verdicts.present?
-        if params[:active] == nil 
-          @verdicts.first.id 
-        else 
-          params[:active].to_i 
-        end 
-      end   
-    @evidence = @question.points
->>>>>>> f674975e441b7da28e79d4c2a724d681ceaa48a9
-    @yes_evidence = @question.points.where(point_type: "Yes")
-      .joins("LEFT JOIN associations ON points.id = associations.point_id")
+    @evidence = @question.points.joins("LEFT JOIN associations ON points.id = associations.point_id")
       .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
       .joins("LEFT JOIN researches ON findings.research_id = researches.id")
       .select('points.*, count(DISTINCT research_id) as "research_count", 
-      max(researches.score) as "max_score"')
-      .group("points.id").order('cached_votes_total desc, research_count desc, max_score desc') 
-    @no_evidence = @question.points.where(point_type: "No")
-      .joins("LEFT JOIN associations ON points.id = associations.point_id")
-      .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
-      .joins("LEFT JOIN researches ON findings.research_id = researches.id")
-      .select('points.*, count(DISTINCT research_id) as "research_count", 
-      max(researches.score) as "max_score"')
-      .group("points.id").order('cached_votes_total desc, research_count desc, max_score desc') 
-   @unknown_evidence = @question.points.where(point_type: "Unknown")
-      .joins("LEFT JOIN associations ON points.id = associations.point_id")
-      .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
-      .joins("LEFT JOIN researches ON findings.research_id = researches.id")
-      .select('points.*, count(DISTINCT research_id) as "research_count", 
-      max(researches.score) as "max_score"')
-      .group("points.id").order('cached_votes_total desc, research_count desc, max_score desc') 
-@evid_page_count = ((@evidence.to_a.count/3.0).floor)
+      max(researches.score) as "max_score", 
+      (cached_votes_up-cached_votes_down)*cached_votes_total as "vote_score"')
+      .group("points.id").order('vote_score desc, research_count desc, max_score desc') 
+    
+
+    @yes_evidence = @evidence.where(point_type: "Yes")
+    @no_evidence = @evidence.where(point_type: "No")
+    @unknown_evidence = @evidence.where(point_type: "Unknown")
+    @evid_page_count = ((@evidence.to_a.count/3.0).floor)
     @evid_count = (@evidence.to_a.count -1)
     
     respond_to do |format|
