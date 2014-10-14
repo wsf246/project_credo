@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :question, use: [:history]
+  friendly_id :question, use: [:slugged, :history]
 
   def should_generate_new_friendly_id?
     question_changed?
