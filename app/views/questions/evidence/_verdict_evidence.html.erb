@@ -1,4 +1,5 @@
 <div class = 'evidence-wrapper'>
+
   <h1>Evidence</h1>
   <%if @evidence.first.nil?%>
     No evidence yet. <%= link_to "Add an argument and evidence", new_question_point_path(@question) %>
@@ -13,7 +14,7 @@
             <%= render 'questions/evidence/important_point', point: point %> 
           </div>
 
-          <div class = "col-md-11" style = "margin-left: -4%">
+          <div class = "col-md-11" style = "margin-left: -1%">
             <div class="panel panel-info">
               <div class="panel-heading">
                 <h5 class="panel-title">
@@ -46,7 +47,7 @@
           <div class = "col-xs-1">
             <%= render 'questions/evidence/important_point', point: point %> 
           </div>
-          <div class = "col-md-11" style = "margin-left: -4%">
+          <div class = "col-md-11" style = "margin-left: -1%">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h5 class="panel-title">
@@ -79,7 +80,7 @@
           <div class = "col-md-1">
             <%= render 'questions/evidence/important_point', point: point %> 
           </div>
-          <div class = "col-md-11" style = "margin-left: -4%">
+          <div class = "col-md-11" style = "margin-left: -1%">
 
             <div class="panel panel-warning">
               <div class="panel-heading">
