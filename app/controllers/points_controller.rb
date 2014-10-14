@@ -2,9 +2,15 @@ class PointsController < ApplicationController
 
   before_action :authenticate_user!, 
                 only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote]
-
+ 
+  before_action :get_question, 
+                only: [:index, :new, :create]
+                
+  def get_question
+    @question = Question.friendly.find(params[:question_id])              
+  end   
+                
   def index
-    @question = Question.find(params[:question_id])
     @evidence = @question.points
       .joins("LEFT JOIN associations ON points.id = associations.point_id")
       .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
@@ -13,7 +19,6 @@ class PointsController < ApplicationController
   end
 
   def new
-    @question = Question.find(params[:question_id])
     @point = @question.points.build
     @point_type = 'Unknown'
   end
@@ -40,8 +45,7 @@ class PointsController < ApplicationController
     redirect_to :back
   end   
 
-  def create
-    @question = Question.find(params[:question_id])    
+  def create  
     @point = @question.points.build(point_params)
     if @point.save
       @point.user_create_id = current_user	

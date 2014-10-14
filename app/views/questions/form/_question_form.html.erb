@@ -1,14 +1,13 @@
 <%= simple_form_for @question do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.input :question, placeholder: "Compose affirmative (ex: Cold water is bad for digestion)..." %>
+  <%= f.input :question, placeholder: "Ask a question like 'Is cold water bad for digestion?'" %>
 
   <%= f.input :question_type, collection: ['Yes/No','Multiple Answers'], selected: @question_type %>
 
   <%= f.input :answers, placeholder: "Only if you've selected multiple answers, add potential answers separated by a comma.  For example, answers to 'What is the best diet?' could be 'low carb, low fat, raw foods'" %>
 
-
-  <%= f.input :description, placeholder: "Compose a description..." %>
+  <%= f.input :description, placeholder: "Compose a description,..." %>
 
   <%= f.hidden_field :user_create_id, value: current_user.id %> 
 

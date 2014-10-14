@@ -1,7 +1,15 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, 
                 only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote, :add_verdict, :edit_verdict]
- 
+
+  before_action :get_question, 
+                only: [:show, :edit, :update, :destroy, :upvote, :downvote, 
+                  :unvote, :all_research, :less_research]
+
+  def get_question
+    @question = Question.friendly.find(params[:id])              
+  end              
+
   def index
     @query = Question.ransack(params[:q]) 
     @questions = @query.result.paginate(page: params[:page])
@@ -13,7 +21,6 @@ class QuestionsController < ApplicationController
   end    
   
   def show
-    @question = Question.find(params[:id])
     @verdicts = @question.verdicts.sort_by(&:vote_score).reverse
     @active = 
       if @verdicts.present?
@@ -37,7 +44,11 @@ class QuestionsController < ApplicationController
     @evid_count = (@evidence.to_a.count -1)
     
     respond_to do |format|
-      format.html
+      format.html {    
+        if request.path != question_path(@question)
+          redirect_to @question, status: :moved_permanently
+        end
+      }
       format.csv { render text: @evidence.to_csv }
     end
   end
@@ -58,12 +69,10 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question= Question.find(params[:id])
     @question_type = @question.question_type
   end
 
   def update
-    @question= Question.find(params[:id])
     if @question.update_attributes(question_params)
       flash[:success] = "Question updated"
       redirect_to @question
@@ -73,28 +82,25 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    Question.find(params[:id]).destroy
+    @question.destroy
     flash[:success] = "Question deleted."
     redirect_to questions_url
   end
 
   def upvote
-    @question = Question.find(params[:id])
     @question.upvote_from current_user
     redirect_to :back
   end
 
-  def unvote
-    @question = Question.find(params[:id])
-    @question.unvote_by current_user
-    redirect_to :back
-  end
-
   def downvote
-    @question = Question.find(params[:id])
     @question.downvote_from current_user
     redirect_to :back
   end
+
+  def unvote
+    @question.unvote_by current_user
+    redirect_to :back
+  end  
 
   def all_research
     @point = Point.find(params[:point])
@@ -115,7 +121,7 @@ class QuestionsController < ApplicationController
   end               
 
   def add_verdict
-      @question = Question.find(params[:question])
+      @question = Question.friendly.find(params[:question])
       @verdict = @question.verdicts.build
       respond_to do |format|
         format.html { redirect_to @question }
@@ -124,7 +130,7 @@ class QuestionsController < ApplicationController
   end 
 
   def select_verdict
-      @question = Question.find(params[:question])
+      @question = Question.friendly.find(params[:question])
       @verdicts = @question.verdicts
       @selected = params[:selected].to_i
       respond_to do |format|
@@ -134,7 +140,7 @@ class QuestionsController < ApplicationController
   end  
 
   def edit_verdict
-      @question = Question.find(params[:question])
+      @question = Question.friendly.find(params[:question])
       @verdict = Verdict.find(params[:verdict])
       respond_to do |format|
         format.html { redirect_to @question }

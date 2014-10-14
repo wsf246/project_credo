@@ -21,7 +21,7 @@ class VerdictsController < ApplicationController
   end  
 
   def create
-    @question = Question.find(params[:question_id])       
+    @question = Question.friendly.find(params[:question_id])       
     @verdict= @question.verdicts.build(verdict_params)
     if @verdict.save      
       redirect_to @question
