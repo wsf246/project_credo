@@ -2,8 +2,10 @@ class Question < ActiveRecord::Base
   extend FriendlyId
   friendly_id :question, use: [:slugged, :history]
 
-
-
+  def should_generate_new_friendly_id?
+    question_changed?
+  end
+  
   has_many :points, dependent: :destroy
   has_many :verdicts, dependent: :destroy
   belongs_to :user, foreign_key: "user_create_id"
