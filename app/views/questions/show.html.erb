@@ -1,7 +1,7 @@
 <% provide(:title, @question.question) %>
   
 <div class ='question-wrapper'> 
-  <h2><%= @question.question %></h2>
+  <h1><%= @question.question %></h1>
   <%if @question.question_type == "Multiple Answers"%>
     <p><%= @question.answers%></p>
   <%end%>  

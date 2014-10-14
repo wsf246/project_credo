@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   before_action :get_question, 
                 only: [:show, :edit, :update, :destroy, :upvote, :downvote, 
-                  :unvote, :all_research, :less_research]
+                  :unvote, :less_research]
 
   def get_question
     @question = Question.friendly.find(params[:id])              
@@ -103,6 +103,7 @@ class QuestionsController < ApplicationController
   end  
 
   def all_research
+    @question = Question.friendly.find(params[:question])
     @point = Point.find(params[:point])
 
     respond_to do |format|
@@ -112,6 +113,7 @@ class QuestionsController < ApplicationController
   end 
 
   def less_research
+    @question = Question.friendly.find(params[:question])
     @point = Point.find(params[:point])
 
     respond_to do |format|
