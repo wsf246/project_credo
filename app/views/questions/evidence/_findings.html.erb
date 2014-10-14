@@ -1,13 +1,14 @@
 <li class ='research'>
   <div class='row'>
-    <div class='col-md-2 center'> 
+    <div class='col-md-3 center'> 
       <div class='pix12'>
         <b> Cred Score(<%=finding.research.score%>)</b>
-        <br>Type(<%=finding.research.study_type %>)</br>
-        <%= is_it? finding.research.peer_reviewed %> Peer Reviewed
+        <br><%= is_it? finding.research.peer_reviewed %> Peer Reviewed</br>
+        <%=finding.research.study_type %>
+        
       </div>  
     </div>
-    <div class='col-md-10'> 
+    <div class='col-md-9'> 
       <%= link_to(research_path(finding.research_id), target: "_blank") do%>
         <%=finding.research.title %>
         <br />
