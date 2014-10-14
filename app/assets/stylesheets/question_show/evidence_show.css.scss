@@ -42,5 +42,13 @@
         border-left: 1px solid $gray-lighter;
     padding: 0 0 0 10px;
     margin: 10px 0 0 10px;
-  }   
+  } 
+
+  .panel-body {
+    padding-left: 0;
+  }
+
+  .pad-left{
+    padding-left: 15px;
+  }
 }

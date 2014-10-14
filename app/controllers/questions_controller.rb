@@ -3,8 +3,7 @@ class QuestionsController < ApplicationController
                 only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote, :add_verdict, :edit_verdict]
 
   before_action :get_question, 
-                only: [:show, :edit, :update, :destroy, :upvote, :downvote, 
-                  :unvote, :less_research]
+                only: [:show, :edit, :update, :destroy, :upvote, :downvote, :unvote]
 
   def get_question
     @question = Question.friendly.find(params[:id])              
@@ -103,7 +102,6 @@ class QuestionsController < ApplicationController
   end  
 
   def all_research
-    @question = Question.friendly.find(params[:question])
     @point = Point.find(params[:point])
 
     respond_to do |format|
@@ -113,7 +111,6 @@ class QuestionsController < ApplicationController
   end 
 
   def less_research
-    @question = Question.friendly.find(params[:question])
     @point = Point.find(params[:point])
 
     respond_to do |format|
