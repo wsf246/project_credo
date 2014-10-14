@@ -9,18 +9,16 @@
       </div>  
     </div>
     <div class='col-md-9'> 
-      <%= link_to(research_path(finding.research_id), target: "_blank") do%>
-        <%=finding.research.title %>
+      <%= link_to finding.research.title, research_path(finding.research_id), target: "_blank"%>
         <br />
-        <div class ='pix12'> Authors: <%=finding.research.authors %> </div>
-        <div class ='pix12'>      
-          <% if finding.research.journal.present? %>
-            Published in: <%= finding.research.journal %>
-          <%else%>
-            Published in: Unknown
-          <%end%> 
-        </div>
-      <%end%>  
+      <div class ='pix12'> Authors: <%=finding.research.authors %> </div>
+      <div class ='pix12'>      
+        <% if finding.research.journal.present? %>
+          Published in: <%= finding.research.journal %>
+        <%else%>
+          Published in: Unknown
+        <%end%> 
+      </div> 
       <p class = 'finding'>
         "<%= finding.quote %>"
       </p>
