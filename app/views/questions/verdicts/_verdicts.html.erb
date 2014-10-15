@@ -1,6 +1,6 @@
 <div class ='verdict-wrapper'>
   <div class = "row">
-    <div class = "col-md-4">
+    <div class = "col-md-5">
       <div id="error_explanation"></div>  
           <h1>Verdicts</h1>
       <div id="add_verdict">
@@ -18,7 +18,7 @@
               <%= render 'questions/verdicts/upvote_downvote_verdict', verdict: verdict%>
             </div>
 
-            <div class = "col-md-11">
+            <div class = "col-md-11" style = "margin-left: -10px">
               <div id = "edit_verdict_<%=verdict.id%>">
                 <div class="panel panel-default" style="margin: 0 0 20px 4%">
                   <div class="panel-heading">
@@ -51,7 +51,7 @@
       </div>
     </div> <!--"col-md-3 col-md-offset-1"-->
 
-    <div class ="col-md-7 col-md-offset-1">
+    <div class ="col-md-7">
       <%= render 'questions/evidence/verdict_evidence'%>
     </div>     
   </div> <!--row-fluid div --> 
