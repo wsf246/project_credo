@@ -7,6 +7,10 @@
     <div class="panel-body">
       <%= f.input :verdict, placeholder: "Compose a verdict..." %>
     </div>
-    <%= f.submit "Add verdict", class: "btn btn-small btn-primary", style: "margin-bottom: 10px; margin-left: 10px" %> <span><%=link_to "Cancel", question_path(@question) %></span>
+    <%if verdict.new_record?%>
+      <%= f.submit "Add verdict", class: "btn btn-small btn-primary", style: "margin-bottom: 10px; margin-left: 10px" %> <span><%=link_to "Cancel", question_path(@question) %></span>
+    <%else%>  
+      <%= f.submit "Edit verdict", class: "btn btn-small btn-primary", style: "margin-bottom: 10px; margin-left: 10px" %> <span><%=link_to "Cancel", question_path(@question) %></span>
+    <%end%>      
   </div>
 <%end%>

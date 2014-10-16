@@ -6,8 +6,14 @@
       </div>
       <div class='col-md-11'>  
         <%= link_to question.question, question %>
-        <div class='pix14'>  
-          <%if question.points.joins(:associations).present? %> 
+        <div class='pix14'>
+          Answers: 
+          <%if question.question_type == "Yes/No"%>  
+            <%=question.question_type%>
+          <%else%>
+            <%question.answers%>
+          <%end%>    
+          <br /><%if question.points.joins(:associations).present? %> 
             <%=pluralize(question.points.joins(:associations).size,'Research finding')%>
             <%if question.verdicts.present? %>
               <br /><%=pluralize(question.verdicts.size,'Verdict')%>

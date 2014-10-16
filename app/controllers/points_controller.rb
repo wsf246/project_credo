@@ -21,6 +21,7 @@ class PointsController < ApplicationController
   def new
     @point = @question.points.build
     @point_type = 'Unknown'
+    @answers = @question.answers.split(",")
   end
 
   def search
@@ -59,6 +60,8 @@ class PointsController < ApplicationController
     @point = Point.find(params[:id])
     @question = @point.question
     @point_type = @point.point_type
+    @answers = @question.answers.split(",").push(@point_type, "Unknown").uniq 
+
   end
 
   def update

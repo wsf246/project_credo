@@ -11,6 +11,10 @@
 
   <%= f.hidden_field :user_create_id, value: current_user.id %> 
 
-  <%= f.button :submit, "Save changes", class: "btn btn-lg btn-primary" %>  
+  <%= f.button :submit, "Save changes", class: "btn btn-md btn-primary" %>
+  <%if @question.new_record?%>
+  <%else%>
+    <%=link_to "Cancel", question_path(@question)%>
+  <%end%>    
 <%end%>
    

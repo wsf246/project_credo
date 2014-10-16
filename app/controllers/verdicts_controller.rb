@@ -1,6 +1,6 @@
 class VerdictsController < ApplicationController
   before_action :authenticate_user!, 
-                only: [:edit, :update, :destroy, :new, :create, :important]
+                only: [:edit, :update, :destroy,:upvote, :downvote, :new, :create]
 
   def upvote
     @verdict = Verdict.find(params[:id])
