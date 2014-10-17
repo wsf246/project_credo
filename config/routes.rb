@@ -3,6 +3,9 @@ ProjectCredo::Application.routes.draw do
   get '/help' => 'static_pages#help'
   get '/about' => 'static_pages#about'
   get '/contact' => 'static_pages#contact'
+  
+  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
+
   resources :questions do
     collection do
       match 'search' => 'questions#search', via: [:get, :post], as: :search
@@ -10,9 +13,11 @@ ProjectCredo::Application.routes.draw do
       match 'less_research' => 'questions#less_research', via: [:get, :post]     
       match 'add_verdict' => 'questions#add_verdict', via: [:get, :post]
       match 'select_verdict' => 'questions#select_verdict', via: [:get, :post] 
-      match 'edit_verdict' => 'questions#edit_verdict', via: [:get, :post]                 
+      match 'edit_verdict' => 'questions#edit_verdict', via: [:get, :post]
     end
+
     member do
+      get 'edit_history', to: 'questions#edit_history'                
       put "upvote", to: "questions#upvote"
       put "downvote", to: "questions#downvote"
       put "unvote", to: "questions#unvote"      

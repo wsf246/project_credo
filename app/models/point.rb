@@ -1,5 +1,6 @@
 class Point < ActiveRecord::Base
-	has_many :associations, dependent: :destroy
+  has_paper_trail :skip => [:updated_at, :created_at, :user_create_id, :cached_votes_total, :cached_votes_up,:cached_votes_down]
+  has_many :associations, dependent: :destroy
     has_many :findings, through: :associations	
 	belongs_to :question
   belongs_to :user, foreign_key: "user_create_id"   

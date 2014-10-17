@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
                 only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote, :add_verdict, :edit_verdict]
 
   before_action :get_question, 
-                only: [:show, :edit, :update, :destroy, :upvote, :downvote, :unvote]
+                only: [:show, :edit, :update, :destroy, :upvote, :downvote, :unvote, :undo_link, :edit_history]
 
   def get_question
     @question = Question.friendly.find(params[:id])              
@@ -73,7 +73,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update_attributes(question_params)
-      flash[:success] = "Question updated"
+      flash[:success] = "Question updated, #{undo_link}"
       redirect_to @question
     else
       render 'edit'
@@ -86,6 +86,21 @@ class QuestionsController < ApplicationController
     redirect_to questions_url
   end
 
+  def edit_history
+    versions = []
+    attributes = @question.points + @question.verdicts + [@question]
+    
+    attributes.each do |attribute|
+      attribute.versions.each do |v|
+        versions << v
+      end
+    end
+
+    @versions = versions.sort_by{|v| v[:created_at]}.reverse
+  
+
+  end
+    
   def upvote
     @question.upvote_from current_user
     redirect_to :back
@@ -158,4 +173,7 @@ class QuestionsController < ApplicationController
       [:id, :question_id, :verdict, :user_create_id, :_destroy]
     end 
    
+    def undo_link
+      view_context.link_to("undo", revert_version_path(@question.versions.last), :method => :post)
+    end
 end

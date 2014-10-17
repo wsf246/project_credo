@@ -14,7 +14,7 @@
     </header>
     <div class="container-fluid" style="padding: 0">
       <% flash.each do |key, value| %>
-       <div class="alert alert-<%= key %>"><%= value %></div>
+       <div class="alert alert-<%= key %>"><%= raw(value) %></div>
       <% end %>
       <%= yield %>
     </div>

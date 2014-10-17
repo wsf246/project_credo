@@ -1,0 +1,35 @@
+<% provide(:title, "History | " +@question.question) %>
+
+<div class ='question-wrapper'> 
+  <h1><%= @question.question %></h1>
+  <%if @question.question_type == "Multiple Answers"%>
+    <p>Potential answers:<%= @question.answers%></p>
+  <%end%>  
+  <p><%= @question.description %></p>
+  <div class='pix12'>
+    Asked by: <%= @question.user.username %>
+  </div>   
+  <div class="pix14"><%= link_to "Edit question", edit_question_path %> | 
+  <%= link_to "Back to question", @question %></div>
+</div>
+<div class ='question-history'>
+  <h2>Edit history</h2>
+  <ul>
+
+
+    <% @versions.each do |v| %>
+      <li>
+        <b>
+          <%=User.find(v.whodunnit).username%> at 
+          <%=l(v.created_at, format: "%-d.%m.%Y %H:%M:%S %Z")%>: 
+        </b>  
+        <%= v.event.titleize%> 
+          <%v.changeset.each_with_index do |(key,value),index|%>
+            <%=if index != 0 then "; " end%>
+            <%=key%> from "<%=value.first%>" to "<%=value.last%>"
+          <%end%>
+      </li>
+    <%end%>
+
+  </ul> 
+</div>  
