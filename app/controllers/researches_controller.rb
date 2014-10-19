@@ -3,6 +3,13 @@ class ResearchesController < ApplicationController
   before_action :authenticate_user!, 
                 only: [:edit, :update, :destroy, :new, :create]  
 
+  before_action :get_research, 
+                only: [:show, :edit, :update, :destroy, :undo_link, :edit_history]
+
+  def get_research
+    @research = Research.find(params[:id])            
+  end
+
   def index
     @query = Research.ransack(params[:q]) 
     @researches = @query.result(distinct: true).includes(:findings).paginate(page: params[:page], per_page: 10).order('score DESC')    
@@ -13,8 +20,7 @@ class ResearchesController < ApplicationController
     render :index
   end  
   
-  def show
-    @research = Research.find(params[:id])
+  def show    
     @findings = @research.findings
     bias_controls = []
     @research.single_blinded ? bias_controls << "Single Blinded" : ""
@@ -146,12 +152,10 @@ class ResearchesController < ApplicationController
   end
 
   def edit
-    @research = Research.find(params[:id])
     @study_type = @research.study_type     
   end
 
   def update
-    @research = Research.find(params[:id])
     if @research.update_attributes(research_params) 
       @research.score_it
       flash[:success] = "Research attributes updated"
@@ -162,12 +166,19 @@ class ResearchesController < ApplicationController
   end
 
   def destroy
-    Research.find(params[:id]).destroy
+    @research.destroy
     flash[:success] = "Research attributes deleted."
     redirect_to questions_url
   end
 
+  def edit_history
+    @versions = PaperTrail::Version.where(item_id: @research).where(item_type: "Research")
+  end  
+
    private
+    def undo_link
+      view_context.link_to("undo", revert_version_path(@research.versions.last), :method => :post)
+    end
 
     def research_params
       params.require(:research).permit(researches_attributes,
