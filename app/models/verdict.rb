@@ -1,5 +1,5 @@
 class Verdict < ActiveRecord::Base
-  has_paper_trail :skip => [:updated_at, :created_at, :user_create_id, :cached_votes_total, :cached_votes_up,:cached_votes_down]
+  has_paper_trail :skip => [:updated_at, :created_at, :cached_votes_total, :cached_votes_up,:cached_votes_down]
   
   default_scope { order('cached_votes_total DESC') }
   acts_as_votable 

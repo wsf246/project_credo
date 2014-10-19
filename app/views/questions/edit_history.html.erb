@@ -15,7 +15,7 @@
 <div class ='question-history'>
   <h2>Edit history</h2>
   <ul>
-
+    <%=@verdicts%>
 
     <% @versions.each do |v| %>
       <li>
@@ -24,10 +24,33 @@
           <%=l(v.created_at, format: "%-d.%m.%Y %H:%M:%S %Z")%>: 
         </b>  
         <%= v.event.titleize%> 
-          <%v.changeset.each_with_index do |(key,value),index|%>
-            <%=if index != 0 then "; " end%>
-            <%=key%> from "<%=value.first%>" to "<%=value.last%>"
-          <%end%>
+        <%if v.event == "destroy" && v.item_type == "Verdict"%>
+          <b>short</b> "<%=v.reify.short%>""
+          <b>verdict</b>"<%=v.reify.verdict%>"
+        <%end%>
+ 
+        <%if v.item_type == "Point" && v.next != nil%>
+          "<%=v.next.reify.point%>"
+        <%elsif v.item_type == "Point"%>
+          "<%=v.reify.point%>"  
+        <%end%>          
+        
+        <%v.changeset.each_with_index do |(key,value),index|%>             
+            <%if v.event == "create" && v.item_type == "Association"%>
+              <%if index == 0%> 
+              association between <b>research</b> "<%=Finding.find(value.last).research.title if key == "finding_id"%>"
+              <%elsif index == 1%>
+              and <b>argument</b>"<%=Point.find(value.last).point if key == "point_id"%>"
+              <%end%>
+            <%elsif v.event == "create"%>
+              <%=if index != 0 then "; " end%>  
+              <b><%=key%></b> "<%=value.last%>"    
+            <%else%>
+              <%=if index != 0 then "; " end%>
+              <b><%=key%></b> from "<%=value.first%>" to "<%=value.last%>"
+            <%end%>  
+        <%end%>
+
       </li>
     <%end%>
 

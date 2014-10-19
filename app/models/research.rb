@@ -1,4 +1,5 @@
 class Research < ActiveRecord::Base
+  has_paper_trail :skip => [:updated_at, :created_at, :score, :user_create_id]
   default_scope { order('score DESC') }
 
   has_many :findings, dependent: :destroy

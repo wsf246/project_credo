@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  has_paper_trail :skip => [:updated_at, :created_at, :user_create_id, :cached_votes_total, :cached_votes_up,:cached_votes_down]
+  has_paper_trail :skip => [:updated_at, :slug, :created_at, :user_create_id, :cached_votes_total, :cached_votes_up,:cached_votes_down]
 
   extend FriendlyId
   friendly_id :question, use: [:slugged, :history]

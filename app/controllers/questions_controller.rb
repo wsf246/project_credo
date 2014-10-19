@@ -87,17 +87,40 @@ class QuestionsController < ApplicationController
   end
 
   def edit_history
-    versions = []
-    attributes = @question.points + @question.verdicts + [@question]
-    
-    attributes.each do |attribute|
-      attribute.versions.each do |v|
+
+    versions = 
+      PaperTrail::Version.where(item_id: @question).where(item_type: "Question") +
+      PaperTrail::Version.where_object(question_id: @question.id).where(item_type: "Verdict").where(event: "destroy")
+
+    @question.points.each do |point|
+      point.versions.each do |v|
         versions << v
       end
     end
 
+    @question.verdicts.each do |verdict|
+      verdict.versions.each do |v|
+        versions << v
+      end
+    end    
+
+    @question.points.each do |point|
+      point.findings.each do |finding|
+        finding.versions.each do |v|
+          versions << v
+        end
+      end
+    end
+
+    @question.points.each do |point|
+      point.associations.each do |association|
+        association.versions.each do |v|
+          versions << v
+        end
+      end
+    end
+
     @versions = versions.sort_by{|v| v[:created_at]}.reverse
-  
 
   end
     
