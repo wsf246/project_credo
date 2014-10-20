@@ -47,7 +47,7 @@ class QuestionsController < ApplicationController
 
     @pie = 
       LazyHighCharts::HighChart.new('some_id') do |f|
-        f.chart({:defaultSeriesType=>"pie" , :margin=> [10, 0, 0, 0], height: 150} )
+        f.chart({:defaultSeriesType=>"pie" , :margin=> [5, 0, 0, 0], height: 130} )
         f.colors( ['#428bca', 'black', '#998100', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'])
         series = {
           :type=> 'pie',
@@ -55,7 +55,7 @@ class QuestionsController < ApplicationController
           :data=> [
             [if yes_total_cred == 0 then '' else 'Yes' end, yes_total_cred],            
             [if no_total_cred == 0 then '' else 'No' end, no_total_cred],
-            [if unknown_total_cred == 0 then '' else 'Unknown' end, unknown_total_cred],
+            [if unknown_total_cred == 0 then '' else 'Unk.' end, unknown_total_cred],
           ]
         }
         f.series(series)
@@ -70,7 +70,7 @@ class QuestionsController < ApplicationController
             :color=>"white",
             :style=>{
               :font=>'bold 40px Verdana, sans-serif',
-              fontSize: "10px"
+              fontSize: "14px"
             }
           }
         })
