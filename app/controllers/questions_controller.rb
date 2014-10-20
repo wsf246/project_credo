@@ -51,7 +51,7 @@ class QuestionsController < ApplicationController
         f.colors( ['#428bca', 'black', '#998100', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'])
         series = {
           :type=> 'pie',
-          :name=> 'Total Cred Score',
+          :name=> 'Cred',
           :data=> [
             [if yes_total_cred == 0 then '' else 'Yes' end, yes_total_cred],            
             [if no_total_cred == 0 then '' else 'No' end, no_total_cred],
