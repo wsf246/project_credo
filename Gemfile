@@ -19,11 +19,12 @@ gem 'simple_form'
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
-gem 'jquery-rails', '3.0.4'
+gem 'jquery-rails'
 gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'friendly_id'
 gem 'paper_trail'
+gem 'lazy_high_charts'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

@@ -40,9 +40,11 @@
                     
                       <div class='pix12'>
                         <%= link_to "Edit", edit_verdict_questions_path(question: @question, verdict: verdict, active: @active),remote: true %>
-                        <%if current_user.id == verdict.user_create_id%>  
-                         | <%= link_to "Delete", verdict, method: :delete %>
-                        <%end%>
+                        <%if user_signed_in?%>
+                          <%if current_user.id == verdict.user_create_id%>  
+                           | <%= link_to "Delete", verdict, method: :delete %>
+                          <%end%>
+                        <%end%>  
                       </div>  
                     </div>
                   </div> 

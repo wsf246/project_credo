@@ -5,7 +5,9 @@
     No evidence yet. <%= link_to "Add an argument and evidence", new_question_point_path(@question) %>
   <%else%>
     <%= link_to "Add argument", new_question_point_path(@question) %> | 
-    <%= link_to "Download CSV", question_path(format: "csv") %>    
+    <%= link_to "Download CSV", question_path(format: "csv") %>
+
+
     <%if @question.question_type == "Yes/No"%>
       <div class="panel-group" id="yes_accordion">
         <%@yes_evidence.each_with_index do |point,index|%>

@@ -37,10 +37,44 @@ class QuestionsController < ApplicationController
       (cached_votes_up-cached_votes_down)*cached_votes_total as "vote_score"')
       .group("points.id").order('vote_score desc, research_count desc, max_score desc') 
     @yes_evidence = @evidence.where(point_type: "Yes")
+    yes_total_cred = @yes_evidence.map{|b| b.findings.map{|a| a.research.score}.sum}.sum
     @no_evidence = @evidence.where(point_type: "No")
+    no_total_cred = @no_evidence.map{|b| b.findings.map{|a| a.research.score}.sum}.sum
     @unknown_evidence = @evidence.where(point_type: "Unknown")
+    unknown_total_cred = @unknown_evidence.map{|b| b.findings.map{|a| a.research.score}.sum}.sum  
     @evid_page_count = ((@evidence.to_a.count/3.0).floor)
     @evid_count = (@evidence.to_a.count -1)
+
+    @pie = 
+      LazyHighCharts::HighChart.new('some_id') do |f|
+        f.chart({:defaultSeriesType=>"pie" , :margin=> [10, 0, 0, 0], height: 150} )
+        f.colors( ['#428bca', 'black', '#998100', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'])
+        series = {
+          :type=> 'pie',
+          :name=> 'Total Cred Score',
+          :data=> [
+            [if yes_total_cred == 0 then '' else 'Yes' end, yes_total_cred],            
+            [if no_total_cred == 0 then '' else 'No' end, no_total_cred],
+            [if unknown_total_cred == 0 then '' else 'Unknown' end, unknown_total_cred],
+          ]
+        }
+        f.series(series)
+        f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'})
+        f.plot_options(:pie=>{
+          :allowPointSelect=>true,
+          :cursor=>"pointer",
+          size: "100%",
+          :dataLabels=>{
+            :enabled=>true,
+            :distance=> -25,
+            :color=>"white",
+            :style=>{
+              :font=>'bold 40px Verdana, sans-serif',
+              fontSize: "10px"
+            }
+          }
+        })
+      end
     
     respond_to do |format|
       format.html {    
@@ -184,19 +218,19 @@ class QuestionsController < ApplicationController
         format.js   
       end 
   end   
+ 
+    private
 
-   private
+      def question_params
+        params.require(:question).permit(:question, :answers, :description, :notes, :question_type, :user_create_id,
+                                     verdicts_attributes: verdicts_attributes)
+      end
 
-    def question_params
-      params.require(:question).permit(:question, :answers, :description, :notes, :question_type, :user_create_id,
-                                   verdicts_attributes: verdicts_attributes)
-    end
-
-    def verdicts_attributes
-      [:id, :question_id, :verdict, :user_create_id, :_destroy]
-    end 
-   
-    def undo_link
-      view_context.link_to("undo", revert_version_path(@question.versions.last), :method => :post)
-    end
+      def verdicts_attributes
+        [:id, :question_id, :verdict, :user_create_id, :_destroy]
+      end 
+     
+      def undo_link
+        view_context.link_to("undo", revert_version_path(@question.versions.last), :method => :post)
+      end
 end

@@ -35,7 +35,7 @@ class VerdictsController < ApplicationController
   def edit
   end
 
- def update
+  def update
     @question = @verdict.question 
     active = params[:id]  
     if @verdict.update_attributes(verdict_params)

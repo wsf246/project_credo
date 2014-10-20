@@ -172,7 +172,17 @@ class ResearchesController < ApplicationController
   end
 
   def edit_history
-    @versions = PaperTrail::Version.where(item_id: @research).where(item_type: "Research")
+    versions = 
+      PaperTrail::Version.where(item_id: @research).where(item_type: "Research") +
+      PaperTrail::Version.where_object(research_id: @research.id).where(event: "destroy")
+     
+    @research.findings.each do |finding|
+      finding.versions.each do |v|
+        versions << v
+      end
+    end    
+
+    @versions = versions.sort_by{|v| v[:created_at]}.reverse
   end  
 
    private
