@@ -11,14 +11,13 @@
     <%if @question.question_type == "Yes/No"%>
       <div class="panel-group" id="yes_accordion">
         <%@yes_evidence.each_with_index do |point,index|%>
-          <div class = "row">
-            <div class = "col-md-1">
-              <%= render 'questions/evidence/important_point', point: point %> 
-            </div>
-
-            <div class = "col-md-11" style = "margin-left: -10px">
-              <div class="panel panel-info">
-                <div class="panel-heading">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <div class = "row">
+                <div class = "col-md-1" style = "padding-left: 5px">
+                  <%= render 'questions/evidence/important_point', point: point %> 
+                </div>
+                <div class = "col-md-11">                
                   <h5 class="panel-title">
                     <a data-toggle="collapse" data-parent="#yes_accordion" href="#yes_collapse_<%=index%>">
                       <div class = 'point'>
@@ -31,27 +30,28 @@
                     <%= link_to "Edit", edit_point_path(point) %> |
                     <%= render 'questions/modal_toggle', point: point %> 
                   </div> 
-                </div> 
-                <div id="yes_collapse_<%=index%>" class="panel-collapse collapse">
-                  <div class="panel-body">        
-                    <%= render 'questions/evidence/points', point: point %> 
-                  </div>
                 </div>
               </div>
-            </div>
+            </div> 
+            <div id="yes_collapse_<%=index%>" class="panel-collapse collapse">
+              <div class="panel-body">        
+                <%= render 'questions/evidence/points', point: point %> 
+              </div>
+            </div>  
           </div>
         <%end%>
-      </div> 
+      </div>
+
 
       <div class="panel-group" id="no_accordion">
         <%@no_evidence.each_with_index do |point,index|%>
-          <div class = "row">
-            <div class = "col-md-1">
-              <%= render 'questions/evidence/important_point', point: point %> 
-            </div>
-            <div class = "col-md-11" style = "margin-left: -1%">
-              <div class="panel panel-default">
-                <div class="panel-heading">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class = "row">
+                <div class = "col-md-1" style = "padding-left: 5px">
+                  <%= render 'questions/evidence/important_point', point: point %> 
+                </div>
+                <div class = "col-md-11">                 
                   <h5 class="panel-title">
                     <a data-toggle="collapse" data-parent="#no_accordion" href="#no_collapse_<%=index%>">
                       <div class = 'point'>
@@ -65,11 +65,11 @@
                     <%= render 'questions/modal_toggle', point: point %> 
                   </div> 
                 </div> 
-                <div id="no_collapse_<%=index%>" class="panel-collapse collapse">
-                  <div class="panel-body">        
-                    <%= render 'questions/evidence/points', point: point %> 
-                  </div>
-                </div>
+              </div>
+            </div>    
+            <div id="no_collapse_<%=index%>" class="panel-collapse collapse">
+              <div class="panel-body">        
+                <%= render 'questions/evidence/points', point: point %> 
               </div>
             </div>
           </div>
@@ -78,14 +78,13 @@
 
       <div class="panel-group" id="unknown_accordion">
         <%@unknown_evidence.each_with_index do |point,index|%>
-          <div class= "row">
-            <div class = "col-md-1">
-              <%= render 'questions/evidence/important_point', point: point %> 
-            </div>
-            <div class = "col-md-11" style = "margin-left: -1%">
-
-              <div class="panel panel-warning">
-                <div class="panel-heading">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <div class = "row">
+                <div class = "col-md-1" style = "padding-left: 5px">
+                  <%= render 'questions/evidence/important_point', point: point %> 
+                </div>
+                <div class = "col-md-11">                 
                   <h5 class="panel-title">
                     <a data-toggle="collapse" data-parent="#unknown_accordion" href="#unknown_collapse_<%=index%>">
                       <div class = 'point'>
@@ -98,14 +97,14 @@
                     <%= link_to "Edit", edit_point_path(point) %> |
                     <%= render 'questions/modal_toggle', point: point %> 
                   </div> 
-                </div> 
-                <div id="unknown_collapse_<%=index%>" class="panel-collapse collapse">
-                  <div class="panel-body">        
-                    <%= render 'questions/evidence/points', point: point %> 
-                  </div>
                 </div>
               </div>
-            </div>  
+            </div>     
+            <div id="unknown_collapse_<%=index%>" class="panel-collapse collapse">
+              <div class="panel-body">        
+                <%= render 'questions/evidence/points', point: point %> 
+              </div>
+            </div>
           </div>
         <%end%>
       </div>

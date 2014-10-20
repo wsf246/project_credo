@@ -13,15 +13,14 @@
 
       <div class="panel-group" id="verdict-accordion">
         <% @verdicts.each_with_index do |verdict, i| %>
-          <div class="row">
-            <div class = "col-md-1"> 
-              <%= render 'questions/verdicts/upvote_downvote_verdict', verdict: verdict%>
-            </div>
-
-            <div class = "col-md-11">
-              <div id = "edit_verdict_<%=verdict.id%>">
-                <div class="panel panel-default" style="margin: 0 0 20px">
-                  <div class="panel-heading">
+          <div id = "edit_verdict_<%=verdict.id%>">
+            <div class="panel panel-default" style="margin: 0 0 10px">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class = "col-md-1" style= "padding-left: 5px"> 
+                    <%= render 'questions/verdicts/upvote_downvote_verdict', verdict: verdict%>
+                  </div>
+                  <div class = "col-md-11">                  
                     <h4 class="panel-title">
                       <a data-toggle="collapse" data-parent="#verdict-accordion" href="#collapse_<%=i%>">
                         <%if i == 0%>
@@ -31,27 +30,27 @@
                       </a>
                     </h4>
                   </div>
-                  <div id="collapse_<%=i%>" class="panel-collapse collapse <%='in' if verdict.id == @active%>">
-                    <div class="panel-body">
-                      <%= verdict.verdict %>
-                      <div class='pix12'>
-                        Created by: <%=verdict.user.username%>
-                      </div> 
-                    
-                      <div class='pix12'>
-                        <%= link_to "Edit", edit_verdict_questions_path(question: @question, verdict: verdict, active: @active),remote: true %>
-                        <%if user_signed_in?%>
-                          <%if current_user.id == verdict.user_create_id%>  
-                           | <%= link_to "Delete", verdict, method: :delete %>
-                          <%end%>
-                        <%end%>  
-                      </div>  
-                    </div>
+                </div>
+              </div>  
+              <div id="collapse_<%=i%>" class="panel-collapse collapse <%='in' if verdict.id == @active%>">
+                <div class="panel-body">
+                  <%= verdict.verdict %>
+                  <div class='pix12'>
+                    Created by: <%=verdict.user.username%>
                   </div> 
-                </div>  
-              </div>  <!--panel div --> 
-            </div>
-          </div>    
+                
+                  <div class='pix12'>
+                    <%= link_to "Edit", edit_verdict_questions_path(question: @question, verdict: verdict, active: @active),remote: true %>
+                    <%if user_signed_in?%>
+                      <%if current_user.id == verdict.user_create_id%>  
+                       | <%= link_to "Delete", verdict, method: :delete %>
+                      <%end%>
+                    <%end%>  
+                  </div>  
+                </div>
+              </div> 
+            </div>  
+          </div>  <!--panel div -->   
         <%end%>
       </div>
     </div> <!--"col-md-3 col-md-offset-1"-->
