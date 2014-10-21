@@ -9,6 +9,7 @@
 
 
     <%if @question.question_type == "Yes/No"%>
+      <%=high_chart("yes_range",@yes_score_range)%>
       <div class="panel-group" id="yes_accordion">
         <%@yes_evidence.each_with_index do |point,index|%>
           <div class="panel panel-info">
