@@ -25,6 +25,7 @@ gem 'jbuilder', '1.0.2'
 gem 'friendly_id'
 gem 'paper_trail'
 gem 'lazy_high_charts'
+gem 'unicorn'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
