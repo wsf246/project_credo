@@ -183,7 +183,7 @@ class QuestionsController < ApplicationController
               tooltip: {pointFormat:"Cred: {point.y}", valueDecimals: 1}, 
               data: averages,
               marker: {
-                symbol: "triangle",
+                symbol: "square",
                 radius: 6
               }
             }            
