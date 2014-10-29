@@ -7,14 +7,28 @@
     <%@articles.first(10).each do |detail|%>
       <div class = "row-fluid">
         <div class ="col-sm-1">
-          <%= form_tag("/researches/view_result", remote: true) do%>
-            <%= hidden_field_tag 'id', detail['id'] %>
-            <%= hidden_field_tag 'pubdate', detail['pubdate'] %>
-            <%= hidden_field_tag 'authors', detail['authors'].join(", ") %>
-            <%= hidden_field_tag 'search_terms', params[:search_terms] %>       
-            <%= hidden_field_tag 'point_id', @point_id %>           
-            <%= submit_tag "View", class: "btn btn-sm btn-primary", style: "margin-bottom: 5px"%>
-          <%end%>  
+          <% if Research.all.map(&:title).include?(detail["title"]) %>
+            <div class="pix10 center">Logged</div>
+            <%= form_tag("/researches/edit_in_form", remote: true) do%>
+              <%= hidden_field_tag 'title', detail['title'] %>
+              <%= hidden_field_tag 'id', detail['id'] %>
+              <%= hidden_field_tag 'pubdate', detail['pubdate'] %>  
+              <%= hidden_field_tag 'authors', detail['authors'].join(", ") %>
+              <%= hidden_field_tag 'search_terms', params[:search_terms] %>       
+              <%= hidden_field_tag 'point_id', @point_id %>
+              <%= hidden_field_tag 'edit', "y" %>                
+              <%= submit_tag "Edit/Use", class: "btn btn-sm btn-default", style: "margin-bottom: 5px"%>
+            <%end%>            
+          <%else%>  
+            <%= form_tag("/researches/view_result", remote: true) do%>
+              <%= hidden_field_tag 'id', detail['id'] %>
+              <%= hidden_field_tag 'pubdate', detail['pubdate'] %>
+              <%= hidden_field_tag 'authors', detail['authors'].join(", ") %>
+              <%= hidden_field_tag 'search_terms', params[:search_terms] %>       
+              <%= hidden_field_tag 'point_id', @point_id %>           
+              <%= submit_tag "View", class: "btn btn-sm btn-primary", style: "margin-bottom: 5px"%>
+            <%end%>
+          <%end%>
         </div>
         <ul>
           <div class ="col-sm-11">

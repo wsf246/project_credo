@@ -22,14 +22,15 @@ class QuestionsController < ApplicationController
   
   def show
     @verdicts = @question.verdicts.sort_by(&:vote_score).reverse
-    @active = 
+    @active_verdict = 
       if @verdicts.present?
         if params[:active] == nil 
           @verdicts.first.id 
         else 
           params[:active].to_i 
         end
-      end    
+      end
+    @active_point = params[:active_point].to_i        
     @evidence = @question.points.joins("LEFT JOIN associations ON points.id = associations.point_id")
       .joins("LEFT JOIN findings ON associations.finding_id = findings.id")
       .joins("LEFT JOIN researches ON findings.research_id = researches.id")
@@ -309,32 +310,48 @@ class QuestionsController < ApplicationController
   end               
 
   def add_verdict
-      @question = Question.friendly.find(params[:question])
-      @verdict = @question.verdicts.build
-      respond_to do |format|
-        format.html { redirect_to @question }
-        format.js  
-      end 
+    @question = Question.friendly.find(params[:question])
+    @verdict = @question.verdicts.build
+    respond_to do |format|
+      format.html { redirect_to @question }
+      format.js  
+    end 
   end 
 
   def select_verdict
-      @question = Question.friendly.find(params[:question])
-      @verdicts = @question.verdicts
-      @selected = params[:selected].to_i
-      respond_to do |format|
-        format.html { redirect_to @question }
-        format.js  
-      end 
+    @question = Question.friendly.find(params[:question])
+    @verdicts = @question.verdicts
+    @selected = params[:selected].to_i
+    respond_to do |format|
+      format.html { redirect_to @question }
+      format.js  
+    end 
   end  
 
   def edit_verdict
-      @question = Question.friendly.find(params[:question])
-      @verdict = Verdict.find(params[:verdict])
-      respond_to do |format|
-        format.html { redirect_to @question }
-        format.js   
-      end 
-  end   
+    @question = Question.friendly.find(params[:question])
+    @verdict = Verdict.find(params[:verdict])
+    respond_to do |format|
+      format.html { redirect_to @question }
+      format.js   
+    end 
+  end 
+
+  def select_findings
+    @association = Association.new
+    @point = Point.find(params[:point])
+    @question = @point.question
+    @research = Research.find(params[:research])
+    @findings = @research.findings.reject(&:blank?)
+    @logged = @point.findings.where(research: @research).map(&:id)
+  end  
+
+  def remove_finding
+    finding = Finding.find(params[:finding])
+    point = Point.find(params[:point])   
+    point.unassociate!(finding)
+    redirect_to question_path(point.question, active_point: point.id) 
+  end
  
     private
 

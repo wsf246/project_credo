@@ -9,8 +9,6 @@ ProjectCredo::Application.routes.draw do
   resources :questions do
     collection do
       match 'search' => 'questions#search', via: [:get, :post], as: :search
-      match 'all_research' => 'questions#all_research', via: [:get, :post]  
-      match 'less_research' => 'questions#less_research', via: [:get, :post]     
       match 'add_verdict' => 'questions#add_verdict', via: [:get, :post]
       match 'select_verdict' => 'questions#select_verdict', via: [:get, :post] 
       match 'edit_verdict' => 'questions#edit_verdict', via: [:get, :post]
@@ -20,7 +18,11 @@ ProjectCredo::Application.routes.draw do
       get 'edit_history', to: 'questions#edit_history'                
       put "upvote", to: "questions#upvote"
       put "downvote", to: "questions#downvote"
-      put "unvote", to: "questions#unvote"      
+      put "unvote", to: "questions#unvote" 
+      match 'select_findings' => 'questions#select_findings', via: [:get, :post]
+      match 'remove_finding' => 'questions#remove_finding', via: [:get, :post]
+      match 'all_research' => 'questions#all_research', via: [:get, :post]  
+      match 'less_research' => 'questions#less_research', via: [:get, :post]          
     end    
 
     resources :verdicts, shallow: true do
@@ -48,7 +50,8 @@ ProjectCredo::Application.routes.draw do
       match 'search' => 'researches#search', via: [:get, :post], as: :search
       match 'pubmed_search' => 'researches#pubmed_search', via: [:get, :post]    
       match 'view_result' => 'researches#view_result', via: [:get, :post]        
-      match 'fill_in_form' => 'researches#fill_in_form', via: [:get, :post]    
+      match 'fill_in_form' => 'researches#fill_in_form', via: [:get, :post]
+      match 'edit_in_form' => 'researches#edit_in_form', via: [:get, :post]     
     end 
     member do
       get 'edit_history', to: 'researches#edit_history'                

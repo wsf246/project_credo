@@ -5,16 +5,26 @@
     <%= submit_tag "Back to results" %>
   <%end%>
     
-  <%= simple_form_for(@research, html: {method: "post", class: "form-horizontal"}) do |f| %>
+  <%= simple_nested_form_for(@research) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <legend>Basic Information</legend>
-    <%= f.hidden_field :user_create_id, value: current_user.id %> 
-    <%= f.input :title, input_html: { value: params[:title] }  %>
-    <%= f.input :link, input_html: { value: params[:link] } %>
-    <%= f.input :authors, input_html: { value: params[:authors] } %>
-    <%= f.input :date_of_publication, label: "Date of Publication", input_html: { value: params[:date_of_publication], novalidate: true } %>
-    <%= f.input :journal, input_html: { value: params[:journal] }%>
-    <%= f.input :funding, label: "Funding" %>
+    <%if params[:edit] == "y"%>
+      <%= f.hidden_field :user_create_id, value: current_user.id %> 
+      <%= f.input :title %>
+      <%= f.input :link%>
+      <%= f.input :authors%>
+      <%= f.input :date_of_publication, label: "Date of Publication", novalidate: true %>
+      <%= f.input :journal%>
+      <%= f.input :funding, label: "Funding" %>
+    <%else%>
+      <%= f.hidden_field :user_create_id, value: current_user.id %> 
+      <%= f.input :title, input_html: { value: params[:title] }  %>
+      <%= f.input :link, input_html: { value: params[:link] } %>
+      <%= f.input :authors, input_html: { value: params[:authors] } %>
+      <%= f.input :date_of_publication, label: "Date of Publication", input_html: { value: params[:date_of_publication], novalidate: true } %>
+      <%= f.input :journal, input_html: { value: params[:journal] }%>
+      <%= f.input :funding, label: "Funding" %>    
+    <%end%>    
 
     <legend>Verification</legend>
 
@@ -23,9 +33,9 @@
     <%= f.input_field :replicated, inline_label: "Replicated?" %>  
 
     <legend>Bias Controls</legend>
-    <%= f.input :study_type, collection: ['Unknown','Cross Sectional','Case Control','Cohort Study', 'Randomized Control Trial', 'Case Study', 'Meta-Analysis', 'Review of Literature'], selected: @study_type %>
-    <%= f.input_field :single_blinded, :as => :boolean, inline_label: "Single Blinded?" %> 
-    <%= f.input_field :double_blinded, :as => :boolean, inline_label: "Double_blinded?" %> 
+    <%= f.input :study_type, collection: ['Unknown','Cross Sectional','Case Control','Cohort Study', 'Randomized Control Trial', 'Case Study', 'Meta-Analysis', 'Review of Literature', 'Clinical Trial'], selected: @study_type %>
+    <%= f.input_field :single_blinded, :as => :boolean, inline_label: "Single blinded?" %> 
+    <%= f.input_field :double_blinded, :as => :boolean, inline_label: "Double blinded?" %> 
     <%= f.input_field :randomized, inline_label: "Randomized?" %> 
     <%= f.input_field :controlled_against_placebo, inline_label: "Controlled against placebo?" %> 
     <%= f.input_field :controlled_against_best_alt, inline_label: "Controlled against best alternative?" %>       
@@ -35,11 +45,11 @@
     <%= f.simple_fields_for :findings do |builder| %>
       <%= render 'finding_fields', f: builder, research_id: @research.id %>
     <%end%>                        
-
+    <p><%= f.link_to_add "Another finding", :findings %></p>
     <%= f.button :submit, "Log info", class: "btn btn-lg btn-primary", style: "margin-top: 5px" %>
 
     <%= hidden_field_tag 'point_id', @point_id %> 
-
+    <%= hidden_field_tag 'edit', "y" %> 
   <% end %>  
 </div>
 

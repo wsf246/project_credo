@@ -5,7 +5,7 @@
         <b> Cred Score(<%=finding.research.score%>)</b>
         <br><%= is_it? finding.research.peer_reviewed %> Peer Reviewed</br>
         <%=finding.research.study_type %>
-        
+        <br /><%=link_to "Remove", remove_finding_question_path(point: point, finding: finding)%>     
       </div>  
     </div>
     <div class='col-md-9'> 

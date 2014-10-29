@@ -2,5 +2,6 @@
   <%= f.input :finding, label: "Add finding"  %>
   <%= f.input :sample_def, label: "Add sample definition"  %>
   <%= f.input :quote, label: "Add relevant quote"  %>
-  <%= f.hidden_field :research_id, value: research_id %> 
+  <%= f.hidden_field :research_id, value: research_id %>
+  <%= f.link_to_remove "Remove these findings" if f.object.new_record?%>
 </div>  

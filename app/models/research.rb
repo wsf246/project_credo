@@ -14,13 +14,14 @@ class Research < ActiveRecord::Base
   def score_it
     score = (self.retracted ? 0 : 1) * (
     0 * (self.study_type == 'Unknown' ? 1 : 0) +
-    2 * (self.study_type == 'Case Study' ? 1 : 0) +
-    2 * (self.study_type == 'Review of Literature' ? 1 : 0) +          
+    2 * (self.study_type == 'Case Study' ? 1 : 0) +         
     3 * (self.study_type == 'Cross Sectional' ? 1 : 0) +
     5 * (self.study_type == 'Case Control' ? 1 : 0) +
-    8 * (self.study_type == 'Cohort Study' ? 1 : 0) +    
-    13 * (self.study_type == 'Randomized Control Trial' ? 1 : 0) +
-    21 * (self.study_type == 'Meta-Analysis' ? 1 : 0) +
+    8 * (self.study_type == 'Cohort Study' ? 1 : 0) + 
+    8 * (self.study_type == 'Review of Literature' ? 1 : 0) + 
+    13 * (self.study_type == 'Clinical Trial' ? 1 : 0) +    
+    21 * (self.study_type == 'Randomized Control Trial' ? 1 : 0) +
+    34 * (self.study_type == 'Meta-Analysis' ? 1 : 0) +
 
     2 * (self.funding.present? ? 1 : 0) +
 

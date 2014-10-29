@@ -1,0 +1,17 @@
+<% provide(:title, @question.question) %>
+<div class ='question-wrapper'> 
+  <h1><%= @question.question %></h1> 
+  <p><%= @question.description %></p>
+  <div class='pix12'>
+    Asked by: <%= @question.user.username %>
+  </div>
+  <br /><b>Argument:</b> <%=@point.point%>  
+</div>
+<div class="research-form"> 
+  <%= simple_form_for(@association) do |f| %>
+    <%= f.collection_check_boxes :finding_id, @findings, :id, :finding, label: "Select the finding you want to associate", item_wrapper_class: :block_radio_button_collection, checked: @logged %>
+    <%= f.hidden_field :point_id, value: @point.id %>
+    <%= f.hidden_field :research_id, value: @research.id%>
+    <%= f.button :submit, "Associate findings", class: "btn btn-lg btn-primary", style: "margin-top: 5px" %>  
+  <%end%>
+</div>  

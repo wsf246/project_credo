@@ -130,6 +130,28 @@ class ResearchesController < ApplicationController
     end
   end
 
+  def edit_in_form
+    require 'nokogiri'
+    require 'open-uri'
+    @point_id = params[:point_id]
+    @pubmed_id = params[:id]
+    article_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id="+@pubmed_id+"&retmode=xml"    
+    article_doc = Nokogiri::HTML(open(article_url)) 
+    @article = {}
+
+    @article["title"] = article_doc.xpath("//articletitle").text
+    @article["authors"] = params[:authors]  
+    @article["journal"] = article_doc.xpath("//journal//title").text.titleize
+    @article["pubdate"] = params[:pubdate]  
+    @article["abstract"] = article_doc.xpath("//abstracttext").text  
+    @research = Research.where(title: params[:title]).first
+  
+    respond_to do |format|
+      format.html { redirect_to new }
+      format.js 
+    end
+  end  
+
   def new
     @research = Research.new
     @research.findings.build
@@ -156,12 +178,27 @@ class ResearchesController < ApplicationController
   end
 
   def update
-    if @research.update_attributes(research_params) 
+    if @research.update_attributes(research_params) && params[:edit] =="y"
+      @point = Point.find(params[:point_id])
+      @research.score_it
+      if @research.findings.count > 1
+        redirect_to select_findings_question_path(point: @point, research: @research)
+      elsif @point.findings.where(research: @research).count == 0
+        @research.findings.each do |finding|
+          @point.associate!(finding)
+        end
+        flash[:success] = "Evidence added"
+        redirect_to question_path(@point.question)  
+      else  
+        flash[:success] = "Research attributes updated"
+        redirect_to question_path(@point.question)
+      end
+    elsif @research.update_attributes(research_params) 
       @research.score_it
       flash[:success] = "Research attributes updated"
-      redirect_to research_path(@research)
+      redirect_to @research  
     else
-      render 'edit'
+      render 'edit', edit: params[:edit]
     end
   end
 
