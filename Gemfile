@@ -9,8 +9,8 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'nested_form'
-gem "polyamorous", github: "activerecord-hackery/polyamorous"
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
+gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
+gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4.1'
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'nokogiri', '~> 1.6.2'
@@ -27,6 +27,7 @@ gem 'paper_trail'
 gem 'lazy_high_charts'
 gem 'unicorn'
 gem 'jquery-turbolinks'
+gem 'bourbon'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
@@ -39,6 +40,11 @@ group :development, :test do
   # gem 'spork-rails', '4.0.0'
   # gem 'guard-spork', '1.5.0'
   # gem 'childprocess', '0.3.6'
+end
+
+group :development do
+  gem 'guard-livereload', require: false
+  gem 'rack-livereload', require: false
 end
 
 group :test do
