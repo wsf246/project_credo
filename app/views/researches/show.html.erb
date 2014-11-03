@@ -20,24 +20,27 @@
 	  		<b>Published on: </b><%= @research.date_of_publication.to_formatted_s(:long)%>	
 	  	<%else%>
 	  		<b>Date of Publication: </b>Unknown 	
-	  	<%end%>
+	  	<%end%>		
 		</p>
 
-		<p><b>Study Type: </b><%= @research.study_type %></p>
+		<p><b>Study Type <b class="blue"><%=if @study_type_score == 0 then  "(0 of 34)" else "(+"+@study_type_score.to_s+" of 34)" end%></b>: </b><%= @research.study_type %></p>
 
-		<p><b>Bias Controls: </b><%=@bias_controls%></p>
-		<p><b>Verification: </b>
+		<p><b>Bias Controls <b class="blue"><%=if @bias_controls_score == 0 then  "(0 of 5)" else "(+"+@bias_controls_score.to_s+" of 5)" end%></b>: </b><%=@bias_controls%></p>
+		<p><b>Verification <b class="blue"><%=if @research.retracted then  "(Retracted!)" else "(+"+@verification_score.to_s+" of 20)" end%></b>: </b>
 			<%= is_it? @research.peer_reviewed %> Peer Reviewed,  
 			<%= is_it? @research.replicated %> Replicated, 
 			<%= is_it? @research.retracted %> Retracted 
-		</p>		 
-  	<p><b>Funding: </b> 	  	 	
-  	  <% if @research.funding.present? %>
-	  	  <p><%= @research.funding %></p> 
-	  	<%else%> 
+		</p>		 	  	 	
+  	<% if @research.funding.present? %>
+  		<p><b>Funding <b class="blue">(+2 of 2)</b>: </b>   
+	  	  <p><%= @research.funding %></p>
+	  	</p>  
+	  <%else%>
+	  	<p><b>Funding <b class="blue">(0 of 2)</b>: </b>  
 	  	  Unknown
-  	  <% end %>
-  	</p>
+	  	</p>  
+  	 <% end %>
+  	<b>Cred Score: <b class= "blue"><%=@research.score%></b></b> 
 	</section>	
 
 	<section>  

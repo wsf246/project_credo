@@ -21,7 +21,8 @@
       <%= f.input :title, input_html: { value: params[:title] }  %>
       <%= f.input :link, input_html: { value: params[:link] } %>
       <%= f.input :authors, input_html: { value: params[:authors] } %>
-      <%= f.input :date_of_publication, label: "Date of Publication", input_html: { value: params[:date_of_publication], novalidate: true } %>
+      <%=params[:pubdate].length%>
+      <%= f.input :date_of_publication, as: :date, label: "Date of Publication", default:  @pubdate.to_date, start_year: 1900, end_year: Date.today.year, order: [ :month, :day, :year] %>
       <%= f.input :journal, input_html: { value: params[:journal] }%>
       <%= f.input :funding, label: "Funding" %>    
     <%end%>    

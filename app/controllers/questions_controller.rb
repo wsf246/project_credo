@@ -350,7 +350,8 @@ class QuestionsController < ApplicationController
     finding = Finding.find(params[:finding])
     point = Point.find(params[:point])   
     point.unassociate!(finding)
-    redirect_to question_path(point.question, active_point: point.id) 
+    @question = Question.friendly.find(point.question)  
+    redirect_to question_path(@question, active_point: point.id) 
   end
  
     private
