@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   include ActionView::Helpers::TextHelper
   before_action :authenticate_user!, 
-                only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote, :add_verdict, :edit_verdict]
+                only: [:edit, :update, :destroy, :new, :create, :upvote, :downvote, :add_verdict, :edit_verdict, :remove_finding]
 
   before_action :get_question, 
                 only: [:show, :edit, :update, :destroy, :upvote, :downvote, :unvote, :undo_link, :edit_history]
@@ -349,9 +349,8 @@ class QuestionsController < ApplicationController
   def remove_finding
     finding = Finding.find(params[:finding])
     point = Point.find(params[:point])   
-    point.unassociate!(finding)
-    @question = Question.friendly.find(point.question)  
-    redirect_to question_path(@question, active_point: point.id) 
+    point.associations.find_by(finding_id: finding.id).destroy
+    redirect_to question_path(point.question, active_point: point.id) 
   end
  
     private
