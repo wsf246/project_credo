@@ -153,7 +153,7 @@ class ResearchesController < ApplicationController
       else
         params[:pubdate]  
       end
-       
+
   
     respond_to do |format|
       format.html { redirect_to new }
@@ -176,6 +176,7 @@ class ResearchesController < ApplicationController
     @article["pubdate"] = params[:pubdate]  
     @article["abstract"] = article_doc.xpath("//abstracttext").text  
     @research = Research.where(title: params[:title]).first
+    @study_type = @research.study_type 
   
     respond_to do |format|
       format.html { redirect_to new }

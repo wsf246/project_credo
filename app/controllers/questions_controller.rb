@@ -349,7 +349,8 @@ class QuestionsController < ApplicationController
   def remove_finding
     finding = Finding.find(params[:finding])
     point = Point.find(params[:point])   
-    point.associations.find_by(finding_id: finding.id).destroy
+    association = point.associations.find_by(finding_id: finding.id)
+    association.destroy if association.present?
     redirect_to question_path(point.question, active_point: point.id) 
   end
  
