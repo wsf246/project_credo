@@ -44,10 +44,9 @@ class QuestionsController < ApplicationController
     @evid_page_count = ((@evidence.to_a.count/3.0).floor)
     @evid_count = (@evidence.to_a.count -1)
 
-
-    yes_total_cred = @yes_evidence.map{|b| b.findings.map{|a| a.research.score}.sum}.sum
-    no_total_cred = @no_evidence.map{|b| b.findings.map{|a| a.research.score}.sum}.sum
-    unknown_total_cred = @unknown_evidence.map{|b| b.findings.map{|a| a.research.score}.sum}.sum  
+    yes_total_cred = @yes_evidence.map{|b| b.findings.map{|a| a.research}}.flatten.uniq.map{|a| a.score}.sum
+    no_total_cred = @no_evidence.map{|b| b.findings.map{|a| a.research}}.flatten.uniq.map{|a| a.score}.sum
+    unknown_total_cred = @unknown_evidence.map{|b| b.findings.map{|a| a.research}}.flatten.uniq.map{|a| a.score}.sum 
    
 
 
@@ -82,117 +81,117 @@ class QuestionsController < ApplicationController
         })
       end
 
-      @yes_cred =[]
-        @yes_evidence.each do |point|
-          point.findings.each do |finding|
-            @yes_cred << {
-              x:0,y:finding.research.score,
-              title:truncate(finding.research.title,length:25),
-              authors:truncate(finding.research.authors,length:25)
-            }
-          end
-        end
-
-      @no_cred = []
-      @no_evidence.each do |point|
+    @yes_cred =[]
+      @yes_evidence.each do |point|
         point.findings.each do |finding|
-          @no_cred << {
-              x:1,y:finding.research.score,
-              title:truncate(finding.research.title,length:25),
-              authors:truncate(finding.research.authors,length:25)
-            }
+          @yes_cred << {
+            x:0,y:finding.research.score,
+            title:truncate(finding.research.title,length:25),
+            authors:truncate(finding.research.authors,length:25)
+          }
         end
       end
 
-      @unknown_cred = []
-      @unknown_evidence.each do |point|
-        point.findings.each do |finding|
-          @unknown_cred << {
-              x:2,y:finding.research.score,
-              title:truncate(finding.research.title,length:25),
-              authors:truncate(finding.research.authors,length:25)
-            }
-        end
-      end         
-      yes_count = @yes_evidence.map{|b| b.findings.map{|a| a.research}.count}.sum
-      no_count = @no_evidence.map{|b| b.findings.map{|a| a.research}.count}.sum
-      unknown_count = @unknown_evidence.map{|b| b.findings.map{|a| a.research}.count}.sum
+    @no_cred = []
+    @no_evidence.each do |point|
+      point.findings.each do |finding|
+        @no_cred << {
+            x:1,y:finding.research.score,
+            title:truncate(finding.research.title,length:25),
+            authors:truncate(finding.research.authors,length:25)
+          }
+      end
+    end
 
-      yes_avg_cred = yes_total_cred/yes_count if yes_count != 0
-      no_avg_cred = no_total_cred/no_count if no_count != 0
-      unknown_avg_cred = unknown_total_cred/unknown_count if unknown_count != 0
+    @unknown_cred = []
+    @unknown_evidence.each do |point|
+      point.findings.each do |finding|
+        @unknown_cred << {
+            x:2,y:finding.research.score,
+            title:truncate(finding.research.title,length:25),
+            authors:truncate(finding.research.authors,length:25)
+          }
+      end
+    end         
+    yes_count = @yes_evidence.map{|b| b.findings.map{|a| a.research}.count}.sum
+    no_count = @no_evidence.map{|b| b.findings.map{|a| a.research}.count}.sum
+    unknown_count = @unknown_evidence.map{|b| b.findings.map{|a| a.research}.count}.sum
 
-      averages = []
-      averages << [0,yes_avg_cred] if yes_count !=0
-      averages << [1,no_avg_cred] if no_count !=0
-      averages << [2,unknown_avg_cred] if unknown_count !=0
-  
-      @cred_range =
-        LazyHighCharts::HighChart.new('cred_range') do |f|
-          f.chart({:defaultSeriesType=>"columnrange", inverted: true, height: 130})
-          f.colors( ['#428bca', 'black', '#998100', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'])
-          f.title(text:"Cred Scores", style:{margin: "5px", font: 'bold 12px Verdana, sans-serif', fontSize:"12px"})
-          f.legend({enabled: false})          
-          f.yAxis({min: 0, max: 48, tickInterval: 10, title: ''})
-          f.xAxis({categories: ['Yes','No','Unknown']})
+    yes_avg_cred = yes_total_cred/yes_count if yes_count != 0
+    no_avg_cred = no_total_cred/no_count if no_count != 0
+    unknown_avg_cred = unknown_total_cred/unknown_count if unknown_count != 0
 
-          f.plot_options(column: {
-            colorByPoint: true
-          })   
-          series0 =
-            {
-              type: 'scatter',
-              name: 'Yes',
-              color: '#428bca',              
-              tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1}, 
-              data: @yes_cred, 
-              marker: {
-                symbol: "circle",
-                radius: 6
-              }
+    averages = []
+    averages << [0,yes_avg_cred] if yes_count !=0
+    averages << [1,no_avg_cred] if no_count !=0
+    averages << [2,unknown_avg_cred] if unknown_count !=0
+
+    @cred_range =
+      LazyHighCharts::HighChart.new('cred_range') do |f|
+        f.chart({:defaultSeriesType=>"columnrange", inverted: true, height: 130})
+        f.colors( ['#428bca', 'black', '#998100', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'])
+        f.title(text:"Cred Scores", style:{margin: "5px", font: 'bold 12px Verdana, sans-serif', fontSize:"12px"})
+        f.legend({enabled: false})          
+        f.yAxis({min: 0, max: 48, tickInterval: 10, title: ''})
+        f.xAxis({categories: ['Yes','No','Unknown']})
+
+        f.plot_options(column: {
+          colorByPoint: true
+        })   
+        series0 =
+          {
+            type: 'scatter',
+            name: 'Yes',
+            color: '#428bca',              
+            tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1}, 
+            data: @yes_cred, 
+            marker: {
+              symbol: "circle",
+              radius: 6
             }
-          series1 =  
-            {
-              type: 'scatter',
-              name: 'No',
-              color:'black',
-              tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1},               
-              data: @no_cred,
-              marker: {
-                symbol: "circle",
-                radius: 6
-              }
+          }
+        series1 =  
+          {
+            type: 'scatter',
+            name: 'No',
+            color:'black',
+            tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1},               
+            data: @no_cred,
+            marker: {
+              symbol: "circle",
+              radius: 6
             }
-          series2 =  
-            {
-              type: 'scatter',
-              name: 'Unknown',
-              color:'#998100',
-              tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1}, 
-              data: @unknown_cred,
-              marker: {
-                symbol: "circle",
-                radius: 6
-              }
+          }
+        series2 =  
+          {
+            type: 'scatter',
+            name: 'Unknown',
+            color:'#998100',
+            tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1}, 
+            data: @unknown_cred,
+            marker: {
+              symbol: "circle",
+              radius: 6
             }
-          avg_series =  
-            {
-              type: 'scatter',
-              name: 'Average',
-              color:'#FF0000',
-              tooltip: {pointFormat:"Cred: {point.y}", valueDecimals: 1}, 
-              data: averages,
-              marker: {
-                symbol: "square",
-                radius: 6
-              }
-            }            
-          
-          if yes_total_cred != 0 then f.series(series0) end
-          if no_total_cred != 0 then f.series(series1) end
-          if unknown_total_cred != 0 then f.series(series2) end
-          f.series(avg_series) 
-        end  
+          }
+        avg_series =  
+          {
+            type: 'scatter',
+            name: 'Average',
+            color:'#FF0000',
+            tooltip: {pointFormat:"Cred: {point.y}", valueDecimals: 1}, 
+            data: averages,
+            marker: {
+              symbol: "square",
+              radius: 6
+            }
+          }            
+        
+        if yes_total_cred != 0 then f.series(series0) end
+        if no_total_cred != 0 then f.series(series1) end
+        if unknown_total_cred != 0 then f.series(series2) end
+        f.series(avg_series) 
+      end  
 
     respond_to do |format|
       format.html {    

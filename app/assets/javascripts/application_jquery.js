@@ -19,3 +19,6 @@ $('#question_question_type option:selected').keyup(function(){
      $('#question_descr').prop('disabled', true);   
 });
  });
+
+
+
