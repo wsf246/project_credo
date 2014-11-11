@@ -5,8 +5,11 @@
     <%= f.hidden_field :user_create_id, value: current_user.id %>
   <%end%>   
   <div class="panel panel-default">
-    <div class="panel-heading"><%= f.input :short, placeholder: "Something short", label_html: { } %></div>
-
+    <div class="panel-heading"><%= f.input :short, placeholder: "Something short", label_html: {class: "blah" } %>
+      <span class="countdown">0 of 140</span>
+    </div>
+    
+    <div class="panel-body">
       <%= f.input :verdict, placeholder: "Compose a verdict..." %>
     </div>
     <%if verdict == [@question, @verdict]%>

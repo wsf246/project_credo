@@ -1,5 +1,5 @@
 function updateCountdown() {
-  var left = 140 - $('.short_verdict').val().length;
+  var left = 140 - $('#verdict_short').val().length;
   if(left == 1) {
     var charactersLeft = ' character left.'
   }
@@ -9,11 +9,6 @@ function updateCountdown() {
   else{
     var charactersLeft = ' characters left.'
   }
-  jQuery('.countdown').text(Math.abs(left) + charactersLeft);
+  $('.countdown').text(Math.abs(left) + charactersLeft);
 }
 
-$(document).ready(function() {
-    updateCountdown();
-    $('.short_verdict').change(updateCountdown);
-    $('.short_verdict').keyup(updateCountdown);
-});

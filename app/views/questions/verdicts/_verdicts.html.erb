@@ -2,7 +2,7 @@
   <div class = "row">
     <div class = "col-md-5">
       <div id="error_explanation"></div>  
-          <h1>Verdicts</h1>
+        <h1>Verdicts</h1>
       <div id="add_verdict">
         <% if @verdicts.present? %>
           <%= link_to("Add a verdict", add_verdict_questions_path(question: @question),remote: true) %>
@@ -10,9 +10,6 @@
           No verdicts, <%= link_to "why not add one?", add_verdict_questions_path(question: @question),remote: true %>
         <%end%>
       </div>
-    <textarea class="short_verdict" rows="2" cols="30"></textarea>
-    <span class="countdown">0 of 140</span>
-    <div class="panel-body">
       <div class="panel-group" id="verdict-accordion">
         <% @verdicts.each_with_index do |verdict, i| %>
           <div id = "edit_verdict_<%=verdict.id%>">
@@ -52,10 +49,11 @@
                 </div>
               </div> 
             </div>  
-          </div>  <!--panel div -->   
+          </div> 
         <%end%>
-      </div>
-    </div> <!--"col-md-3 col-md-offset-1"-->
+      </div> <!--panel div -->  
+  
+    </div>   <!--col-md-5 -->  
 
     <div class ="col-md-7">
       <%= render 'questions/evidence/verdict_evidence'%>
