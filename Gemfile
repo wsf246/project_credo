@@ -26,6 +26,7 @@ gem 'friendly_id'
 gem 'paper_trail'
 gem 'lazy_high_charts'
 gem 'unicorn'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
