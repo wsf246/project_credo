@@ -5,7 +5,11 @@
 
   <%= f.input :question_type, collection: ['Yes/No','Multiple Answers'], selected: @question_type %>
 
-  <%= f.input :answers, placeholder: "Only if you've selected multiple answers, add potential answers separated by a comma.  For example, answers to 'What is the best diet?' could be 'low carb, low fat, raw foods'" %>
+  <%if @question_type == 'Yes/No'%>
+    <%= f.input :answers, placeholder: "Only if you've selected multiple answers, add potential answers separated by a comma.  For example, answers to 'What is the best diet?' could be 'low carb, low fat, raw foods'", disabled: true%>
+  <%else%>
+    <%= f.input :answers, placeholder: "Only if you've selected multiple answers, add potential answers separated by a comma.  For example, answers to 'What is the best diet?' could be 'low carb, low fat, raw foods'", disabled: false%>
+  <%end%>      
 
   <%= f.input :description, placeholder: "Compose a description,..." %>
 
