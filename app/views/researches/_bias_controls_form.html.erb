@@ -1,0 +1,25 @@
+<%if @study_type ==  'Cross Sectional' || @study_type == 'Case Study' %>
+  <%= f.input_field :single_blinded, inline_label: "Single blinded?", disabled: true %> 
+  <%= f.input_field :double_blinded, inline_label: "Double blinded?", disabled: true %> 
+  <%= f.input_field :randomized, inline_label: "Randomized?", disabled: true %> 
+  <%= f.input_field :controlled_against_placebo, inline_label: "Controlled against placebo?", disabled: true %> 
+  <%= f.input_field :controlled_against_best_alt, inline_label: "Controlled against best alternative?", disabled: true %>  
+<%elsif @study_type == 'Case Control' || @study_type == 'Cohort Study'%>
+  <%= f.input_field :single_blinded, inline_label: "Single blinded?", disabled: true %> 
+  <%= f.input_field :double_blinded, inline_label: "Double blinded?", disabled: true %> 
+  <%= f.input_field :randomized, inline_label: "Randomized?", disabled: true %> 
+  <%= f.input_field :controlled_against_placebo, inline_label: "Controlled against placebo?" %> 
+  <%= f.input_field :controlled_against_best_alt, inline_label: "Controlled against best alternative?" %>  
+<%elsif @study_type == 'Randomized Control Trial'%>
+  <%= f.input_field :single_blinded, inline_label: "Single blinded?" %> 
+  <%= f.input_field :double_blinded, inline_label: "Double blinded?" %> 
+  <%= f.input_field :randomized, inline_label: "Randomized?", disabled: true %> 
+  <%= f.input_field :controlled_against_placebo, inline_label: "Controlled against placebo?" %>
+  <%= f.input_field :controlled_against_best_alt, inline_label: "Controlled against best alternative?" %>
+<%else%>
+  <%= f.input_field :single_blinded, inline_label: "Single blinded?" %> 
+  <%= f.input_field :double_blinded, inline_label: "Double blinded?" %> 
+  <%= f.input_field :randomized, inline_label: "Randomized?" %> 
+  <%= f.input_field :controlled_against_placebo, inline_label: "Controlled against placebo?" %>
+  <%= f.input_field :controlled_against_best_alt, inline_label: "Controlled against best alternative?" %>
+<%end%>  

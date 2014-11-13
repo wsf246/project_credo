@@ -1,4 +1,4 @@
-$("#add_verdict").html("<%= escape_javascript(render 'questions/verdicts/verdict_form', verdict: [@question, @verdict]) %>")
+$("#add_verdict").html("<%= escape_javascript(render 'questions/verdicts/verdict_form', verdict: [@question, @verdict]) %>");
 updateCountdown();
 $('#verdict_short').on('input',updateCountdown);  
 

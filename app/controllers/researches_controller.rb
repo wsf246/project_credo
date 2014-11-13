@@ -6,6 +6,9 @@ class ResearchesController < ApplicationController
   before_action :get_research, 
                 only: [:show, :edit, :update, :destroy, :undo_link, :edit_history]
 
+  before_action :set_bias_controls, 
+                only: [:update]
+              
   def get_research
     @research = Research.find(params[:id])            
   end
@@ -226,10 +229,10 @@ class ResearchesController < ApplicationController
         redirect_to question_path(@point.question)
       end
     elsif @research.update_attributes(research_params) 
-      @research.score_it
+      @research.score_it   
       flash[:success] = "Research attributes updated"
       redirect_to @research  
-    else
+    else 
       render 'edit', edit: params[:edit]
     end
   end
@@ -276,5 +279,21 @@ class ResearchesController < ApplicationController
     def findings_attributes
       [:id, :research_id, :finding, :quote, :sample_def, :_destroy]
     end
+
+    def set_bias_controls
+      if params[:research][:study_type] == 'Cross Sectional' || params[:research][:study_type] == 'Case Study'
+        params[:research][:single_blinded] = false
+        params[:research][:double_blinded] = false
+        params[:research][:randomized] = false
+        params[:research][:controlled_against_placebo] = false
+        params[:research][:controlled_against_best_alt] = false
+      elsif params[:research][:study_type] == 'Case Control' || params[:research][:study_type] == 'Cohort Study'
+        params[:research][:single_blinded] = false
+        params[:research][:double_blinded] = false
+        params[:research][:randomized] = false
+      elsif params[:research][:study_type] == "Randomized Control Trial"
+        params[:research][:randomized] = true
+      end
+    end  
 end
 
