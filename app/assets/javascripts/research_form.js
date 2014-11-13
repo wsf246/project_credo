@@ -8,78 +8,81 @@ $(document).ready(function() {
     var defReview = "<p>A review of literature is an evaluative report of information found in the literature related to a selected area of study with no statistical evaluation of the findings</p>"
     var defClinicalTrial = "<p>A clinical trial is a type of intervention study that prospectively assigns participants or groups to one or more interventions to evaluate the effects on outcomes with no randomization performed on the participants.</p>"
 
-  $('#research_study_type').on('click', "option[value='Cross Sectional']", function(){
-    $(this).closest("div").children("p").remove();
-    $(this).closest("div").append(defCrossSectional);
-    $('#research_single_blinded').prop('disabled', true).prop('checked', false);
-    $('#research_double_blinded').prop('disabled', true).prop('checked', false);
-    $('#research_randomized').prop('disabled', true).prop('checked', false);
-    $('#research_controlled_against_placebo').prop('disabled', true).prop('checked', false);
-    $('#research_controlled_against_best_alt').prop('disabled', true).prop('checked', false);
-  });
-  $('#research_study_type').on('click', "option[value='Case Control']", function(){
-    $(this).closest("div").children("p").remove();
-    $(this).closest("div").append(defCaseControl);
-    $('#research_single_blinded').prop('disabled', true).prop('checked', false);
-    $('#research_double_blinded').prop('disabled', true).prop('checked', false);
-    $('#research_randomized').prop('disabled', true).prop('checked', false);
-    $('#research_controlled_against_placebo').prop('disabled', false);
-    $('#research_controlled_against_best_alt').prop('disabled', false);
-  });
-  $('#research_study_type').on('click', "option[value='Cohort Study']", function(){
-    $(this).closest("div").children("p").remove();
-    $(this).closest("div").append(defCohortStudy);
-    $('#research_single_blinded').prop('disabled', true).prop('checked', false);
-    $('#research_double_blinded').prop('disabled', true).prop('checked', false);
-    $('#research_randomized').prop('disabled', true).prop('checked', false);
-    $('#research_controlled_against_placebo').prop('disabled', false);
-    $('#research_controlled_against_best_alt').prop('disabled', false);
-  });
-    $('#research_study_type').on('click', "option[value='Randomized Control Trial']", function(){
-    $(this).closest("div").children("p").remove();
-    $(this).closest("div").append(defRCT);
-    $('#research_single_blinded').prop('disabled', false);
-    $('#research_double_blinded').prop('disabled', false);
-    $('#research_randomized').prop('disabled', true).prop('checked', true);
-    $('#research_controlled_against_placebo').prop('disabled', false);
-    $('#research_controlled_against_best_alt').prop('disabled', false);
-  });
-    $('#research_study_type').on('click', "option[value='Case Study']", function(){
-    $(this).closest("div").children("p").remove();
-    $(this).closest("div").append(defCaseStudy);
-    $('#research_single_blinded').prop('disabled', true).prop('checked', false);
-    $('#research_double_blinded').prop('disabled', true).prop('checked', false);
-    $('#research_randomized').prop('disabled', true).prop('checked', false);
-    $('#research_controlled_against_placebo').prop('disabled', true).prop('checked', false);
-    $('#research_controlled_against_best_alt').prop('disabled', true).prop('checked', false);
-  });
-    $('#research_study_type').on('click', "option[value='Meta-Analysis']", function(){
-    $(this).closest("div").children("p").remove();
-    $(this).closest("div").append(defMeta);
-    $('#research_single_blinded').prop('disabled', false);
-    $('#research_double_blinded').prop('disabled', false);
-    $('#research_randomized').prop('disabled', false);
-    $('#research_controlled_against_placebo').prop('disabled', false);
-    $('#research_controlled_against_best_alt').prop('disabled', false);
-  });
-    $('#research_study_type').on('click', "option[value='Review of Literature']", function(){
-    $(this).closest("div").children("p").remove();
-    $(this).closest("div").append(defReview);
-    $('#research_single_blinded').prop('disabled', false);
-    $('#research_double_blinded').prop('disabled', false);
-    $('#research_randomized').prop('disabled', false);
-    $('#research_controlled_against_placebo').prop('disabled', false);
-    $('#research_controlled_against_best_alt').prop('disabled', false);
-  });
-    $('#research_study_type').on('click', "option[value='Clinical Trial']", function(){
-    $(this).closest("div").children("p").remove();
-    $(this).closest("div").append(defReview);
-    $('#research_single_blinded').prop('disabled', false);
-    $('#research_double_blinded').prop('disabled', false);
-    $('#research_randomized').prop('disabled', false);
-    $('#research_controlled_against_placebo').prop('disabled', false);
-    $('#research_controlled_against_best_alt').prop('disabled', false);
-  });                     
+  $('#research_study_type').change(function(){
+    var study_type = $(this).val();
+    if(study_type == "Cross Sectional") {
+      $(this).closest("div").children("p").remove();
+      $(this).closest("div").append(defCrossSectional);
+      $('#research_single_blinded').prop('disabled', true).prop('checked', false);
+      $('#research_double_blinded').prop('disabled', true).prop('checked', false);
+      $('#research_randomized').prop('disabled', true).prop('checked', false);
+      $('#research_controlled_against_placebo').prop('disabled', true).prop('checked', false);
+      $('#research_controlled_against_best_alt').prop('disabled', true).prop('checked', false);
+    }
+    else if(study_type == "Case Control") {
+      $(this).closest("div").children("p").remove();
+      $(this).closest("div").append(defCaseControl);
+      $('#research_single_blinded').prop('disabled', true).prop('checked', false);
+      $('#research_double_blinded').prop('disabled', true).prop('checked', false);
+      $('#research_randomized').prop('disabled', true).prop('checked', false);
+      $('#research_controlled_against_placebo').prop('disabled', false);
+      $('#research_controlled_against_best_alt').prop('disabled', false);
+    }
+    else if(study_type == "Cohort Study") {
+      $(this).closest("div").children("p").remove();
+      $(this).closest("div").append(defCohortStudy);
+      $('#research_single_blinded').prop('disabled', true).prop('checked', false);
+      $('#research_double_blinded').prop('disabled', true).prop('checked', false);
+      $('#research_randomized').prop('disabled', true).prop('checked', false);
+      $('#research_controlled_against_placebo').prop('disabled', false);
+      $('#research_controlled_against_best_alt').prop('disabled', false);
+    } 
+    else if(study_type == "Randomized Control Trial") {
+      $(this).closest("div").children("p").remove();
+      $(this).closest("div").append(defRCT);
+      $('#research_single_blinded').prop('disabled', false);
+      $('#research_double_blinded').prop('disabled', false);
+      $('#research_randomized').prop('disabled', true).prop('checked', true);
+      $('#research_controlled_against_placebo').prop('disabled', false);
+      $('#research_controlled_against_best_alt').prop('disabled', false);
+    }
+    else if(study_type == "Case Study") {
+      $(this).closest("div").children("p").remove();
+      $(this).closest("div").append(defCaseStudy);
+      $('#research_single_blinded').prop('disabled', true).prop('checked', false);
+      $('#research_double_blinded').prop('disabled', true).prop('checked', false);
+      $('#research_randomized').prop('disabled', true).prop('checked', false);
+      $('#research_controlled_against_placebo').prop('disabled', true).prop('checked', false);
+      $('#research_controlled_against_best_alt').prop('disabled', true).prop('checked', false);
+    }
+    else if(study_type == "Meta-Analysis") {
+      $(this).closest("div").children("p").remove();
+      $(this).closest("div").append(defMeta);
+      $('#research_single_blinded').prop('disabled', false);
+      $('#research_double_blinded').prop('disabled', false);
+      $('#research_randomized').prop('disabled', false);
+      $('#research_controlled_against_placebo').prop('disabled', false);
+      $('#research_controlled_against_best_alt').prop('disabled', false);
+    }
+    else if(study_type == "Review of Literature") {
+      $(this).closest("div").children("p").remove();
+      $(this).closest("div").append(defReview);
+      $('#research_single_blinded').prop('disabled', false);
+      $('#research_double_blinded').prop('disabled', false);
+      $('#research_randomized').prop('disabled', false);
+      $('#research_controlled_against_placebo').prop('disabled', false);
+      $('#research_controlled_against_best_alt').prop('disabled', false);
+    }
+    else if(study_type == "Clinical Trial") {
+      $(this).closest("div").children("p").remove();
+      $(this).closest("div").append(defReview);
+      $('#research_single_blinded').prop('disabled', false);
+      $('#research_double_blinded').prop('disabled', false);
+      $('#research_randomized').prop('disabled', false);
+      $('#research_controlled_against_placebo').prop('disabled', false);
+      $('#research_controlled_against_best_alt').prop('disabled', false);
+    }
+  })                      
 });
 
 
