@@ -219,8 +219,7 @@ class QuestionsController < ApplicationController
     @scatter_timeline=
       LazyHighCharts::HighChart.new('scatter_timeline') do |f|
         f.chart({:defaultSeriesType=>"scatter", height: 200})
-        f.title(text:"The Research", style:{margin: "5px", font: 'bold 12px Verdana, sans-serif', fontSize:"12px"})
-        f.legend({enabled: true, vertical_align: 'top', align: "right", floating: true}) 
+        f.legend({enabled: true, vertical_align: 'top', align: "center"}) 
         f.xAxis({
           type: 'datetime', 
           minTickInterval: 24 * 3600* 1000,
@@ -229,7 +228,7 @@ class QuestionsController < ApplicationController
         f.yAxis({
           min: 0, 
           tickInterval: 50, 
-          title: {text: '-    Convincing    +'},
+          title: {text: '- Credibility +'},
           labels: {
             enabled: false
           }

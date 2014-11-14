@@ -29,7 +29,7 @@
  
         <%if v.item_type == "Point" && v.next != nil%>
           "<%=v.next.reify.point%>"
-        <%elsif v.item_type == "Point"%>
+        <%elsif v.item_type == "Point" && v.reify != nil%>
           "<%=v.reify.point%>"  
         <%end%>          
         

@@ -60,7 +60,7 @@ class PointsController < ApplicationController
     @point = Point.find(params[:id])
     @question = @point.question
     @point_type = @point.point_type
-    @answers = @question.answers.split(",").push(@point_type, "Unknown").uniq 
+    @answers = @question.answers.split(",").push(@point_type, "Unknown").uniq if @question.answers != nil
 
   end
 
