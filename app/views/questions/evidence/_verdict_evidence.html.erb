@@ -8,7 +8,7 @@
     <%= link_to "Download CSV", question_path(format: "csv") %>
 
     <%if @question.question_type == "Yes/No"%>
-      <%=high_chart("cred_range",@cred_range)%>
+      <%=high_chart("scatter_timeline",@scatter_timeline)%>
       <div class="panel-group" id="yes_accordion">
         <%@yes_evidence.each_with_index do |point,index|%>
           <div class="panel panel-info">

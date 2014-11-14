@@ -129,7 +129,6 @@ class QuestionsController < ApplicationController
     @cred_range =
       LazyHighCharts::HighChart.new('cred_range') do |f|
         f.chart({:defaultSeriesType=>"columnrange", inverted: true, height: 130})
-        f.colors( ['#428bca', 'black', '#998100', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'])
         f.title(text:"Cred Scores", style:{margin: "5px", font: 'bold 12px Verdana, sans-serif', fontSize:"12px"})
         f.legend({enabled: false})          
         f.yAxis({min: 0, max: 48, tickInterval: 10, title: ''})
@@ -191,8 +190,84 @@ class QuestionsController < ApplicationController
         if no_total_cred != 0 then f.series(series1) end
         if unknown_total_cred != 0 then f.series(series2) end
         f.series(avg_series) 
-      end  
+      end
 
+    @yes_researches =[]
+    @yes_evidence.each do |point|
+      point.findings.each do |finding|
+        @yes_researches << {
+          x: finding.research.date_of_publication.to_datetime.to_i*1000,
+          y:finding.research.score,
+          title:truncate(finding.research.title,length:25),
+          authors:truncate(finding.research.authors,length:25)
+        }
+      end
+    end 
+
+    @no_researches =[]
+    @no_evidence.each do |point|
+      point.findings.each do |finding|
+        @no_researches << {
+          x: finding.research.date_of_publication.to_datetime.to_i*1000,
+          y:finding.research.score,
+          title:truncate(finding.research.title,length:25),
+          authors:truncate(finding.research.authors,length:25)
+        }
+      end
+    end    
+
+    @scatter_timeline=
+      LazyHighCharts::HighChart.new('scatter_timeline') do |f|
+        f.chart({:defaultSeriesType=>"scatter", height: 200})
+        f.title(text:"The Research", style:{margin: "5px", font: 'bold 12px Verdana, sans-serif', fontSize:"12px"})
+        f.legend({enabled: true, vertical_align: 'top', align: "right", floating: true}) 
+        f.xAxis({
+          type: 'datetime', 
+          minTickInterval: 24 * 3600* 1000,
+          title: {text: 'Publication Date'}
+          })          
+        f.yAxis({
+          min: 0, 
+          tickInterval: 50, 
+          title: {text: '-    Convincing    +'},
+          labels: {
+            enabled: false
+          }
+        })  
+
+
+        f.plot_options(column: {
+          colorByPoint: true
+        })
+
+        yes_series =  
+          {
+            type: 'scatter',
+            name: 'Yes',
+            color: 'rgba(66, 139, 202, .65)', 
+            tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1}, 
+            data: @yes_researches,
+            marker: {
+              symbol: "circle",
+              radius: 6
+            }
+          }
+        no_series =  
+          {
+            type: 'scatter',
+            name: 'No',
+            color: 'rgba(0, 0, 0, .65)', 
+            tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1}, 
+            data: @no_researches,
+            marker: {
+              symbol: "circle",
+              radius: 6
+            }
+          }                         
+        
+        f.series(yes_series)
+        f.series(no_series)          
+      end  
     respond_to do |format|
       format.html {    
         if request.path != question_path(@question)

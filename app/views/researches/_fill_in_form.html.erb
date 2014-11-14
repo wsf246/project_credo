@@ -34,11 +34,7 @@
 
     <legend>Bias Controls</legend>
     <%= f.input :study_type, collection: ['Unknown','Cross Sectional','Case Control','Cohort Study', 'Randomized Control Trial', 'Case Study', 'Meta-Analysis', 'Review of Literature', 'Clinical Trial'], selected: @study_type %>
-    <%= f.input_field :single_blinded, :as => :boolean, inline_label: "Single blinded?" %> 
-    <%= f.input_field :double_blinded, :as => :boolean, inline_label: "Double blinded?" %> 
-    <%= f.input_field :randomized, inline_label: "Randomized?" %> 
-    <%= f.input_field :controlled_against_placebo, inline_label: "Controlled against placebo?" %> 
-    <%= f.input_field :controlled_against_best_alt, inline_label: "Controlled against best alternative?" %>       
+    <%= render 'bias_controls_form', f: f %>    
     
     <legend>Findings</legend>
 
