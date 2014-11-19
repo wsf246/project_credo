@@ -35,27 +35,16 @@ class ResearchesController < ApplicationController
     @bias_controls = bias_controls.join(", ")
 
     @study_type_score =
-      0 * (@research.study_type == 'Unknown' ? 1 : 0) +
-      2 * (@research.study_type == 'Case Study' ? 1 : 0) +         
-      3 * (@research.study_type == 'Cross Sectional' ? 1 : 0) +
-      5 * (@research.study_type == 'Case Control' ? 1 : 0) +
-      8 * (@research.study_type == 'Cohort Study' ? 1 : 0) + 
-      8 * (@research.study_type == 'Review of Literature' ? 1 : 0) + 
-      13 * (@research.study_type == 'Clinical Trial' ? 1 : 0) +    
-      21 * (@research.study_type == 'Randomized Control Trial' ? 1 : 0) +
-      34 * (@research.study_type == 'Meta-Analysis' ? 1 : 0) 
+      Research.score_weights[@research.study_type]
     @verification_score =   
-      10 * (@research.peer_reviewed ? 1 : 0) +
-      10 * (@research.replicated ? 1 : 0)
+      Research.score_weights['Peer Reviewed'] * (@research.peer_reviewed ? 1 : 0) +
+      Research.score_weights['Replicated'] * (@research.replicated ? 1 : 0)
     @bias_controls_score =
-      1 * (@research.single_blinded ? 1 : 0) + 
-      1 * (@research.double_blinded ? 1 : 0) + 
-      1 * (@research.randomized ? 1 : 0) +
-      1 * (@research.controlled_against_placebo ? 1 : 0) + 
-      1 * (@research.controlled_against_best_alt ? 1 : 0)  
-
-
-
+      Research.score_weights['Bias Control'] * (@research.single_blinded ? 1 : 0) + 
+      Research.score_weights['Bias Control'] * (@research.double_blinded ? 1 : 0) + 
+      Research.score_weights['Bias Control'] * (@research.randomized ? 1 : 0) +
+      Research.score_weights['Bias Control'] * (@research.controlled_against_placebo ? 1 : 0) + 
+      Research.score_weights['Bias Control'] * (@research.controlled_against_best_alt ? 1 : 0)
   end
 
   def pubmed_search

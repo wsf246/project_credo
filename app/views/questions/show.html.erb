@@ -18,6 +18,7 @@
   <%else%>
     <div class='row'>
       <div class= 'col-md-2'>
+        Prob: <%=number_with_precision(@prob*100 , precision: 2) %>%
         <%=high_chart("evidence_pie", @pie)%>
       </div> 
       <div class='col-md-10'>    

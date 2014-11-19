@@ -49,6 +49,21 @@ class QuestionsController < ApplicationController
     unknown_total_cred = @unknown_evidence.map{|b| b.findings.map{|a| a.research}}.flatten.uniq.map{|a| a.score}.sum 
    
 
+    yes_research = @question.points.where(point_type: "Yes").map{|b| b.findings.map{|a| a.research}}.flatten.uniq.map{|a| a}
+    @prob = 0.5
+    yes_research.each do |evid|
+      if evid.score != 0
+        @prob = (@prob*evid.true_pos)/(@prob*evid.true_pos+(1-@prob)*evid.false_pos)
+      end
+    end
+    no_research = @question.points.where(point_type: "No").map{|b| b.findings.map{|a| a.research}}.flatten.uniq.map{|a| a}
+    no_research.each do |evid|
+      if evid.score != 0
+        @prob = @prob*(1-evid.true_pos)/(@prob*(1-evid.true_pos)+(1-@prob)*(1-evid.false_pos))
+      end
+    end
+     
+
 
     @pie = 
       LazyHighCharts::HighChart.new('pie') do |f|

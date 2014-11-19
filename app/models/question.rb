@@ -20,4 +20,6 @@ class Question < ActiveRecord::Base
 
   default_scope { order('(cached_votes_up-cached_votes_down)*cached_votes_total DESC') }
 
+
+
 end

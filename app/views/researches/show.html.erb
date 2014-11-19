@@ -8,7 +8,7 @@
 		<%= link_to " Edit", edit_research_path %> | 
 		<%= link_to "See edit history", edit_history_research_path %>
 	</div>
-	<section>	 
+	<section>	
 		<p>
 	  	<% if @research.journal.present? %>
 	  		<b>Journal:</b> <%= @research.journal %>
@@ -23,20 +23,46 @@
 	  	<%end%>		
 		</p>
 
-		<p><b>Study Type <b class="blue"><%=if @study_type_score == 0 then  "(0 of 34)" else "(+"+@study_type_score.to_s+" of 34)" end%></b>: </b><%= @research.study_type %></p>
+		<p><b>Study Type <b class="blue"><%=if @study_type_score == 0 then  "(0 of 34)" else "(+"+@study_type_score.to_s+" of "+Research.score_weights['Study Max'].to_s+")" end%></b>: </b><%= @research.study_type %></p>
 
-		<p><b>Bias Controls <b class="blue"><%=if @bias_controls_score == 0 then  "(0 of 5)" else "(+"+@bias_controls_score.to_s+" of 5)" end%></b>: </b><%=@bias_controls%></p>
-		<p><b>Verification <b class="blue"><%=if @research.retracted then  "(Retracted!)" else "(+"+@verification_score.to_s+" of 20)" end%></b>: </b>
+		<p>
+			<b>
+				Bias Controls 
+				<b class="blue">
+					<%if @bias_controls_score == 0%> 
+						<%="(0 of "+Research.score_weights['Bias Controls Total'].to_s+")"%> 
+					<%else%>
+						<%="(+"+@bias_controls_score.to_s+" of "+Research.score_weights['Bias Controls Total'].to_s+")"%> 
+					<%end%>
+				</b>
+				:
+			</b>
+			<%=@bias_controls%>
+		</p>
+		<p><b>Verification <b class="blue"><%=if @research.retracted then  "(Retracted!)" else "(+"+@verification_score.to_s+" of "+Research.score_weights['Verification Total'].to_s+")" end%></b>: </b>
 			<%= is_it? @research.peer_reviewed %> Peer Reviewed,  
 			<%= is_it? @research.replicated %> Replicated, 
 			<%= is_it? @research.retracted %> Retracted 
 		</p>		 	  	 	
   	<% if @research.funding.present? %>
-  		<p><b>Funding <b class="blue">(+2 of 2)</b>: </b>   
+  		<p>
+  			<b>
+  				Funding 
+  				<b class="blue">
+  					<%="(+"+Research.score_weights['Funding'].to_s+" of "+Research.score_weights['Funding'].to_s+")"%>
+  				</b>: 
+  			</b>   
 	  	  <p><%= @research.funding %></p>
 	  	</p>  
 	  <%else%>
-	  	<p><b>Funding <b class="blue">(0 of 2)</b>: </b>  
+	  	<p>
+	  		<b>
+	  			Funding 
+	  			<b class="blue">
+	  				<%="(0 of "+Research.score_weights['Funding'].to_s+")"%>
+	  			</b>
+	  			: 
+	  		</b>  
 	  	  Unknown
 	  	</p>  
   	 <% end %>
