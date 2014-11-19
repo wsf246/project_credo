@@ -36,11 +36,11 @@ class Research < ActiveRecord::Base
   end
 
   def true_pos
-    0.0249*Math.log(self.score) +0.8005
+    0.00004*self.score**2 +0.0005*self.score+0.6984
   end
 
   def false_pos
-    -0.132*Math.log(self.score) +0.5999
+    -0.0086*self.score+0.6251
   end    
 
   def score_it
