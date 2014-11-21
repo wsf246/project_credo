@@ -75,7 +75,7 @@ class QuestionsController < ApplicationController
 
     @donut = 
       LazyHighCharts::HighChart.new('donut') do |f|
-        f.chart({:defaultSeriesType=>'pie', :margin=> [0, 0, 0, 0], height: 140})
+        f.chart({:defaultSeriesType=>'pie', :margin=> [0, 0, 0, 0], height: 140, width: 140})
         f.legend({enabled: false})
         f.title({ 
           text: posterior,
@@ -99,6 +99,7 @@ class QuestionsController < ApplicationController
             name: 'Probability',
             data: [["Yes",prob*100],["No",(1-prob)*100]],
             innerSize: '98%',
+            minsize: "130px",
             showInLegend:true,
             tooltip: {valueDecimals: 2},
             dataLabels: {
