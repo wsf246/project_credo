@@ -17,10 +17,10 @@
 
   <%else%>
     <div class='row'>
-      <div class= 'col-md-2'>
+      <div class= 'col-md-3 col-sm-4' style= "min-width: 190px">
         <%=high_chart("donut", @donut)%>
       </div> 
-      <div class='col-md-10'>    
+      <div class='col-md-9 col-sm-8'>    
         <h1><%= @question.question %></h1>
         <%if @question.question_type == "Multiple Answers"%>
           <p>Potential answers:<%= @question.answers%></p>

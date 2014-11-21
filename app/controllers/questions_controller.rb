@@ -75,25 +75,25 @@ class QuestionsController < ApplicationController
 
     @donut = 
       LazyHighCharts::HighChart.new('donut') do |f|
-        f.chart({:defaultSeriesType=>'pie', :margin=> [0, 0, 0, 0], height: 140, width: 140})
+        f.chart({:defaultSeriesType=>'pie', :margin=> [0, 4, 0, 0], height: 200, width: 200})
         f.legend({enabled: false})
         f.title({ 
           text: posterior,
           style: {
             fontFamily: "Gill Sans MT", 
-            fontSize: "24px",
+            fontSize: "36px",
             color: '#428bca'
             }, 
-          y: 60          
+          y: 90          
           })
           f.subtitle({ 
           text: "Probability of Yes",
           style: {
             fontFamily: "Gill Sans MT", 
-            fontSize: "10px",
+            fontSize: "1.3em",
             color: "black"
             }, 
-          y: 73          
+          y: 110          
           })
         series = {
             name: 'Probability',
