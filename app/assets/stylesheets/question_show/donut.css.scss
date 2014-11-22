@@ -1,7 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* Doonut */
+/* Donut */
 
 .highcharts-container {
   display: block;
@@ -9,3 +9,11 @@
   margin: auto;
 }
 
+.donut {
+  width: 180px;
+ 
+}
+
+.question-title {
+  display: inline;
+}
