@@ -1,0 +1,43 @@
+.evidence-wrapper
+  - unless @evidence.first.nil?
+    %h3= t 'evidence.heading'
+    .callout.cred-chart-callout
+      = high_chart('cred_range', @cred_range) if @question.question_type == 'Yes/No'
+
+    %h3
+      = t 'arguments.heading'
+      = link_to new_question_point_path @question do
+        = image_tag 'icon-plus.png', class: 'icon icon-small', data: { placement: 'right', toggle: 'tooltip', title: 'Add an argument' }
+
+    - if @question.question_type == 'Yes/No'
+      = high_chart('cred_range', @cred_range)
+
+      -# TODO: Remove Type from evidence_panel partial
+
+      - if @yes_evidence.size > 0
+        .argument-wrapper.yes
+          %h4.argument-wrapper-header Yes
+          #yes_accordion.panel-group
+            - @yes_evidence.each_with_index do |point,index|
+              = render 'questions/evidence/evidence_panels', type: '', collapse_id: 'yes', index: index, point: point
+      - if @no_evidence.size > 0
+        .argument-wrapper.no
+          %h4.argument-wrapper-header No
+          #no_accordion.panel-group
+            - @no_evidence.each_with_index do |point,index|
+              = render 'questions/evidence/evidence_panels', type: '', collapse_id: 'no', index: index, point: point
+      - if @unknown_evidence.size > 0
+        .argument-wrapper.unknown
+          %h4.argument-wrapper-header Unknown
+          #unknown_accordion.panel-group
+            - @unknown_evidence.each_with_index do |point,index|
+              = render 'questions/evidence/evidence_panels', type: '', collapse_id: 'unknown', index: index, point: point
+
+    - elsif @question.question_type == 'Multiple Answers'
+      #unknown_accordion.panel-group
+        - @evidence.each_with_index do |point,index|
+          = render 'questions/evidence/evidence_panels', type: '', collapse_id: 'unknown', index: index, point: point
+
+  - if @evidence.first.nil?
+    No evidence yet.
+    = link_to 'Add an argument and evidence', new_question_point_path(@question)

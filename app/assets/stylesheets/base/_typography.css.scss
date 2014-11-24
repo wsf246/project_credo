@@ -1,0 +1,40 @@
+body, textarea, input {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: shade($primary-color, 30%);
+}
+
+h2 {
+  font-size: 42px;
+  font-weight: 300;
+  color: $secondary-color;
+}
+
+h1 {
+
+}
+
+h3 {
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.question-show-heading {
+  font-size: 36px;
+  line-height: 48px;
+  font-weight: 300;
+  color: $secondary-color;
+}
+
+a { color: $primary-color; }
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url(glyphicons-halflings-regular.eot);
+  src: url(glyphicons-halflings-regular.eot?#iefix)
+        format("embedded-opentype"), url(glyphicons-halflings-regular.woff)
+        format("woff"), url(glyphicons-halflings-regular.ttf)
+        format("truetype"), url(glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format("svg");
+}

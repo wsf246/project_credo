@@ -1,0 +1,47 @@
+.argument-wrapper {
+  margin: 20px 0 30px 0;
+  border: $primary-color 1px solid;
+  position: relative;
+  padding-top: 8px;
+
+  .panel-group {
+    margin-bottom: 0;
+  }
+  .panel:last-child {
+    border-bottom: none;
+  }
+
+  &.no {
+    border-color: $dark-color;
+  }
+}
+
+.argument-wrapper-header {
+  position: absolute;
+  top: -13px;
+  left: 15px;
+  height: 22px;
+  line-height: 22px;
+  color: $primary-color;
+  font-size: 18px;
+  background: #fff;
+  float: left;
+  margin: 0;
+  padding: 0 8px;
+
+  .argument-wrapper.no & {
+    color: $dark-color;
+  }
+}
+
+.research {
+  list-style: none;
+}
+
+.evidence-links {
+  a {
+    color: $darkest-color;
+    font-weight: 700;
+    font-size: 11px;
+  }
+}

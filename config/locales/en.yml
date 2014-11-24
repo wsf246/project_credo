@@ -26,3 +26,28 @@ en:
         finding: "Finding"
         sample_def: "Finding's sample defintion"
         quote: "Finding's quote"
+  navbar:
+    top_questions: Top questions
+    add_a_question: Add a question
+    about: About
+    sign_in: Sign in
+    sign_up: Sign up
+    sign_out: Sign out
+    settings: Settings
+  questions:
+    index_title: Questions
+    add_question: Add a question
+
+    show:
+      potential_answers: 'Potential Answers: %{answer}'
+      asked_by: 'Asked by: %{user}'
+  evidence:
+    heading: Evidence
+    research_count: 'Research(%{count})'
+  arguments:
+    heading: Arguments
+  misc:
+    question_search_text: Search for a question
+    search_btn: Search
+    edit_question: Edit question
+    see_edit_history: See edit history
