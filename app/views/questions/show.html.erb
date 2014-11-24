@@ -17,10 +17,16 @@
 
   <%else%>
     <div class='row'>
-      <div class= 'pull-left'>
+      <div class= 'pull-left' data-toggle="tooltip" data-placement="left" title="The Credo Score estimates the probability the statement is true based on the individual Cred Scores of all the recorded studies">
         <%=high_chart("donut", @donut)%>
       </div> 
-      <div class='col-lg-9 col-md-8 col-sm-6 question-title'>    
+
+      <div class= 'col-lg-2 col-md-2 col-sm-2 stats'>
+        <h1>Stats</h1>
+      </div>
+
+
+      <div class='col-lg-7 col-md-4 col-sm-4 question-title'>    
         <h1><%= @question.question %></h1>
         <%if @question.question_type == "Multiple Answers"%>
           <p>Potential answers:<%= @question.answers%></p>
@@ -36,8 +42,15 @@
   <%end%>    
 </div>
 
- <%= render 'questions/verdicts/verdicts' %>
-
+<div class ='verdict-wrapper'>
+  <div class = "row">
+    <div class = "col-md-4">
+      <%= render 'questions/verdicts/verdicts' %>
+    </div>   
  
-
+    <div class ="col-md-8">
+      <%= render 'questions/evidence/evidence'%>
+    </div>     
+  </div> <!--row-fluid div --> 
+</div> <!--verdict-wrapper div --> 
  

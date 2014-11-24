@@ -64,14 +64,6 @@ class QuestionsController < ApplicationController
       end
     end
     posterior = ActionController::Base.helpers.number_to_percentage(prob*100,{precision:1})
-    text =
-      if prob < 0.3333
-        "Unlikely"
-      elsif prob > 0.6666
-        "Likely"
-      else
-        "Split"
-      end
 
     @donut = 
       LazyHighCharts::HighChart.new('donut') do |f|
@@ -87,7 +79,7 @@ class QuestionsController < ApplicationController
           y: 95          
           })
           f.subtitle({ 
-          text: "Probability of Yes",
+          text: "Credo Score",
           style: {
             fontFamily: "Gill Sans MT", 
             fontSize: "1em",
@@ -97,7 +89,7 @@ class QuestionsController < ApplicationController
           })
         series = {
             name: 'Probability',
-            data: [["Yes",prob*100],["No",(1-prob)*100]],
+            data: [["Yes", if prob > 0.999 then 99.9 else prob*100 end],["No",(1-prob)*100]],
             innerSize: 140,
             minSize: "130px",
             showInLegend:true,

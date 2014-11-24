@@ -9,16 +9,16 @@ $(document).ajaxError(function (e, xhr, settings) {
 
 
 $(document).ready(function() {
-if($('#question_question_type option:selected').text() ==  "Yes/No") 
-   $('#question_descr').prop('disabled', true);
+  if($('#question_question_type option:selected').text() ==  "Yes/No") 
+     $('#question_descr').prop('disabled', true);
 
-$('#question_question_type option:selected').keyup(function(){
-      if($('#question_question_type option:selected').text() !=  "Yes/No") 
-           $('#question_descr').prop('disabled', false);    
-  else
-     $('#question_descr').prop('disabled', true);   
+  $('#question_question_type option:selected').keyup(function(){
+    if($('#question_question_type option:selected').text() !=  "Yes/No") 
+      $('#question_descr').prop('disabled', false);    
+    else
+      $('#question_descr').prop('disabled', true);   
+  });
 });
- });
 
 
 
