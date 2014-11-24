@@ -14,10 +14,9 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery_nested_form
-//= require bootstrap
+//= require lib/bootstrap
 //= require turbolinks
 //= require_tree .
 
 //= require highcharts/highcharts 
-//= require highcharts/highcharts-more 
-
+//= require highcharts/highcharts-more

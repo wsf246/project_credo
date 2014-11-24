@@ -1,0 +1,14 @@
+.piped-list {
+  > li {
+    display: inline-block;
+
+    &:before {
+      display: inline-block;
+      content: ' | ';
+    }
+
+    &:first-child {
+      &:before { display: none; }
+    }
+  }
+}

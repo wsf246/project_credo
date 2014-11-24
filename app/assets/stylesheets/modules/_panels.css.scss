@@ -1,0 +1,56 @@
+.panel-group .panel {
+  border-radius: 0;
+}
+
+.panel-heading {
+  border-radius: 0;
+}
+
+.panel-default {
+  border-color: shade($light-gray-color, 10%);
+}
+.panel-heading {
+
+  .panel-default > & {
+    background: $light-gray-color;
+    border-color: shade($light-gray-color, 10%);
+  }
+
+  .panel-info > & {
+    border-color: tint($primary-color, 88%);
+    background: tint($primary-color, 95%);
+
+    .panel-title > a {
+      color: shade($primary-color, 40%);
+    }
+  }
+
+  &.highlight {
+    background: tint($primary-color, 90%);
+
+    + .panel-collapse .panel-body {
+      border-top-color: tint($primary-color, 50%);
+    }
+  }
+}
+
+.evidence-wrapper {
+  .panel-title {
+    margin-bottom: 4px;
+  }
+}
+
+#verdict-accordion .panel {
+  margin-bottom: 5px;
+}
+
+.panel-title .gold {
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: $primary-color;
+}
+
+.verdict {
+  font-size: 16px;
+  line-height: 21px;
+}

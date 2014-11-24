@@ -1,17 +1,3 @@
-body {
-  padding-top: 50px !important;
-}
-
-div.home-wrapper{
-  width: 100%;
-  margin: auto;
-}
-
-div.help-wrapper{
-  width: 30%;
-  margin: auto;
-
-  ul{
-    margin-bottom: -15px;
-  }
+.full-body-wrapper {
+  padding-top: $navbar-height + 15px;
 }

@@ -1,0 +1,24 @@
+- evidence = @evidence.first || nil
+
+- provide(:title, @question.question)
+.question-wrapper
+  .row
+    - if evidence.present?
+      .col-md-3
+        -#= high_chart('evidence_pie', @pie)
+        = image_tag 'cred-score.png', class: 'credo-score-placeholder'
+
+    %div{ class: evidence.present? ? 'col-md-9' : '.col-md-12' }
+      %h1.question-show-heading
+        = @question.question
+      - if @question.question_type == 'Multiple Answers'
+        %p
+          Potential answers:#{@question.answers}
+      %p= @question.description
+      .pix12
+        Asked by: #{@question.user.username}
+      .pix14
+        = link_to t('misc.edit_question'), edit_question_path
+        = '|'
+        = link_to t('misc.see_edit_history'), edit_history_question_path
+= render 'questions/verdicts/verdicts'

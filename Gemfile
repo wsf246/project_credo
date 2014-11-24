@@ -3,7 +3,6 @@ ruby '2.1.2'
 #ruby-gemset=railstutorial_rails_4_0
 
 gem 'rails', '~> 4.1.0'
-gem 'bootstrap-sass'
 gem 'sprockets'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
@@ -28,6 +27,7 @@ gem 'lazy_high_charts'
 gem 'unicorn'
 gem 'jquery-turbolinks'
 gem 'bourbon'
+gem 'haml-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
@@ -43,8 +43,10 @@ group :development, :test do
 end
 
 group :development do
+  gem 'guard', require: false
   gem 'guard-livereload', require: false
-  gem 'rack-livereload', require: false
+  gem 'rack-livereload'
+  gem 'rb-fsevent', require: false
 end
 
 group :test do
