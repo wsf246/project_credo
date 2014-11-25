@@ -2,7 +2,7 @@
   - unless @evidence.first.nil?
     %h3= t 'evidence.heading'
     .callout.cred-chart-callout
-      = high_chart('cred_range', @cred_range) if @question.question_type == 'Yes/No'
+      = high_chart("scatter_timeline",@scatter_timeline) if @question.question_type == 'Yes/No'
 
     %h3
       = t 'arguments.heading'
@@ -10,7 +10,7 @@
         = image_tag 'icon-plus.png', class: 'icon icon-small', data: { placement: 'right', toggle: 'tooltip', title: 'Add an argument' }
 
     - if @question.question_type == 'Yes/No'
-      = high_chart('cred_range', @cred_range)
+      = high_chart("scatter_timeline",@scatter_timeline)
 
       -# TODO: Remove Type from evidence_panel partial
 

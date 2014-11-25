@@ -5,8 +5,8 @@
   .row
     - if evidence.present?
       .col-md-3
-        -#= high_chart('evidence_pie', @pie)
-        = image_tag 'cred-score.png', class: 'credo-score-placeholder'
+        .credo-score-placeholder
+          =high_chart("donut", @donut)
 
     %div{ class: evidence.present? ? 'col-md-9' : '.col-md-12' }
       %h1.question-show-heading
@@ -21,4 +21,5 @@
         = link_to t('misc.edit_question'), edit_question_path
         = '|'
         = link_to t('misc.see_edit_history'), edit_history_question_path
+
 = render 'questions/verdicts/verdicts'

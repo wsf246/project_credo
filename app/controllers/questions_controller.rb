@@ -65,183 +65,43 @@ class QuestionsController < ApplicationController
     end
     posterior = ActionController::Base.helpers.number_to_percentage(prob*100,{precision:1})
 
+
     @donut =
-        LazyHighCharts::HighChart.new('donut') do |f|
-          f.chart({:defaultSeriesType=>'pie', :margin=> [0, 0, 0, 0], height: 200, width: 180})
-          f.legend({enabled: false})
-          f.title({
-                      text: if prob > 0.999  then "99.9%" else posterior end,
-                      style: {
-                          fontFamily: "Arial",
-                          fontSize: "42px",
-                          color: '#428bca'
-                      },
-                      y: 95
-                  })
-          f.subtitle({
-                         text: "Credo Score",
-                         style: {
-                             fontFamily: "Gill Sans MT",
-                             fontSize: "1em",
-                             color: "black"
-                         },
-                         y: 115
-                     })
-          series = {
-              name: 'Probability',
-              data: [["Yes", if prob > 0.999 then 99.9 else prob*100 end],["No",(1-prob)*100]],
-              innerSize: 140,
-              minSize: "130px",
-              showInLegend:true,
-              tooltip: {valueDecimals: 2},
-              dataLabels: {
-                  enabled: false,
-              }
+      LazyHighCharts::HighChart.new('donut') do |f|
+        f.chart({defaultSeriesType: 'pie', :margin=> [0, 0, 0, 0], height: 225, width: 225})
+        f.colors(["#04a8d4", "#4b4b4b"])
+        f.legend({enabled: false})
+        f.title({
+          text: if prob > 0.999  then "99.9%" else posterior end,
+          style: {
+              fontFamily: "@font-face",
+              fontSize: "54px",
+              color: "#04a8d4"
+          },
+          y: 105
+        })
+        f.subtitle({
+         text: "Credo Score",
+         style: {
+           fontFamily: "Arial",
+           fontSize: "20px",
+           color: "#04a8d4"
+         },
+         y: 135
+        })
+        series = {
+          name: 'Probability',
+          data: [["Yes", if prob > 0.999 then 99.9 else prob*100 end],["No",(1-prob)*100]],
+          innerSize: 190,
+          minSize: "130px",
+          showInLegend:true,
+          tooltip: {valueDecimals: 2},
+          dataLabels: {
+            enabled: false,
           }
-          f.series(series)
-        end
-
-    # @pie = 
-    #   LazyHighCharts::HighChart.new('pie') do |f|
-    #     f.chart({:defaultSeriesType=>"pie" , :margin=> [5, 0, 0, 0], height: 130} )
-    #     f.colors( ['#428bca', 'black', '#998100', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'])
-    #     series = {
-    #       :type=> 'pie',
-    #       :name=> 'Cred',
-    #       :data=> [
-    #         [if yes_total_cred == 0 then '' else 'Yes' end, yes_total_cred],            
-    #         [if no_total_cred == 0 then '' else 'No' end, no_total_cred],
-    #         [if unknown_total_cred == 0 then '' else 'Unk.' end, unknown_total_cred],
-    #       ]
-    #     }
-    #     f.series(series)
-    #     f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'})
-    #     f.plot_options(:pie=>{
-    #       :allowPointSelect=>true,
-    #       cursor:"pointer",
-    #       size: "100%",
-    #       :dataLabels=>{
-    #         :enabled=>true,
-    #         :distance=> -25,
-    #         :color=>"white",
-    #         :style=>{
-    #           :font=>'bold 40px Verdana, sans-serif',
-    #           fontSize: "14px"
-    #         }
-    #       }
-    #     })
-    #   end
-
-    # @yes_cred =[]
-    #   @yes_evidence.each do |point|
-    #     point.findings.each do |finding|
-    #       @yes_cred << {
-    #         x:0,y:finding.research.score,
-    #         title:truncate(finding.research.title,length:25),
-    #         authors:truncate(finding.research.authors,length:25)
-    #       }
-    #     end
-    #   end
-
-    # @no_cred = []
-    # @no_evidence.each do |point|
-    #   point.findings.each do |finding|
-    #     @no_cred << {
-    #         x:1,y:finding.research.score,
-    #         title:truncate(finding.research.title,length:25),
-    #         authors:truncate(finding.research.authors,length:25)
-    #       }
-    #   end
-    # end
-
-    # @unknown_cred = []
-    # @unknown_evidence.each do |point|
-    #   point.findings.each do |finding|
-    #     @unknown_cred << {
-    #         x:2,y:finding.research.score,
-    #         title:truncate(finding.research.title,length:25),
-    #         authors:truncate(finding.research.authors,length:25)
-    #       }
-    #   end
-    # end         
-    # yes_count = @yes_evidence.map{|b| b.findings.map{|a| a.research}.count}.sum
-    # no_count = @no_evidence.map{|b| b.findings.map{|a| a.research}.count}.sum
-    # unknown_count = @unknown_evidence.map{|b| b.findings.map{|a| a.research}.count}.sum
-
-    # yes_avg_cred = yes_total_cred/yes_count if yes_count != 0
-    # no_avg_cred = no_total_cred/no_count if no_count != 0
-    # unknown_avg_cred = unknown_total_cred/unknown_count if unknown_count != 0
-
-    # averages = []
-    # averages << [0,yes_avg_cred] if yes_count !=0
-    # averages << [1,no_avg_cred] if no_count !=0
-    # averages << [2,unknown_avg_cred] if unknown_count !=0
-
-    # @cred_range =
-    #   LazyHighCharts::HighChart.new('cred_range') do |f|
-    #     f.chart({:defaultSeriesType=>"columnrange", inverted: true, height: 130})
-    #     f.title(text:"Cred Scores", style:{margin: "5px", font: 'bold 12px Verdana, sans-serif', fontSize:"12px"})
-    #     f.legend({enabled: false})          
-    #     f.yAxis({min: 0, max: 48, tickInterval: 10, title: ''})
-    #     f.xAxis({categories: ['Yes','No','Unknown']})
-
-    #     f.plot_options(column: {
-    #       colorByPoint: true
-    #     })   
-    #     series0 =
-    #       {
-    #         type: 'scatter',
-    #         name: 'Yes',
-    #         color: '#428bca',              
-    #         tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1}, 
-    #         data: @yes_cred, 
-    #         marker: {
-    #           symbol: "circle",
-    #           radius: 6
-    #         }
-    #       }
-    #     series1 =  
-    #       {
-    #         type: 'scatter',
-    #         name: 'No',
-    #         color:'black',
-    #         tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1},               
-    #         data: @no_cred,
-    #         marker: {
-    #           symbol: "circle",
-    #           radius: 6
-    #         }
-    #       }
-    #     series2 =  
-    #       {
-    #         type: 'scatter',
-    #         name: 'Unknown',
-    #         color:'#998100',
-    #         tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1}, 
-    #         data: @unknown_cred,
-    #         marker: {
-    #           symbol: "circle",
-    #           radius: 6
-    #         }
-    #       }
-    #     avg_series =  
-    #       {
-    #         type: 'scatter',
-    #         name: 'Average',
-    #         color:'#FF0000',
-    #         tooltip: {pointFormat:"Cred: {point.y}", valueDecimals: 1}, 
-    #         data: averages,
-    #         marker: {
-    #           symbol: "square",
-    #           radius: 6
-    #         }
-    #       }            
-
-    #     if yes_total_cred != 0 then f.series(series0) end
-    #     if no_total_cred != 0 then f.series(series1) end
-    #     if unknown_total_cred != 0 then f.series(series2) end
-    #     f.series(avg_series) 
-    #   end
+        }
+        f.series(series)
+      end
 
     @yes_researches =[]
     @yes_evidence.each do |point|
@@ -274,15 +134,26 @@ class QuestionsController < ApplicationController
           f.xAxis({
                       type: 'datetime',
                       minTickInterval: 24 * 3600* 1000,
-                      title: {text: 'Publication Date'}
+                      title: {
+                        text: 'Publication Date',
+                        style: {
+                          color:"#4b4b4b"
+                        }
+                      }
                   })
           f.yAxis({
                       min: 0,
                       tickInterval: 66.5,
-                      title: {text: '- Credibility +'},
+                      title: {
+                        text: '- Credibility +',
+                        style: {
+                          color:"#4b4b4b"
+                        }
+                      },
                       labels: {
                           enabled: false
-                      }
+                      },
+
                   })
 
 
@@ -294,7 +165,7 @@ class QuestionsController < ApplicationController
               {
                   type: 'scatter',
                   name: 'Yes',
-                  color: 'rgba(66, 139, 202, .65)',
+                  color: "#04a8d4",
                   tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1},
                   data: @yes_researches,
                   marker: {
@@ -306,7 +177,7 @@ class QuestionsController < ApplicationController
               {
                   type: 'scatter',
                   name: 'No',
-                  color: 'rgba(0, 0, 0, .65)',
+                  color: "#4b4b4b",
                   tooltip: {pointFormat:"{point.title}<br />{point.authors}<br />Cred: {point.y}", valueDecimals: 1},
                   data: @no_researches,
                   marker: {
