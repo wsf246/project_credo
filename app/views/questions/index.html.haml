@@ -2,17 +2,16 @@
   question-list
 
 - provide(:title, 'Questions')
-.questions
-  %h2
-    = t 'questions.index_title'
-  .center
-    = link_to t('questions.add_question'), new_question_path
 
-  .search.center
-    = search_form_for @query, url: search_questions_path, html: { method: :post} do |f|
-      = f.text_field :question_cont, placeholder: t('misc.question_search_text')
-      = f.submit t('misc.search_btn')
+%h2
+  = t 'questions.index_title'
+= link_to t('questions.add_question'), new_question_path
 
-  = will_paginate @questions, renderer: BootstrapPagination::Rails
-  = render @questions
-  = will_paginate @questions, renderer: BootstrapPagination::Rails
+.search
+  = search_form_for @query, url: search_questions_path, html: { method: :post} do |f|
+    = f.text_field :question_cont, placeholder: t('misc.question_search_text')
+    = f.submit t('misc.search_btn')
+
+= will_paginate @questions, renderer: BootstrapPagination::Rails
+= render @questions
+= will_paginate @questions, renderer: BootstrapPagination::Rails
