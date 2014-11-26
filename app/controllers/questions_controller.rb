@@ -12,8 +12,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @query = Question.ransack(params[:q])
-    @questions = @query.result.paginate(page: params[:page])
+    @questions = @query.result(distinct: true).paginate(page: params[:page]).order('questions.cached_votes_up DESC')
   end
 
   def search

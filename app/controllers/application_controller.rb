@@ -4,7 +4,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_global_search_variable
   after_filter :store_location
+
+
+  def set_global_search_variable
+    @query = Question.ransack(params[:q]) 
+  end
 
   def store_location
     # store last url - this is needed for post-login redirect to whatever the user last visited.
