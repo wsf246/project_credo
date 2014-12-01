@@ -18,7 +18,7 @@ class Question < ActiveRecord::Base
   reject_if:  lambda { |a| a[:verdict].blank?},
     allow_destroy:  true  
 
-  default_scope { order('(cached_votes_up-cached_votes_down)*cached_votes_total DESC') }
+  default_scope { order('(questions.cached_votes_up-questions.cached_votes_down)*questions.cached_votes_total DESC') }
 
 
 

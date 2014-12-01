@@ -34,5 +34,5 @@
         %li= link_to t('navbar.sign_up'), new_user_registration_path, method: :get, class: 'highlight sign-up-link'
     %ul.nav.navbar-form.navbar-search-form
       =search_form_for @query, url: search_questions_path, html: {method: :post} do |f|
-        =f.text_field :question_cont, placeholder: 'Search', class: "form-control"
+        =f.text_field :question_or_points_point_cont, placeholder: 'Search', class: "form-control"
         %button.btn.btn-default.btn-search{ type: 'submit'}

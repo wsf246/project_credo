@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = @query.result(distinct: true).paginate(page: params[:page])
+    @questions = @query.result.to_a.uniq.paginate(page: params[:page])
   end
 
   def search
