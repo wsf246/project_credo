@@ -15,7 +15,7 @@
     <%end%> 
     <%= button_to(unvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs active") do%> 
       <%=verdict.cached_votes_down%>
-      <span class="glyphicon glyphicon-circle-arrow-up" ></span>
+      <span class="glyphicon glyphicon-circle-arrow-down" ></span>
     <%end%>      
   <%else%>
     <%= button_to(upvote_verdict_path(verdict), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
@@ -34,6 +34,6 @@
     <%end%> 
     <%= button_to(downvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs") do%> 
       <%=verdict.cached_votes_down%>
-      <span class="glyphicon glyphicon-circle-arrow-up" ></span>
+      <span class="glyphicon glyphicon-circle-arrow-down" ></span>
     <%end%>  
 <%end%> 

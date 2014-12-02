@@ -1,0 +1,46 @@
+.votes {
+  text-align: center;
+
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+    color: $secondary-color;
+  }
+
+  a:active {
+    text-decoration: none;
+    color: $secondary-color;
+  }
+}
+
+.glyphicon-circle-arrow-up{
+  font-size: 1.2em;
+  display: inline-block; 
+  margin-left: auto; 
+  margin-right: auto;
+  color: tint($dark-color, 50%);
+}
+
+.glyphicon-circle-arrow-down{
+  font-size: 1.2em;
+  display: inline-block; 
+  margin-left: auto; 
+  margin-right: auto;
+  color: tint($dark-color, 50%);
+}
+
+.active{
+  color: $secondary-color;
+}
+
+.negative{
+  position: relative;
+  right:.175em;
+}

@@ -1,6 +1,6 @@
 %li.question-index
   .row
-    .col-md-1.center
+    .col-md-1.votes{id: "question#{question.id}"}
       = render 'questions/upvote_downvote_question', question: question
     .col-md-11  
       = link_to question.question, question

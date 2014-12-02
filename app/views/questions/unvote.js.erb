@@ -1,0 +1,1 @@
+$("#question<%=@question.id%>").html("<%= escape_javascript(render 'questions/upvote_downvote_question', question: @question) %>");

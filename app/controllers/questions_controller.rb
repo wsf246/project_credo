@@ -272,17 +272,26 @@ class QuestionsController < ApplicationController
 
   def upvote
     @question.upvote_from current_user
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to "index" }
+      format.js 
+    end
   end
 
   def downvote
     @question.downvote_from current_user
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to "index"}
+      format.js 
+    end
   end
 
   def unvote
     @question.unvote_by current_user
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to "index" }
+      format.js 
+    end
   end
 
   def all_research
