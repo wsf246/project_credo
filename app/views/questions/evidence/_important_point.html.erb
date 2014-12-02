@@ -1,40 +1,36 @@
 <% if user_signed_in? %>
-  <% if current_user.voted_up_on? point %>
-    <%= button_to(unvote_point_path(point), method: :put , class: "btn btn-gold btn-xs active", style: "margin-bottom:3px") do%> 
-      <%=point.cached_votes_up%>
-      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+  <% if current_user.voted_up_on? point%>
+    <%= link_to unvote_point_path(point), method: :put , class: "glyphicon glyphicon-circle-arrow-up active", remote: true do%>  
     <%end%> 
-    <%= button_to(downvote_point_path(point), method: :put , class: "btn btn-default btn-xs") do%> 
-      <%=point.cached_votes_down%>
-      <span class="glyphicon glyphicon-thumbs-down" ></span>  
-    <%end%>   
+    <span class= <%= if point.cached_votes_up-point.cached_votes_down < 0 then "negative" else "positive" end%>>
+      <%=point.cached_votes_up - point.cached_votes_down%>
+    </span>
+    <%= link_to downvote_point_path(point), method: :put , class: "glyphicon glyphicon-circle-arrow-down", remote: true do%> 
+    <%end%>
   <% elsif current_user.voted_down_on? point%>
-    <%= button_to(upvote_point_path(point), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
-      <%=point.cached_votes_up%>
-      <span class="glyphicon glyphicon-thumbs-up" ></span>  
+    <%= link_to upvote_point_path(point), method: :put , class: "glyphicon glyphicon-circle-arrow-up", remote: true do%>  
     <%end%> 
-    <%= button_to(unvote_point_path(point), method: :put , class: "btn btn-default btn-xs active") do%> 
-      <%=point.cached_votes_down%>
-      <span class="glyphicon glyphicon-thumbs-down" ></span>  
-    <%end%>      
-  <%else%>
-    <%= button_to(upvote_point_path(point), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
-      <%=point.cached_votes_up%>
-      <span class="glyphicon glyphicon-thumbs-up" ></span>  
-    <%end%> 
-    <%= button_to(downvote_point_path(point), method: :put , class: "btn btn-default btn-xs") do%> 
-      <%=point.cached_votes_down%>
-      <span class="glyphicon glyphicon-thumbs-down" ></span>  
+    <span class= <%= if point.cached_votes_up-point.cached_votes_down < 0 then "negative" else "positive" end%>>
+      <%=point.cached_votes_up - point.cached_votes_down%>
+    </span>
+    <%= link_to unvote_point_path(point), method: :put , class: "glyphicon glyphicon-circle-arrow-down active", remote: true do%> 
     <%end%>     
+  <%else%>
+    <%= link_to upvote_point_path(point), method: :put , class: "glyphicon glyphicon-circle-arrow-up", remote: true do%>  
+    <%end%> 
+    <span class= <%= if point.cached_votes_up-point.cached_votes_down < 0 then "negative" else "positive" end%>>
+      <%=point.cached_votes_up - point.cached_votes_down%>
+    </span>
+    <%= link_to downvote_point_path(point), method: :put , class: "glyphicon glyphicon-circle-arrow-down", remote: true do%> 
+    <%end%>    
   <%end%> 
 <%else%>
-    <%= button_to(upvote_point_path(point), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
-      <%=point.cached_votes_up%>
-      <span class="glyphicon glyphicon-thumbs-up" ></span>  
-    <%end%> 
-    <%= button_to(downvote_point_path(point), method: :put , class: "btn btn-default btn-xs") do%> 
-      <%=point.cached_votes_down%>
-      <span class="glyphicon glyphicon-thumbs-down" ></span>  
-    <%end%>  
+  <%= link_to upvote_point_path(point), method: :put , class: "glyphicon glyphicon-circle-arrow-up", remote: true do%>  
+  <%end%> 
+  <span class= <%= if point.cached_votes_up-point.cached_votes_down < 0 then "negative" else "positive" end%>>
+    <%=point.cached_votes_up - point.cached_votes_down%>
+  </span>
+  <%= link_to downvote_point_path(point), method: :put , class: "glyphicon glyphicon-circle-arrow-down", remote: true do%> 
+  <%end%>    
 <%end%> 
 

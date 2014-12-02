@@ -1,39 +1,36 @@
 <% if user_signed_in? %>
-  <% if current_user.voted_up_on? verdict %>
-    <%= button_to(unvote_verdict_path(verdict), method: :put , class: "btn btn-gold btn-xs active", style: "margin-bottom:3px") do%> 
-      <%=verdict.cached_votes_up%>
-      <span class="glyphicon glyphicon-circle-arrow-up" ></span>
-    <%end%> 
-    <%= button_to(downvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs") do%> 
-      <%=verdict.cached_votes_down%>
-      <span class="glyphicon glyphicon-circle-arrow-down" ></span>
-    <%end%>   
+  <% if current_user.voted_up_on? verdict%>
+    <%= link_to unvote_verdict_path(verdict), method: :put , class: "glyphicon glyphicon-circle-arrow-up active", remote: true do%>  
+    <%end%>
+    <span class= <%= if verdict.cached_votes_up-verdict.cached_votes_down < 0 then "negative" else "positive" end%>>
+      <%=verdict.cached_votes_up - verdict.cached_votes_down%>
+    </span>
+    <%= link_to downvote_verdict_path(verdict), method: :put , class: "glyphicon glyphicon-circle-arrow-down", remote: true do%> 
+    <%end%>
   <% elsif current_user.voted_down_on? verdict%>
-    <%= button_to(upvote_verdict_path(verdict), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
-      <%=verdict.cached_votes_up%>
-      <span class="glyphicon glyphicon-circle-arrow-up" ></span>
+    <%= link_to upvote_verdict_path(verdict), method: :put , class: "glyphicon glyphicon-circle-arrow-up", remote: true do%>  
     <%end%> 
-    <%= button_to(unvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs active") do%> 
-      <%=verdict.cached_votes_down%>
-      <span class="glyphicon glyphicon-circle-arrow-down" ></span>
-    <%end%>      
-  <%else%>
-    <%= button_to(upvote_verdict_path(verdict), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
-      <%=verdict.cached_votes_up%>
-      <span class="glyphicon glyphicon-circle-arrow-up" ></span>
-    <%end%> 
-    <%= button_to(downvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs") do%> 
-      <%=verdict.cached_votes_down%>
-      <span class="glyphicon glyphicon-circle-arrow-down" ></span>
+    <span class= <%= if verdict.cached_votes_up-verdict.cached_votes_down < 0 then "negative" else "positive" end%>>
+      <%=verdict.cached_votes_up - verdict.cached_votes_down%>
+    </span>
+    <%= link_to unvote_verdict_path(verdict), method: :put , class: "glyphicon glyphicon-circle-arrow-down active", remote: true do%> 
     <%end%>     
+  <%else%>
+    <%= link_to upvote_verdict_path(verdict), method: :put , class: "glyphicon glyphicon-circle-arrow-up", remote: true do%>  
+    <%end%> 
+    <span class= <%= if verdict.cached_votes_up-verdict.cached_votes_down < 0 then "negative" else "positive" end%>>
+      <%=verdict.cached_votes_up - verdict.cached_votes_down%>
+    </span>
+    <%= link_to downvote_verdict_path(verdict), method: :put , class: "glyphicon glyphicon-circle-arrow-down", remote: true do%> 
+    <%end%>    
   <%end%> 
 <%else%>
-    <%= button_to(upvote_verdict_path(verdict), method: :put , class: "btn btn-gold btn-xs", style: "margin-bottom:3px") do%> 
-      <%=verdict.cached_votes_up%>
-      <span class="glyphicon glyphicon-circle-arrow-up" ></span>
-    <%end%> 
-    <%= button_to(downvote_verdict_path(verdict), method: :put , class: "btn btn-default btn-xs") do%> 
-      <%=verdict.cached_votes_down%>
-      <span class="glyphicon glyphicon-circle-arrow-down" ></span>
-    <%end%>  
+  <%= link_to upvote_verdict_path(verdict), method: :put , class: "glyphicon glyphicon-circle-arrow-up", remote: true do%>  
+  <%end%> 
+  <span class= <%= if verdict.cached_votes_up-verdict.cached_votes_down < 0 then "negative" else "positive" end%>>
+    <%=verdict.cached_votes_up - verdict.cached_votes_down%>
+  </span>
+  <%= link_to downvote_verdict_path(verdict), method: :put , class: "glyphicon glyphicon-circle-arrow-down", remote: true do%> 
+  <%end%>    
 <%end%> 
+

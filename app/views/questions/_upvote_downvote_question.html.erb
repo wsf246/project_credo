@@ -2,7 +2,7 @@
   <% if current_user.voted_up_on? question%>
     <%= link_to unvote_question_path(question), method: :put , class: "glyphicon glyphicon-circle-arrow-up active", remote: true do%>  
     <%end%> 
-    <span class= <%= "negative" if question.cached_votes_up-question.cached_votes_down < 0%>>
+    <span class= <%= if question.cached_votes_up-question.cached_votes_down < 0 then "negative" else "positive" end%>>
       <%=question.cached_votes_up - question.cached_votes_down%>
     </span>
     <%= link_to downvote_question_path(question), method: :put , class: "glyphicon glyphicon-circle-arrow-down", remote: true do%> 
@@ -10,7 +10,7 @@
   <% elsif current_user.voted_down_on? question%>
     <%= link_to upvote_question_path(question), method: :put , class: "glyphicon glyphicon-circle-arrow-up", remote: true do%>  
     <%end%> 
-    <span class= <%= "negative" if question.cached_votes_up-question.cached_votes_down < 0%>>
+    <span class= <%= if question.cached_votes_up-question.cached_votes_down < 0 then "negative" else "positive" end%>>
       <%=question.cached_votes_up - question.cached_votes_down%>
     </span>
     <%= link_to unvote_question_path(question), method: :put , class: "glyphicon glyphicon-circle-arrow-down active", remote: true do%> 
@@ -18,7 +18,7 @@
   <%else%>
     <%= link_to upvote_question_path(question), method: :put , class: "glyphicon glyphicon-circle-arrow-up", remote: true do%>  
     <%end%> 
-    <span class= <%= "negative" if question.cached_votes_up-question.cached_votes_down < 0%>>
+    <span class= <%= if question.cached_votes_up-question.cached_votes_down < 0 then "negative" else "positive" end%>>
       <%=question.cached_votes_up - question.cached_votes_down%>
     </span>
     <%= link_to downvote_question_path(question), method: :put , class: "glyphicon glyphicon-circle-arrow-down", remote: true do%> 
@@ -27,7 +27,7 @@
 <%else%>
   <%= link_to upvote_question_path(question), method: :put , class: "glyphicon glyphicon-circle-arrow-up", remote: true do%>  
   <%end%> 
-  <span class= <%= "negative" if question.cached_votes_up-question.cached_votes_down < 0%>>
+  <span class= <%= if question.cached_votes_up-question.cached_votes_down < 0 then "negative" else "positive" end%>>
     <%=question.cached_votes_up - question.cached_votes_down%>
   </span>
   <%= link_to downvote_question_path(question), method: :put , class: "glyphicon glyphicon-circle-arrow-down", remote: true do%> 

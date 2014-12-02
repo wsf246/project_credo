@@ -274,7 +274,7 @@ class QuestionsController < ApplicationController
     @question.upvote_from current_user
     respond_to do |format|
       format.html { redirect_to "index" }
-      format.js 
+      format.js { render 'question_vote.js.erb' }
     end
   end
 
@@ -282,7 +282,7 @@ class QuestionsController < ApplicationController
     @question.downvote_from current_user
     respond_to do |format|
       format.html { redirect_to "index"}
-      format.js 
+      format.js { render 'question_vote.js.erb' } 
     end
   end
 
@@ -290,7 +290,7 @@ class QuestionsController < ApplicationController
     @question.unvote_by current_user
     respond_to do |format|
       format.html { redirect_to "index" }
-      format.js 
+      format.js { render 'question_vote.js.erb' } 
     end
   end
 

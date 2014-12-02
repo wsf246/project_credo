@@ -22,4 +22,8 @@
         = '|'
         = link_to t('misc.see_edit_history'), edit_history_question_path
 
-= render 'questions/verdicts/verdicts'
+.row
+  .col-md-5
+    = render 'questions/verdicts/verdicts'
+  .col-md-7
+    = render 'questions/evidence/verdict_evidence'      

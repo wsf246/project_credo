@@ -1,41 +1,37 @@
-.verdict-wrapper
-  .row
-    .col-md-5
-      #error_explanation
-      %h3
-        = 'Verdicts'
-        = link_to(add_verdict_questions_path(question: @question),remote: true) do
-          = image_tag 'icon-plus.png', data: { placement: 'right',
-                                                         toggle: 'tooltip',
-                                                         title: 'Add a verdict' },
-                                       class: 'icon icon-small'
-      #verdict-accordion.panel-group
-        - @verdicts.each_with_index do |verdict, i|
-          %div{:id => "edit_verdict_#{verdict.id}"}
-            .panel.panel-default
-              .panel-heading{ class: i == 0 ? 'highlight' : nil }
-                .row
-                  .col-md-1
-                    = render 'questions/verdicts/upvote_downvote_verdict', verdict: verdict
-                  .col-md-11
-                    %h4.panel-title
-                      = link_to "#collapse_#{i}", data: { parent: '#verdict-accordion', toggle: 'collapse' } do
-                        - if i == 0
-                          .gold
-                            = 'Top verdict'
-                        - cls = i == 0 ? 'top-verdict': nil
-                        %div{ class: "verdict #{cls}" }
-                          = verdict.short
+#error_explanation
+%h3
+  = 'Verdicts'
+  = link_to(add_verdict_questions_path(question: @question),remote: true) do
+    = image_tag 'icon-plus.png', data: { placement: 'right',
+                                                   toggle: 'tooltip',
+                                                   title: 'Add a verdict' },
+                                 class: 'icon icon-small'
+#verdict-accordion.panel-group
+  - @verdicts.each_with_index do |verdict, i|
+    %div{:id => "edit_verdict_#{verdict.id}"}
+      .panel.panel-default
+        .panel-heading{ class: i == 0 ? 'highlight' : nil }
+          .row
+            .col-md-1.col-sm-2.col-xs-2.votes{id: "vote_verdict_#{verdict.id}"}
+              = render 'questions/verdicts/upvote_downvote_verdict', verdict: verdict
+            .col-md-11.col-sm-10.col-xs-10
+              %h4.panel-title
+                = link_to "#collapse_#{i}", data: { parent: '#verdict-accordion', toggle: 'collapse' } do
+                  - if i == 0
+                    .gold
+                      = 'Top verdict'
+                  - cls = i == 0 ? 'top-verdict': nil
+                  %div{ class: "verdict #{cls}" }
+                    = verdict.short
 
-              .panel-collapse.collapse{ class: verdict.id == @active_verdict ? 'in' : nil, id: "collapse_#{i}" }
-                .panel-body
-                  = verdict.verdict
-                  .pix12
-                    Created by: #{verdict.user.username}
-                  .pix12
-                    = link_to 'Edit', edit_verdict_questions_path(question: @question, verdict: verdict, active: @active),remote: true
-                    - if user_signed_in?
-                      - if current_user.id == verdict.user_create_id
-                        = link_to 'Delete', verdict, method: :delete
-    .col-md-7
-      = render 'questions/evidence/verdict_evidence'
+        .panel-collapse.collapse{ class: verdict.id == @active_verdict ? 'in' : nil, id: "collapse_#{i}" }
+          .panel-body
+            = verdict.verdict
+            .pix12
+              Created by: #{verdict.user.username}
+            .pix12
+              = link_to 'Edit', edit_verdict_questions_path(question: @question, verdict: verdict, active: @active),remote: true
+              - if user_signed_in?
+                - if current_user.id == verdict.user_create_id
+                  = link_to 'Delete', verdict, method: :delete
+

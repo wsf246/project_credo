@@ -31,19 +31,31 @@ class PointsController < ApplicationController
   def upvote
     @point = Point.find(params[:id])
     @point.upvote_from current_user
-    redirect_to :back
+    @question = @point.question
+    respond_to do |format|
+      format.html { redirect_to @question }
+      format.js { render 'questions/evidence/evidence_vote.js.erb' } 
+    end    
   end
 
   def downvote
-    @point = Point.find(params[:id])
+    @point = Point.find(params[:id])    
     @point.downvote_from current_user
-    redirect_to :back
+    @question = @point.question
+    respond_to do |format|
+      format.html { redirect_to @question }
+      format.js { render 'questions/evidence/evidence_vote.js.erb' } 
+    end
   end
 
   def unvote
     @point = Point.find(params[:id])
     @point.unvote_by current_user
-    redirect_to :back
+    @question = @point.question
+    respond_to do |format|
+      format.html { redirect_to @question }
+      format.js { render 'questions/evidence/evidence_vote.js.erb' } 
+    end    
   end   
 
   def create  

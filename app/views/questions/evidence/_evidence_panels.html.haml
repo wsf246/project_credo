@@ -6,7 +6,7 @@
 .panel{ class: "panel-#{panel_type}"}
   .panel-heading
     .row
-      .col-md-1
+      .col-md-1.votes{id: "vote_evidence_#{point.id}"}
         = render 'questions/evidence/important_point', point: point
       .col-md-11
         %h5.panel-title

@@ -9,17 +9,29 @@ class VerdictsController < ApplicationController
   end
   def upvote
     @verdict.upvote_from current_user
-    redirect_to :back
+    @question = @verdict.question
+    respond_to do |format|
+      format.html { redirect_to @question }
+      format.js { render 'questions/verdicts/verdict_vote.js.erb' } 
+    end
   end
 
   def downvote
     @verdict.downvote_from current_user
-    redirect_to :back
+    @question = @verdict.question
+    respond_to do |format|
+      format.html { redirect_to @question }
+      format.js { render 'questions/verdicts/verdict_vote.js.erb' } 
+    end
   end
 
   def unvote
     @verdict.unvote_by current_user
-    redirect_to :back
+    @question = @verdict.question
+    respond_to do |format|
+      format.html { redirect_to @question }
+      format.js { render 'questions/verdicts/verdict_vote.js.erb' } 
+    end
   end  
 
   def create

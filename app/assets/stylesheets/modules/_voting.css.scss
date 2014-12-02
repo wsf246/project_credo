@@ -2,6 +2,7 @@
   text-align: center;
 
   a:link {
+    display: block;
     text-decoration: none;
   }
 
@@ -21,7 +22,7 @@
 }
 
 .glyphicon-circle-arrow-up{
-  font-size: 1.2em;
+  font-size: 20px;
   display: inline-block; 
   margin-left: auto; 
   margin-right: auto;
@@ -29,7 +30,7 @@
 }
 
 .glyphicon-circle-arrow-down{
-  font-size: 1.2em;
+  font-size: 20px;
   display: inline-block; 
   margin-left: auto; 
   margin-right: auto;
@@ -40,7 +41,14 @@
   color: $secondary-color;
 }
 
+.positive{
+  display: block;
+  min-width: 20px;
+}
+
 .negative{
+  display: block;
+  min-width: 20px;
   position: relative;
   right:.175em;
 }
