@@ -1,0 +1,27 @@
+<%@evidence.each do |point|%>
+  <!-- Modal -->
+  <div class="modal fade" id="add_research_finding_<%= point.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-vertical-centered">
+
+        <div class="modal-content research">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add new research findings</h4>
+            <%=point.point%>
+
+            <br><br/>
+            <div id="pubmed_search_<%= point.id %>">
+            <%= render 'researches/pubmed_search', point_id: point.id %>
+            </div> 
+          </div><!-- /.modal header --> 
+          <div id="pubmed_results_<%= point.id %>" class="modal-body">  
+            <%= render 'researches/pubmed_results', point_id: point.id %>
+          </div> 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div><!-- /.modal content-->
+
+    </div>
+  </div>
+<%end%>  

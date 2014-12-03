@@ -1,0 +1,72 @@
+- provide(:title, "History | " +@question.question)
+
+.question-wrapper 
+  %h1.question-show-heading= @question.question
+  -if @question.question_type == "Multiple Answers"
+    %p 
+    Potential answers: =@question.answers 
+  %p= @question.description
+  .pix12
+    \Asked by:  
+    = @question.user.username  
+  .pix14
+    = link_to "Edit question", edit_question_path 
+    | 
+    = link_to "Back to question", @question
+
+.question-history
+  %h3 Edit history
+  %ul
+    -@versions.each do |v|
+      %li
+        %strong
+          =User.find(v.whodunnit).username 
+          at 
+          = succeed ':' do
+            =l(v.created_at, format: "%-d.%m.%Y %H:%M:%S %Z") 
+        = v.event.titleize 
+
+        -if v.event == "destroy" && v.item_type == "Verdict"
+          %strong short 
+          = surround " '", "'" do
+            =v.reify.short
+          %strong verdict
+          = surround " '", "'" do
+            =v.reify.verdict
+        -if v.item_type == "Point" && v.next != nil
+          = surround " '", "'" do
+            =v.next.reify.point
+        -elsif v.item_type == "Point" && v.reify != nil
+          = surround " '", "'" do
+            =v.reify.point
+        
+        
+        -v.changeset.each_with_index do |(key,value),index|            
+          -if v.event == "create" && v.item_type == "Association"
+            -if index == 0 
+              association between 
+              %strong research
+              -if key == "finding_id" 
+                = surround " '", "'" do
+                  =Finding.find(value.last).research.title
+            -elsif index == 1
+              and 
+              %strong argument
+              -if key == "point_id"
+                = surround " '", "'" do
+                  =Point.find(value.last).point
+          -elsif v.event == "create"
+            -if index != 0 then "; " end  
+            %strong=key
+            = surround " '", "'" do
+              =value.last  
+          -else
+            -if index != 0 then "; " end
+            %strong=key
+            from 
+            = surround " '", "'" do
+              =value.first
+            to
+            = surround " '", "'" do
+              =value.last
+         

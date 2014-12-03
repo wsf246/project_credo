@@ -21,7 +21,7 @@ class PointsController < ApplicationController
   def new
     @point = @question.points.build
     @point_type = 'Unknown'
-    @answers = @question.answers.split(",")
+    @answers = @question.answers.split(",") if @question.answers != nil
   end
 
   def search

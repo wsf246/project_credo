@@ -1,11 +1,10 @@
-<div class="modal-body">
   <%if @articles.nil?%>
   <%elsif @articles.empty?%>
     <b>Results:</b> No Results 
   <%else%>
     <b>Results:</b>  
     <%@articles.first(10).each do |detail|%>
-      <div class = "row-fluid">
+      <div class = "row results">
         <div class ="col-sm-1">
           <% if Research.all.map(&:title).include?(detail["title"]) %>
             <div class="pix10 center">Logged</div>
@@ -30,8 +29,8 @@
             <%end%>
           <%end%>
         </div>
-        <ul>
-          <div class ="col-sm-11">
+        <div class ="col-sm-11">
+          <ul class="index">
             <li><b><%=detail["title"]%></b></li>
             <li class='pix12'>
               <b>Authors:</b> <%=detail["authors"].join(", ")%>  
@@ -39,9 +38,9 @@
             <li class='pix12'> 
               <b><%=detail["type"]%>:</b> <%=detail["journal"]%>; <%=detail["pubdate"]%>
             </li>
-          </div>         
-        </ul> 
+          </ul>  
+        </div>         
       </div> 
     <%end%>
   <%end%>
-</div>
+

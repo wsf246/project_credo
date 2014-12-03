@@ -14,12 +14,10 @@
         .pix12.evidence-links
           - research_text = t 'evidence.research_count', count: point.findings.count
           = link_to research_text, collapse_link, data: { parent: parent_id, toggle: 'collapse' }
-          -#= image_tag 'icon-plus.png', data: { placement: 'right',
-          -#                                     toggle: 'tooltip',
-          -#                                     title: 'Add Research to support the argument' },
-          -#                             class: 'icon icon-small'
-          -#%li= link_to 'Edit', edit_point_path(point)
-          -#%li= render 'questions/modal_toggle', point: point
+          |
+          = link_to 'Edit', edit_point_path(point)
+          |
+          = render 'questions/modal_toggle', point: point
   .panel-collapse.collapse{ class: point.id == @active_point ? 'in' : nil, id: collapse_id}
     .panel-body
       = render 'questions/evidence/points', point: point

@@ -6,6 +6,7 @@
                                                    toggle: 'tooltip',
                                                    title: 'Add a verdict' },
                                  class: 'icon icon-small'
+#add_verdict                                 
 #verdict-accordion.panel-group
   - @verdicts.each_with_index do |verdict, i|
     %div{:id => "edit_verdict_#{verdict.id}"}

@@ -1,12 +1,14 @@
 - evidence = @evidence.first || nil
 
 - provide(:title, @question.question)
+= render 'questions/modal'
 .question-wrapper
   .row
     - if evidence.present?
       .col-md-3
-        .credo-score-placeholder
+        .credo-score-placeholder{"data-toggle"=> "tooltip", "data-placement"=> "left", "title"=> "The Credo Score estimates the probability the statement is true based on the individual Cred Scores of all the recorded studies"}
           =high_chart("donut", @donut)
+
 
     %div{ class: evidence.present? ? 'col-md-9' : '.col-md-12' }
       %h1.question-show-heading
@@ -26,4 +28,5 @@
   .col-md-5
     = render 'questions/verdicts/verdicts'
   .col-md-7
-    = render 'questions/evidence/verdict_evidence'      
+    = render 'questions/evidence/verdict_evidence'
+      

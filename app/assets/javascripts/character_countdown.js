@@ -11,4 +11,3 @@ function updateCountdown() {
   }
   $('.countdown').text(Math.abs(left) + charactersLeft);
 }
-
