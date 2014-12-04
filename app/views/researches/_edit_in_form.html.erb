@@ -1,9 +1,9 @@
-<h2><%= @article["title"] %></h2>
+<h3><%= @article["title"] %></h3>
 <p><b>Authors: </b><%=@article["authors"] %></p>
 <p><b>Journal: </b><%=@article["journal"]%><b>, Published on: </b><%= @article["pubdate"]%></p>
 <p><b>Link: </b><%="http://www.ncbi.nlm.nih.gov/pubmed/"+@pubmed_id%></p>
 <b>Abstract:</b>
 <br><%=@article["abstract"]%></br>
 <div id="modal_error_explanation"></div>  
-<div id="research_findings_form_<%= @point_id %>" class="row">
+<div id="research_findings_form_<%= @point_id %>">
   <%=render 'researches/fill_in_form'%> 

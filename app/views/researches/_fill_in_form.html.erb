@@ -1,8 +1,8 @@
 <div class="research-form">
-  <%= form_tag("/researches/pubmed_search", remote: true) do%>
+  <%= form_tag("/researches/pubmed_search", remote: true, class: "btn-form") do%>
     <%= hidden_field_tag 'search_terms', params[:search_terms] %>
     <%= hidden_field_tag 'point_id', @point_id %> 
-    <%= submit_tag "Back to results" %>
+    <%= submit_tag "Back to results", class: "btn btn-sm btn-default"  %>
   <%end%>
     
   <%= simple_nested_form_for(@research) do |f| %>
@@ -42,7 +42,7 @@
       <%= render 'finding_fields', f: builder, research_id: @research.id %>
     <%end%>                        
     <p><%= f.link_to_add "Another finding", :findings %></p>
-    <%= f.button :submit, "Log info", class: "btn btn-lg btn-primary", style: "margin-top: 5px" %>
+    <%= f.button :submit, "Log info", class: "btn btn-lg btn-primary btn-form", style: "margin-top: 5px" %>
 
     <%= hidden_field_tag 'point_id', @point_id %> 
     <%= hidden_field_tag 'edit', "y" %> 

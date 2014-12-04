@@ -2,21 +2,28 @@
 .modal-dialog {
   display: block;
   left: 0;
+  width: 100%;
 }
 
 @media (max-width: 767px) {
   .modal-dialog { /* Edited classname 10/03/2014 */
-    width: 70%;
+    width: 100%;
   }
 } 
-
 
 .modal-footer {
     margin-top: 0;
 }
 
 .modal {
-  width: 80%; 
+  width: 70%; 
   margin-left: auto; 
-  margin-right: auto; 
+  margin-right: auto;
+  overflow-y: hidden; 
 }
+
+.modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
