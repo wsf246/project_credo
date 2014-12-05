@@ -14,7 +14,9 @@
             <%= render 'researches/pubmed_search', point_id: point.id %>
             </div> 
           </div><!-- /.modal header --> 
-          <div id="pubmed_results_<%= point.id %>" class="modal-body">  
+          <div id="modal_error_explanation"></div>
+          <div id="pubmed_results_<%= point.id %>" class="modal-body">
+
             <%= render 'researches/pubmed_results', point_id: point.id %>
           </div> 
           <div class="modal-footer">

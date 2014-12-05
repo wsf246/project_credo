@@ -1,7 +1,7 @@
 class ResearchesController < ApplicationController
 
   before_action :authenticate_user!, 
-                only: [:edit, :update, :destroy, :new, :create]  
+                only: [:edit, :update, :destroy, :new, :create, :edit_in_form, :fill_in_form]  
 
   before_action :get_research, 
                 only: [:show, :edit, :update, :destroy, :undo_link, :edit_history]

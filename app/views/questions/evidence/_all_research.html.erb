@@ -4,4 +4,4 @@
 		<%= render 'questions/evidence/findings', finding: finding, point: point %>
 	<%end%> 
 </ul>	
-<%= link_to "View less research("+point.findings.count('research_id', distinct:true).to_s+")", less_research_question_path(point: point), class: "pad-left",remote: true%>
+<%= link_to "View less research("+point.findings.count('research_id', distinct:true).to_s+")", less_research_question_path(point: point), class: "btn-link",remote: true%>

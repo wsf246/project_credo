@@ -1,5 +1,4 @@
-
-<div class = "research-form" style="width: 40%">
+<div class = "research-form">
   <%= simple_nested_form_for(@research) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <legend>Basic Information</legend>
@@ -31,7 +30,11 @@
     
     <%= hidden_field_tag 'point_id', params[:point_id] %> 
     <%= hidden_field_tag 'edit', params[:edit] %> 
-    <%= f.button :submit, "Log info", class: "btn btn-lg btn-primary", style: "margin-top: 5px" %>
+    <%= f.button :submit, "Log info", class: "btn btn-lg btn-primary btn-form" %>
+    <%if @research.new_record?%>
+    <%else%>
+      <%=link_to "Cancel", research_path(@research)%>
+    <%end%>    
   <% end %> 
 
 </div> 

@@ -1,10 +1,8 @@
 $(document).ajaxError(function (e, xhr, settings) {
-        if (xhr.status == 401) {
-           $('#error_explanation').html(xhr.responseText);
-        }
-        else {
-           $('#modal_error_explanation').html("<h5>Please sign in or sign up to continue</h5>");
-        }
+      if (xhr.status == 401) {
+        $('#error_explanation').html(xhr.responseText).attr('class', 'alert alert-alert');
+        $('#modal_error_explanation').html(xhr.responseText).attr('class', 'alert alert-alert');
+      }
     });
 
 

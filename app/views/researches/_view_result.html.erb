@@ -4,7 +4,6 @@
   <p><b>Link: </b><%="http://www.ncbi.nlm.nih.gov/pubmed/"+@pubmed_id%></p>
   <b>Abstract:</b>
   <br><%=@article["abstract"]%></br>
-  <div id="modal_error_explanation"></div>  
   <div id="research_findings_form_<%= @point_id %>" class ="form">
     <%= form_tag("/researches/fill_in_form", remote: true, class: "btn-form") do%>
       <%= hidden_field_tag 'title', @article["title"] %>
