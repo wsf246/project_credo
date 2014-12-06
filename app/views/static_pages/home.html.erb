@@ -1,22 +1,32 @@
 <div class='home-wrapper'>	
 
-  <div class="background-placeholder">
+  <div class="jumbotron">
   	
-  </div>  
+   
   <div class= "homepage-logo">Project <strong>Credo</strong></div>
 
   <div class= "homepage-text">The source for all your questions</div>
-  <div>
-		<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-default btn-form" if not user_signed_in? %>
-		<%= link_to "Sign in", new_user_session_path, class: "btn btn-lg btn-default btn-form" if not user_signed_in? %> 
-	</div> 
+  </div> 
+
+  <%if not user_signed_in?%>
+
+	  <div class= 'headers'> 
+	  	<h2>Join the community</h2>
+	  	<p class = 'community'>
+	  		Research shouldn't be hard to understand.  Credo is a community based approach to connecting people's questions to the research they need to answer it.  Help out in little or big ways.  Most importantly, learn about things you care about!
+	  	</p>	
+		  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary btn-form" %>
+			<%= link_to "Sign in", new_user_session_path, class: "btn btn-lg btn-primary btn-form" %>   
+	  </div>
+	<%end%>  
+
 	<div class="headers">
 		<div class = "row">
 			<div class = "col-md-4">
 				<%= image_tag("determined-questioning-pondering.png", height: "100px") %>
 				<h2>Ask</h2>
 				<p>
-					Ask questions that you want to know the research behind.  Credo serves the public by helping them understand questions they care about.
+					Ask questions that you want to know the research behind.  Credo serves the public by helping them answer questions they care about.
 				</p>
 			</div>
 			<div class = "col-md-4">
@@ -35,6 +45,13 @@
 			</div>						
 		</div>
 	</div>
+
+	<div class ="headers">
+		<h2> What's trending now </h2>
+		<%Question.first(10).each do |question|%>
+			<%=link_to question.question, question%>
+		<%end%>	
+	</div>	
 
 
 </div>

@@ -1,11 +1,6 @@
-.background-placeholder{
-  position: fixed;
-  width: 100%;
-  height: 400px; /*same height as jumbotron */
-  top: 0px;
-  left:0;
-  z-index: -1;
-  background-color: $primary-color
+.jumbotron{
+  background-color: $primary-color;
+  text-align: center;
 }
 
 .homepage-logo {
@@ -15,6 +10,7 @@
   font-weight: 300;
   font-size: 100px;
   text-shadow: 2px 2px #000000;
+  line-height: 100%;
 
   strong {
     color: rgba(#fff, .9);
@@ -26,7 +22,7 @@
   z-index: 100;
   color: rgba(#fff, .9);
   font-weight: 500;
-  font-size: 70px;
+  font-size: 50px;
   text-shadow: 2px 2px #000000;
 
 }
@@ -38,5 +34,9 @@
 
 .headers {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
