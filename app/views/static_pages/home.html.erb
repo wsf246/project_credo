@@ -1,52 +1,41 @@
 <div class='home-wrapper'>	
-  <div class="jumbotron center" style="background-color: #428bca">
-	  <h1>The source for all your questions</h1>
-  	<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-default" if not user_signed_in? %>
-                              
-		<script>
-	    $(document).ready(function(){
-	       $('#home-carousel').carousel({interval: 8000});
-	    });
-	  </script>  
 
-		<div id="home-carousel" class="carousel slide" data-ride="carousel"><!-- class of slide for animation -->
-	    <ol class="carousel-indicators">
-	      <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
-	      <li data-target="#home-carousel" data-slide-to="1"></li>
-	      <li data-target="#home-carousel" data-slide-to="2"></li>  
-	      <li data-target="#home-carousel" data-slide-to="4"></li>
-	      <li data-target="#home-carousel" data-slide-to="5"></li> 
-	    </ol>   
-	    <div class="carousel-inner">
-	    	<%@questions.each_with_index do |question,index| %>
-	    		<%if index == 0%>
-			      <div class="item active"><!-- class of active since it's the first item -->
-			        <h3><%= link_to question.question, question_path(question.id) %></h3>
-			      </div>
-			    <%else%>
-			      <div class="item">
-			        <h3><%= link_to question.question, question_path(question.id) %></h3>
-			      </div>
-	      	<%end%>
-	      <%end%>  
-	    </div><!-- /.carousel-inner -->
-	    <!--  Next and Previous controls below
-	          href values must reference the id for this carousel -->
-	    <a class="carousel-control left" href="#home-carousel" role="button" data-slide="prev">
-	      <span class="glyphicon glyphicon-chevron-left"></span>
-	    </a>
-	    <a class="carousel-control right" href="#home-carousel" role="button" data-slide="next">
-	      <span class="glyphicon glyphicon-chevron-right"></span>
-	    </a>
-	  </div><!-- /.carousel -->
-	  <div class="search" style="margin: auto;">
-			<%= search_form_for @query, url: search_questions_path,
-									html: { method: :post} do |f| %>
-			  <%= f.text_field :question_cont, placeholder: "Search for a question" %>				  
-				<%= f.submit "Search" %>  
-			<%end%>
-		</div>	
+  <div class="background-placeholder">
+  	
+  </div>  
+  <div class= "homepage-logo">Project <strong>Credo</strong></div>
 
+  <div class= "homepage-text">The source for all your questions</div>
+  <div>
+		<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-default btn-form" if not user_signed_in? %>
+		<%= link_to "Sign in", new_user_session_path, class: "btn btn-lg btn-default btn-form" if not user_signed_in? %> 
+	</div> 
+	<div class="headers">
+		<div class = "row">
+			<div class = "col-md-4">
+				<%= image_tag("determined-questioning-pondering.png", height: "100px") %>
+				<h2>Ask</h2>
+				<p>
+					Ask questions that you want to know the research behind.  Credo serves the public by helping them understand questions they care about.
+				</p>
+			</div>
+			<div class = "col-md-4">
+				<%= image_tag("misc-all-the-things.png", height: "100px") %>
+				<h2>Research</h2>
+				<p>
+					Be part of the community and identify research for people's questions.  Credo makes it easy to contribute and frame research to be understood.
+				</p>				
+			</div>
+			<div class = "col-md-4">
+				<%= image_tag("happy-thumbs-up.png", height: "100px") %>
+				<h2>Vote</h2>
+				<p>
+					Help the most important questions, best arguments, and best explanations rise to the top.  Whatever helped you understand will certainly help someone else as well!
+				</p>				
+			</div>						
+		</div>
 	</div>
+
+
 </div>
 

@@ -1,7 +1,11 @@
 .question-index{
   list-style-type: none;
-  margin: 15px 0 0 0;
+  margin: 20px 0 30px 0;
+  padding: 0;
   width: 50%;
+  li {
+   margin-bottom: 15px;
+  }
 }
 
 .index{

@@ -13,5 +13,6 @@
     = f.submit t('misc.search_btn')
 
 = will_paginate @questions, renderer: BootstrapPagination::Rails
-= render @questions
+%ul.question-index
+  = render @questions
 = will_paginate @questions, renderer: BootstrapPagination::Rails
