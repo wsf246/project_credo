@@ -6,8 +6,16 @@
   .row
     - if evidence.present?
       .col-md-3
-        .credo-score-placeholder{"data-toggle"=> "tooltip", "data-placement"=> "left", "title"=> "The Credo Score estimates the probability the statement is true based on the individual Cred Scores of all the recorded studies"}
+        .credo-score-placeholder{"data-toggle"=> "tooltip", "data-placement"=> "bottom", "title"=> "The Credo Score estimates the probability the answer to the question is 'Yes' based on the individual Cred Scores of all the recorded research"}
           =high_chart("donut", @donut)
+        %p.stats
+          %strong
+            Yes Papers:
+          = 37
+          %br
+          %strong
+            No Papers:
+          = 15
 
 
     %div{ class: evidence.present? ? 'col-md-9' : '.col-md-12' }

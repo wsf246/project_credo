@@ -67,31 +67,31 @@ class QuestionsController < ApplicationController
 
     @donut =
       LazyHighCharts::HighChart.new('donut') do |f|
-        f.chart({defaultSeriesType: 'pie', :margin=> [0, 0, 0, 0], height: 225, width: 225})
+        f.chart({defaultSeriesType: 'pie', :margin=> [0, 0, 0, 0], height: 175, width: 175})
         f.colors(["#04a8d4", "#4b4b4b"])
         f.legend({enabled: false})
         f.title({
           text: if prob > 0.999  then "99.9%" else posterior end,
           style: {
               fontFamily: "@font-face",
-              fontSize: "54px",
+              fontSize: "48px",
               color: "#04a8d4"
           },
-          y: 105
+          y: 85
         })
         f.subtitle({
          text: "Credo Score",
          style: {
            fontFamily: "Arial",
-           fontSize: "20px",
+           fontSize: "16px",
            color: "#04a8d4"
          },
-         y: 135
+         y: 110
         })
         series = {
           name: 'Probability',
           data: [["Yes", if prob > 0.999 then 99.9 else prob*100 end],["No",(1-prob)*100]],
-          innerSize: 190,
+          innerSize: 170,
           minSize: "130px",
           showInLegend:true,
           tooltip: {valueDecimals: 2},
@@ -205,8 +205,8 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-
     if @question.save
+      @question.update_attributes(user_create_id: current_user.id)
       redirect_to @question
     else
       render 'new'
@@ -360,7 +360,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:question, :answers, :description, :notes, :question_type, :user_create_id,
+    params.require(:question).permit(:question, :answers, :description, :notes, :question_type, 
                                      verdicts_attributes: verdicts_attributes)
   end
 

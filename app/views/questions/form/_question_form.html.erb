@@ -13,8 +13,6 @@
 
   <%= f.input :description, placeholder: "Compose a description,..." %>
 
-  <%= f.hidden_field :user_create_id, value: current_user.id %> 
-
   <%= f.button :submit, "Save changes", class: "btn btn-md btn-primary btn-form" %>
   <%if @question.new_record?%>
   <%else%>
