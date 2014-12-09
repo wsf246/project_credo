@@ -17,6 +17,7 @@
     %ul.nav.navbar-nav.navbar-right
       %li= link_to 'Top Questions', questions_path, class: 'question-list-link'
       %li= link_to 'Add a question', new_question_path, class: 'add-question-link'
+      %li= link_to 'How-to', howto_path, class: 'about-link'
       %li= link_to 'About', help_path, class: 'about-link'
 
       - if user_signed_in?

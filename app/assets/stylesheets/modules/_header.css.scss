@@ -79,7 +79,7 @@
     left: $searchbar-left-postion;
 
     input[type=text] {
-      width: 100%;
+      width: 95%;
       border-radius: 0;
       background: $dark-color;
       padding-right: 30px;
@@ -100,7 +100,7 @@
       border: none;
       position: absolute;
       top: ($navbar-height - $icon-size) / 2;
-      right: 2px;
+      right: 70px;
     }
   }
 }
