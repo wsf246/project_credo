@@ -1,0 +1,121 @@
+.row
+  .col-md-9
+    %h2.anchor#Howto
+      How-to Credo         
+    %i
+      What allows this strange blend of collaboration and competition to flourish is the scientific ethos that demands open access to information. This ethos dates back to the origins of the scientific revolution in the seventeenth century…
+      If anything, in fact, the more a piece of knowledge becomes available, the more valuable it potentially becomes, because of the wider array of possible uses for it.
+    %br
+    %p
+      %strong
+        James Surowiecki, The Wisdom of the Crowds    
+    %p
+      Credo is a community based approach to understanding the research behind questions we care about.  Everyone can contribute and edit.  Above all else, the community is Credo's greatest asset.
+    %h2.anchor#Ask
+      Ask
+    %p
+      Every Credo begins with a good question.  You can look for an existing question in search-bar or in 'Top Questions'.  Or you can ask your own!  Hit 'Add a question' in the navbar.
+    %p.well.well-sm.style-image  
+      =image_tag("navbar.png", class: "style-image", width: "700px")
+    %p
+      Credo is built deliver a comprehensive understanding research so the best questions will be those that you want to understand the research behind.  For example, "Are there long term health benefits for consistent meditation (mindfulness practice)?"
+    %p
+      Make sure you add a description that helps people understand the context for the question.
+    %p.well.well-sm.style-image 
+      =image_tag("newquestion.png", class: "style-image", height: "300px")
+    %p
+      By default, Credo questions are Yes or No questions, but you can choose multiple answers if it isn't like 'How much protein should I take in if I'm trying to gain muscle mass?'
+    %p.well.well-sm.style-image
+      =image_tag("multipleanswers.png", height: "200px")  
+    
+
+    %h2.anchor#Research 
+      Research
+    %p
+      A blank credo is a community wall waiting to be painted with information.  Start off by adding an argument. 
+    %p.well.well-sm.style-image  
+      =image_tag("argument.png", class: "style-image", width: "500px")
+    %p
+      You can add research to your own arguments or others.  Just hit the add research button under the argument.
+    %p.well.well-sm.style-image  
+      =image_tag("addresearch.png", class: "style-image")
+    %p
+      Find a paper in the pubmed database or use a paper that has already been logged.  Search by keywords or pubmed IDs.  Once you've found a good paper, log it in the system with it's key information.  
+    %h3
+      Some key information to help you log a paper:
+
+    %p
+      %strong
+        Funding:
+      Some papers will list conflicts of interest or main funders.  Mark whatever you find, Credo only scores the paper based on whether something is reported
+    %p  
+      %strong
+        Retracted:
+      Pubmed will usually list if the paper is retracted.  If you have an alternative source that shows the paper is retracted, mark it and add a note in the findings.
+    %p  
+      %strong
+        Peer Reviewed:
+      Peer review is a more subjective question than we would like.  Generally, well known journals are peer reviewed but you can check their websites to see if they declare they are peer reviewed or use 
+      =link_to("this list from ebscohost.", "http://www.ebscohost.com/titleLists/a9h-journals.pdf", target: "_blank")
+      Credo is working to make this process easier.
+    %p  
+      %strong
+        Replicated:                   
+      Replication is crucial part of seeing if a studies results were more than just chance.  It is rare to find a study that is replicated, but if you can find a source showing the study was replicated, check the box and add a note in the findings.
+    %p  
+      %strong
+        Bias Controls:
+      Choose the study that best fits according to your judgement.  Generally, papers will state the type of study they are conducting.  Additional methods to reduce bias in studies can be used with different study types.  Choose the controls that best fit the description provided by the study.
+    %p.well.well-sm.style-image  
+      =image_tag("researchbias.png", class: "style-image", width: "600px")  
+    %p  
+      %strong
+        Findings:
+      Use this section to list out the main outcomes of the study.  Generally this will be the outcome numbers from the study.  Also use this section for any noteworthy information.
+    %p
+      You can add multiple findings or add a different finding than ones that have been logged as studies many times have multiple findings.  Questions are linked to papers based on their findings so select the finding that answers the question once you've logged all the findings you want.
+    %p  
+      %strong
+        Sample Definitions:
+      Sample definitions are the groups being measured, whether it's people, animals, events, or inanimate objects.  Include controls, methods, and attributes used to separate datasets as defined by the study.
+    %p  
+      %strong
+        Relevant Quotes:
+      This section is only for direct quotes from paper.  Use this section to convey the authors' conclusions of the data.
+    %p.well.well-sm.style-image  
+      =image_tag("findings.png", class: "style-image", width: "500px")
+    %p
+    Once you have a logged a paper, it becomes available for Credo and the community to use and maintain.  The community will help edit and clean up information while voting up the best content.
+
+    %h2.anchor#Verdict
+      Verdicts       
+    %p
+      Verdicts help summarize all of the research material.  Anyone can write a verdict and the best ones are voted to the top.  Verdicts give people more perspective on the research and are used to provide more nuance on how to interpret the studies.
+    %p.well.well-sm.style-image  
+      =image_tag("newverdict.png", class: "style-image", width: "400px")  
+
+    %h2.anchor#Vote
+      Vote        
+    %p
+      You can vote on many things on Credo.  Vote on questions to help the most important to be seen.  Vote on arguments that best help define the research or are important to the conversation.  Vote on verdicts that best summarize all of the information so people can quickly gain a sense of the research.
+    %p.well.well-sm.style-image  
+      =image_tag("verdict.png", class: "style-image", width: "300px")
+      =image_tag("votequestion.png", class: "style-image", width: "300px")            
+    %p
+      Voting is important to provide our community and visitors to the site better content and context and to help them understand the research.  All these votes are subjective, but the key is remember that a vote is pointing at a piece of Credo and saying it's important.  Doing that from your perspective will undoubetly help other people who pass it.   
+
+  .col-md-2.col-md-offset-1
+    .affix
+      %ul.nav
+        %li.style-image
+          =image_tag("determined-challenge-accepted.png", width: "100px")
+        %li 
+          =link_to "How to Credo", "#Howto"                  
+        %li 
+          =link_to "Ask", "#Ask"
+        %li
+          =link_to "Research", "#Research"
+        %li
+          =link_to "Verdict", "#Verdict"
+        %li
+          =link_to "Vote", "#Vote"          

@@ -1,26 +1,24 @@
 <div class='home-wrapper'>	
 
-  <div class="jumbotron">
-  	
+  <div class="jumbotron"> 	
    
-  <div class= "homepage-logo">Project <strong>Credo</strong></div>
+	  <div class= "homepage-logo">Project <strong>Credo</strong></div>
 
-  <div class= "homepage-text">The source for all your questions</div>
-  </div>   
+	  <div class= "homepage-text">The source for all your questions</div>
 
-  <%if not user_signed_in?%>	
-	  <div class= 'headers'> 
-	  	<h2>Join the community</h2>
-	  	<p class = 'community'>
-	  		Research shouldn't be hard to understand.  Credo is a community based approach to connecting people's questions to the research they need to answer it.  Help out in little or big ways.  Most importantly, learn about things you care about!
-	  	</p>
-	  	
-			  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary btn-form" %>
-				<%= link_to "Sign in", new_user_session_path, class: "btn btn-lg btn-primary btn-form" %> 		  
-	  </div>
-	<%end%>  
+	  <%if not user_signed_in?%>	 	
+		  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-default btn-form" %>
+			<%= link_to "Sign in", new_user_session_path, class: "btn btn-lg btn-default btn-form" %> 		  
+		<%else%>
+			<%= link_to "How to Credo!", howto_path, class: "btn btn-lg btn-default btn-form" %>			  
+		<%end%>  		  
+	</div>  
 
 	<div class="headers">
+		<h2>Research shouldn't be hard to understand</h2>
+	  	<p class = 'community'>
+	  		Credo is a community based approach to connecting people's questions to the research they need to answer it.  Help out in little or big ways.  Most importantly, learn about things you care about!
+	  	</p>
 		<div class = "row">
 			<div class = "col-md-4">
 				<%= image_tag("determined-questioning-pondering.png", height: "100px") %>
@@ -45,6 +43,8 @@
 			</div>						
 		</div>
 	</div>
+
+	
 
 </div>
 

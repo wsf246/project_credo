@@ -3,7 +3,7 @@ ProjectCredo::Application.routes.draw do
   get '/help' => 'static_pages#help'
   get '/about' => 'static_pages#about'
   get '/contact' => 'static_pages#contact'
-  get '/how-to' => 'static_pages#how-to'
+  get '/howto' => 'static_pages#howto'
   
   post "versions/:id/revert" => "versions#revert", :as => "revert_version"
 
