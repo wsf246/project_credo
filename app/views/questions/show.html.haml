@@ -9,13 +9,14 @@
         .credo-score-placeholder{"data-toggle"=> "tooltip", "data-placement"=> "bottom", "title"=> "The Credo Score estimates the probability the answer to the question is 'Yes' based on the individual Cred Scores of all the recorded research"}
           =high_chart("donut", @donut)
         %p.stats
-          %strong
-            Yes Papers:
-          = 37
+
+          Yes Papers:
+          =@yes_research.count{|r| r.score > 0}  
+ 
           %br
-          %strong
-            No Papers:
-          = 15
+
+          No Papers:
+          = @no_research.count{|r| r.score > 0}  
 
 
     %div{ class: evidence.present? ? 'col-md-9' : '.col-md-12' }

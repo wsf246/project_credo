@@ -27,6 +27,12 @@
 
   &.highlight {
     background: tint($primary-color, 90%);
+    font-size: 28px;
+
+    .verdict {
+      font-size: 28px;
+      line-height: 100%;
+    }
 
     + .panel-collapse .panel-body {
       border-top-color: tint($primary-color, 50%);
