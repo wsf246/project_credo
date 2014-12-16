@@ -9,7 +9,7 @@ function researchBiasControls() {
       var defReview = "<p>A review of literature is an evaluative report of information found in the literature related to a selected area of study with no statistical evaluation of the findings</p>"
       var defClinicalTrial = "<p>A clinical trial is a type of intervention study that prospectively assigns participants or groups to one or more interventions to evaluate the effects on outcomes with no randomization performed on the participants.</p>"
 
-    $('#research_study_type').change(function(){
+    $('#study_type'+pointId).change(function(){
       var study_type = $(this).val();
       if(study_type == "Cross Sectional") {
         $(this).closest("div").children("p").remove();
@@ -97,3 +97,12 @@ function researchBiasControls() {
 }
 researchBiasControls();
 
+function autocompleteModal() {
+  $(document).ready(function() {
+    $('#ebsco-modal'+pointId).one("keyup",function() {
+      $("ul[id^='ui-id-']").next().remove();
+      $("ul[id^='ui-id-']").attr("id","autocomplete-ul"+pointId);
+      $("#autocomplete-ul"+pointId).appendTo('#ebscohost-well-modal'+pointId).css("position", "absolute"); 
+    })
+  })
+}  

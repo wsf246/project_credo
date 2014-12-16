@@ -6,20 +6,21 @@
 }
 
 @media (max-width: 767px) {
-  .modal-dialog { /* Edited classname 10/03/2014 */
+  .modal-dialog { 
     width: 100%;
   }
 } 
 
 .modal-footer {
     margin-top: 0;
+    z-index: 5001;
 }
 
 .modal {
   width: 70%; 
   margin-left: auto; 
   margin-right: auto;
-  overflow-y: hidden; 
+  overflow: hidden !important; 
 }
 
 .modal-body {

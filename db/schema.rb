@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017042050) do
+ActiveRecord::Schema.define(version: 20141211040343) do
 
   create_table "associations", force: true do |t|
     t.integer  "point_id"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20141017042050) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "journals", force: true do |t|
+    t.text     "source_type"
+    t.text     "issn"
+    t.text     "name"
+    t.text     "publisher"
+    t.text     "peer_reviewed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "points", force: true do |t|
     t.text     "point"

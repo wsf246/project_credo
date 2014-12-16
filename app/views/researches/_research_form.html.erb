@@ -1,42 +1,54 @@
 <div class = "research-form">
-  <%= simple_nested_form_for(@research) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <legend>Basic Information</legend>
-    <%= f.hidden_field :user_create_id, value: current_user.id %> 
-    <%= f.input :title  %>
-    <%= f.input :link %>
-    <%= f.input :authors %>
-    <%= f.input :date_of_publication, label: "Date of Publication" %>
-    <%= f.input :journal%>
-    <%= f.input :funding, label: "Funding" %>
+  <div class ="row">
+    <div class ="col-md-6">  
+      <%= simple_nested_form_for(@research) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <legend>Basic Information</legend>
+        <%= f.hidden_field :user_create_id, value: current_user.id %> 
+        <%= f.input :title  %>
+        <%= f.input :link %>
+        <%= f.input :authors %>
+        <%= f.input :date_of_publication, label: "Date of Publication" %>
+        <%= f.input :journal%>
+        <%= f.input :funding, label: "Funding" %>
 
-    <legend>Verification</legend>
+        <legend>Verification</legend>
 
-    <%= f.input_field :retracted, inline_label: "Retracted?" %>
-    <%= f.input_field :peer_reviewed, inline_label: "Peer Reviewed?" %> 
-    <%= f.input_field :replicated, inline_label: "Replicated?" %> 
+        <%= f.input_field :retracted, inline_label: "Retracted?" %>
+        <%= f.input_field :peer_reviewed, inline_label: "Peer Reviewed?" %> 
+        <%= f.input_field :replicated, inline_label: "Replicated?" %> 
+        
+
+        <legend>Bias Controls</legend>
+        <%= f.input :study_type, collection: ['Unknown','Cross Sectional','Case Control','Cohort Study', 'Randomized Control Trial', 'Case Study', 'Meta-Analysis', 'Review of Literature', 'Clinical Trial'], selected: @study_type %>
+        <%= render 'bias_controls_form', f: f %>
+        
+        <legend>Findings</legend>
+
+        <%= f.simple_fields_for :findings do |builder| %>
+          <%= render 'finding_fields', f: builder, research_id: @research.id %>
+        <%end%>   
+        <p><%= f.link_to_add "Another finding", :findings %></p>
+        
+        <%= hidden_field_tag 'point_id', params[:point_id] %> 
+        <%= hidden_field_tag 'edit', params[:edit] %> 
+        <%= f.button :submit, "Log info", class: "btn btn-lg btn-primary btn-form" %>
+        <%if @research.new_record?%>
+        <%else%>
+          <%=link_to "Cancel", research_path(@research)%>
+        <%end%>    
+      <% end %>
+    </div>
     
-
-    <legend>Bias Controls</legend>
-    <%= f.input :study_type, collection: ['Unknown','Cross Sectional','Case Control','Cohort Study', 'Randomized Control Trial', 'Case Study', 'Meta-Analysis', 'Review of Literature', 'Clinical Trial'], selected: @study_type %>
-    <%= render 'bias_controls_form', f: f %>
-    
-    <legend>Findings</legend>
-
-    <%= f.simple_fields_for :findings do |builder| %>
-      <%= render 'finding_fields', f: builder, research_id: @research.id %>
-    <%end%>   
-    <p><%= f.link_to_add "Another finding", :findings %></p>
-    
-    <%= hidden_field_tag 'point_id', params[:point_id] %> 
-    <%= hidden_field_tag 'edit', params[:edit] %> 
-    <%= f.button :submit, "Log info", class: "btn btn-lg btn-primary btn-form" %>
-    <%if @research.new_record?%>
-    <%else%>
-      <%=link_to "Cancel", research_path(@research)%>
-    <%end%>    
-  <% end %> 
-
+    <div class ="col-md-5 col-md-offset-1">
+      <div class ="affix well well-sm" id="ebscohost-well">
+        <strong>Ebscohost Peer Reviewed Journal Checker</strong>
+        <br/><i>PR = Peer Reviewed, Unk = Unknown</i>
+        <br/>
+        <%= autocomplete_field_tag 'journal_name', '', autocomplete_journal_name_researches_path %> 
+      </div>    
+    </div>   
+  </div>  
 </div> 
 
 

@@ -8,7 +8,9 @@ class ResearchesController < ApplicationController
 
   before_action :set_bias_controls, 
                 only: [:update]
-              
+
+  autocomplete :journal, :name, full: true, extra_data: [:peer_reviewed], display_value: :peer_review_format
+
   def get_research
     @research = Research.find(params[:id])            
   end

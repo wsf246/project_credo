@@ -1,5 +1,8 @@
 @import 'lib/bootstrap.min'; //load static bootstrap first and then override
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");
+/*
+ *= require jquery-ui
+ */
 @import 'bourbon';
 
 @import 'variables';

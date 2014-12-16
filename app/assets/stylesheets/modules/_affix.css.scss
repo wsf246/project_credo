@@ -2,8 +2,26 @@
   margin-top: 30px;
 }
 
-.anchor{
-  padding-top:65px;
-  display:block;
-  margin-top:-65px;
-}  
+[id^=ebscohost-well]{
+  input[type=text]{
+    width: 300px;
+  }
+}
+
+[id^=ebscohost-well-modal]{
+  margin-top: 30px;
+}
+
+.ui-autocomplete-input{
+  input[type=text]{
+    width: 300px;
+  }
+}
+
+.ui-autocomplete{
+  list-style-type: none;
+  margin: 0 0 0 0;
+  padding: 20px 0 0 0;
+  z-index: 5000;
+  position: fixed;
+}

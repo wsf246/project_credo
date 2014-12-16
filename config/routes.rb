@@ -53,6 +53,7 @@ ProjectCredo::Application.routes.draw do
       match 'view_result' => 'researches#view_result', via: [:get, :post]        
       match 'fill_in_form' => 'researches#fill_in_form', via: [:get, :post]
       match 'edit_in_form' => 'researches#edit_in_form', via: [:get, :post]     
+      get :autocomplete_journal_name
     end 
     member do
       get 'edit_history', to: 'researches#edit_history'                
