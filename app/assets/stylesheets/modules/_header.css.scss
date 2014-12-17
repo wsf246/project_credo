@@ -100,14 +100,16 @@
       border: none;
       position: absolute;
       top: ($navbar-height - $icon-size) / 2;
-      right: 10px;
+      right: 15px;
     }
   }
 }
 
 body.question-list .question-list-link,
 body.add-question .add-question-link,
+body.how-to .how-to-link,
 body.about .about-link,
+body.settings .settings-link,
 body.sign-in .sign-in-link,
 body.sign-up .sign-up-link{
   position: relative;

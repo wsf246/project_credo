@@ -1,0 +1,9 @@
+- content_for :body_classes do
+  add-question
+
+-provide(:title, 'Add a question')
+.row
+  .col-md-6.col-md-offset-3
+    %h3 
+      Add a question
+    = render 'questions/form/question_form'

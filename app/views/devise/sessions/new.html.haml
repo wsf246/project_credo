@@ -1,0 +1,17 @@
+- content_for :body_classes do
+  sign-in
+
+.col-md-6.col-md-offset-3.devise
+  %h2
+    Sign in
+
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .form-inputs
+      = f.input :login, required: false, autofocus: true, input_html: { class: "username" }
+      = f.input :password, required: false
+      = f.input :remember_me, :as => :boolean, label: false, inline_label: true if devise_mapping.rememberable?
+
+    .form-actions
+      = f.button :submit, "Sign in", class: "btn-primary"
+
+  = render "devise/shared/links" 
