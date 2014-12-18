@@ -5,12 +5,13 @@
 
 %h2
   = t 'questions.index_title'
-= link_to t('questions.add_question'), new_question_path
 
 .search
   = search_form_for @query, url: search_questions_path, html: { method: :post} do |f|
     = f.text_field :question_or_points_point_cont, placeholder: t('misc.question_search_text')
     = f.submit t('misc.search_btn')
+
+= link_to t('questions.add_question'), new_question_path    
 
 = will_paginate @questions, renderer: BootstrapPagination::Rails
 %ul.question-index

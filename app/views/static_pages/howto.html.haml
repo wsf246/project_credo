@@ -33,7 +33,7 @@
     
 
     %h2.anchor#Research 
-      Research
+      Arguments and Research
     %p
       A blank credo is a community wall waiting to be painted with information.  Start off by adding an argument. 
     %p.well.well-sm.style-image  
@@ -107,8 +107,154 @@
       =image_tag("verdict.png", class: "style-image", width: "300px")
       =image_tag("votequestion.png", class: "style-image", width: "300px")            
     %p
-      Voting is important to provide our community and visitors to the site better content and context and to help them understand the research.  All these votes are subjective, but the key is to remember that a vote is pointing at a piece of Credo and saying it's important.  Doing that from your perspective will undoubtedly help other people see it who pass it.   
+      Voting is important to provide our community and visitors to the site better content and context and to help them understand the research.  All these votes are subjective, but the key is to remember that a vote is pointing at a piece of Credo and saying it's important.  Doing that from your perspective will undoubtedly help other people see it who pass it.
 
+    %h2.anchor#Scoring
+      Scoring        
+    %p         
+      %strong
+        Cred Score - Research Scoring:
+      When a paper is logged in Credo, a rubric is used to score the paper's ability to determine correlation and control against bias.  The metrics used, shown in the table below, are a combination of best practices and standards for research and whether the information is reportable and neutral.  
+    %p
+      As an example, Credo does not score a paper based on a research paper's funding source because that is relatively subjective metric.  Instead, it scores a paper on whether the authors report their funding source.
+    %table.table.table-condensed
+      %thead
+        %th
+          Metric
+        %th  
+          Points
+        %th  
+          Description       
+
+      %tr
+        %td
+          Study Type: Unknown
+        %td
+          ="+"+Research.score_weights["Unknown"].to_s
+        %td
+          The study type is unclear or not reported.
+      %tr
+        %td
+          Study Type: Case Study
+        %td
+          ="+"+Research.score_weights["Case Study"].to_s
+        %td
+          A case study is a study in which detailed consideration is given to the development of a particular person, group, or situation over a period of time.
+      %tr
+        %td
+          Study Type: Cross Sectional
+        %td
+          ="+"+Research.score_weights["Cross Sectional"].to_s
+        %td
+          A cross-sectional study is a type of observational study that involves the analysis of data collected from a population, or a representative subset, at one specific point in time.                     
+      %tr
+        %td
+          Study Type: Case Control
+        %td
+          ="+"+Research.score_weights["Case Control"].to_s
+        %td
+          A case-control study is a type of observational study in which two existing groups differing in outcome are identified and compared on the basis of some supposed causal attribute.  
+      %tr
+        %td
+          Study Type: Cohort Study
+        %td
+          ="+"+Research.score_weights["Cohort Study"].to_s
+        %td
+          A cohort study is a type of observational study done prospectively or retrospectively where groups of people who share common characteristics or experiences within a defined period but differ in an attribute or attributes are examined for risk factors.  
+      %tr
+        %td
+          Study Type: Clinical Trial
+        %td
+          ="+"+Research.score_weights["Clinical Trial"].to_s
+        %td
+          A clinical trial is a type of intervention study that prospectively assigns participants or groups to one or more interventions to evaluate the effects on outcomes with no randomization performed on the participants.  
+      %tr
+        %td
+          Study Type: Review of Literature
+        %td
+          ="+"+Research.score_weights["Review of Literature"].to_s
+        %td
+          A review of literature is an evaluative report of information found in the literature related to a selected area of study with no statistical evaluation of the findings.  
+      %tr
+        %td
+          Study Type: Randomized Control Trial
+        %td
+          ="+"+Research.score_weights["Randomized Control Trial"].to_s
+        %td
+          A randomized control trial is a type of intervention study that randomly assigns participants into an experimental group or a control group and measures outcomes of the intervention.  
+      %tr
+        %td
+          Study Type: Meta-Analysis
+        %td
+          ="+"+Research.score_weights["Meta-Analysis"].to_s
+        %td
+          A meta-analysis is a type of statistical analysis of a large collection of analysis results from individual studies for the purpose of integrating the findings.
+      %tr
+        %td
+          Funding
+        %td
+          ="+"+Research.score_weights["Funding"].to_s
+        %td
+          The paper reports the funding source or declares any conflicts of interest.
+      %tr
+        %td
+          Retracted
+        %td
+          x0
+        %td
+          The authors or journal have retracted the paper.
+      %tr
+        %td
+          Peer Reviewed
+        %td
+          ="+"+Research.score_weights["Peer Reviewed"].to_s
+        %td
+          The paper is reviewed in a peer reviewed journal or has gone through and reports a peer review process.
+      %tr
+        %td
+          Replicated
+        %td
+          ="+"+Research.score_weights["Replicated"].to_s
+        %td
+          The conclusions of the paper were replicated in a separate independent study. 
+      %tr
+        %td
+          Single Blinded
+        %td
+          ="+"+Research.score_weights["Bias Control"].to_s
+        %td
+          Information that could introduce bias or skew the results of the study are withheld from the sample population.
+      %tr
+        %td
+          Double Blinded
+        %td
+          ="+"+Research.score_weights["Bias Control"].to_s
+        %td
+          In addition to the sample population having information withheld from them that could bias or skew the results, the experimenter(s) also have the information withheld from them.
+      %tr
+        %td
+          Randomized
+        %td
+          ="+"+Research.score_weights["Bias Control"].to_s
+        %td
+          The sample population is randomly selected or assigned to trial groups.
+      %tr
+        %td
+          Controlled Against Placebo
+        %td
+          ="+"+Research.score_weights["Bias Control"].to_s
+        %td
+          The study contains and compares results from a group receiving the tested factor to a similar group that has received a false intervention that deceives the group's participants into believing an intervention has occured.  
+      %tr
+        %td
+          Controlled Against Best Alternative
+        %td
+          ="+"+Research.score_weights["Bias Control"].to_s
+        %td
+          The study contains and compares results from a group receiving the tested factor to a similar group that has received the best alternative intervention.  For example, the effects of a new pain reliever could be controlled against an existing over the counter pain reliever.                                                                                                            
+    %p         
+      %strong
+        Credo Score - Overall Question Scoring:        
   .col-md-2.col-md-offset-1
     .affix
       %ul.nav
@@ -119,8 +265,10 @@
         %li 
           =link_to "Ask", "#Ask"
         %li
-          =link_to "Research", "#Research"
+          =link_to "Arguments & Research", "#Research"
         %li
           =link_to "Verdict", "#Verdict"
         %li
-          =link_to "Vote", "#Vote"          
+          =link_to "Vote", "#Vote"
+        %li
+          =link_to "Scoring", "#Scoring"                      
