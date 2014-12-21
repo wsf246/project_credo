@@ -116,7 +116,7 @@
         Cred Score - Research Scoring:
       When a paper is logged in Credo, a rubric is used to score the paper's ability to determine correlation and ability to control against bias.  The metrics used, shown in the table below, are a combination of best practices and standards for research and whether the information is reportable and neutral.  
     %p
-      As an example, Credo does not score a paper based on a research paper's funding source because that is relatively subjective metric.  Instead, it scores a paper on whether the authors report their funding source.
+      As an example, Credo does not score a paper based on a research paper's funding source because that is relatively subjective metric.  Instead, it scores a paper on whether the authors report their funding source.    
     %table.table.table-condensed
       %thead
         %th
@@ -255,7 +255,18 @@
     %p         
       %strong
         Credo Score - Overall Question Scoring:          
-      Credo assesses the likelihood the answer to a question is Yes for Yes/No questions based on the available evidence
+      Credo assesses the likelihood the answer to a question is "Yes" for "Yes/No" questions based on the available evidence.  Each paper's individual score is translated into Credo's interpretation of that paper's probability to discern a pattern if a pattern exists (a true positive) and that's paper's probability to falsely find a pattern if no pattern exists (a false positive).  Higher Cred scores for each paper implies better probabilities in these two factors.  Credo does this translation using the equations below:
+    %p.well.well-sm.style-image  
+      =image_tag("bayesprobabilities.png", class: "style-image")
+    %p
+      Using these probabilities, Credo can use Bayes thereom to assess the direction a question leans based on the evidence.  Credo starts with the assumption that each question has a 50% probability of being "Yes" or "No".  This is known as the initial prior probability.  Each additional paper is scored and added to this assessment using Bayes thereom.
+    %p.equation 
+      =image_tag("Bayesequation.png", class: "equation", width: "600px")
+    %p
+      It is important to remember the Credo score is not a definitive answer as both Credo and science are an ongoing process of discovery.  The value of the Credo score is to provide a neutral context to understand the weight of the evidence and aid in the digestion of the information.
+    %p
+      Scoring on Credo is a continually changing algorithm as the site continues to learn and implement better ways of making evidence more accessible and understandable through trial and error.  Scoring and indexing is an essential element in providing greater context but is by no means a definitive source of truth.  It is best to understand scoring as the beginning of the journey of understanding rather than the end.                      
+
   .col-md-2.col-md-offset-1
     .affix
       %ul.nav
