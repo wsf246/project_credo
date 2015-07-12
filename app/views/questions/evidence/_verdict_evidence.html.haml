@@ -11,8 +11,9 @@
       - if @evidence.size > 0
         .argument-wrapper.yes
           #yes_accordion.panel-group
-            - @evidence.each do |research|
-              = render 'questions/evidence/researches', research: research
+            %ul.index
+              - @evidence.each do |research|
+                = render 'questions/evidence/researches', research: research
 
     - elsif @question.question_type == 'Multiple Answers'
       #unknown_accordion.panel-group
