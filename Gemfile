@@ -37,6 +37,7 @@ group :development, :test do
   gem 'railroady'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rails-pry'
   # The following optional lines are part of the advanced setup.
   # gem 'guard-rspec', '2.5.0'
   # gem 'spork-rails', '4.0.0'

@@ -9,6 +9,8 @@ class Question < ActiveRecord::Base
   end
   
   has_many :points, dependent: :destroy
+  has_many :researches, through: :associations
+  has_many :associations
   has_many :verdicts, dependent: :destroy
   belongs_to :user, foreign_key: "user_create_id"
   validates :question, presence: true, uniqueness: true	

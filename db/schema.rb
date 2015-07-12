@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211040343) do
+ActiveRecord::Schema.define(version: 20150621195130) do
 
   create_table "associations", force: true do |t|
-    t.integer  "point_id"
-    t.integer  "finding_id"
+    t.integer  "question_id"
+    t.integer  "research_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

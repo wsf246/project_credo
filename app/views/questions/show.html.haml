@@ -1,25 +1,9 @@
 - evidence = @evidence.first || nil
 
 - provide(:title, @question.question)
-= render 'questions/modal'
 .question-wrapper
   .row
-    - if evidence.present?
-      .col-md-3
-        .credo-score-placeholder{"data-toggle"=> "tooltip", "data-placement"=> "bottom", "title"=> "The Credo Score estimates the probability the answer to the question is 'Yes' based on the individual Cred Scores of all the recorded research"}
-          =high_chart("donut", @donut)
-        %p.stats
-
-          Yes Papers:
-          =@yes_research.count{|r| r.score > 0}  
- 
-          %br
-
-          No Papers:
-          = @no_research.count{|r| r.score > 0}  
-
-
-    %div{ class: evidence.present? ? 'col-md-9' : '.col-md-12' }
+    .col-md-12
       %h1.question-show-heading
         = @question.question
       - if @question.question_type == 'Multiple Answers'
@@ -34,8 +18,6 @@
         = link_to t('misc.see_edit_history'), edit_history_question_path
 
 .row
-  .col-md-5
-    = render 'questions/verdicts/verdicts'
-  .col-md-7
+  .col-md-12
     = render 'questions/evidence/verdict_evidence'
       

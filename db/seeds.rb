@@ -100,8 +100,8 @@ when 'development'
 
     #associations seed
     150.times do |associate|
-        Association.create(point_id: Point.all.sample.id,
-            finding_id: Finding.all.sample.id)
+        Association.create(question_id: Question.all.sample.id,
+            research_id: Research.all.sample.id)
     end
     
     #score it
