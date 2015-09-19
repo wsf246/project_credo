@@ -1,26 +1,33 @@
-<li>
-  <div class='row'>
-    <div class='col-md-3 center'> 
-      <div class='pix12'>
-        <b> Cred Score(<%=research.score%>)</b>
-        <br><%= is_it? research.peer_reviewed %> Peer Reviewed</br>
-        <%=research.study_type %>   
-      </div>  
-    </div>
-    <div class='col-md-9'> 
-      <%= research.title%>
-        <br />
-      <div class ='pix12'> Authors: <%=research.authors %> </div>
-      <div class ='pix12'>      
-        <% if research.journal.present? %>
-          Published in: <%= research.journal %>
-        <%else%>
-          Published in: Unknown
-        <%end%> 
-      </div> 
-      <p class = 'finding'>
-        "<%= research.findings.first.quote %>"
-      </p>
-    </div>
-  </div>    
-</li>
+<td>
+  <%= research.title%>
+    <br />
+  <div class ='pix12'> Authors: <%=research.authors %> </div>  
+</td>
+
+<td>
+  "<%= research.findings.first.quote %>"
+</td>  
+
+<td>
+  <%=research.score%>
+</td> 
+
+<td>
+  <%if research.peer_reviewed %>
+    Yes
+  <%else%>
+    No
+  <%end%>  
+</td>   
+
+<td>
+  <% if research.journal.present? %>
+    <%= research.journal %>
+  <%else%>
+    Unknown
+  <%end%>
+</td>
+
+<td>
+  <%=research.study_type %>   
+ </td>   

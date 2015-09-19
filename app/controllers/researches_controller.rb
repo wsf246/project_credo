@@ -50,7 +50,7 @@ class ResearchesController < ApplicationController
   end
 
   def pubmed_search
-    @point_id = params[:point_id]
+    @question_id = params[:question_id]
     if params[:search_terms].present?
       require 'nokogiri'
       require 'open-uri'
@@ -115,7 +115,7 @@ class ResearchesController < ApplicationController
   def view_result
     require 'nokogiri'
     require 'open-uri'
-    @point_id = params[:point_id]
+    @question_id = params[:question_id]
     @pubmed_id = params[:id]
     article_url = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id="+@pubmed_id+"&retmode=xml"    
     article_doc = Nokogiri::HTML(open(article_url)) 

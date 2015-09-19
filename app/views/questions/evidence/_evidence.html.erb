@@ -2,7 +2,7 @@
 
   <h1>Evidence</h1>
   <%if @evidence.first.nil?%>
-    No evidence yet. <%= link_to "Add an argument and evidence", new_question_point_path(@question) %>
+    No evidence yet. <%= link_to "Add evidence", new_question_point_path(@question) %>
   <%else%>
     <%= link_to "Add argument", new_question_point_path(@question) %> | 
     <%= link_to "Download CSV", question_path(format: "csv") %>

@@ -1,18 +1,29 @@
 .evidence-wrapper
   - unless @evidence.first.nil?
-    %h3
-      = t 'evidence.heading'
-      = link_to new_question_point_path @question do
-        = image_tag 'icon-plus.png', class: 'icon icon-small', data: { placement: 'right', toggle: 'tooltip', title: 'Add an argument' }
-
     - if @question.question_type == 'Yes/No'
       -# TODO: Remove Type from evidence_panel partial
 
       - if @evidence.size > 0
-        .argument-wrapper.yes
-          #yes_accordion.panel-group
-            %ul.index
-              - @evidence.each do |research|
+        %table.table
+          %thead
+            %tr
+              %th
+                Research
+                = link_to new_question_point_path @question do
+                  = render 'questions/modal_toggle'
+              %th
+                Summary    
+              %th
+                Credo Score
+              %th
+                Peer Reviewed
+              %th
+                Published in  
+              %th
+                Study Type      
+          %tbody      
+            - @evidence.each do |research|
+              %tr
                 = render 'questions/evidence/researches', research: research
 
     - elsif @question.question_type == 'Multiple Answers'

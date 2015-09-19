@@ -79,31 +79,21 @@ class QuestionsController < ApplicationController
         PaperTrail::Version.where(item_id: @question).where(item_type: "Question") +
             PaperTrail::Version.where_object(question_id: @question.id).where(item_type: "Verdict").where(event: "destroy")
 
-    @question.points.each do |point|
-      point.versions.each do |v|
-        versions << v
-      end
-    end
-
     @question.verdicts.each do |verdict|
       verdict.versions.each do |v|
         versions << v
       end
     end
 
-    @question.points.each do |point|
-      point.findings.each do |finding|
-        finding.versions.each do |v|
-          versions << v
-        end
+    @question.researches.each do |research|
+      research.versions.each do |v|
+        versions << v
       end
     end
 
-    @question.points.each do |point|
-      point.associations.each do |association|
-        association.versions.each do |v|
-          versions << v
-        end
+    @question.associations.each do |association|
+      association.versions.each do |v|
+        versions << v
       end
     end
 

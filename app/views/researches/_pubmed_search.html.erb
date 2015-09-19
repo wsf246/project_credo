@@ -2,10 +2,10 @@
   <label for="search_terms"><b>Search Pubmed and our database</b></label>
   <div>
     <%= text_field_tag "search_terms", nil, placeholder:"Search..." %>
-    <%if @point_id.nil?%>
-      <%= hidden_field_tag 'point_id', point_id %>
+    <%if @question_id.nil?%>
+      <%= hidden_field_tag 'question_id', question_id %>
     <%else%> 
-      <%= hidden_field_tag 'point_id', @point_id %> 
+      <%= hidden_field_tag 'question_id', @question_id %> 
     <%end%>
     <%= submit_tag "Search", class: "btn btn-small btn-primary" %>
   </div>  

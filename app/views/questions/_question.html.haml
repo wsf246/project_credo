@@ -10,12 +10,5 @@
           =question.question_type
         -else
           =question.answers   
-        -if question.points.joins(:associations).present?
-          %div=pluralize(question.points.joins(:associations).size,'Research finding')
-          -if question.verdicts.present?
-            %div=pluralize(question.verdicts.size,'Verdict')
-          -else 
-            %div No verdicts 
-        -else
-          %div Not yet researched  
+
 
