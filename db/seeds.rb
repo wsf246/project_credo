@@ -63,6 +63,14 @@ when 'development'
 
     #findings seed
     Finding.delete_all
+
+    Research.all.each do |research|
+        Finding.create(finding: lorem(5),
+            quote: lorem(5),
+            sample_def: lorem(5),
+            research_id: research.id)
+    end
+
     100.times do |finding|
         Finding.create(finding: lorem(5),
             quote: lorem(5),
